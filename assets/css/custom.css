@@ -1,0 +1,21 @@
+nav .nav-wrapper{
+	background-color: #263238;
+}
+
+#map {
+		width: 100%;
+        height: 90%;
+        background-color: grey;
+
+}
+
+body{
+	background-color: #cfd8dc;
+	height: 100%;
+  	padding: 0;
+  	margin: 0;
+}
+
+html{
+	height: 100%;
+}
