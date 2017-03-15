@@ -1,5 +1,4 @@
-<?php
-//defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Setupdb_model extends CI_Model {
 
@@ -58,6 +57,36 @@ class Setupdb_model extends CI_Model {
 	{
 		$this->load->dbforge();
 		$this->dbforge->drop_table('user',TRUE);
+	}
+
+	public function addContent_User()
+	{
+		$data = array(
+			array(
+			'username' => "phein",
+			'email' => "pyai.hein@gmail.com",
+			'password' => "helloworld",
+			'first_name' => "pyai",
+			'last_name' => "hein",
+			'verified' => 1,
+			'admin' => 1
+			),
+			array(
+			'username' => "rhein",
+			'email' => "xrnhein@gmail.com",
+			'password' => "helloworld",
+			'first_name' => "ron",
+			'last_name' => "hein",
+			'verified' => 1,
+			'admin' => 1
+			)
+		);
+		$this->db->insert_batch('user', $data);
+	}
+
+	public function dropContent_User()
+	{
+		$this->db->truncate('user');
 	}
 
 }

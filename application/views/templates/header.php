@@ -22,8 +22,8 @@
                   <div class="col s7 push-s1 pull-s1">
                      <ul id="nav-mobile" class="right hide-on-xsmall-and-down">
                         <li><a href="<?php echo site_url();?>Setupdb">Set up Database</a></li>
-                        <li><a href="badges.html">Profile</a></li>
-                        <li><a href="collapsible.html">Login</a></li>
+                        <li><a href="<?php echo site_url();?>User_Authentication">Login</a></li>
+                        <li><a href="<?php echo site_url();?>User_Authentication/user_registration">SignUp</a></li>
                      </ul>
                   </div>
                </div>   
