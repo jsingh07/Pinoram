@@ -10,6 +10,9 @@
 
       <link href="/assets/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
       <link href="/assets/css/custom.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <script type="text/javascript" src="/assets/js/jquery-3.1.1.min.js"></script> 
+      <script type="text/javascript" src="/assets/js/materialize.min.js"></script>
 
 
       <div class="navbar-fixed">   

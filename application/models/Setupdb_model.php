@@ -37,13 +37,18 @@ class Setupdb_model extends CI_Model {
 				'type' => 'VARCHAR',
                 'constraint' => 64
 			),
-			'verified' => array(
-				'type' => 'TINYINT',
-				'constraint' => 1
+			'last_login' => array(
+				'type' => 'VARCHAR',
+				'constraint' => 100,
+				'null' => TRUE
 			),
-			'admin' => array(
-				'type' => 'TINYINT',
-				'constraint' => 1
+			'status' => array(
+				'type' => 'VARCHAR',
+				'constraint' => 100
+			),
+			'role' => array(
+				'type' => 'VARCHAR',
+				'constraint' => 20
 			)
 		);
 
@@ -68,8 +73,8 @@ class Setupdb_model extends CI_Model {
 			'password' => "helloworld",
 			'first_name' => "pyai",
 			'last_name' => "hein",
-			'verified' => 1,
-			'admin' => 1
+			'status' => "approved",
+			'role' => "admin"
 			),
 			array(
 			'username' => "rhein",
@@ -77,8 +82,8 @@ class Setupdb_model extends CI_Model {
 			'password' => "helloworld",
 			'first_name' => "ron",
 			'last_name' => "hein",
-			'verified' => 1,
-			'admin' => 1
+			'status' => "pending",
+			'role' => "subscriber"
 			)
 		);
 		$this->db->insert_batch('user', $data);
