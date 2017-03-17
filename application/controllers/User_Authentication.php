@@ -32,8 +32,9 @@ class User_Authentication extends CI_Controller {
 
 	public function user_registration()
 	{
+		$data['msg'] = "";
 		$this->load->view('templates/header.php');
-		$this->load->view('user_authentication/registration_form');
+		$this->load->view('user_authentication/registration_form', $data);
 		//$this->load->view('user_authentication/test');
 	}
 
@@ -43,6 +44,7 @@ class User_Authentication extends CI_Controller {
 		$my_text['myval'] = $this->input->post('last_name');
 		echo $my_text['val'];
 		echo $my_text['myval'];*/
+		$data['msg'] = "";
 		$this->form_validation->set_message('is_unique', 'The %s is already taken');
 		// Check validation for user input in SignUp form
 		$this->form_validation->set_rules('first_name', 'First Name', 'trim|required');
@@ -53,7 +55,7 @@ class User_Authentication extends CI_Controller {
 		if ($this->form_validation->run() == FALSE) 
 		{
 			$this->load->view('templates/header.php');
-			$this->load->view('user_authentication/registration_form');
+			$this->load->view('user_authentication/registration_form', $data);
 		}
 		else
 		{
@@ -69,18 +71,20 @@ class User_Authentication extends CI_Controller {
 	            $url = site_url() . 'User_Authentication/complete/' . $qstring;
 	            $link = '<a href="' . $url . '">' . $url . '</a>'; 
 	                       
-	            $message['msg'] = '';                     
-	            $message['msg'] .= '<strong>You have signed up with our website</strong><br>';
-	            $message['msg'] .= '<strong>Please click:</strong> ' . $link;                          
+	            $message = '';                     
+	            $message .= '<strong>You have signed up with our website</strong><br>';
+	            $message .= '<strong>Please click to confirm your email:</strong><br>' . $link; 
+
+	            $data['msg'] = "Thank you for registering on Pinoram. Please confirm your email address.";                         
 
 				$this->load->view('templates/header.php');
-				$this->load->view('user_authentication/registration_form', $message);
+				$this->load->view('user_authentication/email_prompt', $data);
 			} 
 			else 
 			{
-				$data['message_display'] = 'There is a problem registering your account...';
+				$data['msg'] = 'There is a problem registering your account...';
 				$this->load->view('templates/header.php');
-				$this->load->view('user_authentication/registration_form', $id);
+				$this->load->view('user_authentication/registration_form', $data);
 			}
 		}
 	}
