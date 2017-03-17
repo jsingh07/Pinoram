@@ -15,11 +15,16 @@ class Setupdb extends CI_Controller {
 		$this->load->view('setupdb/setup');
 	}
 
+/*-----------------------------------------------------------------
+-----------------------------Tables--------------------------------
+-------------------------------------------------------------------*/
+
 	public function installAll()
 	{
 		$text['mytext'] = "Installed All Tables";
 		$this->load->view('templates/header.php');
 		$this->Setupdb_model->InstallUser();
+		$this->Setupdb_model->InstallToken();
 		$this->load->view('setupdb/setup');
 		$this->load->view('setupdb/success', $text);
 	}
@@ -33,11 +38,21 @@ class Setupdb extends CI_Controller {
 		$this->load->view('setupdb/success', $text);
 	}
 
+	public function installToken()
+	{
+		$text['mytext'] = "Installed Token Table";
+		$this->load->view('templates/header.php');
+		$this->Setupdb_model->InstallToken();
+		$this->load->view('setupdb/setup');
+		$this->load->view('setupdb/success', $text);
+	}
+
 	public function dropAll()
 	{
 		$text['mytext'] = "Dropped All Tables";
 		$this->load->view('templates/header.php');
 		$this->Setupdb_model->dropUser();
+		$this->Setupdb_model->dropToken();
 		$this->load->view('setupdb/setup');
 		$this->load->view('setupdb/success', $text);
 	}
@@ -50,6 +65,19 @@ class Setupdb extends CI_Controller {
 		$this->load->view('setupdb/setup');
 		$this->load->view('setupdb/success', $text);
 	}
+
+	public function dropToken()
+	{
+		$text['mytext'] = "Dropped Token Table";
+		$this->load->view('templates/header.php');
+		$this->Setupdb_model->dropToken();
+		$this->load->view('setupdb/setup');
+		$this->load->view('setupdb/success', $text);
+	}
+
+/*-----------------------------------------------------------------
+-----------------------contents------------------------------------
+-------------------------------------------------------------------*/
 
 	public function addContent_User()
 	{

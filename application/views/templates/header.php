@@ -23,7 +23,7 @@
                      <a href="<?php echo base_url();?>" class="brand-logo">Pinoram</a>
                   </div>
                   <div class="col s7 push-s1 pull-s1">
-                     <ul id="nav-mobile" class="right hide-on-xsmall-and-down">
+                     <ul id="nav-mobile" class="right hide-on-small-and-down">
                         <li><a href="<?php echo site_url();?>Setupdb">Set up Database</a></li>
                         <li><a href="<?php echo site_url();?>User_Authentication">Login</a></li>
                         <li><a href="<?php echo site_url();?>User_Authentication/user_registration">SignUp</a></li>

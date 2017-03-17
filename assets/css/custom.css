@@ -21,27 +21,42 @@ html{
 }
 
 #user-registration {
-	position: absolute;
-	margin-left: 25%;
-	margin-top: 5%;
-	height: 70%;
-	width: 50%;
+	position: relative;
+	margin-top: 2%;
+	max-width: 500px;
+	height: 500px;
 }
 
 #user-registration .card-title{
 	text-align: center;
 	margin-top: 0%;
 	font-size: 2em;
+	color: black;
 }
 
 #user-registration .card-content{
+	position: relative;
 	height: 100%;
+	width:100%;
 }
 
-#user-registration button{
-	background-color: #263238;
-	position: absolute;
-	margin-left: 25%;
-	width: 40%;
+#user-registration input{
+	color: black;
 }
+
+#user-registration .card-action{
+	margin-top: -15px;
+}
+
+#user-registration .btn{
+	position: relative;
+	margin-left: 30%;
+}
+
+#user-registration .row{
+	margin-top: -5%;
+}
+
+
+
 

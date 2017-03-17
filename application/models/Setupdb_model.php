@@ -58,11 +58,53 @@ class Setupdb_model extends CI_Model {
 		$this->dbforge->create_table('user', TRUE);
 	}
 
+	public function InstallToken()
+	{
+		$this->load->dbforge();
+
+		$fields = array(
+			'token_id' => array(
+				'type' => 'INT',
+                'constraint' => 5,
+                'unsigned' => TRUE,
+                'auto_increment' => TRUE
+			),
+			'user_id' => array(
+				'type' => 'INT',
+                'constraint' => 5,
+                'unique' => TRUE
+			),
+			'token' => array(
+				'type' => 'VARCHAR',
+                'constraint' => 255,
+                'unique' => TRUE
+			),
+			'created' => array(
+				'type' => 'VARCHAR',
+				'constraint' => 30
+			)
+		);
+
+		$this->dbforge->add_field($fields);
+		$this->dbforge->add_key('token_id', TRUE);
+		$this->dbforge->create_table('token', TRUE);
+	}
+
 	public function dropUser()
 	{
 		$this->load->dbforge();
 		$this->dbforge->drop_table('user',TRUE);
 	}
+
+	public function dropToken()
+	{
+		$this->load->dbforge();
+		$this->dbforge->drop_table('token',TRUE);
+	}
+
+/*-----------------------------------------------------------------
+-----------------------contents------------------------------------
+-------------------------------------------------------------------*/
 
 	public function addContent_User()
 	{
