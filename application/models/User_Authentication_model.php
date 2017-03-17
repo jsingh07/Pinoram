@@ -36,5 +36,15 @@ class User_Authentication_model extends CI_Model {
         
     }
 
+    public function confirmUser($data)
+    {
+        $username = $data['username'];
+        $password = $data['password'];
+        $sql = "SELECT * FROM user WHERE '$username' IN(username, email) AND '$password' = password";
+        $query = $this->db->query($sql);
+        return $query;
+
+    }
+
 }
 ?>

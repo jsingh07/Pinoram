@@ -1,9 +1,5 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-/*
-if(!isset($_SESSION)){
-    session_start();
-}*/
 
 class User_Authentication extends CI_Controller {
 
@@ -17,9 +13,6 @@ class User_Authentication extends CI_Controller {
 	// Load form validation library
 	$this->load->library('form_validation');
 
-	// Load session library
-	//$this->load->library('session');
-
 	// Load model
 	$this->load->model('User_Authentication_model');
 	}
@@ -27,6 +20,45 @@ class User_Authentication extends CI_Controller {
 	public function index()
 	{
 		$data['msg'] = "";
+		$this->load->view('templates/header.php');
+		$this->load->view('user_authentication/login_form', $data);
+	}
+
+	public function user_login()
+	{
+		$this->form_validation->set_rules('username', 'Username or Email', 'trim|required|min_length[4]');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[5]');
+		if ($this->form_validation->run() == FALSE) 
+		{
+			$this->load->view('templates/header.php');
+			$this->load->view('user_authentication/login_form', $data);
+		}
+		else
+		{
+			$clean = $this->security->xss_clean($this->input->post(NULL, TRUE));
+	        $id = $this->User_Authentication_model->confirmUser($clean);
+	        foreach ($id->result() as $data)
+	        {
+	        	$newdata = array(
+                   'username'  => $data->username,
+                   'email'     => $data->email,
+                   'first_name'=> $data->first_name,
+                   'last_name' => $data->last_name,
+                   'role'      => $data->role,
+                   'status'    => $data->status,
+                   'logged_in' => TRUE
+               );
+	        }
+	        $this->session->set_userdata($newdata);
+	        $this->load->view('templates/header.php');
+	        $this->load->view('welcome');
+		}
+	}
+
+	public function user_logout()
+	{
+		$data['msg'] = "";
+		$this->session->set_userdata('logged_in',FALSE);
 		$this->load->view('templates/header.php');
 		$this->load->view('user_authentication/login_form', $data);
 	}
