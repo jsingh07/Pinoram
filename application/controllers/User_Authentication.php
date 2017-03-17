@@ -20,7 +20,7 @@ class User_Authentication extends CI_Controller {
 	// Load session library
 	//$this->load->library('session');
 
-	// Load database
+	// Load model
 	$this->load->model('User_Authentication_model');
 	}
 
@@ -40,51 +40,58 @@ class User_Authentication extends CI_Controller {
 
 	public function new_user_registration()
 	{
-		/*$my_text['val'] = $this->input->post('first_name');
-		$my_text['myval'] = $this->input->post('last_name');
-		echo $my_text['val'];
-		echo $my_text['myval'];*/
-		$data['msg'] = "";
-		$this->form_validation->set_message('is_unique', 'The %s is already taken');
-		// Check validation for user input in SignUp form
-		$this->form_validation->set_rules('first_name', 'First Name', 'trim|required');
-		$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required');
-		$this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[4]|is_unique[user.username]');
-		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[user.email]');
-		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[5]');
-		if ($this->form_validation->run() == FALSE) 
+		$p1 = $this->input->post('password');
+		$p2 = $this->input->post('passwordconf');
+		if($p1 != $p2)
 		{
+			$data['msg'] = "The password and password confirmation need to match";
 			$this->load->view('templates/header.php');
 			$this->load->view('user_authentication/registration_form', $data);
 		}
 		else
 		{
-
-			$clean = $this->security->xss_clean($this->input->post(NULL, TRUE));
-            $id = $this->User_Authentication_model->insertUser($clean);
-
-			if ($id) 
+			$data['msg'] = "";
+			$this->form_validation->set_message('is_unique', 'The %s is already taken.');
+			// Check validation for user input in SignUp form
+			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required');
+			$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required');
+			$this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[4]|is_unique[user.username]');
+			$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[user.email]');
+			$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[5]');
+			if ($this->form_validation->run() == FALSE) 
 			{
-				$token = $this->User_Authentication_model->insertToken($id);                                        
-            
-	            $qstring = $this->base64url_encode($token);                      
-	            $url = site_url() . 'User_Authentication/complete/' . $qstring;
-	            $link = '<a href="' . $url . '">' . $url . '</a>'; 
-	                       
-	            $message = '';                     
-	            $message .= '<strong>You have signed up with our website</strong><br>';
-	            $message .= '<strong>Please click to confirm your email:</strong><br>' . $link; 
-
-	            $data['msg'] = "Thank you for registering on Pinoram. Please confirm your email address.";                         
-
-				$this->load->view('templates/header.php');
-				$this->load->view('user_authentication/email_prompt', $data);
-			} 
-			else 
-			{
-				$data['msg'] = 'There is a problem registering your account...';
 				$this->load->view('templates/header.php');
 				$this->load->view('user_authentication/registration_form', $data);
+			}
+			else
+			{
+
+				$clean = $this->security->xss_clean($this->input->post(NULL, TRUE));
+	            $id = $this->User_Authentication_model->insertUser($clean);
+
+				if ($id) 
+				{
+					$token = $this->User_Authentication_model->insertToken($id);                                        
+	            
+		            $qstring = $this->base64url_encode($token);                      
+		            $url = site_url() . 'User_Authentication/complete/' . $qstring;
+		            $link = '<a href="' . $url . '">' . $url . '</a>'; 
+		                       
+		            $message = '';                     
+		            $message .= '<strong>You have signed up with our website</strong><br>';
+		            $message .= '<strong>Please click to confirm your email:</strong><br>' . $link; 
+
+		            $data['msg'] = "Thank you for registering on Pinoram. Please confirm your email address.";                         
+
+					$this->load->view('templates/header.php');
+					$this->load->view('user_authentication/email_prompt', $data);
+				} 
+				else 
+				{
+					$data['msg'] = 'There is a problem registering your account...';
+					$this->load->view('templates/header.php');
+					$this->load->view('user_authentication/registration_form', $data);
+				}
 			}
 		}
 	}
