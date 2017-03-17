@@ -10,6 +10,9 @@
 
       <link href="/assets/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
       <link href="/assets/css/custom.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <script type="text/javascript" src="/assets/js/jquery-3.1.1.min.js"></script> 
+      <script type="text/javascript" src="/assets/js/materialize.min.js"></script>
 
 
       <div class="navbar-fixed">   
@@ -20,10 +23,10 @@
                      <a href="<?php echo base_url();?>" class="brand-logo">Pinoram</a>
                   </div>
                   <div class="col s7 push-s1 pull-s1">
-                     <ul id="nav-mobile" class="right hide-on-xsmall-and-down">
+                     <ul id="nav-mobile" class="right hide-on-small-and-down">
                         <li><a href="<?php echo site_url();?>Setupdb">Set up Database</a></li>
-                        <li><a href="badges.html">Profile</a></li>
-                        <li><a href="collapsible.html">Login</a></li>
+                        <li><a href="<?php echo site_url();?>User_Authentication">Login</a></li>
+                        <li><a href="<?php echo site_url();?>User_Authentication/user_registration">SignUp</a></li>
                      </ul>
                   </div>
                </div>   
