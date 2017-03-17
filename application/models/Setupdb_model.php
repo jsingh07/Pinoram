@@ -1,5 +1,4 @@
-<?php
-//defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Setupdb_model extends CI_Model {
 
@@ -38,13 +37,18 @@ class Setupdb_model extends CI_Model {
 				'type' => 'VARCHAR',
                 'constraint' => 64
 			),
-			'verified' => array(
-				'type' => 'TINYINT',
-				'constraint' => 1
+			'last_login' => array(
+				'type' => 'VARCHAR',
+				'constraint' => 100,
+				'null' => TRUE
 			),
-			'admin' => array(
-				'type' => 'TINYINT',
-				'constraint' => 1
+			'status' => array(
+				'type' => 'VARCHAR',
+				'constraint' => 100
+			),
+			'role' => array(
+				'type' => 'VARCHAR',
+				'constraint' => 20
 			)
 		);
 
@@ -54,10 +58,82 @@ class Setupdb_model extends CI_Model {
 		$this->dbforge->create_table('user', TRUE);
 	}
 
+	public function InstallToken()
+	{
+		$this->load->dbforge();
+
+		$fields = array(
+			'token_id' => array(
+				'type' => 'INT',
+                'constraint' => 5,
+                'unsigned' => TRUE,
+                'auto_increment' => TRUE
+			),
+			'user_id' => array(
+				'type' => 'INT',
+                'constraint' => 5,
+                'unique' => TRUE
+			),
+			'token' => array(
+				'type' => 'VARCHAR',
+                'constraint' => 255,
+                'unique' => TRUE
+			),
+			'created' => array(
+				'type' => 'VARCHAR',
+				'constraint' => 30
+			)
+		);
+
+		$this->dbforge->add_field($fields);
+		$this->dbforge->add_key('token_id', TRUE);
+		$this->dbforge->create_table('token', TRUE);
+	}
+
 	public function dropUser()
 	{
 		$this->load->dbforge();
 		$this->dbforge->drop_table('user',TRUE);
+	}
+
+	public function dropToken()
+	{
+		$this->load->dbforge();
+		$this->dbforge->drop_table('token',TRUE);
+	}
+
+/*-----------------------------------------------------------------
+-----------------------contents------------------------------------
+-------------------------------------------------------------------*/
+
+	public function addContent_User()
+	{
+		$data = array(
+			array(
+			'username' => "phein",
+			'email' => "pyai.hein@gmail.com",
+			'password' => "helloworld",
+			'first_name' => "pyai",
+			'last_name' => "hein",
+			'status' => "approved",
+			'role' => "admin"
+			),
+			array(
+			'username' => "rhein",
+			'email' => "xrnhein@gmail.com",
+			'password' => "helloworld",
+			'first_name' => "ron",
+			'last_name' => "hein",
+			'status' => "pending",
+			'role' => "subscriber"
+			)
+		);
+		$this->db->insert_batch('user', $data);
+	}
+
+	public function dropContent_User()
+	{
+		$this->db->truncate('user');
 	}
 
 }
