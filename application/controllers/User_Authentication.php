@@ -26,8 +26,9 @@ class User_Authentication extends CI_Controller {
 
 	public function index()
 	{
+		$data['msg'] = "";
 		$this->load->view('templates/header.php');
-		$this->load->view('user_authentication/login_form');
+		$this->load->view('user_authentication/login_form', $data);
 	}
 
 	public function user_registration()

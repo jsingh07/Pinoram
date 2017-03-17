@@ -32,9 +32,7 @@
                </div>   
             </div>
          </nav>
-
       </div>
-
 
    </head>
 </html>

@@ -14,32 +14,41 @@
 			echo "</div>";
 		}
 		?>
-		<div class = "row" style="width:100%; height:100%; margin-top:0px" id="main">
-			<div class = "col s10" style="background-color: white; position:absolute; height: 25em; width:40%;left:50%;margin-left:-20%;margin-top:10%;"> 
-
-				<h2>Login Form</h2>
-				<?php echo form_open('user_authentication/user_login_process'); ?>
-				<?php
-					echo "<div class='error_msg'>";
-					if (isset($error_message)) {
-					echo $error_message;
-					}
-					echo validation_errors();
-					echo "</div>";
-				?>
-				<div class="row" style="background-color: white;">
-			        <div class="input-field col s6">
-			          <input placeholder="Placeholder" id="first_name" type="text" class="validate">
-			          <label for="first_name">First Name</label>
-			        </div>
-			        <div class="input-field col s6">
-			          <input id="last_name" type="text" class="validate">
-			          <label for="last_name">Last Name</label>
-			        </div>
-			    </div>
-				<input type="submit" value=" Login " name="submit"/><br />
-				<a href="<?php echo base_url() ?>User_Authentication/user_registration">To SignUp Click Here</a>
-				<?php echo form_close(); ?>
+		<div class="row" id="user-registration">
+			<div class="card z-depth-5 col s12">
+				<div class="error_msg" style="position: relative; color: red; text-align: center">
+					<?php echo validation_errors();?>
+				</div>
+				<div style="position: relative; margin-top: 10px; color: black; text-align:center;">
+					<?php echo $msg ?>
+				</div>
+		        <div class="card-content">
+		        	<span class="card-title">Login</span>
+		        	<hr/>
+		        	<?php echo form_open('User_Authentication/user_login'); ?>
+		        	<div class="row" style="margin-top: 5%;">
+				      	<div class="row">
+				        	<div class="input-field col s12">
+				          		<input type="text" id="username" name="username" class="validate"
+				            			value="<?php echo set_value('username'); ?>">
+				          		<label for="username">Username or Email</label>
+				        	</div>
+				        </div>
+				      	<div class="row">
+				        	<div class="input-field col s12">
+				          		<input type="password" id="password" name="password" class="validate">
+				          		<label for="password">Password</label>
+				        	</div>
+				      	</div>
+					</div>
+					<div style="margin-top: -20px; width: 100%; position: relative;" >
+		              <input style="width:80%; margin-left:10%;" class="btn waves-effect waves-light" type="submit" name="submit" value="SignIn"></input>
+		            </div>
+		            <div style="margin-top: 20px;">
+		           		<a href="<?php echo base_url() ?>User_Authentication/user_registration">To SignUp Click Here</a>
+		           	</div>
+		        	<?php echo form_close(); ?>
+				</div> 
 			</div>
 		</div>
 	</body>
