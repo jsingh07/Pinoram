@@ -23,162 +23,215 @@ class Setupdb extends CI_Controller {
 		}
 	}
 
+	public function access()
+	{
+		if($this->session->userdata('role') != 'admin')
+		{
+			$this->load->view('templates/header.php');
+			$this->load->view('access_denied.php');
+			return 0;
+		}
+		else
+		{
+			return 1;
+		}
+	}
+
 /*-----------------------------------------------------------------
 -----------------------------Tables--------------------------------
 -------------------------------------------------------------------*/
 
-	private function installAll()
+	public function installAll()
 	{
-		$text['mytext'] = "Installed All Tables";
-		$this->load->view('templates/header.php');
-		$this->Setupdb_model->InstallUser();
-		$this->Setupdb_model->InstallToken();
-		$this->load->view('setupdb/setup');
-		$this->load->view('setupdb/success', $text);
+		if($this->access())
+		{
+			$text['mytext'] = "Installed All Tables";
+			$this->load->view('templates/header.php');
+			$this->Setupdb_model->InstallUser();
+			$this->Setupdb_model->InstallToken();
+			$this->load->view('setupdb/setup');
+			$this->load->view('setupdb/success', $text);
+		}
 	}
 
-	private function installUser()
+	public function installUser()
 	{
-		$text['mytext'] = "Installed User Table";
-		$this->load->view('templates/header.php');
-		$this->Setupdb_model->InstallUser();
-		$this->load->view('setupdb/setup');
-		$this->load->view('setupdb/success', $text);
+		if($this->access())
+		{
+			$text['mytext'] = "Installed User Table";
+			$this->load->view('templates/header.php');
+			$this->Setupdb_model->InstallUser();
+			$this->load->view('setupdb/setup');
+			$this->load->view('setupdb/success', $text);
+		}
 	}
 
-	private function installToken()
+	public function installToken()
 	{
-		$text['mytext'] = "Installed Token Table";
-		$this->load->view('templates/header.php');
-		$this->Setupdb_model->InstallToken();
-		$this->load->view('setupdb/setup');
-		$this->load->view('setupdb/success', $text);
+		if($this->access())
+		{
+			$text['mytext'] = "Installed Token Table";
+			$this->load->view('templates/header.php');
+			$this->Setupdb_model->InstallToken();
+			$this->load->view('setupdb/setup');
+			$this->load->view('setupdb/success', $text);
+		}
 	}
 
-	private function dropAll()
+	public function dropAll()
 	{
-		$text['mytext'] = "Dropped All Tables";
-		$this->load->view('templates/header.php');
-		$this->Setupdb_model->dropUser();
-		$this->Setupdb_model->dropToken();
-		$this->load->view('setupdb/setup');
-		$this->load->view('setupdb/success', $text);
+		if($this->access())
+		{
+			$text['mytext'] = "Dropped All Tables";
+			$this->load->view('templates/header.php');
+			$this->Setupdb_model->dropUser();
+			$this->Setupdb_model->dropToken();
+			$this->load->view('setupdb/setup');
+			$this->load->view('setupdb/success', $text);
+		}
 	}
 
-	private function dropUser()
+	public function dropUser()
 	{
-		$text['mytext'] = "Dropped User Table";
-		$this->load->view('templates/header.php');
-		$this->Setupdb_model->dropUser();
-		$this->load->view('setupdb/setup');
-		$this->load->view('setupdb/success', $text);
+		if($this->access())
+		{
+			$text['mytext'] = "Dropped User Table";
+			$this->load->view('templates/header.php');
+			$this->Setupdb_model->dropUser();
+			$this->load->view('setupdb/setup');
+			$this->load->view('setupdb/success', $text);
+		}
 	}
 
-	private function dropToken()
+	public function dropToken()
 	{
-		$text['mytext'] = "Dropped Token Table";
-		$this->load->view('templates/header.php');
-		$this->Setupdb_model->dropToken();
-		$this->load->view('setupdb/setup');
-		$this->load->view('setupdb/success', $text);
+		if($this->access())
+		{
+			$text['mytext'] = "Dropped Token Table";
+			$this->load->view('templates/header.php');
+			$this->Setupdb_model->dropToken();
+			$this->load->view('setupdb/setup');
+			$this->load->view('setupdb/success', $text);
+		}
 	}
 
-	private function showUser()
+	public function showUser()
 	{
-		$this->load->view('templates/header.php');
-		$data['query'] = $this->Setupdb_model->showUser();
-		$this->load->view('setupdb/setup');
-		$this->load->view('setupdb/show/user', $data);
+		if($this->access())
+		{
+			$this->load->view('templates/header.php');
+			$data['query'] = $this->Setupdb_model->showUser();
+			$this->load->view('setupdb/setup');
+			$this->load->view('setupdb/show/user', $data);
+		}
 	}
 
-	private function showToken()
+	public function showToken()
 	{
-		$this->load->view('templates/header.php');
-		$data['query'] = $this->Setupdb_model->showToken();
-		$this->load->view('setupdb/setup');
-		$this->load->view('setupdb/show/token', $data);
+		if($this->access())
+		{
+			$this->load->view('templates/header.php');
+			$data['query'] = $this->Setupdb_model->showToken();
+			$this->load->view('setupdb/setup');
+			$this->load->view('setupdb/show/token', $data);
+		}
 	}
 
 /*-----------------------------------------------------------------
 -----------------------contents------------------------------------
 -------------------------------------------------------------------*/
 
-	private function addContent_User()
+	public function addContent_User()
 	{
-		$text['mytext'] = "Added User Content";
-		$this->load->view('templates/header.php');
-		$this->Setupdb_model->addContent_User();
-		$this->load->view('setupdb/setup');
-		$this->load->view('setupdb/success', $text);
-	}
-
-	private function addContent_Token()
-	{
-		$text['mytext'] = "Added Token Content";
-		$this->load->view('templates/header.php');
-		$this->Setupdb_model->addContent_Token();
-		$this->load->view('setupdb/setup');
-		$this->load->view('setupdb/success', $text);
-	}
-
-	private function dropContent_User()
-	{
-		$text['mytext'] = "Dropped User Content";
-		$this->load->view('templates/header.php');
-		$this->Setupdb_model->dropContent_User();
-		$this->load->view('setupdb/setup');
-		$this->load->view('setupdb/success', $text);
-	}
-
-	private function dropContent_Token()
-	{
-		$text['mytext'] = "Dropped Token Content";
-		$this->load->view('templates/header.php');
-		$this->Setupdb_model->dropContent_Token();
-		$this->load->view('setupdb/setup');
-		$this->load->view('setupdb/success', $text);
-	}
-
-	private function editUser()
-	{
-		$id= $this->uri->segment(3);
-		$this->load->view('templates/header.php');
-		$this->load->view('setupdb/setup');
-		$query = $this->Setupdb_model->getUser($id);
-		$query_name = $query->row();
-		$name = $query_name->username;
-		$result = $this->Setupdb_model->editUser($id);
-		if($result == 1)
+		if($this->access())
 		{
-			$text['mytext'] = "Deleted User ID ".$id. " with username: ".$name;
+			$text['mytext'] = "Added User Content";
+			$this->load->view('templates/header.php');
+			$this->Setupdb_model->addContent_User();
+			$this->load->view('setupdb/setup');
+			$this->load->view('setupdb/success', $text);
 		}
-		else
-		{
-			$text['mytext'] = "Could not edit User Table";
-		}
-		$this->load->view('setupdb/success', $text);
 	}
 
-
-	private function editToken()
+	public function _addContent_Token()
 	{
-		$id= $this->uri->segment(3);
-		$this->load->view('templates/header.php');
-		$this->load->view('setupdb/setup');
-		$result = $this->Setupdb_model->editToken($id);
-		if($result == 1)
+		if($this->access())
 		{
-			$text['mytext'] = "Deleted Token ID ".$id;
+			$text['mytext'] = "Added Token Content";
+			$this->load->view('templates/header.php');
+			$this->Setupdb_model->addContent_Token();
+			$this->load->view('setupdb/setup');
+			$this->load->view('setupdb/success', $text);
 		}
-		else
+	}
+
+	public function dropContent_User()
+	{
+		if($this->access())
 		{
-			$text['mytext'] = "Could not edit Token Table";
+			$text['mytext'] = "Dropped User Content";
+			$this->load->view('templates/header.php');
+			$this->Setupdb_model->dropContent_User();
+			$this->load->view('setupdb/setup');
+			$this->load->view('setupdb/success', $text);
 		}
-		$this->load->view('setupdb/success', $text);
+	}
+
+	public function dropContent_Token()
+	{
+		if($this->access())
+		{
+			$text['mytext'] = "Dropped Token Content";
+			$this->load->view('templates/header.php');
+			$this->Setupdb_model->dropContent_Token();
+			$this->load->view('setupdb/setup');
+			$this->load->view('setupdb/success', $text);
+		}
+	}
+
+	public function editUser()
+	{
+		if($this->access())
+		{
+			$id= $this->uri->segment(3);
+			$this->load->view('templates/header.php');
+			$this->load->view('setupdb/setup');
+			$query = $this->Setupdb_model->getUser($id);
+			$query_name = $query->row();
+			$name = $query_name->username;
+			$result = $this->Setupdb_model->editUser($id);
+			if($result == 1)
+			{
+				$text['mytext'] = "Deleted User ID ".$id. " with username: ".$name;
+			}
+			else
+			{
+				$text['mytext'] = "Could not edit User Table";
+			}
+			$this->load->view('setupdb/success', $text);
+		}
 	}
 
 
-
+	public function editToken()
+	{
+		if($this->access())
+		{
+			$id= $this->uri->segment(3);
+			$this->load->view('templates/header.php');
+			$this->load->view('setupdb/setup');
+			$result = $this->Setupdb_model->editToken($id);
+			if($result == 1)
+			{
+				$text['mytext'] = "Deleted Token ID ".$id;
+			}
+			else
+			{
+				$text['mytext'] = "Could not edit Token Table";
+			}
+			$this->load->view('setupdb/success', $text);
+		}
+	}
 
 }
 
