@@ -40,8 +40,21 @@ class User_Authentication_model extends CI_Model {
     {
         $username = $data['username'];
         $password = $data['password'];
-        $sql = "SELECT * FROM user WHERE '$username' IN(username, email) AND '$password' = password";
+        //$sql = "SELECT * FROM user WHERE '$username' IN(username, email) AND '$password' = password";
+        $sql = "SELECT * FROM user WHERE '$username' IN(username, email)";
         $query = $this->db->query($sql);
+        if ($query->num_rows() == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            $result = $query->row();
+            if($password != $result->password)
+            {
+                return 0;
+            }
+        }
         return $query;
 
     }

@@ -19,7 +19,7 @@
 				<div class="error_msg" style="position: relative; color: red; text-align: center">
 					<?php echo validation_errors();?>
 				</div>
-				<div style="position: relative; margin-top: 10px; color: black; text-align:center;">
+				<div style="position: relative; margin-top: 10px; color: red; text-align:center;">
 					<?php echo $msg ?>
 				</div>
 		        <div class="card-content">

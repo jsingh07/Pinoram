@@ -37,21 +37,30 @@ class User_Authentication extends CI_Controller {
 		{
 			$clean = $this->security->xss_clean($this->input->post(NULL, TRUE));
 	        $id = $this->User_Authentication_model->confirmUser($clean);
-	        foreach ($id->result() as $data)
+	        if($id)
 	        {
-	        	$newdata = array(
-                   'username'  => $data->username,
-                   'email'     => $data->email,
-                   'first_name'=> $data->first_name,
-                   'last_name' => $data->last_name,
-                   'role'      => $data->role,
-                   'status'    => $data->status,
-                   'logged_in' => TRUE
-               );
-	        }
-	        $this->session->set_userdata($newdata);
-	        $this->load->view('templates/header.php');
-	        $this->load->view('welcome');
+		        foreach ($id->result() as $data)
+		        {
+		        	$newdata = array(
+	                   'username'  => $data->username,
+	                   'email'     => $data->email,
+	                   'first_name'=> $data->first_name,
+	                   'last_name' => $data->last_name,
+	                   'role'      => $data->role,
+	                   'status'    => $data->status,
+	                   'logged_in' => TRUE
+	                );
+		        }
+		        $this->session->set_userdata($newdata);
+		        $this->load->view('templates/header.php');
+		        $this->load->view('welcome');
+		    }
+		    else
+		   	{
+		   		$data['msg'] = "Username/Email and password Incorrect. Please try again.";
+		   		$this->load->view('templates/header.php');
+				$this->load->view('user_authentication/login_form', $data);
+		   	}
 		}
 	}
 
