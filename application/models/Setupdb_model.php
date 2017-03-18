@@ -102,6 +102,20 @@ class Setupdb_model extends CI_Model {
 		$this->dbforge->drop_table('token',TRUE);
 	}
 
+	public function showUser()
+	{
+		$sql = "SELECT * FROM user";
+		$query = $this->db->query($sql);
+		return $query;
+	}
+
+	public function showToken()
+	{
+		$sql = "SELECT * FROM token";
+		$query = $this->db->query($sql);
+		return $query;
+	}
+
 /*-----------------------------------------------------------------
 -----------------------contents------------------------------------
 -------------------------------------------------------------------*/
@@ -131,9 +145,52 @@ class Setupdb_model extends CI_Model {
 		$this->db->insert_batch('user', $data);
 	}
 
+	public function addContent_Token()
+	{
+		$data = array(
+			array(
+			'user_id' => 1,
+			'token' => "c60a911befaae89987bae7c3f21765",
+			'created' => "Fri, 17 Mar 17 12:30:25 -0700"
+			),
+			array(
+			'user_id' => 2,
+			'token' => "6c5ee86c13422b51bea31aebf0d66f",
+			'created' => "Fri, 17 Mar 17 12:30:47 -0700"
+			)
+		);
+		$this->db->insert_batch('token', $data);
+	}
+
 	public function dropContent_User()
 	{
 		$this->db->truncate('user');
+	}
+
+	public function dropContent_Token()
+	{
+		$this->db->truncate('token');
+	}
+
+	public function getUser($id)
+	{
+		$sql = "SELECT username FROM user WHERE user_id = $id";
+		$query = $this->db->query($sql);
+		return $query;
+	}
+
+	public function editUser($id)
+	{
+		$sql = "DELETE FROM user WHERE user_id = $id";
+		$query = $this->db->query($sql);
+		return $query;
+	}
+
+	public function editToken($id)
+	{
+		$sql = "DELETE FROM token WHERE token_id = $id";
+		$query = $this->db->query($sql);
+		return $query;
 	}
 
 }
