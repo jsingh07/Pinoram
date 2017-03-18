@@ -1,25 +1,33 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+
 class Setupdb extends CI_Controller {
 	public function __construct() {
 	parent::__construct();
 
 	$this->load->helper('url');
 	$this->load->model('Setupdb_model');
+
 	}
 
 	public function index()
 	{
 		$this->load->view('templates/header.php');
-		$this->load->view('setupdb/setup');
+		if($this->session->userdata('role') != 'admin')
+		{
+			$this->load->view('access_denied.php');
+		}
+		else{
+			$this->load->view('setupdb/setup');
+		}
 	}
 
 /*-----------------------------------------------------------------
 -----------------------------Tables--------------------------------
 -------------------------------------------------------------------*/
 
-	public function installAll()
+	private function installAll()
 	{
 		$text['mytext'] = "Installed All Tables";
 		$this->load->view('templates/header.php');
@@ -29,7 +37,7 @@ class Setupdb extends CI_Controller {
 		$this->load->view('setupdb/success', $text);
 	}
 
-	public function installUser()
+	private function installUser()
 	{
 		$text['mytext'] = "Installed User Table";
 		$this->load->view('templates/header.php');
@@ -38,7 +46,7 @@ class Setupdb extends CI_Controller {
 		$this->load->view('setupdb/success', $text);
 	}
 
-	public function installToken()
+	private function installToken()
 	{
 		$text['mytext'] = "Installed Token Table";
 		$this->load->view('templates/header.php');
@@ -47,7 +55,7 @@ class Setupdb extends CI_Controller {
 		$this->load->view('setupdb/success', $text);
 	}
 
-	public function dropAll()
+	private function dropAll()
 	{
 		$text['mytext'] = "Dropped All Tables";
 		$this->load->view('templates/header.php');
@@ -57,7 +65,7 @@ class Setupdb extends CI_Controller {
 		$this->load->view('setupdb/success', $text);
 	}
 
-	public function dropUser()
+	private function dropUser()
 	{
 		$text['mytext'] = "Dropped User Table";
 		$this->load->view('templates/header.php');
@@ -66,7 +74,7 @@ class Setupdb extends CI_Controller {
 		$this->load->view('setupdb/success', $text);
 	}
 
-	public function dropToken()
+	private function dropToken()
 	{
 		$text['mytext'] = "Dropped Token Table";
 		$this->load->view('templates/header.php');
@@ -75,7 +83,7 @@ class Setupdb extends CI_Controller {
 		$this->load->view('setupdb/success', $text);
 	}
 
-	public function showUser()
+	private function showUser()
 	{
 		$this->load->view('templates/header.php');
 		$data['query'] = $this->Setupdb_model->showUser();
@@ -83,7 +91,7 @@ class Setupdb extends CI_Controller {
 		$this->load->view('setupdb/show/user', $data);
 	}
 
-	public function showToken()
+	private function showToken()
 	{
 		$this->load->view('templates/header.php');
 		$data['query'] = $this->Setupdb_model->showToken();
@@ -95,7 +103,7 @@ class Setupdb extends CI_Controller {
 -----------------------contents------------------------------------
 -------------------------------------------------------------------*/
 
-	public function addContent_User()
+	private function addContent_User()
 	{
 		$text['mytext'] = "Added User Content";
 		$this->load->view('templates/header.php');
@@ -104,7 +112,7 @@ class Setupdb extends CI_Controller {
 		$this->load->view('setupdb/success', $text);
 	}
 
-	public function addContent_Token()
+	private function addContent_Token()
 	{
 		$text['mytext'] = "Added Token Content";
 		$this->load->view('templates/header.php');
@@ -113,7 +121,7 @@ class Setupdb extends CI_Controller {
 		$this->load->view('setupdb/success', $text);
 	}
 
-	public function dropContent_User()
+	private function dropContent_User()
 	{
 		$text['mytext'] = "Dropped User Content";
 		$this->load->view('templates/header.php');
@@ -122,7 +130,7 @@ class Setupdb extends CI_Controller {
 		$this->load->view('setupdb/success', $text);
 	}
 
-	public function dropContent_Token()
+	private function dropContent_Token()
 	{
 		$text['mytext'] = "Dropped Token Content";
 		$this->load->view('templates/header.php');
@@ -131,7 +139,7 @@ class Setupdb extends CI_Controller {
 		$this->load->view('setupdb/success', $text);
 	}
 
-	public function editUser()
+	private function editUser()
 	{
 		$id= $this->uri->segment(3);
 		$this->load->view('templates/header.php');
@@ -152,7 +160,7 @@ class Setupdb extends CI_Controller {
 	}
 
 
-	public function editToken()
+	private function editToken()
 	{
 		$id= $this->uri->segment(3);
 		$this->load->view('templates/header.php');
