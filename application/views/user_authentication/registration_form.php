@@ -2,11 +2,11 @@
 
 <html>
 
-<?php
-	if (isset($this->session->userdata['logged_in'])) {
+<!--<?php
+	/*if (isset($this->session->userdata['logged_in'])) {
 	header("location: http://pyaici.com");
-	}
-?>
+	}*/
+?>-->
 
 <body>
 	<div class="row" id="user-registration">
