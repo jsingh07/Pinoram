@@ -10,17 +10,18 @@
 
 <body>
 	<div class="row" id="user-registration">
-		<div class="card darken-1 z-depth-5 col s12" >
+		<div class="card z-depth-5 col s12">
 			<div class="error_msg" style="position: relative; color: red; text-align: center">
 				<?php echo validation_errors();?>
 			</div>
-			<?php echo $msg ?>
-
-	        <div class="card-content white-text">
+			<div style="position: relative; margin-top: 10px; color: black; text-align:center;">
+				<?php echo $msg ?>
+			</div>
+	        <div class="card-content">
 	        	<span class="card-title">Registration Form</span>
 	        	<hr/>
 	        	<?php echo form_open('User_Authentication/new_user_registration'); ?>
-	        	<div class="row" style="margin-top: 5%">
+	        	<div class="row" style="margin-top: 5%;">
 			        <div class="row">
 			        	<div class="input-field col s6">
 			            	<input type="text" id="first_name" name="first_name" class="validate"
@@ -61,7 +62,7 @@
 			        </div>
 				</div>
 				<div class="card-action">
-	              <input class="btn waves-effect waves-light" type="submit" name="submit">Register</input>
+	              <input class="btn waves-effect waves-light" type="submit" name="submit"></input>
 	            </div>
 	        	<?php echo form_close(); ?>
 			</div> 

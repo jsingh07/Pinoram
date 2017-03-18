@@ -75,6 +75,22 @@ class Setupdb extends CI_Controller {
 		$this->load->view('setupdb/success', $text);
 	}
 
+	public function showUser()
+	{
+		$this->load->view('templates/header.php');
+		$data['query'] = $this->Setupdb_model->showUser();
+		$this->load->view('setupdb/setup');
+		$this->load->view('setupdb/show/user', $data);
+	}
+
+	public function showToken()
+	{
+		$this->load->view('templates/header.php');
+		$data['query'] = $this->Setupdb_model->showToken();
+		$this->load->view('setupdb/setup');
+		$this->load->view('setupdb/show/token', $data);
+	}
+
 /*-----------------------------------------------------------------
 -----------------------contents------------------------------------
 -------------------------------------------------------------------*/
@@ -88,12 +104,68 @@ class Setupdb extends CI_Controller {
 		$this->load->view('setupdb/success', $text);
 	}
 
+	public function addContent_Token()
+	{
+		$text['mytext'] = "Added Token Content";
+		$this->load->view('templates/header.php');
+		$this->Setupdb_model->addContent_Token();
+		$this->load->view('setupdb/setup');
+		$this->load->view('setupdb/success', $text);
+	}
+
 	public function dropContent_User()
 	{
 		$text['mytext'] = "Dropped User Content";
 		$this->load->view('templates/header.php');
 		$this->Setupdb_model->dropContent_User();
 		$this->load->view('setupdb/setup');
+		$this->load->view('setupdb/success', $text);
+	}
+
+	public function dropContent_Token()
+	{
+		$text['mytext'] = "Dropped Token Content";
+		$this->load->view('templates/header.php');
+		$this->Setupdb_model->dropContent_Token();
+		$this->load->view('setupdb/setup');
+		$this->load->view('setupdb/success', $text);
+	}
+
+	public function editUser()
+	{
+		$id= $this->uri->segment(3);
+		$this->load->view('templates/header.php');
+		$this->load->view('setupdb/setup');
+		$query = $this->Setupdb_model->getUser($id);
+		$query_name = $query->row();
+		$name = $query_name->username;
+		$result = $this->Setupdb_model->editUser($id);
+		if($result == 1)
+		{
+			$text['mytext'] = "Deleted User ID ".$id. " with username: ".$name;
+		}
+		else
+		{
+			$text['mytext'] = "Could not edit User Table";
+		}
+		$this->load->view('setupdb/success', $text);
+	}
+
+
+	public function editToken()
+	{
+		$id= $this->uri->segment(3);
+		$this->load->view('templates/header.php');
+		$this->load->view('setupdb/setup');
+		$result = $this->Setupdb_model->editToken($id);
+		if($result == 1)
+		{
+			$text['mytext'] = "Deleted Token ID ".$id;
+		}
+		else
+		{
+			$text['mytext'] = "Could not edit Token Table";
+		}
 		$this->load->view('setupdb/success', $text);
 	}
 
