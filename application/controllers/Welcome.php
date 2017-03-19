@@ -23,6 +23,14 @@ class Welcome extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->view('templates/header.php');
 		$this->load->view('home');
+		//$this->load->view('welcome');
+	}
+
+	public function about_us()
+	{
+		$this->load->helper('url');
+		$this->load->view('templates/header.php');
+		$this->load->view('aboutus');
 	}
 
 }
