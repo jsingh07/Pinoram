@@ -30,6 +30,7 @@ class User_Authentication extends CI_Controller {
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[5]');
 		if ($this->form_validation->run() == FALSE) 
 		{
+			$data['msg'] = "";
 			$this->load->view('templates/header.php');
 			$this->load->view('user_authentication/login_form', $data);
 		}
@@ -70,6 +71,7 @@ class User_Authentication extends CI_Controller {
 		$this->session->set_userdata('logged_in',FALSE);
 		$this->load->view('templates/header.php');
 		$this->load->view('user_authentication/login_form', $data);
+		session_destroy();
 	}
 
 	public function user_registration()

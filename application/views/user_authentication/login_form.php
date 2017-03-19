@@ -1,19 +1,5 @@
 <html>
 	<body>
-		<?php
-			if (isset($logout_message)) {
-			echo "<div class='message'>";
-			echo $logout_message;
-			echo "</div>";
-			}
-		?>
-		<?php
-			if (isset($message_display)) {
-			echo "<div class='message'>";
-			echo $message_display;
-			echo "</div>";
-		}
-		?>
 		<div class="row" id="user-registration">
 			<div class="card z-depth-5 col s12">
 				<div class="error_msg" style="position: relative; color: red; text-align: center">

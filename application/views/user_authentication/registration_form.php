@@ -1,13 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
 <html>
-
-<?php
-	if (isset($this->session->userdata['logged_in'])) {
-	header("location: http://pyaici.com");
-	}
-?>
-
 <body>
 	<div class="row" id="user-registration">
 		<div class="card z-depth-5 col s12">
