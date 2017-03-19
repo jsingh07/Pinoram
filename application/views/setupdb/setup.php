@@ -1,7 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
   <html>
     <body>
-
       <div class="row">
         <div class="col s12 m6">
           <div class="card blue-grey darken-1">
@@ -74,6 +73,7 @@
           </div>
         </div>
       </div>
+
       <!--<script>
         function PopToast(txt,link)
         {

@@ -8,6 +8,10 @@ class Setupdb extends CI_Controller {
 
 	$this->load->helper('url');
 	$this->load->model('Setupdb_model');
+	$this->load->helper('form');
+
+	// Load form validation library
+	$this->load->library('form_validation');
 
 	}
 
@@ -232,6 +236,28 @@ class Setupdb extends CI_Controller {
 			$this->load->view('setupdb/success', $text);
 		}
 	}
+
+	public function Email()
+	{
+		$text['mytext']="Email Sent";
+		$Email = $this->input->post('email');
+
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+		if ($this->form_validation->run() == FALSE)
+		{
+			$this->load->view('templates/header.php');
+			$this->load->view('setupdb/setup');
+		}
+		else {
+			$this->load->view('templates/header.php');
+			$this->load->view('setupdb/setup');
+			$this->load->view('setupdb/success', $text);
+		}
+
+
+	}
+
+
 
 }
 

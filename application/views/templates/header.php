@@ -28,6 +28,7 @@
                         <ul id="nav-mobile" class="right hide-on-small-and-down">
                            <li><a><?php echo $username?></a></li>
                            <li><a href="<?php echo site_url();?>Setupdb">Set up Database</a></li>
+                           <li><a href="<?php echo site_url();?>Welcome/about_us">About Us</a></li>
                            <li><a href="<?php echo site_url();?>User_Authentication/user_logout">Logout</a></li>
                         </ul>
                      </div>
@@ -47,6 +48,7 @@
                      </div>
                      <div class="col s7 push-s1 pull-s1">
                         <ul id="nav-mobile" class="right hide-on-small-and-down">
+                           <li><a href="<?php echo site_url();?>Welcome/about_us">About Us</a></li>
                            <li><a href="<?php echo site_url();?>User_Authentication">Login</a></li>
                            <li><a href="<?php echo site_url();?>User_Authentication/user_registration">SignUp</a></li>
                         </ul>
