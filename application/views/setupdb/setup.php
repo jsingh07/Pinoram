@@ -33,7 +33,7 @@
       </div>
 
       <div class="row">
-        <div class="col s12">
+        <div class="col s6">
           <div class="card blue-grey darken-1">
             <div class="card-content white-text">
               <span class="card-title">Show Content</span>
@@ -42,6 +42,17 @@
             <div class="card-action">
               <a class="btn" href="<?php echo base_url()?>Setupdb/showUser">User</a>
               <a class="btn" href="<?php echo base_url()?>Setupdb/showToken">Token</a>
+            </div>
+          </div>
+        </div>
+        <div class="col s6">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">Make Admin</span>
+              <p>Who would you like to promote to admin?</p>
+            </div>
+            <div class="card-action">
+              <a class="btn" href="<?php echo base_url()?>Setupdb/showAdmin">User</a>
             </div>
           </div>
         </div>

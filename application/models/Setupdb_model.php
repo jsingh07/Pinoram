@@ -193,5 +193,12 @@ class Setupdb_model extends CI_Model {
 		return $query;
 	}
 
+	public function makeAdmin($id)
+	{
+		$sql = "UPDATE user SET role = 'admin' WHERE user_id = $id";
+		$query = $this->db->query($sql);
+		return $query;
+	}
+
 }
 ?>

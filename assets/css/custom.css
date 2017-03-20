@@ -1,16 +1,21 @@
 nav .nav-wrapper{
-	background-color: #263238;
+	background-color: #ffffff;
+	color: black;
+}
+nav .nav-wrapper a{
+
+	color: black;
 }
 
 #map {
 		width: 100%;
         height: 90%;
-        background-color: grey;
+        background-color: white;
 
 }
 
 body{
-	background-color: #cfd8dc;
+	background-color: white;
 	height: 100%;
   	padding: 0;
   	margin: 0;

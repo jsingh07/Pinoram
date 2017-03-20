@@ -42,6 +42,8 @@ class User_Authentication extends CI_Controller {
 	        {
 		        foreach ($id->result() as $data)
 		        {
+		        	$first_name = $data->first_name;
+		        	$last_name = $data->last_name;
 		        	$newdata = array(
 	                   'username'  => $data->username,
 	                   'email'     => $data->email,
@@ -52,9 +54,11 @@ class User_Authentication extends CI_Controller {
 	                   'logged_in' => TRUE
 	                );
 		        }
+		        $text['mytext'] = "Welcome ".$first_name;
 		        $this->session->set_userdata($newdata);
 		        $this->load->view('templates/header.php');
-		        $this->load->view('welcome');
+		        $this->load->view('home.php');
+		        $this->load->view('setupdb/success.php', $text);
 		    }
 		    else
 		   	{

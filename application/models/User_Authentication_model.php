@@ -7,10 +7,10 @@ class User_Authentication_model extends CI_Model {
 	public function insertUser($data)
 	{
 		$string = array(
-                'first_name'=>$data['first_name'],
-                'last_name'=>$data['last_name'],
+                'first_name'=>ucfirst($data['first_name']),
+                'last_name'=>ucfirst($data['last_name']),
                 'email'=>$data['email'],
-                'password' =>$data['password'],
+                'password' =>password_hash($data['password'], PASSWORD_DEFAULT),
                 'username' =>$data['username'],
                 'role'=> $this->config->item(0,'roles'), 
                 'status'=> $this->config->item(0,'status')
@@ -50,7 +50,7 @@ class User_Authentication_model extends CI_Model {
         else
         {
             $result = $query->row();
-            if($password != $result->password)
+            if (!password_verify($password, $result->password)) 
             {
                 return 0;
             }
