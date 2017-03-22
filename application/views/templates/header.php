@@ -56,7 +56,7 @@
                            <li data-activates="slide-out" class="button-collapse" style="cursor: pointer; cursor:hand;">About Us</li>
                            <li><a href="<?php echo site_url();?>User_Authentication">Login</a></li>
                            <li><a href="<?php echo site_url();?>User_Authentication/user_registration">SignUp</a></li>
-                        </ul>
+			</ul>
                      </div>
                   </div>   
                </div>
