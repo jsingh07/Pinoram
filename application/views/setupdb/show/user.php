@@ -24,14 +24,14 @@
 						<tr>
 							<td><a href="<?php echo base_url('setupdb/editUser/'.$row->user_id)?>"
 								class="btn"><i class="material-icons">delete</i></a></td>
-							<td><?echo $row->user_id;?></td>
-							<td><?echo $row->username;?></td>
-							<td><?echo $row->first_name;?></td>
-							<td><?echo $row->last_name;?></td>
-							<td><?echo $row->email;?></td>
-							<td><?echo $row->status;?></td>
-							<td><?echo $row->role;?></td>
-							<td><?echo $row->password;?></td>
+							<td><?php echo $row->user_id;?></td>
+							<td><?php echo $row->username;?></td>
+							<td><?php echo $row->first_name;?></td>
+							<td><?php echo $row->last_name;?></td>
+							<td><?php echo $row->email;?></td>
+							<td><?php echo $row->status;?></td>
+							<td><?php echo $row->role;?></td>
+							<td><?php echo $row->password;?></td>
 						</tr>
 					<?php } ?>
 				</tbody>

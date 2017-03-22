@@ -33,7 +33,7 @@
                            <?php if(($this->session->userdata('role') == 'admin') or ($this->session->userdata('role') == 'super-user')) {?>
                            <li><a href="<?php echo site_url();?>Setupdb">Set up Database</a></li>
                            <?php } ?>
-                           <li data-activates="slide-out" class="button-collapse" style="cursor: pointer; cursor:hand;">About Us</li>
+                           <li data-activates="slide-out" class="button-collapse" style="cursor: pointer; cursor:hand;"><a>About Us</a></li>
                            <li><a href="<?php echo site_url();?>User_Authentication/user_logout">Logout</a></li>
                         </ul>
                      </div>
@@ -53,7 +53,7 @@
                      </div>
                      <div class="col s7 push-s1 pull-s1">
                         <ul id="nav-mobile" class="right hide-on-small-and-down">
-                           <li data-activates="slide-out" class="button-collapse" style="cursor: pointer; cursor:hand;">About Us</li>
+                           <li data-activates="slide-out" class="button-collapse" style="cursor: pointer; cursor:hand;"><a>About Us</a></li>
                            <li><a href="<?php echo site_url();?>User_Authentication">Login</a></li>
                            <li><a href="<?php echo site_url();?>User_Authentication/user_registration">SignUp</a></li>
                         </ul>
@@ -64,24 +64,18 @@
          </div>
       <?php }?>
 
-        <ul id="slide-out" class="side-nav">
-        <div>
-        <li id="closetab" data-activates="slide-out" >Close</li>
-        </div>
-    <li><div class="userView">
-      <div class="background">
-        
-      </div>
-      <a href="#!name"><span class="white-text name">John Doe</span></a>
-      <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
-    </div></li>
+      <ul id="slide-out" class="side-nav">
+         <div class="userView">
+            <h4 class="center">
+               Pinoram
+            </h4>
+            <h5>Pyai Hein</h5>
+            <p>
+
+            </p>
+         </div>
  
-    <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-    <li><a href="#!">Second Link</a></li>
-    <li><div class="divider"></div></li>
-    <li><a class="subheader">Subheader</a></li>
-    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
-  </ul>
+      </ul>
 
    <script>
 
@@ -90,17 +84,17 @@
       $(".button-collapse").sideNav();
    });
 
-   $(function(){
+   /*$(function(){
 
       $("#closetab").on('click', function()
       //{ $("#slide0out").sideNav('hide')});
-      {
+      /*{
          $.get('getview', function(data) {
             $('.userView').html(data);
          });
       });
-
-   });
+   
+   });*/
 
   </script>
 
