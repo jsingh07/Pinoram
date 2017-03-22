@@ -69,6 +69,9 @@
             <h4 class="center">
                Pinoram
             </h4><hr/>
+            <p>
+               Pinoram is a web application that allows users to upload pictures and videos to be displayed on a map where the content is taken at. It is intended to provide users with a visual of where they have been and what memory is associated with the location. The application is currently under development.
+            </p>
                <h5 style="margin-top: 50px; margin-bottom: 20px;">Ron (Pyai) Hein</h5>
                <img style="box-shadow: 8px 8px 10px #aaa;" src="<?php echo base_url();?>/files/images/pyai.jpg" height="200" width="200">
                <p>
