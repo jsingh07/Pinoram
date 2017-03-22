@@ -36,6 +36,20 @@ class User_Authentication_model extends CI_Model {
         
     }
 
+    public function getToken($user_id)
+    {
+        $sql = "SELECT * FROM token WHERE user_id = '$user_id'";
+        $query = $this->db->query($sql);
+        if($query->num_rows() > 0)
+        {
+            return $query;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
     public function confirmUser($data)
     {
         $username = $data['username'];
@@ -57,6 +71,40 @@ class User_Authentication_model extends CI_Model {
         }
         return $query;
 
+    }
+
+    public function isTokenValid($token)
+    {
+        $tkn = substr($token,0,30);
+        $uid = substr($token,30);      
+       
+        $q = $this->db->get_where('token', array(
+            'token.token' => $tkn, 
+            'token.user_id' => $uid), 1);      
+        
+        if($this->db->affected_rows() > 0){
+            $row = $q->row();             
+            
+            /*$created = $row->created;
+            $createdTS = strtotime($created);
+            $today = date('Y-m-d'); 
+            $todayTS = strtotime($today);
+            
+            if($createdTS != $todayTS){
+                return false;
+            }*/
+            $status = $this->config->item(1,'status');
+            $sql = "UPDATE user SET status = '$status' WHERE user_id = $row->user_id";
+            $query = $this->db->query($sql);
+
+            if ($query){
+                return 1;
+            }      
+            else{
+                return 0;
+            }
+        }
+        
     }
 
 }
