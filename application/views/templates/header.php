@@ -33,7 +33,7 @@
                            <?php if(($this->session->userdata('role') == 'admin') or ($this->session->userdata('role') == 'super-user')) {?>
                            <li><a href="<?php echo site_url();?>Setupdb">Set up Database</a></li>
                            <?php } ?>
-                           <li data-activates="slide-out" class="button-collapse" style="cursor: pointer; cursor:hand;"><a>About Us</a></li>
+                           <li data-activates="slide-out" class="button-collapse" style="cursor: pointer; cursor:hand;"><a>About</a></li>
                            <li><a href="<?php echo site_url();?>User_Authentication/user_logout">Logout</a></li>
                         </ul>
                      </div>
@@ -53,7 +53,7 @@
                      </div>
                      <div class="col s7 push-s1 pull-s1">
                         <ul id="nav-mobile" class="right hide-on-small-and-down">
-                           <li data-activates="slide-out" class="button-collapse" style="cursor: pointer; cursor:hand;"><a>About Us</a></li>
+                           <li data-activates="slide-out" class="button-collapse" style="cursor: pointer; cursor:hand;"><a>About</a></li>
                            <li><a href="<?php echo site_url();?>User_Authentication">Login</a></li>
                            <li><a href="<?php echo site_url();?>User_Authentication/user_registration">SignUp</a></li>
                         </ul>
@@ -68,11 +68,16 @@
          <div class="userView">
             <h4 class="center">
                Pinoram
-            </h4>
-            <h5>Pyai Hein</h5>
-            <p>
-
-            </p>
+            </h4><hr/>
+               <h5 style="margin-top: 50px; margin-bottom: 20px;">Ron (Pyai) Hein</h5>
+               <img style="box-shadow: 8px 8px 10px #aaa;" src="<?php echo base_url();?>/files/images/pyai.jpg" height="200" width="200">
+               <p>
+                  I am a graduate from UC Davis with a Bachelor's Degree in Computer Science. I am creating this site as a way to teach myself Web Development from setting up a domain and a server to design and implementation on both front-end and backend structures.<br><br>
+                  Email: pyai.hein@gmail.com
+                  Location: San Jose, California
+                  LinkedIn: "https://www.linkedin.com/in/ron-hein-015012111/"<br>
+               </p>
+            
          </div>
  
       </ul>

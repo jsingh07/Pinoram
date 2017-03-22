@@ -1,6 +1,6 @@
 RewriteEngine on
 RewriteBase /
-RewriteCond $1 !^(index\.php|assets|js|css|favicon.png|google7e2f3dc379ba0221.html)
+RewriteCond $1 !^(index\.php|assets|js|css|uploads|favicon.png|google7e2f3dc379ba0221.html)
 RewriteCond %(REQUEST_FILENAME) !-f
 RewriteCond %(REQUEST_FILENAME) !-d
 RewriteCond %(REQUEST_FILENAME) !^(google7e2f3dc379ba0221.html)$
