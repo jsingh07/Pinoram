@@ -50,6 +50,15 @@ class User_Authentication_model extends CI_Model {
         }
     }
 
+    public function updateToken($user_id)
+    {
+        $token = substr(sha1(rand()), 0, 30); 
+        
+        $sql = "UPDATE token SET token = '$token' WHERE user_id = $user_id";
+        $query = $this->db->query($sql);
+        return $query;
+    }
+
     public function confirmUser($data)
     {
         $username = $data['username'];
@@ -71,6 +80,40 @@ class User_Authentication_model extends CI_Model {
         }
         return $query;
 
+    }
+
+    public function confirmEmail($data)
+    {
+        //$sql = "SELECT * FROM user WHERE '$username' IN(username, email) AND '$password' = password";
+        $sql = "SELECT * FROM user WHERE email = '$data'";
+        $query = $this->db->query($sql);
+        if ($query->num_rows() == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            return $query->row();
+        }
+
+    }
+
+    public function confirm_password($u_id, $password){
+        $sql = "SELECT * FROM user WHERE user_id = $u_id";
+        $query = $this->db->query($sql);
+        if ($query->num_rows() == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            $result = $query->row();
+            if (!password_verify($password, $result->password)) 
+            {
+                return 0;
+            }
+        }
+        return $query;
     }
 
     public function isTokenValid($token)
@@ -98,13 +141,21 @@ class User_Authentication_model extends CI_Model {
             $query = $this->db->query($sql);
 
             if ($query){
-                return 1;
+                return $uid;
             }      
             else{
                 return 0;
             }
         }
         
+    }
+
+    public function reset_password($password, $id)
+    {
+        $pass = password_hash($password, PASSWORD_DEFAULT);
+        $sql = "UPDATE user SET password = '$pass' WHERE user_id = $id";
+        $query = $this->db->query($sql);
+        return $query;
     }
 
 }

@@ -24,6 +24,7 @@
 				        	<div class="input-field col s12">
 				          		<input type="password" id="password" name="password" class="validate">
 				          		<label for="password">Password</label>
+				          		<a href="<?php echo base_url() ?>User_Authentication/password_recovery">Forgot Password</a>
 				        	</div>
 				      	</div>
 					</div>

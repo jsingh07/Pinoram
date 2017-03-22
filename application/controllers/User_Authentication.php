@@ -253,6 +253,148 @@ class User_Authentication extends CI_Controller {
 
 	}
 
+	public function password_recovery(){
+		if($this->session->userdata('logged_in') == TRUE)
+		{
+			$data['msg'] = "";
+			$this->load->view('templates/header.php');
+			$this->load->view('user_authentication/password_conf', $data);
+		}
+		else
+		{
+			$data['msg'] = "";
+			$this->load->view('templates/header.php');
+			$this->load->view('user_authentication/password_recovery', $data);
+		}
+	}
+
+	public function password_conf(){
+		$u_id = $this->session->userdata('user_id');
+		$password = $this->input->post('password');
+		$conf = $this->User_Authentication_model->confirm_password($u_id, $password);
+		if($conf)
+		{
+			$this->session->set_userdata('password_reset', TRUE);
+			$this->load->view('user_authentication/new_password', $data);
+		}
+		else
+		{
+			$data['msg'] = "Incorrect Password";
+			$this->load->view('templates/header.php');
+			$this->load->view('user_authentication/password_conf', $data);
+		}
+	}
+
+	public function password_recovery_email(){
+		$email = $this->input->post('email');
+		$u_id = $this->User_Authentication_model->confirmEmail($email);
+		if($u_id)
+		{
+			$user_id = $u_id->user_id;
+			$first_name = $u_id->first_name;
+		    $last_name = $u_id->last_name;     
+			$gettoken = $this->User_Authentication_model->getToken($user_id);
+			if ($gettoken)
+			{
+				$tokenrow = $gettoken->row();
+				$token = $tokenrow->token;
+				$token .= $user_id;
+				$qstring = $this->base64url_encode($token);                      
+		        $url = site_url() . 'User_Authentication/password_reset/' . $qstring;
+		        $link = '<a href="' . $url . '">' . $url . '</a>'; 
+		                   
+		             
+		        $message = '';                     
+		        $message .= '<strong>Hi '.$first_name.' '.$last_name.',</strong><br><br>';
+		        $message .= '<strong>You have requested to recover your password for username: '.$this->session->userdata('username').'</strong><br>';
+		        $message .= '<strong>Please click on the link to reset your password:</strong><br>' . $link; 
+
+		   		$this->email->from('admin@pinoram.com' , 'Pinoram');
+				$this->email->to($email); 
+
+		        $this->email->subject('Password Recovery for Pinoram');
+		        $this->email->message($message);  
+
+		        $this->email->send();
+		        $data['msg'] = "Please check your email to recover password.";
+	       	}
+	       	else
+	       	{
+	       		$data['msg'] = "Could not find user token.";
+	       	}
+		}
+		else{
+			$data['msg'] = "Invalid Email";
+		}
+		$this->load->view('templates/header.php');
+		$this->load->view('user_authentication/login_form', $data);
+	}
+
+	public function password_reset(){
+		$token = base64_decode($this->uri->segment(3));
+		$cleanToken = $this->security->xss_clean($token);
+            
+        $user_info = $this->User_Authentication_model->isTokenValid($cleanToken);
+        if($user_info)
+        {
+        	$this->User_Authentication_model->updateToken($user_info);
+			$data['msg'] = "";
+			$this->load->view('templates/header.php');
+	        $this->load->view('user_authentication/new_password', $data);
+	        $this->session->set_userdata('user_id', $user_info);
+	        $this->session->set_userdata('password_reset', TRUE);
+	    }
+	    else{
+	    	$data['msg'] = "Invalid Token";
+			$this->load->view('templates/header.php');
+			$this->load->view('user_authentication/login_form', $data);
+	    }
+	}
+
+	public function new_password(){
+		if($this->session->userdata('password_reset') == TRUE)
+		{
+			$this->form_validation->set_rules('new_password', 'Password', 'trim|required|min_length[5]');
+			if ($this->form_validation->run() == FALSE) 
+			{
+				$data['msg'] = "";
+				$this->load->view('templates/header.php');
+				$this->load->view('user_authentication/new_password', $data);
+			}
+			elseif($this->input->post('new_password') == $this->input->post('new_password_conf'))
+			{
+				$new_password = $this->input->post('new_password');
+				$conf = $this->User_Authentication_model->reset_password($new_password, $this->session->userdata('user_id'));
+				if($conf)
+				{
+					if($this->session->userdata('logged_in') == TRUE)
+					{
+						$this->user_logout();
+					}
+
+					$data['msg'] = "Your password has been reset.";
+				}
+				else
+				{
+					$data['msg'] = "There was a problem resetting your password.";
+				}
+				$this->load->view('templates/header.php');
+				$this->load->view('user_authentication/login_form', $data);
+			}
+			else{
+				$data['msg'] = "Passwords do not match";
+				$this->load->view('templates/header.php');
+				$this->load->view('user_authentication/new_password', $data);
+			}
+		}
+		else
+		{
+			$data['msg'] = "Sorry you are not allowed to reset password";
+			$this->load->view('templates/header.php');
+			$this->load->view('user_authentication/login_form', $data);
+		}
+	}
+
 	public function base64url_encode($data) { 
 	    return rtrim(strtr(base64_encode($data), '+/', '-_'), '='); 
 	} 
