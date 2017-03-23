@@ -33,8 +33,11 @@
                            <?php if(($this->session->userdata('role') == 'admin') or ($this->session->userdata('role') == 'super-user')) {?>
                            <li><a href="<?php echo site_url();?>Setupdb">Set up Database</a></li>
                            <?php } ?>
-                           <li data-activates="slide-out" class="button-collapse" style="cursor: pointer; cursor:hand;"><a>About</a></li>
+                           <li data-activates="slide-out" class="button-collapse" style="margin: auto; cursor: pointer; cursor:hand;"><a>About</a></li>
                            <li><a href="<?php echo site_url();?>User_Authentication/user_logout">Logout</a></li>
+                        </ul>
+                        <ul id="nav-mobile" class="right hide-on-med-and-up">
+                           <li><a style="position: relative" class="dropdown-button" href="" data-activates="dropdown1"><i class="material-icons right">menu</i></a></li>
                         </ul>
                      </div>
                   </div>   
@@ -53,9 +56,12 @@
                      </div>
                      <div class="col s7 push-s1 pull-s1">
                         <ul id="nav-mobile" class="right hide-on-small-and-down">
-                           <li data-activates="slide-out" class="button-collapse" style="cursor: pointer; cursor:hand;"><a>About</a></li>
+                           <li data-activates="slide-out" class="button-collapse" style="margin: auto; cursor: pointer; cursor:hand;"><a>About</a></li>
                            <li><a href="<?php echo site_url();?>User_Authentication">Login</a></li>
                            <li><a href="<?php echo site_url();?>User_Authentication/user_registration">SignUp</a></li>
+                        </ul>
+                        <ul id="nav-mobile" class="right hide-on-med-and-up">
+                           <li><a style="position: relative" class="dropdown-button" href="" data-activates="dropdown1"><i class="material-icons right">menu</i></a></li>
                         </ul>
                      </div>
                   </div>   
@@ -63,6 +69,28 @@
             </nav>
          </div>
       <?php }?>
+
+<?php if($this->session->userdata('logged_in') == TRUE) {?>
+         <ul id="dropdown1" class="dropdown-content">
+            <li><a><?php echo $username?></a></li>
+            <?php if($this->session->userdata('role') == 'super-user') {?>
+            <li><a href="<?php echo site_url();?>Setupdb">Make Admin</a></li>
+            <?php } ?>
+            <?php if(($this->session->userdata('role') == 'admin') or ($this->session->userdata('role') == 'super-user')) {?>
+            <li><a href="<?php echo site_url();?>Setupdb">Set up Database</a></li>
+            <?php } ?>
+            <li data-activates="slide-out" class="button-collapse" style="margin: auto; cursor: pointer; cursor:hand;"><a>About</a></li>
+            <li><a href="<?php echo site_url();?>User_Authentication/user_logout">Logout</a></li>
+         </ul>
+      <?php } 
+      else{ ?>
+         <ul id="dropdown1" class="dropdown-content">
+            <li style="position: relative; margin: auto;"data-activates="slide-out" class="button-collapse" style="cursor: pointer; cursor:hand;"><a>About</a></li>
+            <li><a href="<?php echo site_url();?>User_Authentication">Login</a></li>
+            <li><a href="<?php echo site_url();?>User_Authentication/user_registration">SignUp</a></li>
+         </ul>
+      <?php } ?>
+                     
 
       <ul id="slide-out" class="side-nav">
          <div class="userView">
