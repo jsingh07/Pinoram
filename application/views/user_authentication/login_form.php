@@ -1,5 +1,5 @@
 <html>
-	<body>
+	<body style="background-color: #e0f2f1;">
 		<div class="row" id="user-registration">
 			<div class="card z-depth-5 col s12">
 				<div class="error_msg" style="position: relative; color: red; text-align: center">

@@ -1,8 +1,8 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
 <html>
-<body>
-	<div class="row" id="user-registration">
+<body style="background-color: #e0f2f1;">
+	<div class="row" id="user-registration" >
 		<div class="card z-depth-5 col s12">
 			<div class="error_msg" style="position: relative; color: red; text-align: center">
 				<?php echo validation_errors();?>
