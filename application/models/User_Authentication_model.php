@@ -20,6 +20,12 @@ class User_Authentication_model extends CI_Model {
         return $this->db->insert_id();
 	}
 
+    public function insertUser_info($user_id)
+    {
+        $sql = "INSERT INTO user_info (user_id) VALUES ($user_id)";
+        $this->db->query($sql);
+    }
+
 	public function insertToken($user_id)
     {   
         $token = substr(sha1(rand()), 0, 30); 

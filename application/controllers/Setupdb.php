@@ -106,6 +106,18 @@ class Setupdb extends CI_Controller {
 		}
 	}
 
+	public function installUser_info()
+	{
+		if($this->access())
+		{
+			$text['mytext'] = "Installed User Info Table";
+			$this->load->view('templates/header.php');
+			$this->Setupdb_model->InstallUser_info();
+			$this->load->view('setupdb/setup');
+			$this->load->view('setupdb/success', $text);
+		}
+	}
+
 	public function dropAll()
 	{
 		if($this->access())
@@ -138,6 +150,18 @@ class Setupdb extends CI_Controller {
 			$text['mytext'] = "Dropped Token Table";
 			$this->load->view('templates/header.php');
 			$this->Setupdb_model->dropToken();
+			$this->load->view('setupdb/setup');
+			$this->load->view('setupdb/success', $text);
+		}
+	}
+
+	public function dropUser_info()
+	{
+		if($this->access())
+		{
+			$text['mytext'] = "Dropped User Info Table";
+			$this->load->view('templates/header.php');
+			$this->Setupdb_model->dropUser_info();
 			$this->load->view('setupdb/setup');
 			$this->load->view('setupdb/success', $text);
 		}

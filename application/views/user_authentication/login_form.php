@@ -24,16 +24,16 @@
 				        	<div class="input-field col s12">
 				          		<input type="password" id="password" name="password" class="validate">
 				          		<label for="password">Password</label>
+				          		<div style="margin-top: 5px;">
 				          		<a href="<?php echo base_url() ?>User_Authentication/password_recovery">Forgot Password</a>
+		           				<a href="<?php echo base_url() ?>User_Authentication/user_registration" class="right">Create an Account</a>
+		           				</div>
 				        	</div>
 				      	</div>
 					</div>
 					<div style="margin-top: -20px; width: 100%; position: relative;" >
 		              <input style="width:80%; margin-left:10%;" class="btn waves-effect waves-light" type="submit" name="submit" value="SignIn"></input>
 		            </div>
-		            <div style="margin-top: 20px;">
-		           		<a href="<?php echo base_url() ?>User_Authentication/user_registration">To SignUp Click Here</a>
-		           	</div>
 		        	<?php echo form_close(); ?>
 				</div> 
 			</div>

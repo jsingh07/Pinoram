@@ -23,7 +23,12 @@ class Welcome extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->view('templates/header.php');
 		$this->load->view('home');
-		//$this->load->view('welcome');
+		if($this->session->userdata('welcome') == TRUE)
+		{
+			$this->session->set_userdata('welcome') == FALSE;
+			$text['mytext'] = "Welcome ".$this->session->userdata('first_name');
+			$this->load->view('setupdb/success.php', $text);
+		}
 	}
 
 	public function about_us()

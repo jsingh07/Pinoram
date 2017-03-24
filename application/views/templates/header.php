@@ -26,10 +26,7 @@
                      </div>
                      <div class="col s7 push-s1 pull-s1">
                         <ul id="nav-mobile" class="right hide-on-small-and-down">
-                           <li><a><?php echo $username?></a></li>
-                           <?php if($this->session->userdata('role') == 'super-user') {?>
-                           <li><a href="<?php echo site_url();?>Setupdb">Make Admin</a></li>
-                           <?php } ?>
+                           <li><a href="<?php echo site_url();?>Account"><?php echo $username?></a></li>
                            <?php if(($this->session->userdata('role') == 'admin') or ($this->session->userdata('role') == 'super-user')) {?>
                            <li><a href="<?php echo site_url();?>Setupdb">Set up Database</a></li>
                            <?php } ?>
@@ -58,7 +55,7 @@
                         <ul id="nav-mobile" class="right hide-on-small-and-down">
                            <li data-activates="slide-out" class="button-collapse" style="margin: auto; cursor: pointer; cursor:hand;"><a>About</a></li>
                            <li><a href="<?php echo site_url();?>User_Authentication">Login</a></li>
-                           <li><a href="<?php echo site_url();?>User_Authentication/user_registration">SignUp</a></li>
+                           <li><a href="<?php echo site_url();?>User_Authentication/user_registration">Sign Up</a></li>
                         </ul>
                         <ul id="nav-mobile" class="right hide-on-med-and-up">
                            <li><a style="position: relative" class="dropdown-button" href="" data-activates="dropdown1"><i class="material-icons right">menu</i></a></li>
@@ -69,29 +66,8 @@
             </nav>
          </div>
       <?php }?>
-
-<?php if($this->session->userdata('logged_in') == TRUE) {?>
-         <ul id="dropdown1" class="dropdown-content">
-            <li><a><?php echo $username?></a></li>
-            <?php if($this->session->userdata('role') == 'super-user') {?>
-            <li><a href="<?php echo site_url();?>Setupdb">Make Admin</a></li>
-            <?php } ?>
-            <?php if(($this->session->userdata('role') == 'admin') or ($this->session->userdata('role') == 'super-user')) {?>
-            <li><a href="<?php echo site_url();?>Setupdb">Set up Database</a></li>
-            <?php } ?>
-            <li data-activates="slide-out" class="button-collapse" style="margin: auto; cursor: pointer; cursor:hand;"><a>About</a></li>
-            <li><a href="<?php echo site_url();?>User_Authentication/user_logout">Logout</a></li>
-         </ul>
-      <?php } 
-      else{ ?>
-         <ul id="dropdown1" class="dropdown-content">
-            <li style="position: relative; margin: auto;"data-activates="slide-out" class="button-collapse" style="cursor: pointer; cursor:hand;"><a>About</a></li>
-            <li><a href="<?php echo site_url();?>User_Authentication">Login</a></li>
-            <li><a href="<?php echo site_url();?>User_Authentication/user_registration">SignUp</a></li>
-         </ul>
-      <?php } ?>
                      
-
+      <div>
       <ul id="slide-out" class="side-nav">
          <div class="userView">
             <h4 class="center">
@@ -103,15 +79,34 @@
                <h5 style="margin-top: 50px; margin-bottom: 20px;"">Ron (Pyai) Hein</h5>
                <img style="box-shadow: 8px 8px 10px #aaa;" src="<?php echo base_url();?>/files/images/pyai.jpg" height="200" width="250">
                <p>
-                  I am a graduate from UC Davis with a Bachelor's Degree in Computer Science. I am creating this site as a way to teach myself Web Development from setting up a domain and a server to design and implementation on both front-end and backend structures.<br><br>
-                  Email: pyai.hein@gmail.com
-                  Location: San Jose, California
+                  I am a graduate from UC Davis with a Bachelor's Degree in Computer Science. I am creating this site as a way to teach myself Web Development from setting up a domain and a server to design and implementation on both front-end and backend structures.<br><br><hr/>
+                  Email: pyai.hein@gmail.com<br>
+                  Location: San Jose, California<br>
                   LinkedIn: "https://www.linkedin.com/in/ron-hein-015012111/"<br>
                </p>
             
          </div>
- 
       </ul>
+      </div>
+
+      <?php if($this->session->userdata('logged_in') == TRUE) {?>
+         <ul id="dropdown1" class="dropdown-content" style="position: absolute;">
+            <li><a><?php echo $username?></a></li>
+            <?php if(($this->session->userdata('role') == 'admin') or ($this->session->userdata('role') == 'super-user')) {?>
+            <li><a href="<?php echo site_url();?>Setupdb">Set up Database</a></li>
+            <?php } ?>
+            <li data-activates="slide-out" class="button-collapse" style="margin: auto; cursor: pointer; cursor:hand;"><a>About</a></li>
+            <li><a href="<?php echo site_url();?>User_Authentication/user_logout">Logout</a></li>
+         </ul>
+      <?php } 
+
+      else{ ?>
+         <ul id="dropdown1" class="dropdown-content">
+            <li style="position: relative; margin: auto;"data-activates="slide-out" class="button-collapse" style="cursor: pointer; cursor:hand;"><a>About</a></li>
+            <li><a href="<?php echo site_url();?>User_Authentication">Login</a></li>
+            <li><a href="<?php echo site_url();?>User_Authentication/user_registration">Sign Up</a></li>
+         </ul>
+      <?php } ?> 
 
    <script>
 

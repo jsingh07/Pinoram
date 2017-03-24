@@ -90,6 +90,68 @@ class Setupdb_model extends CI_Model {
 		$this->dbforge->create_table('token', TRUE);
 	}
 
+	public function InstallUser_info()
+	{
+		$this->load->dbforge();
+
+		$fields = array(
+			'user_id' => array(
+				'type' => 'INT',
+                'constraint' => 5,
+                'unique' => TRUE
+			),
+			'phone' => array(
+				'type' => 'INT',
+                'constraint' => 15,
+                'null' => TRUE
+			),
+			'location' => array(
+				'type' => 'VARCHAR',
+				'constraint' => 100,
+				'null' => TRUE
+			),
+			'bio' => array(
+				'type' => 'VARCHAR',
+				'constraint' => 999,
+				'null' => TRUE
+			),
+			'linkedin' => array(
+				'type' => 'VARCHAR',
+				'constraint' => 100,
+				'null' => TRUE
+			),
+			'facebook' => array(
+				'type' => 'VARCHAR',
+				'constraint' => 100,
+				'null' => TRUE
+			),
+			'twitter' => array(
+				'type' => 'VARCHAR',
+				'constraint' => 100,
+				'null' => TRUE
+			),
+			'instagram' => array(
+				'type' => 'VARCHAR',
+				'constraint' => 100,
+				'null' => TRUE
+			),
+			'youtube' => array(
+				'type' => 'VARCHAR',
+				'constraint' => 100,
+				'null' => TRUE
+			),
+			'website' => array(
+				'type' => 'VARCHAR',
+				'constraint' => 100,
+				'null' => TRUE
+			)
+		);
+
+		$this->dbforge->add_field($fields);
+		$this->dbforge->add_key('user_id', TRUE);
+		$this->dbforge->create_table('user_info', TRUE);
+	}
+
 	public function dropUser()
 	{
 		$this->load->dbforge();
@@ -100,6 +162,12 @@ class Setupdb_model extends CI_Model {
 	{
 		$this->load->dbforge();
 		$this->dbforge->drop_table('token',TRUE);
+	}
+
+	public function dropUser_info()
+	{
+		$this->load->dbforge();
+		$this->dbforge->drop_table('user_info',TRUE);
 	}
 
 	public function showUser()

@@ -66,6 +66,7 @@ class User_Authentication extends CI_Controller {
 	                   'last_name' => $data->last_name,
 	                   'role'      => $data->role,
 	                   'status'    => $data->status,
+	                   'welcome'   => TRUE,
 	                   'logged_in' => TRUE
 	                );
 		        }
@@ -73,10 +74,7 @@ class User_Authentication extends CI_Controller {
 
 		        if($status == $this->config->item(1,'status'))
 		        {
-			        $text['mytext'] = "Welcome ".$first_name;
-			        $this->load->view('templates/header.php');
-			        $this->load->view('home.php');
-			        $this->load->view('setupdb/success.php', $text);
+			        redirect('Welcome');
 		    	}
 		    	else
 		    	{
@@ -97,9 +95,8 @@ class User_Authentication extends CI_Controller {
 	{
 		$data['msg'] = "";
 		$this->session->set_userdata('logged_in',FALSE);
-		$this->load->view('templates/header.php');
-		$this->load->view('user_authentication/login_form', $data);
 		session_destroy();
+		redirect('Welcome');
 	}
 
 	public function user_registration()
@@ -143,6 +140,7 @@ class User_Authentication extends CI_Controller {
 
 				if ($id) 
 				{
+					$this->User_Authentication_model->insertUser_info($id);
 					$token = $this->User_Authentication_model->insertToken($id);                                        
 	            
 		            $qstring = $this->base64url_encode($token);                      
@@ -274,7 +272,9 @@ class User_Authentication extends CI_Controller {
 		$conf = $this->User_Authentication_model->confirm_password($u_id, $password);
 		if($conf)
 		{
+			$data['msg'] = "";
 			$this->session->set_userdata('password_reset', TRUE);
+			$this->load->view('templates/header.php');
 			$this->load->view('user_authentication/new_password', $data);
 		}
 		else
