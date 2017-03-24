@@ -47,7 +47,7 @@ class Account_model extends CI_Model {
 
 	public function get_account($user_id)
 	{
-		$sql = "SELECT username,email,first_name,last_name FROM user_info WHERE user_id = $user_id";
+		$sql = "SELECT username,email,first_name,last_name FROM user WHERE user_id = $user_id";
 		$query = $this->db->query($sql);
 		return $query;
 	}
