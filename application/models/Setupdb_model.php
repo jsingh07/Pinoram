@@ -101,7 +101,7 @@ class Setupdb_model extends CI_Model {
                 'unique' => TRUE
 			),
 			'phone' => array(
-				'type' => 'INT',
+				'type' => 'VARCHAR',
                 'constraint' => 15,
                 'null' => TRUE
 			),
