@@ -56,7 +56,7 @@
                            <li data-activates="slide-out" class="button-collapse" style="margin: auto; cursor: pointer; cursor:hand;"><a>About</a></li>
                            <li><a href="<?php echo site_url();?>User_Authentication">Login</a></li>
                            <li><a href="<?php echo site_url();?>User_Authentication/user_registration">Sign Up</a></li>
-                        </ul>
+			               </ul>
                         <ul id="nav-mobile" class="right hide-on-med-and-up">
                            <li><a style="position: relative" class="dropdown-button" href="" data-activates="dropdown1"><i class="material-icons right">menu</i></a></li>
                         </ul>

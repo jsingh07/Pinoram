@@ -29,7 +29,7 @@ class Setupdb extends CI_Controller {
 		else
 		{
 			$this->load->view('access_denied.php');
-
+			
 		}
 	}
 
