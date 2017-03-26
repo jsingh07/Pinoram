@@ -1,6 +1,14 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<style>
+#setupdb .card-action a{
+  position: relative;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+</style>
   <html>
-    <body>
+    <body id="setupdb">
       <div class="row">
         <div class="col s12 m6">
           <div class="card blue-grey darken-1">
@@ -8,7 +16,7 @@
               <span class="card-title">Install Tables</span>
               <p>Which tables would you like to install?</p>
             </div>
-            <div class="card-action">
+            <div class="card-action row">
               <a class="btn" href="<?php echo base_url()?>Setupdb/installAll">All</a>
               <a class="btn" href="<?php echo base_url()?>Setupdb/installUser">User</a>
               <a class="btn" href="<?php echo base_url()?>Setupdb/installToken">Token</a>
@@ -22,7 +30,7 @@
               <span class="card-title">Drop Tables</span>
               <p>Which tables would you like to drop?</p>
             </div>
-            <div class="card-action">
+            <div class="card-action row">
               <a class="btn" href="<?php echo base_url()?>Setupdb/dropAll">All</a>
               <a class="btn" href="<?php echo base_url()?>Setupdb/dropUser">User</a>
               <a class="btn" href="<?php echo base_url()?>Setupdb/dropToken">Token</a>
@@ -35,25 +43,25 @@
       </div>
 
       <div class="row">
-        <div class="col s6">
+        <div class="col s12 m6">
           <div class="card blue-grey darken-1">
             <div class="card-content white-text">
               <span class="card-title">Show Content</span>
               <p>Which tables would you like to show content from?</p>
             </div>
-            <div class="card-action">
+            <div class="card-action row">
               <a class="btn" href="<?php echo base_url()?>Setupdb/showUser">User</a>
               <a class="btn" href="<?php echo base_url()?>Setupdb/showToken">Token</a>
             </div>
           </div>
         </div>
-        <div class="col s6">
+        <div class="col s12 m6">
           <div class="card blue-grey darken-1">
             <div class="card-content white-text">
               <span class="card-title">Make Admin</span>
               <p>Who would you like to promote to admin?</p>
             </div>
-            <div class="card-action">
+            <div class="card-action row">
               <a class="btn" href="<?php echo base_url()?>Setupdb/showAdmin">User</a>
             </div>
           </div>
@@ -67,7 +75,7 @@
               <span class="card-title">Add Content</span>
               <p>Which tables would you like to add content to?</p>
             </div>
-            <div class="card-action">
+            <div class="card-action row">
               <a class="btn" href="<?php echo base_url()?>Setupdb/addContent_User">User</a>
               <a class="btn" href="<?php echo base_url()?>Setupdb/addContent_Token">Token</a>
             </div>
@@ -79,7 +87,7 @@
               <span class="card-title">Drop Content</span>
               <p>Which tables would you like to drop content from?</p>
             </div>
-            <div class="card-action">
+            <div class="card-action row">
               <a class="btn" href="<?php echo base_url()?>Setupdb/dropContent_User">User</a>
               <a class="btn" href="<?php echo base_url()?>Setupdb/dropContent_Token">Token</a>
             </div>
