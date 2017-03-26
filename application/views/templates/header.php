@@ -58,7 +58,7 @@
                            <li><a href="<?php echo site_url();?>User_Authentication/user_registration">Sign Up</a></li>
 			               </ul>
                         <ul id="nav-mobile" class="right hide-on-med-and-up">
-                           <li><a style="position: relative" class="dropdown-button" href="" data-activates="dropdown1"><i class="material-icons right">menu</i></a></li>
+                           <li><a style="position: relative" class="dropdown-button" href="" data-activates="dropdown2"><i class="material-icons right">menu</i></a></li>
                         </ul>
                      </div>
                   </div>   
@@ -101,7 +101,7 @@
       <?php } 
 
       else{ ?>
-         <ul id="dropdown1" class="dropdown-content">
+         <ul id="dropdown2" class="dropdown-content">
             <li style="position: relative; margin: auto;"data-activates="slide-out" class="button-collapse" style="cursor: pointer; cursor:hand;"><a>About</a></li>
             <li><a href="<?php echo site_url();?>User_Authentication">Login</a></li>
             <li><a href="<?php echo site_url();?>User_Authentication/user_registration">Sign Up</a></li>
