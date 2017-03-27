@@ -142,7 +142,8 @@ class User_Authentication extends CI_Controller {
 				{
 					$this->User_Authentication_model->insertUser_info($id);
 					$token = $this->User_Authentication_model->insertToken($id);                                        
-	            
+	            	$token .= "email*****";
+	            	$token .= $id;
 		            $qstring = $this->base64url_encode($token);                      
 		            $url = site_url() . 'User_Authentication/complete/' . $qstring;
 		            $link = '<a href="' . $url . '">' . $url . '</a>'; 
@@ -154,10 +155,16 @@ class User_Authentication extends CI_Controller {
 		            $message .= '<strong>You have signed up with our website with the username: '.$this->input->post('username').'</strong><br>';
 		            $message .= '<strong>Please click to confirm your email:</strong><br>' . $link; 
 
-		            $data['msg'] = "Thank you for registering on Pinoram. Please confirm your email address.";
+		            $this->email->from('admin@pinoram.com' , 'PyaiCI');
+					$this->email->to($this->input->post('email')); 
 
-		       		$this->send_email($message);
-                         
+			        $this->email->subject('Verify your email for Pinoram');
+			        $this->email->message($message);  
+
+			        $this->email->send();
+
+		            $data['msg'] = "Thank you for registering on Pinoram. Please confirm your email address.";
+                       
 
 					$this->load->view('templates/header.php');
 					$this->load->view('user_authentication/email_prompt', $data);
@@ -172,23 +179,13 @@ class User_Authentication extends CI_Controller {
 		}
 	}
 
-	private function send_email($msg){
-		$this->email->from('admin@pinoram.com' , 'Pinoram');
-		$this->email->to($this->input->post('email')); 
-
-        $this->email->subject('Verify your email for Pinoram');
-        $this->email->message($msg);  
-
-        $this->email->send();
-	}
 
 	public function resend_email(){
 
-		$gettoken = $this->User_Authentication_model->getToken($this->session->userdata('user_id'));
-		if ($gettoken)
+		$token = $this->get_token($this->session->userdata('user_id'));
+		if ($token)
 		{
-			$tokenrow = $gettoken->row();
-			$token = $tokenrow->token;
+			$token .= "email*****";
 			$token .= $this->session->userdata('user_id');
 			$qstring = $this->base64url_encode($token);                      
 	        $url = site_url() . 'User_Authentication/complete/' . $qstring;
@@ -224,37 +221,47 @@ class User_Authentication extends CI_Controller {
 		$token = base64_decode($this->uri->segment(3));
 		$cleanToken = $this->security->xss_clean($token);
             
-        $user_info = $this->User_Authentication_model->isTokenValid($cleanToken); //either false or array();           
-        
-        if(!$user_info){
-            $data['msg'] = "Token is invalid or expired";
-			$this->load->view('templates/header.php');
-			$this->load->view('user_authentication/login_form', $data);
-        }
-        else
+        $status = substr($token,30,10);  
+        if($status == "email*****") 
         {
-        	if($this->session->userdata('logged_in') == TRUE)
-        	{
-        		$text['mytext'] = "Welcome ".$this->session->userdata('first_name')."<br>";
-        		$text['mytext'] .= "Your email has been verified.";
-        		$this->load->view('templates/header.php');
-			    $this->load->view('home.php');
-			    $this->load->view('setupdb/success.php', $text);
-        	}
-        	else
-        	{
-	        	$data['msg'] = "Your email address has been verified. Thank you.";
+	        $user_info = $this->User_Authentication_model->isTokenValid($cleanToken); //either false or array();           
+	        
+	        if(!$user_info){
+	            $data['msg'] = "Token is invalid or expired";
 				$this->load->view('templates/header.php');
 				$this->load->view('user_authentication/login_form', $data);
-			}
-        }
-
+	        }
+	        else
+	        {
+	        	if($this->session->userdata('logged_in') == TRUE)
+	        	{
+	        		$text['mytext'] = "Welcome ".$this->session->userdata('first_name')."<br>";
+	        		$text['mytext'] .= "Your email has been verified.";
+	        		$this->load->view('templates/header.php');
+				    $this->load->view('home.php');
+				    $this->load->view('setupdb/success.php', $text);
+	        	}
+	        	else
+	        	{
+		        	$data['msg'] = "Your email address has been verified. Thank you.";
+					$this->load->view('templates/header.php');
+					$this->load->view('user_authentication/login_form', $data);
+				}
+	        }
+	    }
+	    else
+	    {
+	    	$data['msg'] = "Token is invalid";
+			$this->load->view('templates/header.php');
+			$this->load->view('user_authentication/login_form', $data);
+	    }
 	}
 
 	public function password_recovery(){
 		if($this->session->userdata('logged_in') == TRUE)
 		{
 			$data['msg'] = "";
+			$data['link'] = "User_Authentication/password_conf";
 			$this->load->view('templates/header.php');
 			$this->load->view('user_authentication/password_conf', $data);
 		}
@@ -293,11 +300,10 @@ class User_Authentication extends CI_Controller {
 			$user_id = $u_id->user_id;
 			$first_name = $u_id->first_name;
 		    $last_name = $u_id->last_name;     
-			$gettoken = $this->User_Authentication_model->getToken($user_id);
-			if ($gettoken)
+			$token = $this->get_token($user_id);
+			if ($token)
 			{
-				$tokenrow = $gettoken->row();
-				$token = $tokenrow->token;
+				$token .= "password**";
 				$token .= $user_id;
 				$qstring = $this->base64url_encode($token);                      
 		        $url = site_url() . 'User_Authentication/password_reset/' . $qstring;
@@ -309,7 +315,7 @@ class User_Authentication extends CI_Controller {
 		        $message .= '<strong>You have requested to recover your password for username: '.$this->session->userdata('username').'</strong><br>';
 		        $message .= '<strong>Please click on the link to reset your password:</strong><br>' . $link; 
 
-		   		$this->email->from('admin@pinoram.com' , 'Pinoram');
+		   		$this->email->from('admin@pinoram.com' , 'PyaiCI');
 				$this->email->to($email); 
 
 		        $this->email->subject('Password Recovery for Pinoram');
@@ -332,23 +338,33 @@ class User_Authentication extends CI_Controller {
 
 	public function password_reset(){
 		$token = base64_decode($this->uri->segment(3));
-		$cleanToken = $this->security->xss_clean($token);
-            
-        $user_info = $this->User_Authentication_model->isTokenValid($cleanToken);
-        if($user_info)
-        {
-        	$this->User_Authentication_model->updateToken($user_info);
-			$data['msg'] = "";
-			$this->load->view('templates/header.php');
-	        $this->load->view('user_authentication/new_password', $data);
-	        $this->session->set_userdata('user_id', $user_info);
-	        $this->session->set_userdata('password_reset', TRUE);
-	    }
-	    else{
-	    	$data['msg'] = "Invalid Token";
+
+		$status = substr($token,30,10); 
+		if($status == "password**")
+		{
+			$cleanToken = $this->security->xss_clean($token);
+	        $user_info = $this->User_Authentication_model->isTokenValid($cleanToken);
+	        if($user_info)
+	        {
+	        	$this->User_Authentication_model->updateToken($user_info);
+				$data['msg'] = "";
+				$this->load->view('templates/header.php');
+		        $this->load->view('user_authentication/new_password', $data);
+		        $this->session->set_userdata('user_id', $user_info);
+		        $this->session->set_userdata('password_reset', TRUE);
+		    }
+		    else{
+		    	$data['msg'] = "Invalid Token";
+				$this->load->view('templates/header.php');
+				$this->load->view('user_authentication/login_form', $data);
+		    }
+		}
+		else
+		{
+			$data['msg'] = "Invalid Token";
 			$this->load->view('templates/header.php');
 			$this->load->view('user_authentication/login_form', $data);
-	    }
+		}
 	}
 
 	public function new_password(){
@@ -392,6 +408,21 @@ class User_Authentication extends CI_Controller {
 			$data['msg'] = "Sorry you are not allowed to reset password";
 			$this->load->view('templates/header.php');
 			$this->load->view('user_authentication/login_form', $data);
+		}
+	}
+
+	private function get_token($user_id)
+	{
+		$gettoken = $this->User_Authentication_model->getToken($user_id);
+		if ($gettoken)
+		{
+			$tokenrow = $gettoken->row();
+			$token = $tokenrow->token;
+			return $token;
+		}
+		else
+		{
+			return 0;
 		}
 	}
 

@@ -7,7 +7,7 @@
 	        <div class="card-content">
 	        	<span class="card-title">Please enter your current password.</span>
 	        	<hr/>
-	        	<?php echo form_open('User_Authentication/password_conf'); ?>
+	        	<?php echo form_open($link); ?>
 	        	<div class="row" style="margin-top: 5%;">
 	        		<div class="row">
 			        	<div class="input-field col s12">

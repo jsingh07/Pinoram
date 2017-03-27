@@ -66,8 +66,7 @@
 				<a href="<?php echo site_url();?>Account" style="padding-left: 40px;">Account</a>
 				<a href="" class="active" style="padding-left: 40px;">Edit Profile</a>
 			 	<a href="<?php echo site_url();?>User_Authentication/password_recovery" style="padding-left: 40px;">Change Password</a>
-			  	<a href="" style="padding-left: 40px;">Friends</a>
-			  	<a href="" style="padding-left: 40px;">Delete Account</a>
+			  	<a href="<?php echo site_url();?>Account/delete_account" style="padding-left: 40px;">Delete Account</a>
 			</div>
 
 			<div class="row hide-on-med-and-up">
@@ -76,7 +75,7 @@
 		        		<li class="tab col s3"><a target="_self" href="<?php echo site_url();?>Account">Account</a></li>
 		        		<li class="tab col s3"><a style="line-height:25px;" target="_self" class="active" href="">Edit<br>Profile</a></li>
 		        		<li class="tab col s3"><a style="line-height:25px;" target="_self" href="<?php echo site_url();?>User_Authentication/password_recovery">Change<br>Password</a></li>
-		        		<li class="tab col s3"><a style="line-height:25px;" target="_self" href="">Delete<br>Account</a></li>
+		        		<li class="tab col s3"><a style="line-height:25px;" target="_self" href="<?php echo site_url();?>Account/delete_account">Delete<br>Account</a></li>
 		      		</ul>
 	      		</div>
       		</div>

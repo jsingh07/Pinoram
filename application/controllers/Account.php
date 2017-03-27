@@ -8,10 +8,23 @@ class Account extends CI_Controller {
 
 	$this->load->helper('url');
 	$this->load->model('Account_model');
+	$this->load->model('User_Authentication_model');
 	$this->load->helper('form');
 
 	// Load form validation library
 	$this->load->library('form_validation');
+
+	$config = Array(
+    'protocol' => 'smtp',
+    'smtp_host' => 'ssl://smtp.googlemail.com',
+    'smtp_port' => 465,
+    'smtp_user' => 'admin@pinoram.com',
+    'smtp_pass' => 'H3ll0w0rld!',
+    'mailtype'  => 'html', 
+    'charset'   => 'iso-8859-1'
+	);
+	$this->load->library('email', $config);
+	$this->email->set_newline("\r\n");
 
 	}
 
@@ -37,7 +50,7 @@ class Account extends CI_Controller {
 		}
 		else
 		{
-			return 0;
+			redirect('Welcome');
 		}
 	}
 
@@ -90,10 +103,6 @@ class Account extends CI_Controller {
 
 			redirect('Account');
 		}
-		else
-		{
-			redirect('Welcome');
-		}
 	}
 
 	public function edit_profile()
@@ -105,10 +114,60 @@ class Account extends CI_Controller {
 
 			redirect('Account/profile');
 		}
-		else
+	}
+
+	public function delete_account()
+	{
+		if($this->access())
 		{
-			redirect('Welcome');
+			$this->load->view('templates/header.php');
+			$data['msg'] = "";
+			$data['link'] = "Account/delete_account_conf";
+			$this->load->view('user_authentication/password_conf.php', $data);
 		}
 	}
+
+	public function delete_account_conf()
+	{
+		$u_id = $this->session->userdata('user_id');
+		$password = $this->input->post('password');
+		$conf = $this->User_Authentication_model->confirm_password($u_id, $password);
+		if($conf)
+		{
+			$status = $this->Account_model->delete_account($u_id);
+			if($status > 0)
+			{
+				$email = $this->session->userdata('email');
+				$subject = "Pinoram Account Deleted";
+				$message = '';
+				$message .= "<strong>Hi ".$this->session->userdata('first_name').",</strong><br><br>";
+				$message .= "<strong>This message is sent to confirm that your account on Pinoram has been deleted.</strong><br>";
+				$this->send_email($message, $subject, $email);
+				$this->session->set_userdata('logged_in',FALSE);
+				session_destroy();
+				redirect('Welcome');
+			}
+		}
+		else
+		{
+			$this->load->view('templates/header.php');
+			$data['msg'] = "Incorrect password";
+			$data['link'] = "Account/delete_account_conf";
+			$this->load->view('user_authentication/password_conf.php', $data);
+		}
+	}
+
+	private function send_email($message, $subject, $email)
+	{
+        $this->email->from('admin@pinoram.com' , 'PyaiCI');
+		$this->email->to($email); 
+
+        $this->email->subject($subject);
+        $this->email->message($message);  
+
+        $this->email->send();
+	}
+
+
 
 }

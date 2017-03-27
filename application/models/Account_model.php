@@ -51,5 +51,30 @@ class Account_model extends CI_Model {
 		$query = $this->db->query($sql);
 		return $query;
 	}
+
+	public function delete_account($user_id)
+	{
+		$sql = "DELETE FROM user WHERE user_id = $user_id";
+		$query = $this->db->query($sql);
+		if($query)
+		{
+			$sql = "DELETE FROM token WHERE user_id = $user_id";
+			$query = $this->db->query($sql);
+			if($query)
+			{
+				$sql = "DELETE FROM user_info WHERE user_id = $user_id";
+				$query = $this->db->query($sql);
+				return $query;
+			}
+			else
+			{
+				return -1;
+			}
+		}
+		else
+		{
+			return 0;
+		}
+	}
 }
 

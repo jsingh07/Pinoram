@@ -38,7 +38,7 @@ class User_Authentication_model extends CI_Model {
             );
         $query = $this->db->insert_string('token',$string);
         $this->db->query($query);
-        return $token . $user_id;
+        return $token;
         
     }
 
@@ -125,7 +125,7 @@ class User_Authentication_model extends CI_Model {
     public function isTokenValid($token)
     {
         $tkn = substr($token,0,30);
-        $uid = substr($token,30);      
+        $uid = substr($token,40);      
        
         $q = $this->db->get_where('token', array(
             'token.token' => $tkn, 
