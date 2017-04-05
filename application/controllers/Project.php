@@ -79,7 +79,9 @@ class Project extends CI_Controller {
 
 	public function edit_picture_info()
 	{
-		$this->load->view('templates/header.php');
-		$this->load->view('map/project.php');
+		$clean = $this->security->xss_clean($this->input->post(NULL, TRUE));
+		$this->Project_model->update_picture($clean);
+
+		redirect('Project/picture');
 	}
 }

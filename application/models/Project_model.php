@@ -37,6 +37,21 @@ class Project_model extends CI_Model {
         return $insert_id;
 	}
 
+	public function update_picture($data)
+	{
+		$picture_id = $data['picture_id'];
+
+		$mydata =
+		array(
+		'lat' => $data['Latitude'],
+		'lng' => $data['Longitude'],
+		'description' => $data['picture_description']
+		);
+		
+		$this->db->where('picture_id', $picture_id);
+		$this->db->update('pictures', $mydata);
+	}
+
 }
 
 ?>
