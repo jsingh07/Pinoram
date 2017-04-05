@@ -20,10 +20,10 @@
 						<tr>
 							<td><a href="<?php echo base_url('setupdb/editToken/'.$row->token_id)?>"
 								class="btn"><i class="material-icons">delete</i></a></td>
-							<td><?echo $row->token_id;?></td>
-							<td><?echo $row->user_id;?></td>
-							<td><?echo $row->token;?></td>
-							<td><?echo $row->created;?></td>
+							<td><?php echo $row->token_id;?></td>
+							<td><?php echo $row->user_id;?></td>
+							<td><?php echo $row->token;?></td>
+							<td><?php echo $row->created;?></td>
 						</tr>
 					<?php } ?>
 				</tbody>
