@@ -10,6 +10,7 @@
 
       <link href="/assets/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
       <link href="/assets/css/custom.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+      <link href="/assets/css/vertical.css" type="text/css" rel="stylesheet" media="screen,projection"/>
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <script type="text/javascript" src="/assets/js/jquery-3.1.1.min.js"></script> 
       <script type="text/javascript" src="/assets/js/materialize.min.js"></script>
@@ -18,21 +19,24 @@
 
       <?php if($this->session->userdata('logged_in') == TRUE) {?>
          <div class="navbar-fixed z-depth-5">   
-            <nav>
+            <nav >
                <div class="nav-wrapper">
                   <div class="row">
                      <div class="col s3 push-s1">
                         <a href="<?php echo base_url();?>" class="brand-logo">Pinoram</a>
                      </div>
-                     <div class="col s7 push-s1 pull-s1">
+                     <div class="col s7 push-s1">
+                     
                         <ul id="nav-mobile" class="right hide-on-small-and-down">
                            <li><a href="<?php echo site_url();?>Account"><?php echo $username?></a></li>
+                           <li><a href="<?php echo site_url();?>Map">Map</a></li>
                            <?php if(($this->session->userdata('role') == 'admin') or ($this->session->userdata('role') == 'super-user')) {?>
-                           <li><a href="<?php echo site_url();?>Setupdb">Set up Database</a></li>
+                           <li><a href="<?php echo site_url();?>Setupdb">Database</a></li>
                            <?php } ?>
                            <li data-activates="slide-out" class="button-collapse" style="margin: auto; cursor: pointer; cursor:hand;"><a>About</a></li>
                            <li><a href="<?php echo site_url();?>User_Authentication/user_logout">Logout</a></li>
                         </ul>
+
                         <ul id="nav-mobile" class="right hide-on-med-and-up">
                            <li><a style="position: relative" class="dropdown-button" href="" data-activates="dropdown1"><i class="material-icons right">menu</i></a></li>
                         </ul>
@@ -92,6 +96,7 @@
       <?php if($this->session->userdata('logged_in') == TRUE) {?>
          <ul id="dropdown1" class="dropdown-content">
             <li><a href="<?php echo site_url();?>Account"><?php echo $username?></a></li>
+            <li><a href="<?php echo site_url();?>Map">Map</a></li>
             <?php if(($this->session->userdata('role') == 'admin') or ($this->session->userdata('role') == 'super-user')) {?>
             <li><a href="<?php echo site_url();?>Setupdb">Set up Database</a></li>
             <?php } ?>

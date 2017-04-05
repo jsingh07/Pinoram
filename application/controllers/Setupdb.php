@@ -118,6 +118,54 @@ class Setupdb extends CI_Controller {
 		}
 	}
 
+	public function installProjects()
+	{
+		if($this->access())
+		{
+			$text['mytext'] = "Installed Projects Table";
+			$this->load->view('templates/header.php');
+			$this->Setupdb_model->InstallProjects();
+			$this->load->view('setupdb/setup');
+			$this->load->view('setupdb/success', $text);
+		}
+	}
+
+	public function installPictures()
+	{
+		if($this->access())
+		{
+			$text['mytext'] = "Installed Pictures Table";
+			$this->load->view('templates/header.php');
+			$this->Setupdb_model->InstallPictures();
+			$this->load->view('setupdb/setup');
+			$this->load->view('setupdb/success', $text);
+		}
+	}
+
+	public function installProject_pictures()
+	{
+		if($this->access())
+		{
+			$text['mytext'] = "Installed Project Pictures Table";
+			$this->load->view('templates/header.php');
+			$this->Setupdb_model->installProject_pictures();
+			$this->load->view('setupdb/setup');
+			$this->load->view('setupdb/success', $text);
+		}
+	}
+
+	public function installProject_videos()
+	{
+		if($this->access())
+		{
+			$text['mytext'] = "Installed Project Videos Table";
+			$this->load->view('templates/header.php');
+			$this->Setupdb_model->installProject_videos();
+			$this->load->view('setupdb/setup');
+			$this->load->view('setupdb/success', $text);
+		}
+	}
+
 	public function dropAll()
 	{
 		if($this->access())
@@ -162,6 +210,54 @@ class Setupdb extends CI_Controller {
 			$text['mytext'] = "Dropped User Info Table";
 			$this->load->view('templates/header.php');
 			$this->Setupdb_model->dropUser_info();
+			$this->load->view('setupdb/setup');
+			$this->load->view('setupdb/success', $text);
+		}
+	}
+
+	public function dropProjects()
+	{
+		if($this->access())
+		{
+			$text['mytext'] = "Dropped Projects Table";
+			$this->load->view('templates/header.php');
+			$this->Setupdb_model->dropProjects();
+			$this->load->view('setupdb/setup');
+			$this->load->view('setupdb/success', $text);
+		}
+	}
+
+	public function dropPictures()
+	{
+		if($this->access())
+		{
+			$text['mytext'] = "Dropped Pictures Table";
+			$this->load->view('templates/header.php');
+			$this->Setupdb_model->dropPictures();
+			$this->load->view('setupdb/setup');
+			$this->load->view('setupdb/success', $text);
+		}
+	}
+
+	public function dropProject_pictures()
+	{
+		if($this->access())
+		{
+			$text['mytext'] = "Dropped Project Pictures Table";
+			$this->load->view('templates/header.php');
+			$this->Setupdb_model->dropProject_pictures();
+			$this->load->view('setupdb/setup');
+			$this->load->view('setupdb/success', $text);
+		}
+	}
+
+	public function dropProject_videos()
+	{
+		if($this->access())
+		{
+			$text['mytext'] = "Dropped Project Videos Table";
+			$this->load->view('templates/header.php');
+			$this->Setupdb_model->dropProject_videos();
 			$this->load->view('setupdb/setup');
 			$this->load->view('setupdb/success', $text);
 		}

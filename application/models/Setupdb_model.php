@@ -152,6 +152,151 @@ class Setupdb_model extends CI_Model {
 		$this->dbforge->create_table('user_info', TRUE);
 	}
 
+	public function InstallProjects()
+	{
+		$this->load->dbforge();
+
+		$fields = array(
+			'project_id' => array(
+				'type' => 'INT',
+                'auto_increment' => TRUE
+			),
+			'owner_id' => array(
+				'type' => 'INT'
+			),
+			'project_name' => array(
+				'type' => 'VARCHAR',
+				'constraint' => 100
+			),
+			'description' => array(
+				'type' => 'VARCHAR',
+				'constraint' => 999,
+				'null' => TRUE
+			),
+			'project_access' => array(
+				'type' => 'VARCHAR',
+				'constraint' => 30
+			)
+		);
+
+		$this->dbforge->add_field($fields);
+		$this->dbforge->add_key('project_id', TRUE);
+		$this->dbforge->create_table('projects', TRUE);
+	}
+
+	public function InstallPictures()
+	{
+		$this->load->dbforge();
+
+		$fields = array(
+			'picture_id' => array(
+				'type' => 'INT',
+				'unsigned' => TRUE,
+                'auto_increment' => TRUE
+			),
+			'owner_id' => array(
+				'type' => 'INT'
+			),
+			'lat' => array(
+				'type' => 'DECIMAL(10,6)',
+				'null' => TRUE
+			),
+			'lng' => array(
+				'type' => 'DECIMAL(10,6)',
+				'null' => TRUE
+			),
+			'date' => array(
+				'type' => 'VARCHAR',
+				'constraint' => 30,
+				'null' => TRUE
+			),
+			'description' => array(
+				'type' => 'VARCHAR',
+				'constraint' => 500,
+				'null' => TRUE
+			)
+		);
+
+		$this->dbforge->add_field($fields);
+		$this->dbforge->add_key('picture_id', TRUE);
+		$this->dbforge->create_table('pictures', TRUE);
+	}
+
+	public function Installvideos()
+	{
+		$this->load->dbforge();
+
+		$fields = array(
+			'video_id' => array(
+				'type' => 'VARCHAR',
+				'constraint' => '50'
+			),
+			'owner_id' => array(
+				'type' => 'INT'
+			),
+			'lat' => array(
+				'type' => 'DECIMAL(10,6)',
+				'null' => TRUE
+			),
+			'lng' => array(
+				'type' => 'DECIMAL(10,6)',
+				'null' => TRUE
+			),
+			'date' => array(
+				'type' => 'VARCHAR',
+				'constraint' => 30,
+				'null' => TRUE
+			),
+			'description' => array(
+				'type' => 'VARCHAR',
+				'constraint' => 500,
+				'null' => TRUE
+			)
+		);
+
+		$this->dbforge->add_field($fields);
+		$this->dbforge->add_key('video_id', TRUE);
+		$this->dbforge->create_table('videos', TRUE);
+	}
+
+	public function InstallProject_pictures()
+	{
+		$this->load->dbforge();
+
+		$fields = array(
+			'project_id' => array(
+				'type' => 'INT'
+			),
+			'picture_id' => array(
+				'type' => 'VARCHAR',
+				'constraint' => '50'
+			)
+		);
+
+		$this->dbforge->add_field($fields);
+		$this->dbforge->create_table('project_pictures', TRUE);
+	}
+
+	public function InstallProject_videos()
+	{
+		$this->load->dbforge();
+
+		$fields = array(
+			'project_id' => array(
+				'type' => 'INT'
+			),
+			'video_id' => array(
+				'type' => 'VARHCAR',
+				'constraint' => '50'
+			)
+		);
+
+		$this->dbforge->add_field($fields);
+		$this->dbforge->create_table('project_videos', TRUE);
+	}
+
+
+
 	public function dropUser()
 	{
 		$this->load->dbforge();
@@ -168,6 +313,36 @@ class Setupdb_model extends CI_Model {
 	{
 		$this->load->dbforge();
 		$this->dbforge->drop_table('user_info',TRUE);
+	}
+
+	public function dropProjects()
+	{
+		$this->load->dbforge();
+		$this->dbforge->drop_table('projects',TRUE);
+	}
+
+	public function dropPictures()
+	{
+		$this->load->dbforge();
+		$this->dbforge->drop_table('pictures',TRUE);
+	}
+
+	public function dropVideos()
+	{
+		$this->load->dbforge();
+		$this->dbforge->drop_table('videos',TRUE);
+	}
+
+	public function dropProject_pictures()
+	{
+		$this->load->dbforge();
+		$this->dbforge->drop_table('project_pitures',TRUE);
+	}
+
+	public function dropProject_videos()
+	{
+		$this->load->dbforge();
+		$this->dbforge->drop_table('project_videos',TRUE);
 	}
 
 	public function showUser()

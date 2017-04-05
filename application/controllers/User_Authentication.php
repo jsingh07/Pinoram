@@ -74,7 +74,7 @@ class User_Authentication extends CI_Controller {
 
 		        if($status == $this->config->item(1,'status'))
 		        {
-			        redirect('Welcome');
+			        redirect('');
 		    	}
 		    	else
 		    	{

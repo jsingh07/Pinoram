@@ -3,6 +3,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
 
+	public function __construct() {
+	parent::__construct();
+
+	$this->load->helper('url');
+	// Load form helper library
+	$this->load->helper('form');
+
+	// Load form validation library
+	$this->load->library('form_validation');
+	}
 	/**
 	 * Index Page for this controller.
 	 *
@@ -20,20 +30,19 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->helper('url');
 		$this->load->view('templates/header.php');
-		$this->load->view('home');
 		if($this->session->userdata('welcome') == TRUE)
 		{
 			$this->session->set_userdata('welcome') == FALSE;
 			$text['mytext'] = "Welcome ".$this->session->userdata('first_name');
 			$this->load->view('setupdb/success.php', $text);
 		}
+		
+		$this->load->view('home');
 	}
 
 	public function about_us()
 	{
-		$this->load->helper('url');
 		$this->load->view('templates/header.php');
 		$this->load->view('aboutus');
 	}

@@ -21,6 +21,10 @@
               <a class="btn" href="<?php echo base_url()?>Setupdb/installUser">User</a>
               <a class="btn" href="<?php echo base_url()?>Setupdb/installToken">Token</a>
               <a class="btn" href="<?php echo base_url()?>Setupdb/installUser_info">User Info</a>
+              <a class="btn" href="<?php echo base_url()?>Setupdb/installPictures">Pictures</a>
+              <a class="btn" href="<?php echo base_url()?>Setupdb/installProjects">Projects</a>
+              <a class="btn" href="<?php echo base_url()?>Setupdb/installProject_pictures">Project_pictures</a>
+              <a class="btn" href="<?php echo base_url()?>Setupdb/installProject_videos">Project_videos</a>
             </div>
           </div>
         </div>
@@ -35,6 +39,10 @@
               <a class="btn" href="<?php echo base_url()?>Setupdb/dropUser">User</a>
               <a class="btn" href="<?php echo base_url()?>Setupdb/dropToken">Token</a>
               <a class="btn" href="<?php echo base_url()?>Setupdb/dropUser_info">User Info</a>
+              <a class="btn" href="<?php echo base_url()?>Setupdb/dropPictures">Pictures</a>
+              <a class="btn" href="<?php echo base_url()?>Setupdb/dropProjects">Projects</a>
+              <a class="btn" href="<?php echo base_url()?>Setupdb/dropProject_pictures">Project_pictures</a>
+              <a class="btn" href="<?php echo base_url()?>Setupdb/dropProject_videos">Project_videos</a>
               <!--<a class="btn" onclick="PopToast('Dropped All Tables','Setupdb/dropAll')">All</a>
               <a class="btn" onclick="PopToast('Dropped User Table','Setupdb/dropUser')">User</a>-->
             </div>
