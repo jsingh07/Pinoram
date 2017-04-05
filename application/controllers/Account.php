@@ -35,11 +35,7 @@ class Account extends CI_Controller {
 			$this->load->view('templates/header.php');
 			$this->load->view('account/edit_account.php');
 		}
-		else
-		{
-			redirect('Welcome');
-		}
-
+		
 	}
 
 	public function access()
