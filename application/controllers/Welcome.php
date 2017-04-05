@@ -31,6 +31,8 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		$this->load->view('templates/header.php');
+
+		
 		if($this->session->userdata('welcome') == TRUE)
 		{
 			$this->session->set_userdata('welcome') == FALSE;

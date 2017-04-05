@@ -18,6 +18,15 @@
       		<div class="row" id="map" style=""></div>
 		</div>
 
+		<div class="row" style="width: 450px; position: relative;">
+		        <div class="col s12 m12" style="margin-top: 100px;">
+		          <div class="card z-depth-5" >
+		            <div class="card-content black-text">
+		              <span class="card-title">The site is still under development. <br>Please come back later.</span>
+		          </div>
+		        </div>
+		    </div>
+
 		<div id="create-project-modal" class="modal modal-fixed-footer" style="min-height:500px;">
 
 			<?php echo form_open('project/create_project'); ?>
