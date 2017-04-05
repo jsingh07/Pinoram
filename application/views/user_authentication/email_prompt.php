@@ -9,7 +9,7 @@
             <div class="card-action">
               	<a href="<?php echo base_url()?>User_Authentication">Login</a>
             </div>
-          	</div>-
+          	</div>
       	</div>
 	</body>
 </html>

@@ -18,26 +18,50 @@ class Setupdb extends CI_Controller {
 	public function index()
 	{
 		$this->load->view('templates/header.php');
-		if($this->session->userdata('role') != 'admin')
+		if($this->session->userdata('role') == 'admin')
+		{
+			$this->load->view('setupdb/setup');
+		}
+		elseif($this->session->userdata('role') == 'super-user')
+		{
+			$this->load->view('setupdb/setup');
+		}
+		else
 		{
 			$this->load->view('access_denied.php');
-		}
-		else{
-			$this->load->view('setupdb/setup');
+			
 		}
 	}
 
 	public function access()
 	{
-		if($this->session->userdata('role') != 'admin')
+		if($this->session->userdata('role') == 'admin')
+		{
+			return 1;
+		}
+		elseif($this->session->userdata('role') == 'super-user')
+		{
+			return 1;
+		}
+		else
 		{
 			$this->load->view('templates/header.php');
 			$this->load->view('access_denied.php');
 			return 0;
 		}
-		else
+	}
+
+	public function access_super()
+	{
+		if($this->session->userdata('role') == 'super-user')
 		{
 			return 1;
+		}
+		else
+		{
+			$this->load->view('templates/header.php');
+			$this->load->view('access_denied.php');
+			return 0;
 		}
 	}
 
@@ -82,6 +106,66 @@ class Setupdb extends CI_Controller {
 		}
 	}
 
+	public function installUser_info()
+	{
+		if($this->access())
+		{
+			$text['mytext'] = "Installed User Info Table";
+			$this->load->view('templates/header.php');
+			$this->Setupdb_model->InstallUser_info();
+			$this->load->view('setupdb/setup');
+			$this->load->view('setupdb/success', $text);
+		}
+	}
+
+	public function installProjects()
+	{
+		if($this->access())
+		{
+			$text['mytext'] = "Installed Projects Table";
+			$this->load->view('templates/header.php');
+			$this->Setupdb_model->InstallProjects();
+			$this->load->view('setupdb/setup');
+			$this->load->view('setupdb/success', $text);
+		}
+	}
+
+	public function installPictures()
+	{
+		if($this->access())
+		{
+			$text['mytext'] = "Installed Pictures Table";
+			$this->load->view('templates/header.php');
+			$this->Setupdb_model->InstallPictures();
+			$this->load->view('setupdb/setup');
+			$this->load->view('setupdb/success', $text);
+		}
+	}
+
+	public function installProject_pictures()
+	{
+		if($this->access())
+		{
+			$text['mytext'] = "Installed Project Pictures Table";
+			$this->load->view('templates/header.php');
+			$this->Setupdb_model->installProject_pictures();
+			$this->load->view('setupdb/setup');
+			$this->load->view('setupdb/success', $text);
+		}
+	}
+
+	public function installProject_videos()
+	{
+		if($this->access())
+		{
+			$text['mytext'] = "Installed Project Videos Table";
+			$this->load->view('templates/header.php');
+			$this->Setupdb_model->installProject_videos();
+			$this->load->view('setupdb/setup');
+			$this->load->view('setupdb/success', $text);
+		}
+	}
+
 	public function dropAll()
 	{
 		if($this->access())
@@ -119,6 +203,66 @@ class Setupdb extends CI_Controller {
 		}
 	}
 
+	public function dropUser_info()
+	{
+		if($this->access())
+		{
+			$text['mytext'] = "Dropped User Info Table";
+			$this->load->view('templates/header.php');
+			$this->Setupdb_model->dropUser_info();
+			$this->load->view('setupdb/setup');
+			$this->load->view('setupdb/success', $text);
+		}
+	}
+
+	public function dropProjects()
+	{
+		if($this->access())
+		{
+			$text['mytext'] = "Dropped Projects Table";
+			$this->load->view('templates/header.php');
+			$this->Setupdb_model->dropProjects();
+			$this->load->view('setupdb/setup');
+			$this->load->view('setupdb/success', $text);
+		}
+	}
+
+	public function dropPictures()
+	{
+		if($this->access())
+		{
+			$text['mytext'] = "Dropped Pictures Table";
+			$this->load->view('templates/header.php');
+			$this->Setupdb_model->dropPictures();
+			$this->load->view('setupdb/setup');
+			$this->load->view('setupdb/success', $text);
+		}
+	}
+
+	public function dropProject_pictures()
+	{
+		if($this->access())
+		{
+			$text['mytext'] = "Dropped Project Pictures Table";
+			$this->load->view('templates/header.php');
+			$this->Setupdb_model->dropProject_pictures();
+			$this->load->view('setupdb/setup');
+			$this->load->view('setupdb/success', $text);
+		}
+	}
+
+	public function dropProject_videos()
+	{
+		if($this->access())
+		{
+			$text['mytext'] = "Dropped Project Videos Table";
+			$this->load->view('templates/header.php');
+			$this->Setupdb_model->dropProject_videos();
+			$this->load->view('setupdb/setup');
+			$this->load->view('setupdb/success', $text);
+		}
+	}
+
 	public function showUser()
 	{
 		if($this->access())
@@ -138,6 +282,17 @@ class Setupdb extends CI_Controller {
 			$data['query'] = $this->Setupdb_model->showToken();
 			$this->load->view('setupdb/setup');
 			$this->load->view('setupdb/show/token', $data);
+		}
+	}
+
+	public function showAdmin()
+	{
+		if($this->access())
+		{
+			$this->load->view('templates/header.php');
+			$data['query'] = $this->Setupdb_model->showUser();
+			$this->load->view('setupdb/setup');
+			$this->load->view('setupdb/make_admin', $data);
 		}
 	}
 
@@ -189,6 +344,29 @@ class Setupdb extends CI_Controller {
 			$this->load->view('templates/header.php');
 			$this->Setupdb_model->dropContent_Token();
 			$this->load->view('setupdb/setup');
+			$this->load->view('setupdb/success', $text);
+		}
+	}
+
+	public function make_admin()
+	{
+		if($this->access_super())
+		{
+			$id= $this->uri->segment(3);
+			$this->load->view('templates/header.php');
+			$this->load->view('setupdb/setup');
+			$query = $this->Setupdb_model->getUser($id);
+			$query_name = $query->row();
+			$name = $query_name->username;
+			$result = $this->Setupdb_model->makeAdmin($id);
+			if($result == 1)
+			{
+				$text['mytext'] = "Made admin for user ".$id. " with username: ".$name;
+			}
+			else
+			{
+				$text['mytext'] = "Could not make admin";
+			}
 			$this->load->view('setupdb/success', $text);
 		}
 	}

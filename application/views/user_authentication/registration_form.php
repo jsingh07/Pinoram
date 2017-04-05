@@ -1,8 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
 <html>
-<body>
-	<div class="row" id="user-registration">
+	<div class="row" id="user-registration" style="margin-top: 0px;">
 		<div class="card z-depth-5 col s12">
 			<div class="error_msg" style="position: relative; color: red; text-align: center">
 				<?php echo validation_errors();?>
@@ -61,7 +60,6 @@
 			</div> 
 		</div>
 	</div>
-</body>
 <script>
 	$("#password").on("focusout", function (e) {
 	    if ($(this).val() != $("#passwordconf").val()) {
