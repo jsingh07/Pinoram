@@ -76,7 +76,7 @@ class Project extends CI_Controller {
 		{
 			$picture_id = $this->Project_model->insert_picture($this->session->userdata('user_id'));
 
-			$config['upload_path']          = '/Library/WebServer/Documents/pinoram/pinoram-production/files/images/';
+			$config['upload_path']          = '/var/www/html/pinoram-production/files/images/';
 	        $config['allowed_types']        = 'jpg|png';
 	        $config['max_size']             = 0;
 	        $config['max_width']            = 0;
