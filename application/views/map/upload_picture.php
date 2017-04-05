@@ -39,7 +39,7 @@
 				    <div class="file-field input-field">
 				      <div class="btn">
 				        <span>Upload</span>
-				        <input type="file" multiple name="picture_upload" onchange="this.form.submit()" id="picture_upload" onchange="previewFile()">
+				        <input type="file" multiple name="picture_upload" accept="image/*" onchange="this.form.submit()" id="picture_upload" onchange="previewFile()">
 				      </div>
 				      <div class="file-path-wrapper">
 				        <input class="file-path validate" type="text" placeholder="Select a picture to upload" style="max-width: 550px;">
