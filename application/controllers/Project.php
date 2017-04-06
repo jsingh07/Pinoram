@@ -19,8 +19,23 @@ class Project extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('templates/header.php');
-		$this->load->view('map/map.php');
+		if($this->access())
+		{
+			$this->load->view('templates/header.php');
+			$this->load->view('map/map.php');
+		}
+	}
+
+	public function access()
+	{
+		if($this->session->userdata('logged_in') == TRUE)
+		{
+			return 1;
+		}
+		else
+		{
+			redirect('Welcome');
+		}
 	}
 
 	public function create_project()
@@ -36,50 +51,73 @@ class Project extends CI_Controller {
 		$clean = $this->security->xss_clean($this->input->post(NULL, TRUE));
 
 		$project_id = $this->Project_model->create_project($clean, $this->session->userdata('user_id'), $access);*/
-		$data['project_id'] = 1;
-		$this->load->view('templates/header.php');
-		$this->load->view('map/project_picture.php', $data);
+		if($this->access())
+		{
+			$data['project_id'] = 1;
+			$this->load->view('templates/header.php');
+			$this->load->view('map/project_picture.php', $data);
+		}
 
 	}
 
 	public function picture()
 	{
-		$data = "";
-
-		$data['files']  = $this->Project_model->get_pictures($this->session->userdata('user_id'));
-		$this->load->view('templates/header.php');
-		$this->load->view('map/upload_picture.php', $data);
+		if($this->access())
+		{
+			$data['files']  = $this->Project_model->get_pictures($this->session->userdata('user_id'));
+			$this->load->view('templates/header.php');
+			$this->load->view('map/upload_picture.php', $data);
+		}
 	}
 
 	public function upload_picture()
 	{
-		$picture_id = $this->Project_model->insert_picture($this->session->userdata('user_id'));
+		if($this->access())
+		{
+			$picture_id = $this->Project_model->insert_picture($this->session->userdata('user_id'));
 
-		$config['upload_path']          = '/Library/WebServer/Documents/pinoram/pinoram-production/files/images/';
-        $config['allowed_types']        = 'jpg|png';
-        $config['max_size']             = 0;
-        $config['max_width']            = 0;
-        $config['max_height']           = 0;
-        $config['file_name']            = $picture_id.'.jpg';
+			$config['upload_path']          = '/Library/WebServer/Documents/pinoram/pinoram-production/files/images/';
+	        $config['allowed_types']        = 'jpg|png';
+	        $config['max_size']             = 0;
+	        $config['max_width']            = 0;
+	        $config['max_height']           = 0;
+	        $config['file_name']            = $picture_id.'.jpg';
 
-        $this->load->library('upload', $config);
-        $this->load->view('templates/header.php');
+	        $this->load->library('upload', $config);
+	        $this->load->view('templates/header.php');
 
-        if ( ! $this->upload->do_upload('picture_upload'))
-        {
-                $error = array('error' => $this->upload->display_errors());
+	        if ( ! $this->upload->do_upload('picture_upload'))
+	        {
+	                $error = array('error' => $this->upload->display_errors());
 
-                echo ($error['error']);
-        }
-        else
-        {
-                redirect('Project/picture');
-        }
+	                echo ($error['error']);
+	        }
+	        else
+	        {
+	                redirect('Project/picture');
+	        }
+	    }
 	}
 
 	public function edit_picture_info()
 	{
-		$this->load->view('templates/header.php');
-		$this->load->view('map/project.php');
+		if($this->access())
+		{
+			$clean = $this->security->xss_clean($this->input->post(NULL, TRUE));
+			$this->Project_model->update_picture($clean);
+
+			redirect('Project/picture');
+		}
+	}
+
+	public function deletePicture()
+	{
+		if($this->access())
+		{
+			$clean = $this->security->xss_clean($this->input->post(NULL, TRUE));
+			$this->Project_model->delete_picture($clean);
+
+			redirect('Project/picture');
+		}
 	}
 }

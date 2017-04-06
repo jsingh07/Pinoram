@@ -35,11 +35,7 @@ class Account extends CI_Controller {
 			$this->load->view('templates/header.php');
 			$this->load->view('account/edit_account.php');
 		}
-		else
-		{
-			redirect('Welcome');
-		}
-
+		
 	}
 
 	public function access()
@@ -159,7 +155,7 @@ class Account extends CI_Controller {
 
 	private function send_email($message, $subject, $email)
 	{
-        $this->email->from('admin@pinoram.com' , 'PyaiCI');
+        $this->email->from('admin@pinoram.com' , 'Pinoram');
 		$this->email->to($email); 
 
         $this->email->subject($subject);
