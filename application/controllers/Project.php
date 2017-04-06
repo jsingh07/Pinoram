@@ -22,7 +22,7 @@ class Project extends CI_Controller {
 		if($this->access())
 		{
 			$this->load->view('templates/header.php');
-			$this->load->view('map/map.php');
+			$this->load->view('project/map.php');
 		}
 	}
 
@@ -40,23 +40,24 @@ class Project extends CI_Controller {
 
 	public function create_project()
 	{
-		/*if($this->input->post('project_access'))
-		{
-			$access = "public";
-		}
-		else
-		{
-			$access = "private";
-		}
-		$clean = $this->security->xss_clean($this->input->post(NULL, TRUE));
-
-		$project_id = $this->Project_model->create_project($clean, $this->session->userdata('user_id'), $access);*/
 		if($this->access())
 		{
-			$data['project_id'] = 1;
-			$this->load->view('templates/header.php');
-			$this->load->view('map/project_picture.php', $data);
+			if($this->input->post('project_access'))
+			{
+				$access = "public";
+			}
+			else
+			{
+				$access = "private";
+			}
+			$clean = $this->security->xss_clean($this->input->post(NULL, TRUE));
+
+			$project_id = $this->Project_model->create_project($clean, $this->session->userdata('user_id'), $access);
 		}
+
+		/*	$data['project_id'] = 1;
+			$this->load->view('templates/header.php');
+			$this->load->view('project/project_picture.php', $data);*/
 
 	}
 
@@ -66,7 +67,7 @@ class Project extends CI_Controller {
 		{
 			$data['files']  = $this->Project_model->get_pictures($this->session->userdata('user_id'));
 			$this->load->view('templates/header.php');
-			$this->load->view('map/upload_picture.php', $data);
+			$this->load->view('project/upload_picture.php', $data);
 		}
 	}
 
@@ -118,6 +119,15 @@ class Project extends CI_Controller {
 			$this->Project_model->delete_picture($clean);
 
 			redirect('Project/picture');
+		}
+	}
+
+	public function project()
+	{
+		if($this->access())
+		{
+			$this->load->view('templates/header.php');
+			$this->load->view('project/project.php');
 		}
 	}
 }

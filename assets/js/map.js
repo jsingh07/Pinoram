@@ -5,7 +5,7 @@ function initMap()
     {
         zoom: 9,
         center: uluru,
-        styles: 
+        /*styles: 
         [
 			{
 		        "featureType": "all",
@@ -184,6 +184,6 @@ function initMap()
 		            }
 		        ]
 		    }
-		]
+		]*/
     });
 }

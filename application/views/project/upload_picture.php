@@ -14,63 +14,67 @@
   	position: absolute;
 }
 
-
-
 </style>
+
 	<div class="row"">
-			<nav>
-				<div class="nav-wrapper" style="background-color: white;">
-                    <ul>
-						<li class="col s3"><a href="" style="text-align: center">Projects</a></li>
-						<li class="col s3"><a href="#create-project-modal" style="text-align: center; line-height:20px; padding-top:12px; padding-bottom: 12px">Create<br>Project</a></li>
-						<li class="col s3 active"><a href="<?php echo base_url()?>Project/Picture" style="text-align: center">Pictures</a></li>
-						<li class="col s3"><a href="" style="text-align: center">Videos</a></li>
-					</ul>
-				</div>
-			</nav>
+		<nav>
+			<div class="nav-wrapper" style="background-color: white;">
+                <ul>
+					<li class="col s3"><a href="" style="text-align: center">Projects</a></li>
+					<li class="col s3"><a href="#create-project-modal" style="text-align: center; line-height:20px; padding-top:12px; padding-bottom: 12px">Create<br>Project</a></li>
+					<li class="col s3 active"><a href="<?php echo base_url()?>Project/Picture" style="text-align: center">Pictures</a></li>
+					<li class="col s3"><a href="" style="text-align: center">Videos</a></li>
+				</ul>
+			</div>
+		</nav>
 	</div>
 
 
-		<div class="row" id="project_pictures" style="max-width: 800px; margin-top:20px">
-			<div class="card z-depth-5 col s12">
-				<?php echo form_open_multipart('Project/upload_picture'); ?>
-					<div class="card-content" id="picture_card">
-					<input type="hidden" name="project_id" id="project_id" value="<?php $project_id ?>" />
-				    <div class="file-field input-field">
-				      <div class="btn">
-				        <span>Upload</span>
-				        <input type="file" multiple name="picture_upload" accept="image/*" onchange="this.form.submit()" id="picture_upload" onchange="previewFile()">
-				      </div>
-				      <div class="file-path-wrapper">
-				        <input class="file-path validate" type="text" placeholder="Select a picture to upload" style="max-width: 550px;">
-				      </div>
-				    </div>
-				    </div>
-				<?php echo form_close(); ?>
+	<div class="row" id="project_pictures" style="max-width: 800px; margin-top:20px">
+		<div class="card z-depth-5 col s12">
+			<?php echo form_open_multipart('Project/upload_picture'); ?>
+				<div class="card-content" id="picture_card">
+				<input type="hidden" name="project_id" id="project_id" value="<?php $project_id ?>" />
+			    <div class="file-field input-field">
+			      <div class="btn">
+			        <span>Upload</span>
+			        <input type="file" multiple name="picture_upload" accept="image/*" onchange="this.form.submit()" id="picture_upload" onchange="previewFile()">
+			      </div>
+			      <div class="file-path-wrapper">
+			        <input class="file-path validate" type="text" placeholder="Select a picture to upload" style="max-width: 550px;">
+			      </div>
+			    </div>
+			    </div>
+			<?php echo form_close(); ?>
+		</div>
+	</div>
+
+	<div class="row" style="max-width: 800px;">
+	 	<div class="card z-depth-5 col s12" style="height: 600px">
+	 		<span class="card-title"><h5>All</h5></span>
+	 		<hr/>
+	 		<div class="carousel" style="height: 500px;">
+	        	<?php foreach ($files->result() as $files){ ?>
+	        		<div id="picture-card" class="card z-depth-5 carousel-item row">
+			        	<a href="#pictureModal" class="myImg col s12" 
+			        		data-id='[
+			        		"<?php echo $files->description; ?>",
+			        		"<?php echo $files->lat; ?>", 
+			        		"<?php echo $files->lng; ?>", 
+			        		"<?php echo $files->picture_id; ?>", 
+			        		"<?php echo base_url('files/images/'. $files->picture_id.'.jpg');?>"]' >
+			        		<img src="<?php echo base_url('files/images/'. $files->picture_id.'.jpg');?>">
+			        	</a>
+
+			        	<div class="row" style="position: relative; margin-top: 290px; margin-left: 5px; margin-right: 5px;">
+			        		<p class="left" style="text-align: left"><?php echo $files->description; ?><p>
+			        	</div>
+			        </div>
+				<?php } ?>
 			</div>
 		</div>
+    </div>
 
-		<div class="row" style="max-width: 800px;">
-		 	<div class="card z-depth-5 col s12" style="height: 600px">
-		 		<span class="card-title"><h5>All</h5></span>
-		 		<hr/>
-		 		<div class="carousel" style="height: 500px;">
-		        	<?php foreach ($files->result() as $files){ ?>
-		        		<div id="picture-card" class="card z-depth-5 carousel-item row">
-				        	<a href="#pictureModal" class="myImg col s12" data-id='["<?php echo $files->description; ?>","<?php echo $files->lat; ?>", "<?php echo $files->lng; ?>", "<?php echo $files->picture_id; ?>", "<?php echo base_url('files/images/'. $files->picture_id.'.jpg');?>"]'>
-				        		<img src="<?php echo base_url('files/images/'. $files->picture_id.'.jpg');?>">
-				        	</a>
-
-				        	<div class="row" style="position: relative; margin-top: 290px; margin-left: 5px; margin-right: 5px;">
-				        		<p class="left" style="text-align: left"><?php echo $files->description; ?><p>
-				        	</div>
-				        </div>
-					<?php } ?>
-				</div>
-			</div>
-	    </div>
-
-   	</div>
 
     <div id="pictureModal" class="modal modal-fixed-footer modal-fixed-header" style="height:600px;">
 
@@ -130,8 +134,6 @@
 	    $(document).ready(function(){
 			$('.myImg').click(function() {
 		        var picData = $(this).data('id');
-		        var piclink = '<?php echo base_url('Project/deletePicture/1')?>';
-		        var delbutton = document.getElementById('delete_pic');
 
 		        $(".modal-content #picture_description").val( picData[0] );
 		        $(".modal-content #Latitude").val( picData[1] );
@@ -139,7 +141,6 @@
 		        $(".modal-content #picture_id").val( picData[3] );
 		        $(".modal-footer #delete_pic").val( picData[3] );
 		        $('.modalPic').attr('src', picData[4]);
-		        delbutton.href = piclink;
 		        $('.modal').modal();
 		     });
 		});
