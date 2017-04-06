@@ -109,4 +109,15 @@ class Project extends CI_Controller {
 			redirect('Project/picture');
 		}
 	}
+
+	public function deletePicture()
+	{
+		if($this->access())
+		{
+			$clean = $this->security->xss_clean($this->input->post(NULL, TRUE));
+			$this->Project_model->delete_picture($clean);
+
+			redirect('Project/picture');
+		}
+	}
 }
