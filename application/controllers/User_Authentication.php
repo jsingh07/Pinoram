@@ -155,7 +155,7 @@ class User_Authentication extends CI_Controller {
 		            $message .= '<strong>You have signed up with our website with the username: '.$this->input->post('username').'</strong><br>';
 		            $message .= '<strong>Please click to confirm your email:</strong><br>' . $link; 
 
-		            $this->email->from('admin@pinoram.com' , 'PyaiCI');
+		            $this->email->from('admin@pinoram.com' , 'Pinoram');
 					$this->email->to($this->input->post('email')); 
 
 			        $this->email->subject('Verify your email for Pinoram');
@@ -315,7 +315,7 @@ class User_Authentication extends CI_Controller {
 		        $message .= '<strong>You have requested to recover your password for username: '.$this->session->userdata('username').'</strong><br>';
 		        $message .= '<strong>Please click on the link to reset your password:</strong><br>' . $link; 
 
-		   		$this->email->from('admin@pinoram.com' , 'PyaiCI');
+		   		$this->email->from('admin@pinoram.com' , 'Pinoram');
 				$this->email->to($email); 
 
 		        $this->email->subject('Password Recovery for Pinoram');

@@ -39,7 +39,7 @@
 				    <div class="file-field input-field">
 				      <div class="btn">
 				        <span>Upload</span>
-				        <input type="file" multiple name="picture_upload" onchange="this.form.submit()" id="picture_upload" onchange="previewFile()">
+				        <input type="file" multiple name="picture_upload" accept="image/*" onchange="this.form.submit()" id="picture_upload" onchange="previewFile()">
 				      </div>
 				      <div class="file-path-wrapper">
 				        <input class="file-path validate" type="text" placeholder="Select a picture to upload" style="max-width: 550px;">
@@ -50,14 +50,20 @@
 			</div>
 		</div>
 
-		 <div class="row" style="max-width: 800px;">
+		<div class="row" style="max-width: 800px;">
 		 	<div class="card z-depth-5 col s12" style="height: 600px">
 		 		<span class="card-title"><h5>All</h5></span>
 		 		<hr/>
 		 		<div class="carousel" style="height: 500px;">
 		        	<?php foreach ($files->result() as $files){ ?>
 		        		<div id="picture-card" class="card z-depth-5 carousel-item row">
-				        	<a href="#pictureModal" class="myImg col s12" src="<?php echo base_url('files/images/'. $files->picture_id.'.jpg');?>"><img src="<?php echo base_url('files/images/'. $files->picture_id.'.jpg');?>"></a>
+				        	<a href="#pictureModal" class="myImg col s12" data-id='["<?php echo $files->description; ?>","<?php echo $files->lat; ?>", "<?php echo $files->lng; ?>", "<?php echo $files->picture_id; ?>", "<?php echo base_url('files/images/'. $files->picture_id.'.jpg');?>"]'>
+				        		<img src="<?php echo base_url('files/images/'. $files->picture_id.'.jpg');?>">
+				        	</a>
+
+				        	<div class="row" style="position: relative; margin-top: 290px; margin-left: 5px; margin-right: 5px;">
+				        		<p class="left" style="text-align: left"><?php echo $files->description; ?><p>
+				        	</div>
 				        </div>
 					<?php } ?>
 				</div>
@@ -71,6 +77,7 @@
 		<?php echo form_open('project/edit_picture_info'); ?>
 
 	    <div class="modal-content row">
+	    	<input type="hidden" id="picture_id" name="picture_id"></input>
 
 	    	<h4 style="text-align: center">Picture Information</h4>
 			<hr/>
@@ -79,29 +86,36 @@
 
 			<div style="position: relative; margin-top: 20px; margin-left: 10px; height:300px">
 				<div class="input-field col s6">
-	          		<input type="text" id="Latitude" name="Latitude" class="validate"
-	            			value="">
-	          		<label for="Latitude"><strong>Latitude</strong></label>
+					<strong>Latitude</strong>
+	          		<input type="text" id="Latitude" name="Latitude" class="validate">
 	        	</div>
 
 	        	<div class="input-field col s6">
-	          		<input type="text" id="Longitude" name="Longitude" class="validate"
-	            			value="">
-	          		<label for="Longitude"><strong>Longitude</strong></label>
+	        		<strong>Longitude</strong>
+	          		<input type="text" id="Longitude" name="Longitude" class="validate">
 	        	</div>
 
 	        	<div class="input-field col s12">
-		          	<textarea id="project_description" name="picture_description" data-length="500" style="min-height: 120px;" class="materialize-textarea"></textarea>
-		          	<label for="project_description"><strong>Description</strong></label>
+	        		<strong>Description</strong>
+		          	<textarea id="picture_description" name="picture_description" data-length="500" style="min-height: 120px;" class="materialize-textarea active"></textarea>
+		          	
 		        </div>
 			</div>
 		</div>
 
+
 		<div class="modal-footer">
 			<btn><input type="submit" name="Submit" value="Submit" class="modal-action modal-close waves-effect waves-green btn-flat "></input></btn>
+		<?php echo form_close(); ?>
 	      	<btn class="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</btn>
-	    </div>
+
+	    <?php echo form_open('project/deletePicture'); ?>
+	    	<input type="hidden" id="delete_pic" name="delete_pic"></input>
+	      	<btn><input style="color:red" type="submit" name="Submit" value="Delete" class="modal-action modal-close waves-effect waves-green btn-flat "></input></btn>
 	    <?php echo form_close(); ?>
+
+	    </div>
+
 
 	</div>
 
@@ -115,9 +129,17 @@
 
 	    $(document).ready(function(){
 			$('.myImg').click(function() {
-		        var src = $(this).attr('src');
+		        var picData = $(this).data('id');
+		        var piclink = '<?php echo base_url('Project/deletePicture/1')?>';
+		        var delbutton = document.getElementById('delete_pic');
 
-		        $('.modalPic').attr('src', src);
+		        $(".modal-content #picture_description").val( picData[0] );
+		        $(".modal-content #Latitude").val( picData[1] );
+		        $(".modal-content #Longitude").val( picData[2] );
+		        $(".modal-content #picture_id").val( picData[3] );
+		        $(".modal-footer #delete_pic").val( picData[3] );
+		        $('.modalPic').attr('src', picData[4]);
+		        delbutton.href = piclink;
 		        $('.modal').modal();
 		     });
 		});
