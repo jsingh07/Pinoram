@@ -77,7 +77,7 @@
 		<?php echo form_open('project/edit_picture_info'); ?>
 
 	    <div class="modal-content row">
-	    	<input type="hidden" id="picture_id" name="picture_id" id="picture_id"></input>
+	    	<input type="hidden" id="picture_id" name="picture_id"></input>
 
 	    	<h4 style="text-align: center">Picture Information</h4>
 			<hr/>
@@ -103,11 +103,19 @@
 			</div>
 		</div>
 
+
 		<div class="modal-footer">
 			<btn><input type="submit" name="Submit" value="Submit" class="modal-action modal-close waves-effect waves-green btn-flat "></input></btn>
+		<?php echo form_close(); ?>
 	      	<btn class="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</btn>
-	    </div>
+
+	    <?php echo form_open('project/deletePicture'); ?>
+	    	<input type="hidden" id="delete_pic" name="delete_pic"></input>
+	      	<btn><input style="color:red" type="submit" name="Submit" value="Delete" class="modal-action modal-close waves-effect waves-green btn-flat "></input></btn>
 	    <?php echo form_close(); ?>
+
+	    </div>
+
 
 	</div>
 
@@ -122,12 +130,16 @@
 	    $(document).ready(function(){
 			$('.myImg').click(function() {
 		        var picData = $(this).data('id');
+		        var piclink = '<?php echo base_url('Project/deletePicture/1')?>';
+		        var delbutton = document.getElementById('delete_pic');
 
 		        $(".modal-content #picture_description").val( picData[0] );
 		        $(".modal-content #Latitude").val( picData[1] );
 		        $(".modal-content #Longitude").val( picData[2] );
 		        $(".modal-content #picture_id").val( picData[3] );
+		        $(".modal-footer #delete_pic").val( picData[3] );
 		        $('.modalPic').attr('src', picData[4]);
+		        delbutton.href = piclink;
 		        $('.modal').modal();
 		     });
 		});
