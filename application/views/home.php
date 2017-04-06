@@ -24,7 +24,7 @@
 		    <?php
 		    if($this->session->userdata('logged_in') == TRUE)
 		    {
-		    	$this->view('map/map.php');
+		    	$this->view('project/map.php');
 		    }
 		    else
 		    {

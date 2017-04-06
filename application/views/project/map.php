@@ -6,7 +6,7 @@
 			<nav>
 				<div class="nav-wrapper" style="background-color: white;">
                     <ul>
-						<li class="col s3"><a href="" style="text-align: center">Projects</a></li>
+						<li class="col s3"><a href="<?php echo base_url()?>Project/project" style="text-align: center">Projects</a></li>
 						<li class="col s3"><a href="#create-project-modal" style="text-align: center; line-height:20px; padding-top:12px; padding-bottom: 12px">Create<br>Project</a></li>
 						<li class="col s3"><a href="<?php echo base_url()?>Project/Picture" style="text-align: center">Pictures</a></li>
 						<li class="col s3"><a href="" style="text-align: center">Videos</a></li>
