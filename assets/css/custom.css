@@ -1,10 +1,36 @@
- nav .nav-wrapper{
+/*@font-face {
+        font-family: "Proxima-Nova";
+        src: url(/assets/fonts/proxima-nova.otf);
+}
+
+*{
+
+   font-family: 'Proxima-Nova';
+}*/
+
+@font-face {
+  font-family: 'Texta';
+  src: url('../fonts/2D333F_2_0.woff2') format('woff2'),
+    url('../fonts/2D333F_2_0.woff') format('woff');
+}
+
+body {
+	font-family: 'Texta';
+}
+
+
+nav .nav-wrapper{
 	background-color: #ffffff;
 	color: black;
 }
 nav .nav-wrapper a{
 
 	color: black;
+}
+
+nav ul a{
+	font-size: 1.2em;
+	font-weight: 500;
 }
 
 #map {

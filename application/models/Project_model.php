@@ -45,6 +45,7 @@ class Project_model extends CI_Model {
 		array(
 		'lat' => $data['Latitude'],
 		'lng' => $data['Longitude'],
+		'address' => $data['Address'],
 		'description' => $data['picture_description']
 		);
 		

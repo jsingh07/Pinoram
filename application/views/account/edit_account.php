@@ -1,6 +1,6 @@
 <html>
 
-<body>
+<body >
 	<div class="row" id="user-profile" style=" position: relative; margin-top: 3%; max-width: 800px; height: 450px;">
 		<div class="card z-depth-5 col s12" style="height: 450px;">
 			<div class="vertical-menu left hide-on-small-and-down" style="margin-left:-11px; position: relative; display:inline-block; z-index:100;">
@@ -14,20 +14,20 @@
 	    		<div class="col s12">
 					<ul class="tabs">
 		        		<li class="tab col s3"><a target="_self" class="active" href="">Account</a></li>
-		        		<li class="tab col s3"><a style="line-height:25px;" target="_self" href="<?php echo site_url();?>Account/profile">Edit<br>Profile</a></li>
-		        		<li class="tab col s3"><a style="line-height:25px;" target="_self" href="<?php echo site_url();?>User_Authentication/password_recovery">Change<br>Password</a></li>
-		        		<li class="tab col s3"><a style="line-height:25px;" target="_self" href="<?php echo site_url();?>Account/delete_account">Delete<br>Account</a></li>
+		        		<li class="tab col s3"><a style="line-height:15px; padding-top: 10px" target="_self" href="<?php echo site_url();?>Account/profile">Edit<br>Profile</a></li>
+		        		<li class="tab col s3"><a style="line-height:15px; padding-top: 10px" target="_self" href="<?php echo site_url();?>User_Authentication/password_recovery">Change<br>Password</a></li>
+		        		<li class="tab col s3"><a style="line-height:15px; padding-top: 10px" target="_self" href="<?php echo site_url();?>Account/delete_account">Delete<br>Account</a></li>
 		      		</ul>
 	      		</div>
       		</div>
 
-			<div class="row" id="profile" style="margin-top: 20px; height:400px; position: relative;" >
-				<div class="col s4 m3" id="label" style="text-align: right">
+			<div class="row" id="profile">
+				<div class="col s4 m3" id="account-label" style="text-align: right">
 					<ul>
 						<li>Username</li>
 						<li>First Name</li>
 						<li>Last Name</li>
-						<li>Email Address</li>
+						<li>Email</li>
 					</ul>
 				</div>
 

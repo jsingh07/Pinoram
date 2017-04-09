@@ -1,3 +1,13 @@
+@font-face {
+  font-family: 'Texta';
+  src: url('../fonts/2D333F_2_0.woff2') format('woff2'),
+    url('../fonts/2D333F_2_0.woff') format('woff');
+}
+
+body {
+    font-family: 'Texta';
+}
+
 .vertical-menu {
     width: 200px; /* Set a width if you like */
     border-right: 1px solid #e0e0e0;
@@ -10,6 +20,8 @@
     display: block; /* Make the links appear below each other */
     padding: 12px; /* Add some padding */
     text-decoration: none; /* Remove underline from links */
+    font-size: 1.2em;
+    font-weight: 600;
 }
 
 .vertical-menu a:hover {
@@ -21,18 +33,34 @@
     color: white;
 }
 
-#profile li{
-	margin-top: 20px;
+#profile {
+    margin-top: 20px; 
+    height:650px; 
+    position: relative;
+}
+
+#profile #account-label{
+    margin-top: 2px;
 }
 
 #profile #label li{
 	font-weight: bold;
-	font-size: 1.1em;
-	margin-top: 30px;
+	font-size: 1.2em;
+	margin-top: 27px;
+}
+
+#profile #account-label li{
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-top: 27px;
 }
 
 #profile input{
 	margin-bottom: 8px;
+}
+
+#user-profile .tabs a{
+    font-size: .8em;
 }
 
 .tabs .tab a {
