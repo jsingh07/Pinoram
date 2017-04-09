@@ -22,7 +22,7 @@ class Project extends CI_Controller {
 		if($this->access())
 		{
 			$this->load->view('templates/header.php');
-			$this->load->view('map/map.php');
+			$this->load->view('project/map.php');
 		}
 	}
 
@@ -40,23 +40,24 @@ class Project extends CI_Controller {
 
 	public function create_project()
 	{
-		/*if($this->input->post('project_access'))
-		{
-			$access = "public";
-		}
-		else
-		{
-			$access = "private";
-		}
-		$clean = $this->security->xss_clean($this->input->post(NULL, TRUE));
-
-		$project_id = $this->Project_model->create_project($clean, $this->session->userdata('user_id'), $access);*/
 		if($this->access())
 		{
-			$data['project_id'] = 1;
-			$this->load->view('templates/header.php');
-			$this->load->view('map/project_picture.php', $data);
+			if($this->input->post('project_access'))
+			{
+				$access = "public";
+			}
+			else
+			{
+				$access = "private";
+			}
+			$clean = $this->security->xss_clean($this->input->post(NULL, TRUE));
+
+			$project_id = $this->Project_model->create_project($clean, $this->session->userdata('user_id'), $access);
 		}
+
+		/*	$data['project_id'] = 1;
+			$this->load->view('templates/header.php');
+			$this->load->view('project/project_picture.php', $data);*/
 
 	}
 
@@ -66,7 +67,7 @@ class Project extends CI_Controller {
 		{
 			$data['files']  = $this->Project_model->get_pictures($this->session->userdata('user_id'));
 			$this->load->view('templates/header.php');
-			$this->load->view('map/upload_picture.php', $data);
+			$this->load->view('project/upload_picture.php', $data);
 		}
 	}
 
@@ -119,5 +120,60 @@ class Project extends CI_Controller {
 
 			redirect('Project/picture');
 		}
+	}
+
+	public function project()
+	{
+		/*if($this->access())
+		{
+
+			// Start XML file, create parent node
+			$doc = new DOMDocument("1.0");
+			$node = $doc->createElement("markers");
+			$parnode = $doc->appendChild($node);
+
+			$result = $this->Project_model->get_pictures($this->session->userdata('user_id'));
+
+
+			header("Content-type: text/xml");
+
+			// Iterate through the rows, adding XML nodes for each
+			foreach ($result->result() as $files){
+			  // ADD TO XML DOCUMENT NODE
+			  $node = $doc->createElement("marker");
+			  $newnode = $parnode->appendChild($node);
+
+			  $newnode->setAttribute("picture_id", $files->picture_id);
+			  $newnode->setAttribute("lat", $files->lat);
+			  $newnode->setAttribute("lng", $files->lng);
+			  $newnode->setAttribute("description", $files->description);
+			}
+
+			$data = $doc->saveXML();
+			echo $data;
+		}*/
+
+		if($this->access())
+		{
+			$data['files']  = $this->Project_model->get_pictures($this->session->userdata('user_id'));
+			$this->load->view('templates/header.php');
+			$this->load->view('project/project.php', $data);
+		}
+
+	}
+
+	public function test()
+	{
+		//$data = $this->Project_model->get_pictures($this->session->userdata('user_id'));
+		//echo json_encode($data->result());
+		$this->load->view('templates/header.php');
+		$this->load->view('gallery.php');
+		//$this->load->view('project/test.php');
+	}
+
+	public function test_post()
+	{
+		$data = $this->Project_model->get_pictures($this->session->userdata('user_id'));
+		echo json_encode($data->result(), true);
 	}
 }

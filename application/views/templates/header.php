@@ -1,19 +1,21 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <!DOCTYPE html>
 <html>
+
    <head>
    <!-- LOGO : TITLE -->
       <title>Pinoram</title>
 
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
 
-
+      <link href="/assets/css/packery-docs.css" type="text/css" rel="stylesheet" media="screen,projection"/>
       <link href="/assets/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
       <link href="/assets/css/custom.css" type="text/css" rel="stylesheet" media="screen,projection"/>
       <link href="/assets/css/vertical.css" type="text/css" rel="stylesheet" media="screen,projection"/>
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <script type="text/javascript" src="/assets/js/jquery-3.1.1.min.js"></script> 
       <script type="text/javascript" src="/assets/js/materialize.min.js"></script>
+      <script src="/assets/js/packery-docs.min.js"></script>
 
       <?php $username = $this->session->userdata('username');?>
 

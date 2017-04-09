@@ -205,6 +205,11 @@ class Setupdb_model extends CI_Model {
 				'type' => 'DECIMAL(10,6)',
 				'null' => TRUE
 			),
+			'address' => array(
+				'type' => 'VARCHAR',
+				'constraint' => 80,
+				'null' => TRUE
+			),
 			'date' => array(
 				'type' => 'VARCHAR',
 				'constraint' => 30,
