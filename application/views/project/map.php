@@ -6,16 +6,15 @@
 			<nav>
 				<div class="nav-wrapper" style="background-color: white;">
                     <ul>
-						<li class="col s3"><a href="" style="text-align: center">Projects</a></li>
+						<li class="col s3"><a href="<?php echo base_url()?>Project/project" style="text-align: center">Projects</a></li>
 						<li class="col s3"><a href="#create-project-modal" style="text-align: center; line-height:20px; padding-top:12px; padding-bottom: 12px">Create<br>Project</a></li>
 						<li class="col s3"><a href="<?php echo base_url()?>Project/Picture" style="text-align: center">Pictures</a></li>
-						<li class="col s3"><a href="" style="text-align: center">Videos</a></li>
+						<li class="col s3"><a href="<?php echo base_url()?>Project/test" style="text-align: center">Test</a></li>
 					</ul>
 				</div>
 			</nav>
 
       		<!--<div class="row hide-on-medium-and-up" id="map" style="position: fixed;width:50%; height:50%"></div>-->
-      		<div class="row" id="map" style=""></div>
 		</div>
 
 		<div class="row" style="width: 400px; position: relative;">
@@ -64,11 +63,6 @@
 
     </body>
 
-
-    <script src="/assets/js/map.js"></script>
-    <script async defer
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwSlh06K-yZ0b04O8eg67mzaaaqH4JLJI&callback=initMap">
-	</script>
 
 	<script>
 		$(document).ready(function(){
