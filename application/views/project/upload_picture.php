@@ -35,33 +35,21 @@
 	</div>
 
 
-	<div class="row" id="project_pictures" style="max-width: 800px; margin-top:20px">
-		<div class="card z-depth-5 col s12">
-			<?php echo form_open_multipart('Project/upload_picture'); ?>
-				<div class="card-content" id="picture_card">
-				<input type="hidden" name="project_id" id="project_id" value="<?php $project_id ?>" />
-			    <div class="file-field input-field">
-			      <div class="btn">
-			        <span>Upload</span>
-			        <input type="file" multiple name="picture_upload" accept="image/*" onchange="this.form.submit()" id="picture_upload" onchange="previewFile()">
-			      </div>
-			      <div class="file-path-wrapper">
-			        <input class="file-path validate" type="text" placeholder="Select a picture to upload" style="max-width: 550px;">
-			      </div>
-			    </div>
-			    </div>
-			<?php echo form_close(); ?>
-		</div>
-	</div>
+	
+   <div class="fixed-action-btn">
+   		<?php echo form_open_multipart('Project/upload_picture'); ?> 
+   		<button class="btn-floating btn-large waves-effect waves-light red file-field input-field"> 
+    		<i class="large material-icons">publish</i>
+    		<input type="file" multiple name="picture_upload" accept="image/*" onchange="this.form.submit()" id="picture_upload" onchange="previewFile()">	
+    	</button> 
+    	<?php echo form_close(); ?>
+ 	</div>
 
-	<div class="row" style="max-width: 800px;">
-	 	<div class="card z-depth-5 col s12" style="height: 600px">
-	 		<span class="card-title"><h5>All</h5></span>
-	 		<hr/>
-	 		<div class="carousel" style="height: 500px;">
+	<div class="row" style="max-width: 1000px;">
+	 		<div class="grid" data-packery='{ "itemSelector": ".grid-image-item", "percentPosition": true, "gutter": 10 }'>
 	        	<?php foreach ($files->result() as $files){ ?>
-	        		<div id="picture-card" class="card z-depth-5 carousel-item row">
-			        	<a href="#pictureModal" class="myImg col s12" 
+	        		<div class="grid-image-item">
+			        	<a href="#pictureModal" class="myImg"
 			        		data-id='[
 			        		"<?php echo $files->description; ?>",
 			        		"<?php echo $files->lat; ?>", 
@@ -71,14 +59,10 @@
 			        		"<?php echo base_url('files/images/'. $files->picture_id.'.jpg');?>"]' >
 			        		<img src="<?php echo base_url('files/images/'. $files->picture_id.'.jpg');?>">
 			        	</a>
-
-			        	<div class="row" style="position: relative; margin-top: 290px; margin-left: 5px; margin-right: 5px;">
-			        		<p class="left" style="text-align: left"><?php echo $files->description; ?><p>
-			        	</div>
 			        </div>
 				<?php } ?>
 			</div>
-		</div>
+		
     </div>
 
 
@@ -185,13 +169,13 @@
 			$('.myImg').click(function() {
 		        var picData = $(this).data('id');
 
-		        $(".modal-content #picture_description").val( picData[0] );
-		        $(".modal-content #Latitude").val( picData[1] );
-		        $(".modal-content #Longitude").val( picData[2] );
-		        $(".modal-content #Address").val( picData[3] );
-		        $(".modal-content #picture_id").val( picData[4] );
-		        $(".modal-footer #delete_pic").val( picData[4] );
-		        $('.modalPic').attr('src', picData[5]);
+		        $("#pictureModal .modal-content #picture_description").val( picData[0] );
+		        $("#pictureModal .modal-content #Latitude").val( picData[1] );
+		        $("#pictureModal .modal-content #Longitude").val( picData[2] );
+		        $("#pictureModal .modal-content #Address").val( picData[3] );
+		        $("#pictureModal .modal-content #picture_id").val( picData[4] );
+		        $("#pictureModal .modal-footer #delete_pic").val( picData[4] );
+		        $('#pictureModal .modalPic').attr('src', picData[5]);
 		        $('.modal').modal();
 		     });
 
@@ -269,5 +253,5 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdDu8izbxISEkID8QNUqH3zUnmfU-jRys&libraries=places">
     </script>
 	
-
+	
 </html>
