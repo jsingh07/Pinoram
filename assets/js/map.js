@@ -4,20 +4,6 @@ function initMap()
     var uluru = {lat: 37.548271, lng: -121.988571};
     var map = new google.maps.Map(document.getElementById('map'));
 
-    $.ajax({
-            url: "/project/test_post", 
-            dataType: 'json',
-            success: function(result)
-            {
-            	$.each(result, function(){
-                	console.log(this.address);
-            	});
-            	/*$.each(result, function(index,item) {        
-				    alert(item.FirstName+" "+item.LastName)
-				});*/
-            }
-        });
-
 
     // Multiple Markers
     var markers = [
@@ -35,6 +21,21 @@ function initMap()
         '<p>The Palace of Westminster is the meeting place of the House of Commons and the House of Lords, the two houses of the Parliament of the United Kingdom. Commonly known as the Houses of Parliament after its tenants.</p>' +
         '</div>']
     ];
+
+    $.ajax({
+        url: "/project/test_post", 
+        dataType: 'json',
+        success: function(result)
+        {
+        	$.each(result, function(){
+            	//console.log(this.address);
+            	
+        	});
+        	/*$.each(result, function(index,item) {        
+			    alert(item.FirstName+" "+item.LastName)
+			});*/
+        }
+    });
         
     // Display multiple markers on a map
     var infoWindow = new google.maps.InfoWindow(), marker, i;
