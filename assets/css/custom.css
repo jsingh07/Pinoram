@@ -24,7 +24,6 @@ nav .nav-wrapper{
 	color: black;
 }
 nav .nav-wrapper a{
-
 	color: black;
 }
 
@@ -35,9 +34,7 @@ nav ul a{
 
 #map {
 		position: relative;
-
-        background-color: white;
-
+    background-color: white;
 }
 
 
@@ -102,4 +99,3 @@ html{
 	height: 100%;
 	background-repeat: no-repeat;
 }
-
