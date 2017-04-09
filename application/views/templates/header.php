@@ -25,7 +25,7 @@
                <div class="nav-wrapper">
                   <div class="row">
                      <div class="col s3 push-s1">
-                        <a href="<?php echo base_url();?>" class="brand-logo">Pinoram</a>
+                        <a href="<?php echo base_url();?>" class="brand-logo"><h4>Pinoram</h4></a>
                      </div>
                      <div class="col s7 push-s1">
                      
@@ -35,7 +35,7 @@
                            <?php if(($this->session->userdata('role') == 'admin') or ($this->session->userdata('role') == 'super-user')) {?>
                            <li><a href="<?php echo site_url();?>Setupdb">Database</a></li>
                            <?php } ?>
-                           <li data-activates="slide-out" class="button-collapse" style="margin: auto; cursor: pointer; cursor:hand;"><a>About</a></li>
+                           <li data-activates="about-slide-out" class="button-collapse" style="margin: auto; cursor: pointer; cursor:hand;"><a>About</a></li>
                            <li><a href="<?php echo site_url();?>User_Authentication/user_logout">Logout</a></li>
                         </ul>
 
@@ -55,11 +55,11 @@
                <div class="nav-wrapper">
                   <div class="row">
                      <div class="col s3 push-s1">
-                        <a href="<?php echo base_url();?>" class="brand-logo">Pinoram</a>
+                        <a href="<?php echo base_url();?>" class="brand-logo"><h4>Pinoram</h4></a>
                      </div>
                      <div class="col s7 push-s1 pull-s1">
                         <ul id="nav-mobile" class="right hide-on-small-and-down">
-                           <li data-activates="slide-out" class="button-collapse" style="margin: auto; cursor: pointer; cursor:hand;"><a>About</a></li>
+                           <li data-activates="about-slide-out" class="button-collapse" style="margin: auto; cursor: pointer; cursor:hand;"><a>About</a></li>
                            <li><a href="<?php echo site_url();?>User_Authentication">Login</a></li>
                            <li><a href="<?php echo site_url();?>User_Authentication/user_registration">Sign Up</a></li>
 			               </ul>
@@ -74,7 +74,7 @@
       <?php }?>
                      
       <div>
-      <ul id="slide-out" class="side-nav">
+      <ul id="about-slide-out" class="side-nav">
          <div class="userView">
             <h4 class="center">
                Pinoram
@@ -102,14 +102,14 @@
             <?php if(($this->session->userdata('role') == 'admin') or ($this->session->userdata('role') == 'super-user')) {?>
             <li><a href="<?php echo site_url();?>Setupdb">Set up Database</a></li>
             <?php } ?>
-            <li data-activates="slide-out" class="button-collapse" style="margin: auto; cursor: pointer; cursor:hand;"><a>About</a></li>
+            <li data-activates="about-slide-out" class="button-collapse" style="margin: auto; cursor: pointer; cursor:hand;"><a>About</a></li>
             <li><a href="<?php echo site_url();?>User_Authentication/user_logout">Logout</a></li>
          </ul>
       <?php } 
 
       else{ ?>
          <ul id="dropdown2" class="dropdown-content">
-            <li style="position: relative; margin: auto;"data-activates="slide-out" class="button-collapse" style="cursor: pointer; cursor:hand;"><a>About</a></li>
+            <li style="position: relative; margin: auto;" data-activates="about-slide-out" class="button-collapse" style="cursor: pointer; cursor:hand;"><a>About</a></li>
             <li><a href="<?php echo site_url();?>User_Authentication">Login</a></li>
             <li><a href="<?php echo site_url();?>User_Authentication/user_registration">Sign Up</a></li>
          </ul>
