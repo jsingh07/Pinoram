@@ -7,7 +7,7 @@
 		        <div class="card-content">
 		        	<span class="card-title">Password Recovery</span>
 		        	<hr/>
-		        	<?php echo form_open('User_Authentication/password_recovery_email'); ?>
+		        	<?php echo form_open('Login/password_recovery_email'); ?>
 		        	<div class="row" style="margin-top: 5%;">
 				      	<div class="row">
 				        	<div class="input-field col s12">

@@ -4,7 +4,7 @@
             <div class="card-content white-text">
               <span class="card-title">Please verify your Email address.</span>
               <p>Click the button below to resend verification email.</p>
-              <a class="btn waves-effect waves-light" href="<?php echo base_url() ?>User_Authentication/resend_email">Resend email verification</a>
+              <a class="btn waves-effect waves-light" href="<?php echo base_url() ?>Login/resend_email">Resend email verification</a>
             </div>
           
         </div>

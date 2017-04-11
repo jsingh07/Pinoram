@@ -7,7 +7,7 @@
               		<p>Please verify your email.</p>
             	</div>
             <div class="card-action">
-              	<a href="<?php echo base_url()?>User_Authentication">Login</a>
+              	<a href="<?php echo base_url()?>Login">Login</a>
             </div>
           	</div>
       	</div>

@@ -4,41 +4,108 @@ function initMap()
     var uluru = {lat: 37.548271, lng: -121.988571};
     var map = new google.maps.Map(document.getElementById('map'));
 
+    var markers; 
+    var infoWindowContent; 
 
-    // Multiple Markers
-    var markers = [
-        ['London Eye, London', 51.503454,-0.119562],
-        ['Palace of Westminster, London', 51.499633,-0.124755]
-    ];
-                        
-    // Info Window Content
-    var infoWindowContent = [
-        ['<div class="info_content">' +
-        '<h3>London Eye</h3>' +
-        '<p>The London Eye is a giant Ferris wheel situated on the banks of the River Thames. The entire structure is 135 metres (443 ft) tall and the wheel has a diameter of 120 metres (394 ft).</p>' +        '</div>'],
-        ['<div class="info_content">' +
-        '<h3>Palace of Westminster</h3>' +
-        '<p>The Palace of Westminster is the meeting place of the House of Commons and the House of Lords, the two houses of the Parliament of the United Kingdom. Commonly known as the Houses of Parliament after its tenants.</p>' +
-        '</div>']
-    ];
+    var infoWindow = new google.maps.InfoWindow(), marker, i;
 
     $.ajax({
         url: "/project/test_post", 
         dataType: 'json',
         success: function(result)
         {
+        	var i = 0;
         	$.each(result, function(){
             	//console.log(this.address);
-            	
+            	if(this.lat != 0 && this.lng != 0 && this.lat != undefined && this.lng != undefined)
+            	{
+
+	            	infoWindowContent = /*'<div class="info_content">' +
+	        							'<h3>London Eye</h3>' +
+	        							'<p>Latitude: '+ this.lat + '</p>' + 
+	        							'<p>Longitude: '+ this.lng + '</p>' + 
+	        							'</div>';*/
+	        		//'<div id="pictureModal" class="modal modal-fixed-footer" style="height:600px;">' +
+
+						'<?php echo form_open("project/edit_picture_info"); ?>' +
+
+					    '<div class="modal-content row" style = "width: 300px">' +
+					    	'<input type="hidden" id="picture_id" name="picture_id"></input>' +
+
+					    	'<h5 style="text-align: center">Picture Information</h5>' +
+							'<hr/>' +
+
+							'<img class="modalPic center" id="modalPic" style="height:auto; width:100%" src="/files/images/'+this.picture_id+'.jpg'+'">' +
+
+							'<div style="position: relative; margin-top: 20px; margin-left: 10px; height:300px">' +
+								'<div class="input-field col s6">' +
+									'<strong>Latitude</strong>' +
+					          		'<input type="text" id="Latitude" name="Latitude" class="validate" value="'+this.lat+'">' +
+					        	'</div>' +
+
+					        	'<div class="input-field col s6">' +
+					        		'<strong>Longitude</strong>' +
+					          		'<input type="text" id="Longitude" name="Longitude" class="validate" value="'+this.lng+'">' +
+					        	'</div>' +
+
+					        	'<div class="input-field col s12">' +
+				                    '<input id="locate" type="button" value="Locate">' +
+				                '</div>' +
+
+					        	'<div class="input-field col s12">' +
+					        		'<strong>Address</strong>' +
+					          		'<input type="text" id="Address" name="Address" class="validate" value="'+this.address+'">' +
+					        	'</div>' +
+
+					        	'<div class="input-field col s12">' +
+					        		'<strong>Description</strong>' +
+						          	'<textarea id="picture_description" name="picture_description" data-length="500" style="min-height: 120px;" class="materialize-textarea active" value="'+this.description+'"></textarea>' +
+						          	
+						        '</div>' +
+							'</div>' +
+						'</div>';
+					//'</div>';
+	            	
+	            	var position = new google.maps.LatLng(this.lat, this.lng);
+			        bounds.extend(position);
+			        marker = new google.maps.Marker({
+			            position: position,
+			            map: map,
+			            //title: markers[i][0]
+			            info: infoWindowContent
+			        });
+			        
+			        // Allow each marker to have an info window    
+			        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+			            return function() {
+			                infoWindow.setContent(this.info);
+			                infoWindow.open(map, marker);
+			            }
+			        })(marker, i));
+			        i++;
+			    }
+
+		        // Automatically center the map fitting all markers on the screen
+		        
+
         	});
-        	/*$.each(result, function(index,item) {        
-			    alert(item.FirstName+" "+item.LastName)
-			});*/
+        	map.fitBounds(bounds);
+
+        	/*var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
+		        this.setZoom(14);
+		        google.maps.event.removeListener(boundsListener);
+		    });*/
+
         }
     });
+
+
+
+
+
         
     // Display multiple markers on a map
-    var infoWindow = new google.maps.InfoWindow(), marker, i;
+    /*var infoWindow = new google.maps.InfoWindow(), marker, i;
     
     // Loop through our array of markers & place each one on the map  
     for( i = 0; i < markers.length; i++ ) {
@@ -66,7 +133,7 @@ function initMap()
     var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
         this.setZoom(14);
         google.maps.event.removeListener(boundsListener);
-    });
+    });*/
 
 }
 
