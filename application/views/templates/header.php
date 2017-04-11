@@ -40,7 +40,7 @@
                         </ul>
 
                         <ul id="nav-mobile" class="right hide-on-med-and-up">
-                           <li><a style="position: relative; margin-right: -20px" class="dropdown-button" href="" data-activates="dropdown1"><i class="material-icons right">menu</i></a></li>
+                           <li><a style="position: relative; margin-right: -20px" class="dropdown-button" data-activates="dropdown1"><i class="material-icons right">menu</i></a></li>
                         </ul>
                      </div>
                   </div>   
@@ -63,7 +63,7 @@
                            <li><a href="<?php echo site_url();?>Login">Login</a></li>
 			               </ul>
                         <ul id="nav-mobile" class="right hide-on-med-and-up">
-                           <li><a style="position: relative; margin-right: -20px" class="dropdown-button" href="" data-activates="dropdown2"><i class="material-icons right">menu</i></a></li>
+                           <li><a style="position: relative; margin-right: -20px" class="dropdown-button" data-activates="dropdown2"><i class="material-icons right">menu</i></a></li>
                         </ul>
                      </div>
                   </div>   
@@ -126,7 +126,7 @@
       constrainWidth: false, // Does not change width of dropdown to that of the activator
       gutter: 0, // Spacing from edge
       belowOrigin: true, // Displays dropdown below the button
-      alignment: 'left', // Displays dropdown with edge aligned to the left of button
+      alignment: 'right', // Displays dropdown with edge aligned to the left of button
       stopPropagation: false // Stops event propagation
     }
   );

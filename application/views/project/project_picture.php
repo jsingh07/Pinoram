@@ -141,7 +141,7 @@
 		        		var temp5 = document.createElement("span");
 
 		        		temp1.setAttribute("class","row");	
-		        		temp1.setAttribute("style","width: 400px; position: relative;");	
+		        		temp1.setAttribute("style","max-width: 400px; position: relative;");	
 		        		temp2.setAttribute("class","col s12 m12");	
 		        		temp2.setAttribute("style","margin-top: 100px;");	
 		        		temp3.setAttribute("class","card z-depth-5");	
@@ -155,7 +155,7 @@
 		    			temp3.appendChild(temp4);
 		    			temp4.appendChild(temp5);
 		        	}
-		        	
+
 		        	$.each(result, function(){
 
 		        		modalnum = "pictureModal" + count;
