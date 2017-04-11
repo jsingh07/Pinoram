@@ -6,7 +6,7 @@
 			<div class="vertical-menu left hide-on-small-and-down" style="margin-left:-11px; position: relative; display:inline-block; z-index:100;">
 				<a href="" class="active" style="padding-left: 40px;">Account</a>
 				<a href="<?php echo site_url();?>Account/profile" style="padding-left: 40px;">Edit Profile</a>
-			 	<a href="<?php echo site_url();?>User_Authentication/password_recovery" style="padding-left: 40px;">Change Password</a>
+			 	<a href="<?php echo site_url();?>Login/password_recovery" style="padding-left: 40px;">Change Password</a>
 			  	<a href="<?php echo site_url();?>Account/delete_account" style="padding-left: 40px;">Delete Account</a>
 			</div>
 
@@ -15,7 +15,7 @@
 					<ul class="tabs">
 		        		<li class="tab col s3"><a target="_self" class="active" href="">Account</a></li>
 		        		<li class="tab col s3"><a style="line-height:15px; padding-top: 10px" target="_self" href="<?php echo site_url();?>Account/profile">Edit<br>Profile</a></li>
-		        		<li class="tab col s3"><a style="line-height:15px; padding-top: 10px" target="_self" href="<?php echo site_url();?>User_Authentication/password_recovery">Change<br>Password</a></li>
+		        		<li class="tab col s3"><a style="line-height:15px; padding-top: 10px" target="_self" href="<?php echo site_url();?>Login/password_recovery">Change<br>Password</a></li>
 		        		<li class="tab col s3"><a style="line-height:15px; padding-top: 10px" target="_self" href="<?php echo site_url();?>Account/delete_account">Delete<br>Account</a></li>
 		      		</ul>
 	      		</div>

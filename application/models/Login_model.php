@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 date_default_timezone_set('America/Los_Angeles');
-class User_Authentication_model extends CI_Model {
+class Login_model extends CI_Model {
 
 	public function __construct() {}
 

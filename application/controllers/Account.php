@@ -8,7 +8,7 @@ class Account extends CI_Controller {
 
 	$this->load->helper('url');
 	$this->load->model('Account_model');
-	$this->load->model('User_Authentication_model');
+	$this->load->model('Login_model');
 	$this->load->helper('form');
 
 	// Load form validation library
@@ -16,12 +16,12 @@ class Account extends CI_Controller {
 
 	$config = Array(
     'protocol' => 'smtp',
-    'smtp_host' => 'ssl://smtp.googlemail.com',
+    'smtp_host' => 'ssl://smtp.gmail.com',
     'smtp_port' => 465,
     'smtp_user' => 'admin@pinoram.com',
     'smtp_pass' => 'H3ll0w0rld!',
     'mailtype'  => 'html', 
-    'charset'   => 'iso-8859-1'
+    'charset'   => 'utf-8'
 	);
 	$this->load->library('email', $config);
 	$this->email->set_newline("\r\n");
@@ -119,7 +119,7 @@ class Account extends CI_Controller {
 			$this->load->view('templates/header.php');
 			$data['msg'] = "";
 			$data['link'] = "Account/delete_account_conf";
-			$this->load->view('user_authentication/password_conf.php', $data);
+			$this->load->view('Login/password_conf.php', $data);
 		}
 	}
 
@@ -127,7 +127,7 @@ class Account extends CI_Controller {
 	{
 		$u_id = $this->session->userdata('user_id');
 		$password = $this->input->post('password');
-		$conf = $this->User_Authentication_model->confirm_password($u_id, $password);
+		$conf = $this->Login_model->confirm_password($u_id, $password);
 		if($conf)
 		{
 			$status = $this->Account_model->delete_account($u_id);
@@ -149,7 +149,7 @@ class Account extends CI_Controller {
 			$this->load->view('templates/header.php');
 			$data['msg'] = "Incorrect password";
 			$data['link'] = "Account/delete_account_conf";
-			$this->load->view('user_authentication/password_conf.php', $data);
+			$this->load->view('Login/password_conf.php', $data);
 		}
 	}
 

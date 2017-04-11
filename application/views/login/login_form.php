@@ -11,7 +11,7 @@
 		        <div class="card-content">
 		        	<span class="card-title">Login</span>
 		        	<hr/>
-		        	<?php echo form_open('User_Authentication/user_login'); ?>
+		        	<?php echo form_open('Login'); ?>
 		        	<div class="row" style="margin-top: 5%;">
 				      	<div class="row">
 				        	<div class="input-field col s12">
@@ -25,8 +25,8 @@
 				          		<input type="password" id="password" name="password" class="validate">
 				          		<label for="password">Password</label>
 				          		<div style="margin-top: 5px;">
-				          		<a href="<?php echo base_url() ?>User_Authentication/password_recovery">Forgot Password</a>
-		           				<a href="<?php echo base_url() ?>User_Authentication/user_registration" class="right">Create an Account</a>
+				          		<a href="<?php echo base_url() ?>Login/password_recovery">Forgot Password</a>
+		           				<a href="<?php echo base_url() ?>Login/user_registration" class="right">Create an Account</a>
 		           				</div>
 				        	</div>
 				      	</div>
