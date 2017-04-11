@@ -45,7 +45,7 @@
     	<?php echo form_close(); ?>
  	</div>
 
-    <div class="row" style="width: 800px; height: 100%; background-color: gray">
+    <div class="row" style="max-width: 800px; height: 100%; background-color: gray">
  		<div id="pictureGrid" class="grid" style="height: 100%;background-color: gray">
 
 		</div>

@@ -258,6 +258,7 @@ class Login extends CI_Controller {
 	        }
 	        else
 	        {
+	        	$this->Login_model->updateToken($user_info);
 	        	if($this->session->userdata('logged_in') == TRUE)
 	        	{
 	        		$text['mytext'] = "Welcome ".$this->session->userdata('first_name')."<br>";

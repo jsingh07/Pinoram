@@ -29,10 +29,10 @@ function initMap()
 
 						'<?php echo form_open("project/edit_picture_info"); ?>' +
 
-					    '<div class="modal-content row">' +
+					    '<div class="modal-content row" style = "width: 300px">' +
 					    	'<input type="hidden" id="picture_id" name="picture_id"></input>' +
 
-					    	'<h4 style="text-align: center">Picture Information</h4>' +
+					    	'<h5 style="text-align: center">Picture Information</h5>' +
 							'<hr/>' +
 
 							'<img class="modalPic center" id="modalPic" style="height:auto; width:100%" src="/files/images/'+this.picture_id+'.jpg'+'">' +
