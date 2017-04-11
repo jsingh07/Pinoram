@@ -21,8 +21,8 @@
 
 </style>
 
-<body style="background-color: gray">
-	<div class="row" >
+<body style="background-color: white">
+	<!--<div class="row" >
 		<nav>
 			<div class="nav-wrapper">
                 <ul>
@@ -33,9 +33,9 @@
 				</ul>
 			</div>
 		</nav>
-	</div>
+	</div>-->
 
-	<div class="fixed-action-btn">
+	<div class="fixed-action-btn vertical">
    		<?php echo form_open_multipart('Project/upload_picture'); ?> 
 
    		<a class="btn-floating btn-large waves-effect waves-light red file-field input-field" onclick="document.getElementById('picture_upload').click();"> 
@@ -43,10 +43,15 @@
     		<i class="large material-icons">publish</i>
     	</a> 
     	<?php echo form_close(); ?>
+
+    	<a class="btn-floating btn-large waves-effect waves-light red" href="/project/project" style="margin-top: 20px"> 
+    		<i class="large material-icons">room</i>
+    	</a> 
+
  	</div>
 
-    <div class="row" style="max-width: 800px; height: 100%; background-color: gray">
- 		<div id="pictureGrid" class="grid" style="height: 100%;background-color: gray">
+    <div class="row" style="max-width: 800px; margin-top: 20px;">
+ 		<div id="pictureGrid" class="grid" style="height: 100%;background-color: white">
 
 		</div>
     </div>
@@ -59,24 +64,27 @@
 	    <div class="modal-content row">
 	    	<input type="hidden" id="picture_id" name="picture_id"></input>
 
-	    	<h4 style="text-align: center">Picture Information</h4>
+	    	<div class= "col s12 l6">
+	    	<img class="modalPic center" id="modalPic" style="height:auto; width:100%">
+	    	</div>
+
+	    	<div class= "col s12 l6">
+	    	<h5 style="text-align: center">Picture Information</h5>
 			<hr/>
 
-			<img class="modalPic center" id="modalPic" style="height:auto; width:100%">
-
 			<div style="position: relative; margin-top: 20px; margin-left: 10px; height:300px">
-				<div class="input-field col s6">
+				<div class="input-field col s6" style="margin-top:-10px">
 					<strong>Latitude</strong>
 	          		<input type="text" id="Latitude" name="Latitude" class="validate">
 	        	</div>
 
-	        	<div class="input-field col s6">
+	        	<div class="input-field col s6" style="margin-top:-10px">
 	        		<strong>Longitude</strong>
 	          		<input type="text" id="Longitude" name="Longitude" class="validate">
 	        	</div>
 
-	        	<div class="input-field col s12">
-                    <input id="locate" type="button" value="Locate">
+	        	<div class="input-field col s12" style="margin-top:-10px">
+                    <a id="locate" class="btn-flat blue" style="width: 100%; color: white; text-align: center">Locate</a>
                 </div>
 
 	        	<div class="input-field col s12">
@@ -90,16 +98,19 @@
 		          	
 		        </div>
 			</div>
+
+			</div>
+
 		</div>
 
-		<div class="modal-footer row">
-			<btn><input type="submit" name="Submit" value="Submit" class="modal-action modal-close waves-effect waves-green btn-flat "></input></btn>
+		<div class="modal-footer">
+			<input style="color:black; font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center" type="submit" name="Submit" value="Submit" class="modal-action modal-close waves-effect waves-green btn-flat "></input>
 		<?php echo form_close(); ?>
-	      	<btn class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</btn>
+	      	<a style="font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center; color:black" class="modal-action modal-close waves-effect waves-gray btn-flat">Cancel</a>
 
 	    <?php echo form_open('project/deletePicture'); ?>
 	    	<input type="hidden" id="delete_pic" name="delete_pic"></input>
-	      	<btn><input style="color:red" type="submit" name="Submit" value="Delete" class="modal-action modal-close waves-effect waves-green btn-flat "></input></btn>
+	      	<input style="color:red; font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center" type="submit" name="Submit" value="Delete" class="modal-action modal-close waves-effect waves-red btn-flat "></input>
 	    <?php echo form_close(); ?>
 
 	    </div>
