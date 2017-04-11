@@ -17,7 +17,7 @@
       		<!--<div class="row hide-on-medium-and-up" id="map" style="position: fixed;width:50%; height:50%"></div>-->
 		
 
-		<div class="row" style="width: 400px; position: relative;">
+		<div class="row" style="max-width: 400px; position: relative;">
 		        <div class="col s12 m12" style="margin-top: 100px;">
 		          <div class="card z-depth-5" >
 		            <div class="card-content black-text">
