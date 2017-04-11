@@ -4,38 +4,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Login extends CI_Controller {
 
 	public function __construct() {
-	parent::__construct();
+		parent::__construct();
 
-	$this->load->helper('url');
-	// Load form helper library
-	$this->load->helper('form');
+		$this->load->helper('url');
+		// Load form helper library
+		$this->load->helper('form');
 
-	// Load form validation library
-	$this->load->library('form_validation');
+		// Load form validation library
+		$this->load->library('form_validation');
 
-	// Load model
-	$this->load->model('Login_model');
+		// Load model
+		$this->load->model('Login_model');
 
-	$config = Array(
-    'protocol' => 'smtp',
-    'smtp_host' => 'ssl://smtp.googlemail.com',
-    'smtp_port' => 465,
-    'smtp_user' => 'admin@pinoram.com',
-    'smtp_pass' => 'H3ll0w0rld!',
-    'mailtype'  => 'html', 
-    'charset'   => 'iso-8859-1'
-	);
-	$this->load->library('email', $config);
-	$this->email->set_newline("\r\n");
+		$this->email->set_newline("\r\n");
 
 	}
 
-	/*public function index()
+	public function index()
 	{
 		$data['msg'] = "";
 		$this->load->view('templates/header.php');
 		$this->load->view('login/login_form', $data);
-	}*/
+	}
 
 	private function checkLogin()
 	{
@@ -49,7 +39,7 @@ class Login extends CI_Controller {
 		}
 	}
 
-	public function index()
+	public function user_login()
 	{
 		if($this->checkLogin())
 		{	
@@ -72,28 +62,41 @@ class Login extends CI_Controller {
 			        	$first_name = $data->first_name;
 			        	$last_name = $data->last_name;
 			        	$status = $data->status;
-			        	$newdata = array(
-		                   'username'  => $data->username,
-		                   'user_id'   => $data->user_id,
-		                   'email'     => $data->email,
-		                   'first_name'=> $data->first_name,
-		                   'last_name' => $data->last_name,
-		                   'role'      => $data->role,
-		                   'status'    => $data->status,
-		                   'welcome'   => TRUE,
-		                   'logged_in' => TRUE
-		                );
-			        }
-			        $this->session->set_userdata($newdata);
 
-			        if($status == $this->config->item(1,'status'))
-			        {
-				        redirect('');
-			    	}
-			    	else
-			    	{
-						$this->load->view('templates/header.php');
-						$this->load->view('login/resend_email');
+			        	if($status == $this->config->item(1,'status'))
+				        {
+				        	$newdata = array(
+			                   'username'  => $data->username,
+			                   'user_id'   => $data->user_id,
+			                   'email'     => $data->email,
+			                   'first_name'=> $data->first_name,
+			                   'last_name' => $data->last_name,
+			                   'role'      => $data->role,
+			                   'status'    => $data->status,
+			                   'welcome'   => TRUE,
+			                   'logged_in' => TRUE
+			                );
+
+			                $this->session->set_userdata($newdata);
+					        redirect('');
+				    	}
+				    	else
+				    	{
+				    		$newdata = array(
+			                   'username'  => $data->username,
+			                   'user_id'   => $data->user_id,
+			                   'email'     => $data->email,
+			                   'first_name'=> $data->first_name,
+			                   'last_name' => $data->last_name,
+			                   'role'      => $data->role,
+			                   'status'    => $data->status,
+			                   'welcome'   => TRUE
+			                );
+
+			                $this->session->set_userdata($newdata);
+							$this->load->view('templates/header.php');
+							$this->load->view('login/resend_email');
+						}
 			    	}
 			    }
 			    else
@@ -178,7 +181,7 @@ class Login extends CI_Controller {
 				        $this->email->subject('Verify your email for Pinoram');
 				        $this->email->message($message);  
 
-				        //$this->email->send();
+				        $this->email->send();
 
 			            $data['msg'] = "Thank you for registering on Pinoram. Please confirm your email address.";
 	                       
@@ -200,7 +203,7 @@ class Login extends CI_Controller {
 
 	public function resend_email()
 	{
-		if($this->session->userdata('logged_in') == TRUE)
+		if($this->session->userdata('welcome') == TRUE)
 		{
 			$token = $this->get_token($this->session->userdata('user_id'));
 			if ($token)
@@ -224,7 +227,11 @@ class Login extends CI_Controller {
 		        $this->email->subject('Verify your email for Pinoram');
 		        $this->email->message($message);  
 
-		        //$this->email->send();
+		        $this->email->send(FALSE);
+
+				// Will only print the email headers, excluding the message subject and body
+				echo $this->email->print_debugger(array('headers'));
+
 		        $text['mytext'] = "Email verification request has been sent.";
 	       	}
 	       	else
@@ -233,7 +240,7 @@ class Login extends CI_Controller {
 	       	}
 			$this->load->view('templates/header.php');  
 			$this->load->view('setupdb/success.php', $text);     
-			redirect('Welcome');
+			redirect('Login');
 		}
 		else
 		{
@@ -349,7 +356,7 @@ class Login extends CI_Controller {
 		        $this->email->subject('Password Recovery for Pinoram');
 		        $this->email->message($message);  
 
-		        //$this->email->send();
+		        $this->email->send();
 		        $data['msg'] = "Please check your email to recover password.";
 	       	}
 	       	else

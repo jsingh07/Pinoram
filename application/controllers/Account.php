@@ -14,16 +14,6 @@ class Account extends CI_Controller {
 	// Load form validation library
 	$this->load->library('form_validation');
 
-	$config = Array(
-    'protocol' => 'smtp',
-    'smtp_host' => 'ssl://smtp.googlemail.com',
-    'smtp_port' => 465,
-    'smtp_user' => 'admin@pinoram.com',
-    'smtp_pass' => 'H3ll0w0rld!',
-    'mailtype'  => 'html', 
-    'charset'   => 'iso-8859-1'
-	);
-	$this->load->library('email', $config);
 	$this->email->set_newline("\r\n");
 
 	}
@@ -149,7 +139,7 @@ class Account extends CI_Controller {
 			$this->load->view('templates/header.php');
 			$data['msg'] = "Incorrect password";
 			$data['link'] = "Account/delete_account_conf";
-			$this->load->view('Login/password_conf.php', $data);
+			$this->load->view('login/password_conf.php', $data);
 		}
 	}
 
@@ -167,3 +157,4 @@ class Account extends CI_Controller {
 
 
 }
+?>
