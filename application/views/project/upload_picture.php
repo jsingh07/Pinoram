@@ -35,15 +35,6 @@
 	</div>
 
 
-	
-   <div class="fixed-action-btn">
-   		<?php echo form_open_multipart('Project/upload_picture'); ?> 
-   		<button class="btn-floating btn-large waves-effect waves-light red file-field input-field"> 
-    		<i class="large material-icons">publish</i>
-    		<input type="file" multiple name="picture_upload" accept="image/*" onchange="this.form.submit()" id="picture_upload" onchange="previewFile()">	
-    	</button> 
-    	<?php echo form_close(); ?>
- 	</div>
 
 	<div class="row" style="max-width: 1000px;">
 	 		<div class="grid" data-packery='{ "itemSelector": ".grid-image-item", "percentPosition": true, "gutter": 10 }'>
@@ -59,11 +50,27 @@
 			        		"<?php echo base_url('files/images/'. $files->picture_id.'.jpg');?>"]' >
 			        		<img src="<?php echo base_url('files/images/'. $files->picture_id.'.jpg');?>">
 			        	</a>
+
+			        	<div class="row" style="position: relative; margin-top: 290px; margin-left: 5px; margin-right: 5px;">
+			        		<p class="left" style="text-align: left"><?php echo $files->address; ?><p>
+			        	</div>
+
 			        </div>
 				<?php } ?>
 			</div>
 		
     </div>
+
+    <div class="fixed-action-btn">
+   		<?php echo form_open_multipart('Project/upload_picture'); ?>
+   		<input type="hidden" name="project_id" id="project_id" value="<?php $project_id ?>" />
+   		<button class="btn-floating btn-large waves-effect waves-light red file-field input-field"> 
+    		<i class="large material-icons">publish</i>
+    		<input type="file" multiple name="picture_upload" accept="image/*" onchange="this.form.submit()" id="picture_upload" onchange="previewFile()">
+    	</button> 
+
+    	<?php echo form_close(); ?>
+ 	</div>
 
 
     <div id="pictureModal" class="modal modal-fixed-footer" style="height:600px;">
@@ -107,10 +114,10 @@
 		</div>
 
 
-		<div class="modal-footer">
+		<div class="modal-footer row">
 			<btn><input type="submit" name="Submit" value="Submit" class="modal-action modal-close waves-effect waves-green btn-flat "></input></btn>
 		<?php echo form_close(); ?>
-	      	<btn class="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</btn>
+	      	<btn class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</btn>
 
 	    <?php echo form_open('project/deletePicture'); ?>
 	    	<input type="hidden" id="delete_pic" name="delete_pic"></input>
@@ -177,6 +184,8 @@
 		        $("#pictureModal .modal-footer #delete_pic").val( picData[4] );
 		        $('#pictureModal .modalPic').attr('src', picData[5]);
 		        $('.modal').modal();
+		        for(var i = 0; i < 5; i++)
+		        	console.log(picData[i]);
 		     });
 
 			var geocoder = new google.maps.Geocoder();

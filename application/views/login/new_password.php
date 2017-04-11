@@ -10,7 +10,7 @@
 	        <div class="card-content">
 	        	<span class="card-title">Reset Password</span>
 	        	<hr/>
-	        	<?php echo form_open('User_Authentication/new_password'); ?>
+	        	<?php echo form_open('Login/new_password'); ?>
 	        	<div class="row" style="margin-top: 5%;">
 			      	<div class="row">
 			        	<div class="input-field col s12">

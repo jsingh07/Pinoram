@@ -31,16 +31,24 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		$this->load->view('templates/header.php');
-
+	
+		if($this->session->userdata('logged_in') == TRUE)
+	    {
+	    	$data['load'] = $this->load->view('project/map.php', NULL, TRUE);
+	    	if($this->session->userdata('welcome') == TRUE)
+			{
+				$this->session->set_userdata('welcome') == FALSE;
+				$text['mytext'] = "Welcome ".$this->session->userdata('first_name');
+				$this->load->view('setupdb/success.php', $text);
+			}
+	    }
+	    else
+	    {
+	    	$data['msg'] = "";
+	    	$data['load'] = $this->load->view('login/registration_form.php', $data, TRUE);
+	    }
 		
-		if($this->session->userdata('welcome') == TRUE)
-		{
-			$this->session->set_userdata('welcome') == FALSE;
-			$text['mytext'] = "Welcome ".$this->session->userdata('first_name');
-			$this->load->view('setupdb/success.php', $text);
-		}
-		
-		$this->load->view('home');
+		$this->load->view('home', $data);
 	}
 
 	public function about_us()

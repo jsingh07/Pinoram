@@ -167,8 +167,11 @@ class Project extends CI_Controller {
 		//$data = $this->Project_model->get_pictures($this->session->userdata('user_id'));
 		//echo json_encode($data->result());
 		$this->load->view('templates/header.php');
-		$this->load->view('gallery.php');
+		//$this->load->view('gallery.php');
 		//$this->load->view('project/test.php');
+		//$data['files']  = $this->test_post();
+
+        $this->load->view('project/project_picture.php');
 	}
 
 	public function test_post()
