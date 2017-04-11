@@ -109,7 +109,7 @@ class Account extends CI_Controller {
 			$this->load->view('templates/header.php');
 			$data['msg'] = "";
 			$data['link'] = "Account/delete_account_conf";
-			$this->load->view('Login/password_conf.php', $data);
+			$this->load->view('login/password_conf.php', $data);
 		}
 	}
 
