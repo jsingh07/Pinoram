@@ -12,7 +12,7 @@
 	        <div class="card-content">
 	        	<span class="card-title">Registration Form</span>
 	        	<hr/>
-	        	<?php echo form_open('User_Authentication/new_user_registration'); ?>
+	        	<?php echo form_open('Login/new_user_registration'); ?>
 	        	<div class="row" style="margin-top: 5%;">
 			        <div class="row">
 			        	<div class="input-field col s6">
@@ -51,10 +51,11 @@
 			                <input type="password" id="passwordconf" name="passwordconf">
 			                <label style="width: 100%" for="passwordconf" data-error="Password does not match" data-success="Password Match">Password (Confirm)</label>
 			            </div>
+			            <a href="<?php echo base_url() ?>Login" class="left">Have an Account? Log In</a>
 			        </div>
 				</div>
 				<div class="card-action">
-	              <input class="btn waves-effect waves-light" type="submit" name="submit"></input>
+	              <input class="btn waves-effect waves-light" type="submit" name="submit" value="Sign Up"></input>
 	            </div>
 	        	<?php echo form_close(); ?>
 			</div> 
