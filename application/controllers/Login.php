@@ -18,15 +18,14 @@ class Login extends CI_Controller {
 
 	$config = Array(
     'protocol' => 'smtp',
-    'smtp_host' => 'ssl://smtp.gmail.com',
+    'smtp_host' => 'ssl://smtp.googlemail.com',
     'smtp_port' => 465,
     'smtp_user' => 'admin@pinoram.com',
     'smtp_pass' => 'H3ll0w0rld!',
     'mailtype'  => 'html', 
-    'charset'   => 'utf-8'
+    'charset'   => 'iso-8859-1'
 	);
-	$this->load->library('email');
-	$this->email->initialize($config);
+	$this->load->library('email', $config);
 	$this->email->set_newline("\r\n");
 
 	}
@@ -179,7 +178,7 @@ class Login extends CI_Controller {
 				        $this->email->subject('Verify your email for Pinoram');
 				        $this->email->message($message);  
 
-				        $this->email->send();
+				        //$this->email->send();
 
 			            $data['msg'] = "Thank you for registering on Pinoram. Please confirm your email address.";
 	                       
@@ -201,40 +200,45 @@ class Login extends CI_Controller {
 
 	public function resend_email()
 	{
-
-		$token = $this->get_token($this->session->userdata('user_id'));
-		if ($token)
+		if($this->session->userdata('logged_in') == TRUE)
 		{
-			$token .= "email*****";
-			$token .= $this->session->userdata('user_id');
-			$qstring = $this->base64url_encode($token);                      
-	        $url = site_url() . 'login/complete/' . $qstring;
-	        $link = '<a href="' . $url . '">' . $url . '</a>'; 
-	                   
-	        $first_name = $this->session->userdata('first_name');
-	        $last_name = $this->session->userdata('last_name');           
-	        $message = '';                     
-	        $message .= '<strong>Hi '.$first_name.' '.$last_name.',</strong><br><br>';
-	        $message .= '<strong>You have signed up with our website with the username: '.$this->session->userdata('username').'</strong><br>';
-	        $message .= '<strong>Please click to confirm your email:</strong><br>' . $link; 
+			$token = $this->get_token($this->session->userdata('user_id'));
+			if ($token)
+			{
+				$token .= "email*****";
+				$token .= $this->session->userdata('user_id');
+				$qstring = $this->base64url_encode($token);                      
+		        $url = site_url() . 'login/complete/' . $qstring;
+		        $link = '<a href="' . $url . '">' . $url . '</a>'; 
+		                   
+		        $first_name = $this->session->userdata('first_name');
+		        $last_name = $this->session->userdata('last_name');           
+		        $message = '';                     
+		        $message .= '<strong>Hi '.$first_name.' '.$last_name.',</strong><br><br>';
+		        $message .= '<strong>You have signed up with our website with the username: '.$this->session->userdata('username').'</strong><br>';
+		        $message .= '<strong>Please click to confirm your email:</strong><br>' . $link; 
 
-	   		$this->email->from('admin@pinoram.com' , 'Pinoram');
-			$this->email->to($this->session->userdata('email')); 
+		   		$this->email->from('admin@pinoram.com' , 'Pinoram');
+				$this->email->to($this->session->userdata('email')); 
 
-	        $this->email->subject('Verify your email for Pinoram');
-	        $this->email->message($message);  
+		        $this->email->subject('Verify your email for Pinoram');
+		        $this->email->message($message);  
 
-	        $this->email->send();
-	        $text['mytext'] = "Email verification request has been sent.";
-       	}
-       	else
-       	{
-       		$text['mytext'] = "Could not find your email address. Please sign up again.";
-       	}
-		$this->load->view('templates/header.php');
-		$this->load->view('home.php');   
-		$this->load->view('setupdb/success.php', $text);     
-
+		        //$this->email->send();
+		        $text['mytext'] = "Email verification request has been sent.";
+	       	}
+	       	else
+	       	{
+	       		$text['mytext'] = "Could not find your email address. Please sign up again.";
+	       	}
+			$this->load->view('templates/header.php');  
+			$this->load->view('setupdb/success.php', $text);     
+			redirect('Welcome');
+		}
+		else
+		{
+			redirect('Welcome');
+		}
 	}
 
 	public function complete()
@@ -259,8 +263,8 @@ class Login extends CI_Controller {
 	        		$text['mytext'] = "Welcome ".$this->session->userdata('first_name')."<br>";
 	        		$text['mytext'] .= "Your email has been verified.";
 	        		$this->load->view('templates/header.php');
-				    $this->load->view('home.php');
 				    $this->load->view('setupdb/success.php', $text);
+				    redirect('Welcome');
 	        	}
 	        	else
 	        	{
@@ -344,7 +348,7 @@ class Login extends CI_Controller {
 		        $this->email->subject('Password Recovery for Pinoram');
 		        $this->email->message($message);  
 
-		        $this->email->send();
+		        //$this->email->send();
 		        $data['msg'] = "Please check your email to recover password.";
 	       	}
 	       	else
