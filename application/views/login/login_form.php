@@ -26,7 +26,7 @@
 				          		<label for="password">Password</label>
 				          		<div style="margin-top: 5px;">
 				          		<a href="<?php echo base_url() ?>Login/password_recovery">Forgot Password</a>
-		           				<a href="<?php echo base_url() ?>Login/user_registration" class="right">Create an Account</a>
+		           				<a href="<?php echo base_url() ?>" class="right">Create an Account</a>
 		           				</div>
 				        	</div>
 				      	</div>
