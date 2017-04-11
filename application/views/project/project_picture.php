@@ -129,6 +129,32 @@
 		        success: function(result)
 		        {
 		        	var count = 0;
+
+		        	console.log(result);
+		        	if(result.length == 0)
+		        	{
+		        		var temp0 = document.getElementById("pictureGrid");
+		        		var temp1 = document.createElement("div");
+		        		var temp2 = document.createElement("div");
+		        		var temp3 = document.createElement("div");
+		        		var temp4 = document.createElement("div");
+		        		var temp5 = document.createElement("span");
+
+		        		temp1.setAttribute("class","row");	
+		        		temp1.setAttribute("style","width: 400px; position: relative;");	
+		        		temp2.setAttribute("class","col s12 m12");	
+		        		temp2.setAttribute("style","margin-top: 100px;");	
+		        		temp3.setAttribute("class","card z-depth-5");	
+		        		temp4.setAttribute("class","card-content black-text");
+		        		temp5.setAttribute("class","card-title");
+		        		temp5.innerText = "You have no pictures in your album. Please use the upload button below to upload pictures.";
+
+		        		temp0.appendChild(temp1);
+		    			temp1.appendChild(temp2);
+		    			temp2.appendChild(temp3);
+		    			temp3.appendChild(temp4);
+		    			temp4.appendChild(temp5);
+		        	}
 		        	
 		        	$.each(result, function(){
 
