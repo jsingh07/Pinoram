@@ -2,7 +2,7 @@
 <html>
 	<body>
 
-		<div class="row"">
+		<!--<div class="row"">
 			<nav>
 				<div class="nav-wrapper" style="background-color: white;">
                     <ul>
@@ -13,9 +13,9 @@
 					</ul>
 				</div>
 			</nav>
-
+		</div>-->
       		<!--<div class="row hide-on-medium-and-up" id="map" style="position: fixed;width:50%; height:50%"></div>-->
-		</div>
+		
 
 		<div class="row" style="width: 400px; position: relative;">
 		        <div class="col s12 m12" style="margin-top: 100px;">

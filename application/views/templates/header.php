@@ -25,12 +25,13 @@
                <div class="nav-wrapper">
                   <div class="row">
                      <div class="col s3 push-s1">
-                        <a href="<?php echo base_url();?>" class="brand-logo"><h4>Pinoram</h4></a>
+                        <a href="<?php echo base_url();?>" class="brand-logo" style="margin-left:20px"><h4>Pinoram</h4></a>
                      </div>
                      <div class="col s7 push-s1">
                      
-                        <ul id="nav-mobile" class="right hide-on-small-and-down">
+                        <ul id="nav-mobile" class="right hide-on-small-and-down" style="margin-right: -20px">
                            <li><a href="<?php echo site_url();?>Account"><?php echo $username?></a></li>
+                           <li><a href="<?php echo base_url()?>Project/Picture">Album</a></li>
                            <?php if(($this->session->userdata('role') == 'admin') or ($this->session->userdata('role') == 'super-user')) {?>
                            <li><a href="<?php echo site_url();?>Setupdb">Database</a></li>
                            <?php } ?>
@@ -39,7 +40,7 @@
                         </ul>
 
                         <ul id="nav-mobile" class="right hide-on-med-and-up">
-                           <li><a style="position: relative" class="dropdown-button" href="" data-activates="dropdown1"><i class="material-icons right">menu</i></a></li>
+                           <li><a style="position: relative; margin-right: -20px" class="dropdown-button" href="" data-activates="dropdown1"><i class="material-icons right">menu</i></a></li>
                         </ul>
                      </div>
                   </div>   
@@ -57,12 +58,12 @@
                         <a href="<?php echo base_url();?>" class="brand-logo"><h4>Pinoram</h4></a>
                      </div>
                      <div class="col s7 push-s1 pull-s1">
-                        <ul id="nav-mobile" class="right hide-on-small-and-down">
+                        <ul id="nav-mobile" class="right hide-on-small-and-down" style="margin-right: -20px">
                            <li data-activates="about-slide-out" class="button-collapse" style="margin: auto; cursor: pointer; cursor:hand;"><a>About</a></li>
                            <li><a href="<?php echo site_url();?>Login">Login</a></li>
 			               </ul>
                         <ul id="nav-mobile" class="right hide-on-med-and-up">
-                           <li><a style="position: relative" class="dropdown-button" href="" data-activates="dropdown2"><i class="material-icons right">menu</i></a></li>
+                           <li><a style="position: relative; margin-right: -20px" class="dropdown-button" href="" data-activates="dropdown2"><i class="material-icons right">menu</i></a></li>
                         </ul>
                      </div>
                   </div>   
@@ -96,6 +97,7 @@
       <?php if($this->session->userdata('logged_in') == TRUE) {?>
          <ul id="dropdown1" class="dropdown-content">
             <li><a href="<?php echo site_url();?>Account"><?php echo $username?></a></li>
+            <li><a href="<?php echo base_url()?>Project/Picture">Album</a></li>
             <?php if(($this->session->userdata('role') == 'admin') or ($this->session->userdata('role') == 'super-user')) {?>
             <li><a href="<?php echo site_url();?>Setupdb">Set up Database</a></li>
             <?php } ?>
