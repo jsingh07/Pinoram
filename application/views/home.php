@@ -1,7 +1,7 @@
 <html>
 	<style>
 		#home-background {
-			background: url("<?php echo $this->config->item('base_url'); ?>/files/images/4.jpg");
+			background: url("<?php echo $this->config->item('base_url'); ?>/files/images/home.jpg");
 
 			background-size: 100% 100%;
 			height: 100%;
