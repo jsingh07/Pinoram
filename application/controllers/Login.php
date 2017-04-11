@@ -20,12 +20,12 @@ class Login extends CI_Controller {
 
 	}
 
-	public function index()
+	/*public function index()
 	{
 		$data['msg'] = "";
 		$this->load->view('templates/header.php');
 		$this->load->view('login/login_form', $data);
-	}
+	}*/
 
 	private function checkLogin()
 	{
@@ -39,7 +39,7 @@ class Login extends CI_Controller {
 		}
 	}
 
-	public function user_login()
+	public function index()
 	{
 		if($this->checkLogin())
 		{	
