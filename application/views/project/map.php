@@ -17,11 +17,11 @@
       		<!--<div class="row hide-on-medium-and-up" id="map" style="position: fixed;width:50%; height:50%"></div>-->
 		
 
-		<div class="row" style="max-width: 400px; position: relative;">
+		<div class="row" style="max-width: 550px; position: relative;">
 		        <div class="col s12 m12" style="margin-top: 100px;">
 		          <div class="card z-depth-5" >
 		            <div class="card-content black-text">
-		              <span class="card-title">The site is under development. <br>Please come back later.</span>
+		              <span class="card-title"><h4>Welcome to Pinoram!</h4> <br>The website is still under development. Please feel free to use the available functions from the menu.</span>
 		          </div>
 		        </div>
 		    </div>
@@ -60,6 +60,11 @@
 		    <?php echo form_close(); ?>
 
 		</div>
+
+		<?php if(isset($success))
+		{
+			echo $success;
+		}	?>
 
     </body>
 

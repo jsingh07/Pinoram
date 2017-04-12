@@ -34,12 +34,16 @@ class Welcome extends CI_Controller {
 	
 		if($this->session->userdata('logged_in') == TRUE)
 	    {
-	    	$data['load'] = $this->load->view('project/map.php', NULL, TRUE);
 	    	if($this->session->userdata('welcome') == TRUE)
 			{
 				$this->session->set_userdata('welcome') == FALSE;
 				$text['mytext'] = "Welcome ".$this->session->userdata('first_name');
-				$this->load->view('setupdb/success.php', $text);
+				$info['success'] = $this->load->view('setupdb/success.php', $text, TRUE);
+				$data['load'] = $this->load->view('project/map.php', $info, TRUE);
+			}
+			else
+			{
+				$data['load'] = $this->load->view('project/map.php', NULL, TRUE);
 			}
 	    }
 	    else
