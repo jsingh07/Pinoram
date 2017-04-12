@@ -227,10 +227,10 @@ class Login extends CI_Controller {
 		        $this->email->subject('Verify your email for Pinoram');
 		        $this->email->message($message);  
 
-		        $this->email->send(FALSE);
+		        $this->email->send();
 
 				// Will only print the email headers, excluding the message subject and body
-				echo $this->email->print_debugger(array('headers'));
+				//echo $this->email->print_debugger(array('headers'));
 
 		        $text['mytext'] = "Email verification request has been sent.";
 	       	}

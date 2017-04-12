@@ -14,6 +14,12 @@
   	position: absolute;
 }
 
+.modal.modal-fixed-footer .modal-footer#picture-modal-footer {
+  right: 0px;
+  height: 55px;
+  width: 350px;
+}
+
 /*------pac-container z index changed to show google autocomplete inside modal----------*/
 .pac-container {
     z-index: 100000;
@@ -44,66 +50,60 @@
     	</a> 
     	<?php echo form_close(); ?>
 
-    	<a class="btn-floating btn-large waves-effect waves-light red" href="/project/project" style="margin-top: 20px"> 
-    		<i class="large material-icons">room</i>
-    	</a> 
-
  	</div>
 
     <div class="row" style="max-width: 800px; margin-top: 20px;">
- 		<div id="pictureGrid" class="grid" style="height: 100%;background-color: white">
+ 		<div id="pictureGrid" class="grid" style="height: 100%; background-color: white">
 
 		</div>
     </div>
 
 
-    <div id="pictureModal" class="modal modal-fixed-footer" style="height:600px;">
+    <div id="pictureModal" class="modal modal-fixed-footer" style="max-height: 600px; max-width: 900px; overflow: hidden;" >
 
+    	<!--<div class= "left" style="width: 100%; position: fixed">
+    		<img class="modalPic center" id="modalPic" style="height:auto; width:100%">
+    	</div>-->
 		<?php echo form_open('project/edit_picture_info'); ?>
 
-	    <div class="modal-content row">
+	    <div id="picture-info" class="modal-content row">
 	    	<input type="hidden" id="picture_id" name="picture_id"></input>
 
-	    	<div class= "col s12 l6">
-	    	<img class="modalPic center" id="modalPic" style="height:auto; width:100%">
-	    	</div>
 
-	    	<div class= "col s12 l6">
-	    	<h5 style="text-align: center">Picture Information</h5>
-			<hr/>
 
-			<div style="position: relative; margin-top: 20px; margin-left: 10px; height:300px">
-				<div class="input-field col s6" style="margin-top:-10px">
-					<strong>Latitude</strong>
-	          		<input type="text" id="Latitude" name="Latitude" class="validate">
-	        	</div>
+	    	<div id="picture-info-div" class= "right" style="width: 300px; margin-top:-10px;">
+		    	
 
-	        	<div class="input-field col s6" style="margin-top:-10px">
-	        		<strong>Longitude</strong>
-	          		<input type="text" id="Longitude" name="Longitude" class="validate">
-	        	</div>
+				<div style="position: relative; margin-top: 20px; width:100%">
+					<div class="input-field col s6" style="margin-top:-10px">
+						<strong>Latitude</strong>
+		          		<input type="text" id="Latitude" name="Latitude" class="validate">
+		        	</div>
 
-	        	<div class="input-field col s12" style="margin-top:-10px">
-                    <a id="locate" class="btn-flat blue" style="width: 100%; color: white; text-align: center">Locate</a>
-                </div>
+		        	<div class="input-field col s6" style="margin-top:-10px">
+		        		<strong>Longitude</strong>
+		          		<input type="text" id="Longitude" name="Longitude" class="validate">
+		        	</div>
 
-	        	<div class="input-field col s12">
-	        		<strong>Address</strong>
-	          		<input type="text" id="Address" name="Address" class="validate">
-	        	</div>
+		        	<div class="input-field col s12" style="margin-top:-10px">
+	                    <a id="locate" class="btn-flat blue" style="width: 100%; color: white; text-align: center">Locate</a>
+	                </div>
 
-	        	<div class="input-field col s12">
-	        		<strong>Description</strong>
-		          	<textarea id="picture_description" name="picture_description" data-length="500" style="min-height: 120px;" class="materialize-textarea active"></textarea>
-		          	
-		        </div>
-			</div>
+		        	<div class="input-field col s12">
+		        		<strong>Address</strong>
+		          		<input type="text" id="Address" name="Address" class="validate">
+		        	</div>
 
+		        	<div class="input-field col s12" style="margin-top:-10px">
+		        		<strong>Description</strong>
+			          	<textarea id="picture_description" name="picture_description" data-length="500" style="min-height: 80px;" class="materialize-textarea active"></textarea>
+			        </div>
+				</div>
 			</div>
 
 		</div>
 
-		<div class="modal-footer">
+		<div id="picture-modal-footer" class="modal-footer" align="right">
 			<input style="color:black; font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center" type="submit" name="Submit" value="Submit" class="modal-action modal-close waves-effect waves-green btn-flat "></input>
 		<?php echo form_close(); ?>
 	      	<a style="font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center; color:black" class="modal-action modal-close waves-effect waves-gray btn-flat">Cancel</a>
@@ -130,7 +130,6 @@
 		        {
 		        	var count = 0;
 
-		        	console.log(result);
 		        	if(result.length == 0)
 		        	{
 		        		var temp0 = document.getElementById("pictureGrid");
@@ -193,7 +192,24 @@
 		        	$('.myImg').click(function() {
 	    				var picnum = $(this).attr("id");
 	    				var mynum = picnum.substring(12);
-	    				var srcPic = "/files/images/" + result[mynum].picture_id + ".jpg";
+	    				var srcPic = '/files/images/' + result[mynum].picture_id + '.jpg';
+
+	    				var img = new Image();
+						img.onload = function() 
+						{
+						  //alert(this.width + 'x' + this.height);
+						  var imgWidth = this.width;
+						  var imgHeight = this.height;
+
+						  $("#pictureModal").css("background-image", "url('" + srcPic + "')");
+						  $("#pictureModal").css("background-repeat", "no-repeat");
+						  setModalSize(imgWidth, imgHeight);
+
+						  $(window).resize(function(){
+						    setModalSize(imgWidth, imgHeight);
+						  });
+						}
+						img.src = srcPic;
 	    				
 				        $("#pictureModal .modal-content #picture_description").val( result[mynum].description );
 				        $("#pictureModal .modal-content #Latitude").val( result[mynum].lat );
@@ -203,6 +219,9 @@
 				        $("#pictureModal .modal-footer #delete_pic").val( result[mynum].picture_id );
 				        $('#pictureModal .modalPic').attr('src', srcPic );
 				        $('.modal').modal();
+
+				 
+				   
 				    });
 
 		        	var geocoder = new google.maps.Geocoder();
@@ -219,8 +238,6 @@
 			          geocodeAddress(geocoder);
 			        });
 
-					openModal();
-
 
 		        }
 		    });
@@ -229,6 +246,139 @@
 
 	    function openModal(){
 	    	$('.modal').modal();
+	    }
+
+	    function setModalSize(imgWidth, imgHeight)
+	    {
+	    	var windowheight = Math.round($(window).height() ); 
+	    	var windowwidth = Math.round($(window).width() ); 
+
+	    	var myModalScroll = document.getElementById('pictureModal');
+	    	myModalScroll.scrollTop = 0;
+
+	    	if(imgWidth >= imgHeight)
+	    	{
+	    		var mywidth = Math.round(((imgWidth / imgHeight) * 400) + 350);
+	    		var mywidthstring = mywidth + "px";
+	    		if(windowwidth * .9 > 900)
+	    		{
+	    			var modalHeight = Math.round((imgHeight/imgWidth) * (900 - 350));
+	    		}
+	    		else
+	    		{
+	    			var modalHeight = Math.round((imgHeight/imgWidth) * ((windowwidth * .9) - 350));
+	    		}
+	    		if(modalHeight < 300)
+	    		{
+	    			if((windowwidth * .9) > 400)
+	    			{
+	    				var picHeight = Math.round((imgHeight/imgWidth) * 400);
+	    			}
+	    			else
+	    			{
+	    				var picHeight = Math.round((imgHeight/imgWidth) * (windowwidth * .9));
+	    			}
+	    			var infooffset = picHeight + 20;
+	    			var backgroundSize = "100% " + "auto";
+	    			modalHeight = picHeight + 250;
+	    			calcinfoheight = picHeight + 460;
+		    		$("#pictureModal").css("height", modalHeight);
+		    		$("#pictureModal").css("width", "90%");
+		    		$("#pictureModal").css("max-width", "400px");
+		    		$("#pictureModal").css("background-size", backgroundSize);
+		    		$("#pictureModal").css("overflow-y", "hidden");
+		    		$("#picture-info").css("margin-top", infooffset);
+		    		$("#picture-info").css("background-color", "transparent");
+		    		$("#picture-info").css("height", "auto");
+		    		$("#picture-info").css("padding-bottom", "0px");
+		    		$("#picture-info-div").attr("class", "center");
+		    		$("#picture-info-div").css("text-align", "left");
+		    		$("#picture-info-div").css("width", "100%");
+		    		$("#picture-info-div").css("height", calcinfoheight);
+		    		$("#picture-info-div").css("overflow-y", "scroll");
+		    		$("#picture-info-div").css("background-color", "transparent");
+		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("position","fixed");
+		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("width","100%");
+
+	    		}
+	    		else
+	    		{
+		    		var backgroundSize = "auto " + modalHeight +"px";
+		    		$("#pictureModal").css("height", modalHeight);
+		    		$("#pictureModal").css("width", "90%");
+		    		$("#pictureModal").css("max-width", "900px");
+		    		$("#pictureModal").css("background-size", backgroundSize);
+		    		$("#picture-info").css("background-color", "transparent");
+		    		$("#picture-info").css("margin-top", "0px");
+		    		$("#picture-info").css("height", "auto");
+		    		$("#picture-info").css("padding-bottom", "70px");
+		    		$("#picture-info-div").attr("class", "right");
+		    		$("#picture-info-div").css("width", "300px");
+		    		$("#picture-info-div").css("background-color", "transparent");
+		    		$("#picture-info-div").css("overflow-y", "scroll");
+		    		$("#picture-info-div").css("height", "auto");
+		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("position","absolute");
+		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("width","350px");
+	    		}
+	    	}
+	    	else
+	    	{
+
+	    		if(windowwidth < 900)
+	    		{
+	    			if((windowwidth * .9) > 400)
+	    			{
+	    				var picHeight = Math.round((imgHeight/imgWidth) * 400);
+	    			}
+	    			else
+	    			{
+	    				var picHeight = Math.round((imgHeight/imgWidth) * (windowwidth * .9));
+	    			}
+	    			var infooffset = picHeight + 20;
+	    			var backgroundSize = "100% " + "auto";
+	    			$("#pictureModal").css("height", "100%");
+		    		$("#pictureModal").css("width", "90%");
+		    		$("#pictureModal").css("max-width", "400px");
+		    		$("#pictureModal").css("background-size", backgroundSize);
+		    		$("#picture-info").css("margin-top", infooffset);
+		    		$("#picture-info").css("background-color", "white");
+		    		$("#picture-info").css("height", "400px");
+		    		$("#picture-info").css("padding-bottom", "0px");
+		    		$("#picture-info-div").attr("class", "center");
+		    		$("#picture-info-div").css("text-align", "left");
+		    		$("#picture-info-div").css("width", "100%");
+		    		$("#picture-info-div").css("background-color", "white");
+		    		$("#picture-info-div").css("height", "auto");
+		    		$("#pictureModal").css("overflow-y", "scroll");
+		    		$("#picture-info-div").css("overflow-y", "visible");
+		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("position","fixed");
+		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("width","100%");
+		    		$("#picture-modal-footer").css("bottom", "0px");
+		    		$("#picture-modal-footer").css("position", "static");
+	    		}
+	    		else
+	    		{
+					//var myheight = Math.round(((imgHeight / imgWidth) * 400));
+					var mywidth = Math.round(((imgWidth / imgHeight) * 900));
+					var modalwidth = mywidth + 350 + "px";
+		    		//var myheightstring = "900px";
+		    		$("#pictureModal").css("width", modalwidth);
+		    		$("#pictureModal").css("height", "900px");
+		    		$("#pictureModal").css("max-width", "900px");
+		    		$("#pictureModal").css("background-size", "auto 700px");
+		    		$("#picture-info").css("background-color", "transparent");
+		    		$("#picture-info").css("margin-top", "0px");
+		    		$("#picture-info").css("height", "auto");
+		    		$("#picture-info").css("padding-bottom", "0px");
+		    		$("#picture-info-div").attr("class", "right");
+		    		$("#picture-info-div").css("width", "300px");
+		    		$("#picture-info-div").css("background-color", "transparent");
+		    		$("#picture-info-div").css("overflow-y", "scroll");
+		    		$("#picture-info-div").css("height", "auto");
+		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("position","absolute");
+		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("width","350px");
+		    	}
+	    	}
 	    }
 
 
