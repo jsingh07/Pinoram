@@ -71,7 +71,7 @@
 
 
 
-	    	<div id="picture-info-div" class= "right" style="width: 300px; margin-top:-10px;">
+	    	<div id="picture-info-div" class= "right" style="width: 300px; margin-top:10px;">
 		    	
 
 				<div style="position: relative; margin-top: 20px; width:100%">
@@ -260,9 +260,9 @@
 	    	{
 	    		var mywidth = Math.round(((imgWidth / imgHeight) * 400) + 350);
 	    		var mywidthstring = mywidth + "px";
-	    		if(windowwidth * .9 > 900)
+	    		if(windowwidth * .9 > 1200)
 	    		{
-	    			var modalHeight = Math.round((imgHeight/imgWidth) * (900 - 350));
+	    			var modalHeight = Math.round((imgHeight/imgWidth) * (1200 - 350));
 	    		}
 	    		else
 	    		{
@@ -307,9 +307,9 @@
 		    		var backgroundSize = "auto " + modalHeight +"px";
 		    		$("#pictureModal").css("height", modalHeight);
 		    		$("#pictureModal").css("width", "90%");
-		    		$("#pictureModal").css("max-width", "900px");
+		    		$("#pictureModal").css("max-width", "1200px");
 		    		$("#pictureModal").css("background-size", backgroundSize);
-		    		$("#pictureModal").css("margin-top", "10%");
+		    		$("#pictureModal").css("margin-top", "20px");
 		    		$("#picture-info").css("background-color", "transparent");
 		    		$("#picture-info").css("margin-top", "0px");
 		    		$("#picture-info").css("height", "auto");
@@ -363,12 +363,12 @@
 	    		{
 					//var myheight = Math.round(((imgHeight / imgWidth) * 400));
 					var mywidth = Math.round(((imgWidth / imgHeight) * 900));
-					var modalwidth = mywidth + 350 + "px";
+					var modalwidth = (mywidth + 350) + "px";
 		    		//var myheightstring = "900px";
 		    		$("#pictureModal").css("width", modalwidth);
 		    		$("#pictureModal").css("height", "900px");
 		    		$("#pictureModal").css("max-width", "900px");
-		    		$("#pictureModal").css("background-size", "auto 700px");
+		    		$("#pictureModal").css("background-size", "auto 900px");
 		    		$("#pictureModal").css("margin-top", "10px");
 		    		$("#picture-info").css("background-color", "transparent");
 		    		$("#picture-info").css("margin-top", "0px");
