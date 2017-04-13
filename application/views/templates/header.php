@@ -25,7 +25,7 @@
                <div class="nav-wrapper">
                   <div class="row">
                      <div class="col s3 push-s1">
-                        <a href="<?php echo base_url();?>" class="brand-logo" style="margin-left:20px"><h4>Pinoram</h4></a>
+                        <a href="<?php echo base_url();?>" class="brand-logo left"><h4>Pinoram</h4></a>
                      </div>
                      <div class="col s7 push-s1">
                      
@@ -56,7 +56,7 @@
                <div class="nav-wrapper">
                   <div class="row">
                      <div class="col s3 push-s1">
-                        <a href="<?php echo base_url();?>" class="brand-logo"><h4>Pinoram</h4></a>
+                        <a href="<?php echo base_url();?>" class="brand-logo left"><h4>Pinoram</h4></a>
                      </div>
                      <div class="col s7 push-s1 pull-s1">
                         <ul id="nav-mobile" class="right hide-on-small-and-down" style="margin-right: -20px">
