@@ -37,6 +37,7 @@ body {
     margin-top: 20px; 
     height:650px; 
     position: relative;
+    min-width: 430px;
 }
 
 #profile #account-label{
