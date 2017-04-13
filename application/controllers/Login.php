@@ -321,6 +321,7 @@ class Login extends CI_Controller {
 		else
 		{
 			$data['msg'] = "Incorrect Password";
+			$data['link'] = "login/password_conf";
 			$this->load->view('templates/header.php');
 			$this->load->view('login/password_conf', $data);
 		}

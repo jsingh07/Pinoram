@@ -29,7 +29,7 @@
                      </div>
                      <div class="col s7 push-s1">
                      
-                        <ul id="nav-mobile" class="right hide-on-small-and-down" style="margin-right: -20px">
+                        <ul id="nav-mobile" class="right hide-on-small-and-down" style="margin-right: -30px">
                            <li><a href="<?php echo site_url();?>Account"><?php echo $username?></a></li>
                            <li><a href="<?php echo base_url()?>Project/picture">Album</a></li>
                            <li><a href="<?php echo base_url()?>Project/project">Map</a></li>
