@@ -23,7 +23,7 @@
       		</div>
 
 			<div class="row" id="profile">
-				<div class="card z-depth-5 col s10 m7" style="margin-left: 10%; margin-top: 5%">
+				<div class="card z-depth-5 col s10 m7" style="max-width: 450px; margin-left: 5%; margin-top: 5%">
 					<div style="position: relative; margin-top: 10px; color: red; text-align:center;">
 						<?php echo $msg ?>
 					</div>
