@@ -287,6 +287,7 @@
 		    		$("#pictureModal").css("max-width", "400px");
 		    		$("#pictureModal").css("background-size", backgroundSize);
 		    		$("#pictureModal").css("overflow-y", "hidden");
+		    		$("#pictureModal").css("margin-top", "10px");
 		    		$("#picture-info").css("margin-top", infooffset);
 		    		$("#picture-info").css("background-color", "transparent");
 		    		$("#picture-info").css("height", "auto");
@@ -308,6 +309,7 @@
 		    		$("#pictureModal").css("width", "90%");
 		    		$("#pictureModal").css("max-width", "900px");
 		    		$("#pictureModal").css("background-size", backgroundSize);
+		    		$("#pictureModal").css("margin-top", "10%");
 		    		$("#picture-info").css("background-color", "transparent");
 		    		$("#picture-info").css("margin-top", "0px");
 		    		$("#picture-info").css("height", "auto");
@@ -340,6 +342,7 @@
 		    		$("#pictureModal").css("width", "90%");
 		    		$("#pictureModal").css("max-width", "400px");
 		    		$("#pictureModal").css("background-size", backgroundSize);
+		    		$("#pictureModal").css("margin-top", "-50px");
 		    		$("#picture-info").css("margin-top", infooffset);
 		    		$("#picture-info").css("background-color", "white");
 		    		$("#picture-info").css("height", "400px");
@@ -366,6 +369,7 @@
 		    		$("#pictureModal").css("height", "900px");
 		    		$("#pictureModal").css("max-width", "900px");
 		    		$("#pictureModal").css("background-size", "auto 700px");
+		    		$("#pictureModal").css("margin-top", "10px");
 		    		$("#picture-info").css("background-color", "transparent");
 		    		$("#picture-info").css("margin-top", "0px");
 		    		$("#picture-info").css("height", "auto");
