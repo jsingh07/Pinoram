@@ -123,6 +123,10 @@
   	<script>
 	    $(document).ready(function(){
 
+	    	$('#picture_upload').click(function() {
+	    		console.log(this.value);
+	    	});
+
 			$.ajax({
 		        url: "/project/test_post", 
 		        dataType: 'json',
@@ -278,7 +282,7 @@
 	    			{
 	    				var picHeight = Math.round((imgHeight/imgWidth) * (windowwidth * .9));
 	    			}
-	    			var infooffset = picHeight + 20;
+	    			var infooffset = picHeight + 5;
 	    			var backgroundSize = "100% " + "auto";
 	    			modalHeight = picHeight + 250;
 	    			calcinfoheight = picHeight + 460;
@@ -297,6 +301,7 @@
 		    		$("#picture-info-div").css("width", "100%");
 		    		$("#picture-info-div").css("height", calcinfoheight);
 		    		$("#picture-info-div").css("overflow-y", "scroll");
+		    		$("#picture-info-div").css("margin-top", "-15px");
 		    		$("#picture-info-div").css("background-color", "transparent");
 		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("position","fixed");
 		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("width","100%");
@@ -319,6 +324,7 @@
 		    		$("#picture-info-div").css("background-color", "transparent");
 		    		$("#picture-info-div").css("overflow-y", "scroll");
 		    		$("#picture-info-div").css("height", "auto");
+		    		$("#picture-info-div").css("margin-top", "10px");
 		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("position","absolute");
 		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("width","350px");
 	    		}
@@ -352,6 +358,7 @@
 		    		$("#picture-info-div").css("width", "100%");
 		    		$("#picture-info-div").css("background-color", "white");
 		    		$("#picture-info-div").css("height", "auto");
+		    		$("#picture-info-div").css("margin-top", "5px");
 		    		$("#pictureModal").css("overflow-y", "scroll");
 		    		$("#picture-info-div").css("overflow-y", "visible");
 		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("position","fixed");
@@ -362,13 +369,13 @@
 	    		else
 	    		{
 					//var myheight = Math.round(((imgHeight / imgWidth) * 400));
-					var mywidth = Math.round(((imgWidth / imgHeight) * 900));
+					var mywidth = Math.round(((imgWidth / imgHeight) * 600));
 					var modalwidth = (mywidth + 350) + "px";
 		    		//var myheightstring = "900px";
 		    		$("#pictureModal").css("width", modalwidth);
 		    		$("#pictureModal").css("height", "900px");
 		    		$("#pictureModal").css("max-width", "900px");
-		    		$("#pictureModal").css("background-size", "auto 900px");
+		    		$("#pictureModal").css("background-size", "auto 600px");
 		    		$("#pictureModal").css("margin-top", "10px");
 		    		$("#picture-info").css("background-color", "transparent");
 		    		$("#picture-info").css("margin-top", "0px");
@@ -379,6 +386,7 @@
 		    		$("#picture-info-div").css("background-color", "transparent");
 		    		$("#picture-info-div").css("overflow-y", "scroll");
 		    		$("#picture-info-div").css("height", "auto");
+		    		$("#picture-info-div").css("margin-top", "15px");
 		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("position","absolute");
 		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("width","350px");
 		    	}
