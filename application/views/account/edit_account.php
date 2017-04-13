@@ -41,7 +41,7 @@
 				</div>
 
 				<div style="position: relative;">
-		              	<input style="margin-left: 20px; margin-top: 40px" class="col s4 m2 push-l3 btn waves-effect waves-light" type="submit" name="submit" value="Submit"></input>
+		            <button style="margin-left: 20px; margin-top: 40px" class="col s4 m2 push-l3 btn waves-effect waves-light" type="submit" name="submit">Submit</button>
 		        </div>
 		        <?php echo form_close(); ?>
 
