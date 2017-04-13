@@ -7,8 +7,8 @@
 			<div class="vertical-menu left hide-on-small-and-down" style="margin-left:-11px; position: relative; display:inline-block; z-index:100;">
 				<a href="<?php echo site_url();?>Account" style="padding-left: 40px;">Account</a>
 				<a href="<?php echo site_url();?>Account/profile" style="padding-left: 40px;">Edit Profile</a>
-			 	<a href="" class="active" style="padding-left: 40px;">Change Password</a>
-			  	<a href="<?php echo site_url();?>Account/delete_account" style="padding-left: 40px;">Delete Account</a>
+			 	<a href="<?php echo site_url();?>Login/password_recovery" style="padding-left: 40px;">Change Password</a>
+			  	<a href="" class="active" style="padding-left: 40px;">Delete Account</a>
 			</div>
 
 			<div class="row hide-on-med-and-up">
@@ -16,19 +16,19 @@
 					<ul class="tabs">
 		        		<li class="tab col s3"><a target="_self" href="<?php echo site_url();?>Account">Account</a></li>
 		        		<li class="tab col s3"><a style="line-height:15px; padding-top: 10px" target="_self" href="<?php echo site_url();?>Account/profile">Edit<br>Profile</a></li>
-		        		<li class="tab col s3"><a style="line-height:15px; padding-top: 10px" class="active" target="_self" href="">Change<br>Password</a></li>
-		        		<li class="tab col s3"><a style="line-height:15px; padding-top: 10px" target="_self" href="<?php echo site_url();?>Account/delete_account">Delete<br>Account</a></li>
+		        		<li class="tab col s3"><a style="line-height:15px; padding-top: 10px" target="_self" href="<?php echo site_url();?>Login/password_recovery">Change<br>Password</a></li>
+		        		<li class="tab col s3"><a style="line-height:15px; padding-top: 10px" target="_self" class="active" href="">Delete<br>Account</a></li>
 		      		</ul>
 	      		</div>
       		</div>
 
 			<div class="row" id="profile">
-				<div class="card z-depth-5 col s10 m7" style="margin-left: 10%; margin-top: 5%">
+				<div class="card z-depth-5 col s10 m7" style="margin-left: 7%; margin-top: 5%">
 					<div style="position: relative; margin-top: 10px; color: red; text-align:center;">
 						<?php echo $msg ?>
 					</div>
 			        <div class="card-content">
-			        	<span class="card-title">Change Password</span>
+			        	<span class="card-title">Delete Account</span>
 			        	<hr/>
 			        	<span>Please enter your current password.</span>
 			        	<?php echo form_open($link); ?>
