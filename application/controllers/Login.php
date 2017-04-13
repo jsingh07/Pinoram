@@ -4,30 +4,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Login extends CI_Controller {
 
 	public function __construct() {
-	parent::__construct();
+		parent::__construct();
 
-	$this->load->helper('url');
-	// Load form helper library
-	$this->load->helper('form');
+		$this->load->helper('url');
+		// Load form helper library
+		$this->load->helper('form');
 
-	// Load form validation library
-	$this->load->library('form_validation');
+		// Load form validation library
+		$this->load->library('form_validation');
 
-	// Load model
-	$this->load->model('Login_model');
+		// Load model
+		$this->load->model('Login_model');
 
-	$config = Array(
-    'protocol' => 'smtp',
-    'smtp_host' => 'ssl://smtp.gmail.com',
-    'smtp_port' => 465,
-    'smtp_user' => 'admin@pinoram.com',
-    'smtp_pass' => 'H3ll0w0rld!',
-    'mailtype'  => 'html', 
-    'charset'   => 'utf-8'
-	);
-	$this->load->library('email');
-	$this->email->initialize($config);
-	$this->email->set_newline("\r\n");
+		$this->email->set_newline("\r\n");
 
 	}
 
@@ -73,28 +62,41 @@ class Login extends CI_Controller {
 			        	$first_name = $data->first_name;
 			        	$last_name = $data->last_name;
 			        	$status = $data->status;
-			        	$newdata = array(
-		                   'username'  => $data->username,
-		                   'user_id'   => $data->user_id,
-		                   'email'     => $data->email,
-		                   'first_name'=> $data->first_name,
-		                   'last_name' => $data->last_name,
-		                   'role'      => $data->role,
-		                   'status'    => $data->status,
-		                   'welcome'   => TRUE,
-		                   'logged_in' => TRUE
-		                );
-			        }
-			        $this->session->set_userdata($newdata);
 
-			        if($status == $this->config->item(1,'status'))
-			        {
-				        redirect('');
-			    	}
-			    	else
-			    	{
-						$this->load->view('templates/header.php');
-						$this->load->view('login/resend_email');
+			        	if($status == $this->config->item(1,'status'))
+				        {
+				        	$newdata = array(
+			                   'username'  => $data->username,
+			                   'user_id'   => $data->user_id,
+			                   'email'     => $data->email,
+			                   'first_name'=> $data->first_name,
+			                   'last_name' => $data->last_name,
+			                   'role'      => $data->role,
+			                   'status'    => $data->status,
+			                   'welcome'   => TRUE,
+			                   'logged_in' => TRUE
+			                );
+
+			                $this->session->set_userdata($newdata);
+					        redirect('');
+				    	}
+				    	else
+				    	{
+				    		$newdata = array(
+			                   'username'  => $data->username,
+			                   'user_id'   => $data->user_id,
+			                   'email'     => $data->email,
+			                   'first_name'=> $data->first_name,
+			                   'last_name' => $data->last_name,
+			                   'role'      => $data->role,
+			                   'status'    => $data->status,
+			                   'welcome'   => TRUE
+			                );
+
+			                $this->session->set_userdata($newdata);
+							$this->load->view('templates/header.php');
+							$this->load->view('login/resend_email');
+						}
 			    	}
 			    }
 			    else
@@ -201,40 +203,49 @@ class Login extends CI_Controller {
 
 	public function resend_email()
 	{
-
-		$token = $this->get_token($this->session->userdata('user_id'));
-		if ($token)
+		if($this->session->userdata('welcome') == TRUE)
 		{
-			$token .= "email*****";
-			$token .= $this->session->userdata('user_id');
-			$qstring = $this->base64url_encode($token);                      
-	        $url = site_url() . 'login/complete/' . $qstring;
-	        $link = '<a href="' . $url . '">' . $url . '</a>'; 
-	                   
-	        $first_name = $this->session->userdata('first_name');
-	        $last_name = $this->session->userdata('last_name');           
-	        $message = '';                     
-	        $message .= '<strong>Hi '.$first_name.' '.$last_name.',</strong><br><br>';
-	        $message .= '<strong>You have signed up with our website with the username: '.$this->session->userdata('username').'</strong><br>';
-	        $message .= '<strong>Please click to confirm your email:</strong><br>' . $link; 
+			$token = $this->get_token($this->session->userdata('user_id'));
+			if ($token)
+			{
+				$token .= "email*****";
+				$token .= $this->session->userdata('user_id');
+				$qstring = $this->base64url_encode($token);                      
+		        $url = site_url() . 'login/complete/' . $qstring;
+		        $link = '<a href="' . $url . '">' . $url . '</a>'; 
+		                   
+		        $first_name = $this->session->userdata('first_name');
+		        $last_name = $this->session->userdata('last_name');           
+		        $message = '';                     
+		        $message .= '<strong>Hi '.$first_name.' '.$last_name.',</strong><br><br>';
+		        $message .= '<strong>You have signed up with our website with the username: '.$this->session->userdata('username').'</strong><br>';
+		        $message .= '<strong>Please click to confirm your email:</strong><br>' . $link; 
 
-	   		$this->email->from('admin@pinoram.com' , 'Pinoram');
-			$this->email->to($this->session->userdata('email')); 
+		   		$this->email->from('admin@pinoram.com' , 'Pinoram');
+				$this->email->to($this->session->userdata('email')); 
 
-	        $this->email->subject('Verify your email for Pinoram');
-	        $this->email->message($message);  
+		        $this->email->subject('Verify your email for Pinoram');
+		        $this->email->message($message);  
 
-	        $this->email->send();
-	        $text['mytext'] = "Email verification request has been sent.";
-       	}
-       	else
-       	{
-       		$text['mytext'] = "Could not find your email address. Please sign up again.";
-       	}
-		$this->load->view('templates/header.php');
-		$this->load->view('home.php');   
-		$this->load->view('setupdb/success.php', $text);     
+		        $this->email->send();
 
+				// Will only print the email headers, excluding the message subject and body
+				//echo $this->email->print_debugger(array('headers'));
+
+		        $text['mytext'] = "Email verification request has been sent.";
+	       	}
+	       	else
+	       	{
+	       		$text['mytext'] = "Could not find your email address. Please sign up again.";
+	       	}
+			$this->load->view('templates/header.php');  
+			$this->load->view('setupdb/success.php', $text);     
+			redirect('Login');
+		}
+		else
+		{
+			redirect('Welcome');
+		}
 	}
 
 	public function complete()
@@ -254,13 +265,14 @@ class Login extends CI_Controller {
 	        }
 	        else
 	        {
+	        	$this->Login_model->updateToken($user_info);
 	        	if($this->session->userdata('logged_in') == TRUE)
 	        	{
 	        		$text['mytext'] = "Welcome ".$this->session->userdata('first_name')."<br>";
 	        		$text['mytext'] .= "Your email has been verified.";
 	        		$this->load->view('templates/header.php');
-				    $this->load->view('home.php');
 				    $this->load->view('setupdb/success.php', $text);
+				    redirect('Welcome');
 	        	}
 	        	else
 	        	{
@@ -309,6 +321,7 @@ class Login extends CI_Controller {
 		else
 		{
 			$data['msg'] = "Incorrect Password";
+			$data['link'] = "login/password_conf";
 			$this->load->view('templates/header.php');
 			$this->load->view('login/password_conf', $data);
 		}

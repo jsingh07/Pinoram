@@ -2,7 +2,10 @@ function initMap()
 {
 	var bounds = new google.maps.LatLngBounds();
     var uluru = {lat: 37.548271, lng: -121.988571};
-    var map = new google.maps.Map(document.getElementById('map'));
+    var map = new google.maps.Map(document.getElementById('map'), {
+          center: uluru,
+          zoom: 8
+        });
 
     var markers; 
     var infoWindowContent; 
@@ -14,82 +17,100 @@ function initMap()
         dataType: 'json',
         success: function(result)
         {
-        	var i = 0;
-        	$.each(result, function(){
-            	//console.log(this.address);
-            	if(this.lat != 0 && this.lng != 0 && this.lat != undefined && this.lng != undefined)
-            	{
+        	console.log(result);
+        	if(result.length != 0)
+        	{
+        		var i = 0;
+	        	$.each(result, function(){
+	            	//console.log(this.address);
+	            	if(this.lat != 0 && this.lng != 0 && this.lat != undefined && this.lng != undefined)
+	            	{
 
-	            	infoWindowContent = /*'<div class="info_content">' +
-	        							'<h3>London Eye</h3>' +
-	        							'<p>Latitude: '+ this.lat + '</p>' + 
-	        							'<p>Longitude: '+ this.lng + '</p>' + 
-	        							'</div>';*/
-	        		//'<div id="pictureModal" class="modal modal-fixed-footer" style="height:600px;">' +
+		            	infoWindowContent = /*'<div class="info_content">' +
+		        							'<h3>London Eye</h3>' +
+		        							'<p>Latitude: '+ this.lat + '</p>' + 
+		        							'<p>Longitude: '+ this.lng + '</p>' + 
+		        							'</div>';*/
+		        		//'<div id="pictureModal" class="modal modal-fixed-footer" style="height:600px;">' +
 
-						'<?php echo form_open("project/edit_picture_info"); ?>' +
+							'<?php echo form_open("project/edit_picture_info"); ?>' +
 
-					    '<div class="modal-content row">' +
-					    	'<input type="hidden" id="picture_id" name="picture_id"></input>' +
+						    '<div class="row" style = "min-width: 200px; min-height:150px;">' +
+						    	'<input type="hidden" id="picture_id" name="picture_id"></input>' +
 
-					    	'<h4 style="text-align: center">Picture Information</h4>' +
-							'<hr/>' +
+						    	'<div class="col s12 l6" style="min-height: 300px">'+
+								'<img class="modalPic center" id="modalPic" style="height:auto; width:100%;" src="/files/images/'+this.picture_id+'.jpg'+'">' +
+								'</div>'+
 
-							'<img class="modalPic center" id="modalPic" style="height:auto; width:100%" src="/files/images/'+this.picture_id+'.jpg'+'">' +
+								'<div class="col s12 l6">'+
+									//'<h5 style="text-align: center; position:relative">Picture Information</h5>' +
+									//'<hr/>' +
 
-							'<div style="position: relative; margin-top: 20px; margin-left: 10px; height:300px">' +
-								'<div class="input-field col s6">' +
-									'<strong>Latitude</strong>' +
-					          		'<input type="text" id="Latitude" name="Latitude" class="validate" value="'+this.lat+'">' +
-					        	'</div>' +
+									'<div class="card-content row" style="position: relative;">' +
+										'<div class="input-field col s6">' +
+											'<strong>Latitude</strong>' +
+							          		'<input type="text" id="Latitude" name="Latitude" class="validate" value="'+this.lat+'">' +
+							        	'</div>' +
 
-					        	'<div class="input-field col s6">' +
-					        		'<strong>Longitude</strong>' +
-					          		'<input type="text" id="Longitude" name="Longitude" class="validate" value="'+this.lng+'">' +
-					        	'</div>' +
+							        	'<div class="input-field col s6">' +
+							        		'<strong>Longitude</strong>' +
+							          		'<input type="text" id="Longitude" name="Longitude" class="validate" value="'+this.lng+'">' +
+							        	'</div>' +
 
-					        	'<div class="input-field col s12">' +
-				                    '<input id="locate" type="button" value="Locate">' +
-				                '</div>' +
+							        	'<div class="input-field col s12" style="margin-top:-10px">' +
+							        		'<strong>Address</strong>' +
+							          		'<input type="text" id="Address" name="Address" class="validate" value="'+this.address+'">' +
+							        	'</div>' +
 
-					        	'<div class="input-field col s12">' +
-					        		'<strong>Address</strong>' +
-					          		'<input type="text" id="Address" name="Address" class="validate" value="'+this.address+'">' +
-					        	'</div>' +
-
-					        	'<div class="input-field col s12">' +
-					        		'<strong>Description</strong>' +
-						          	'<textarea id="picture_description" name="picture_description" data-length="500" style="min-height: 120px;" class="materialize-textarea active" value="'+this.description+'"></textarea>' +
-						          	
-						        '</div>' +
-							'</div>' +
-						'</div>';
-					//'</div>';
-	            	
-	            	var position = new google.maps.LatLng(this.lat, this.lng);
-			        bounds.extend(position);
-			        marker = new google.maps.Marker({
-			            position: position,
-			            map: map,
-			            //title: markers[i][0]
-			            info: infoWindowContent
-			        });
-			        
-			        // Allow each marker to have an info window    
-			        google.maps.event.addListener(marker, 'click', (function(marker, i) {
-			            return function() {
-			                infoWindow.setContent(this.info);
-			                infoWindow.open(map, marker);
-			            }
-			        })(marker, i));
-			        i++;
-			    }
+							        	'<div class="input-field col s12" style="margin-top:-10px; margin-bottom: -60px">' +
+							        		'<strong>Description</strong>' +
+								          	'<textarea id="picture_description" name="picture_description" data-length="500" style="min-height: 80px;" class="materialize-textarea active" value="'+this.description+'"></textarea>' +
+								          	
+								        '</div>' +
+									'</div>' +
+								'</div>'+
+							'</div>';
+						//'</div>';
+		            	
+		            	var position = new google.maps.LatLng(this.lat, this.lng);
+				        bounds.extend(position);
+				        marker = new google.maps.Marker({
+				            position: position,
+				            map: map,
+				            //title: markers[i][0]
+				            info: infoWindowContent
+				        });
+				        
+				        // Allow each marker to have an info window    
+				        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+				            return function() {
+				            	//var myinfowindow = document.getElementsByClassName("gm-style-iw");
+				            	//myinfowindow.style.background = "url("+"'/files/images/"+this.picture_id+".jpg')";
+				                infoWindow.setContent(this.info);
+				                infoWindow.open(map, marker);
+				            }
+				        })(marker, i));
+				        i++;
+				    }
 
 		        // Automatically center the map fitting all markers on the screen
 		        
+        		});
 
-        	});
-        	map.fitBounds(bounds);
+	        	google.maps.event.addListener(map, 'zoom_changed', function() {
+				    zoomChangeBoundsListener = 
+				        google.maps.event.addListener(map, 'bounds_changed', function(event) {
+				            if (this.getZoom() > 12 && this.initialZoom == true) {
+				                // Change max/min zoom here
+				                this.setZoom(12);
+				                this.initialZoom = false;
+				            }
+				        google.maps.event.removeListener(zoomChangeBoundsListener);
+				    });
+				});
+	        	map.initialZoom = true;
+        		map.fitBounds(bounds);
+        	}	
 
         	/*var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
 		        this.setZoom(14);

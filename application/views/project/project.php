@@ -9,7 +9,7 @@
 </style>
 
 <body>
-    <div class="row" style="height: 80%">
+    <!--<div class="row" style="height: 80%">
         <nav>
             <div class="nav-wrapper" style="background-color: white;">
                 <ul>
@@ -20,10 +20,9 @@
                 </ul>
             </div>
         </nav>
-
+    </div>-->
         <!--<div class="row hide-on-medium-and-up" id="map" style="position: fixed;width:50%; height:50%"></div>-->
-        <div class="row" id="map" style=""></div>
-    </div>
+        <div class="row" id="map" style="height: 91%;"></div>
 
     <div id="create-project-modal" class="modal modal-fixed-footer" style="min-height:500px;">
 
