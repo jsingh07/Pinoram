@@ -1,4 +1,13 @@
 <html>
+<style>
+#user-registration {
+  transform: scale(0.9, 0.9);
+  -ms-transform: scale(0.9, 0.9); /* IE 9 */
+  -webkit-transform: scale(0.9, 0.9); /* Safari and Chrome */
+  -o-transform: scale(0.9, 0.9); /* Opera */
+  -moz-transform: scale(0.9, 0.9); /* Firefox */
+}
+</style>
 	<body style="background-color: #e0f2f1;">
 		<div class="row" id="user-registration">
 			<div class="card z-depth-5 col s12">

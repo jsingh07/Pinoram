@@ -309,9 +309,20 @@
 	    		}
 	    		else
 	    		{
+	    			var modalWidth;
+	    			if(modalHeight > 600)
+	    			{
+	    				modalHeight = 600;
+	    				modalWidth = (((imgWidth/imgHeight) * 600) + 350);
+	    			}
+	    			else
+	    			{
+	    				modalWidth = "90%";
+	    			}
+					
 		    		var backgroundSize = "auto " + modalHeight +"px";
 		    		$("#pictureModal").css("height", modalHeight);
-		    		$("#pictureModal").css("width", "90%");
+		    		$("#pictureModal").css("width", modalWidth);
 		    		$("#pictureModal").css("max-width", "1200px");
 		    		$("#pictureModal").css("background-size", backgroundSize);
 		    		$("#pictureModal").css("margin-top", "20px");
