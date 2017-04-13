@@ -32,7 +32,7 @@
 				      	</div>
 					</div>
 					<div style="margin-top: -20px; width: 100%; position: relative;" >
-		              <input style="width:80%; margin-left:10%;" class="btn waves-effect waves-light" type="submit" name="submit" value="SignIn"></input>
+		              <button style="width:80%; margin-left:10%;" class="btn waves-effect waves-light" type="submit" name="submit">Sign In</button>
 		            </div>
 		        	<?php echo form_close(); ?>
 				</div> 

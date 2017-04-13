@@ -27,7 +27,7 @@
 						<li>Phone</li>
 						<li>Location</li>
 						<li>Bio</li>
-						<li style="margin-top: 100px">Website</li>
+						<li style="margin-top: 102px">Website</li>
 						<li>Facebook</li>
 						<li>LinkedIn</li>
 						<li>Twitter</li>
@@ -51,7 +51,7 @@
 				</div>
 
 				<div style="position: relative;">
-		            <input style="margin-left: 20px; margin-top: 30px" class="col s4 m2 push-l3 btn waves-effect waves-light" type="submit" name="submit" value="Submit"></input>
+		            <button style="margin-left: 20px; margin-top: 30px" class="col s4 m2 push-l3 btn waves-effect waves-light" type="submit" name="submit">Submit</button>
 		        </div>
 		        <?php echo form_close(); ?>
 

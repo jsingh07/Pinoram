@@ -104,13 +104,13 @@
 		</div>
 
 		<div id="picture-modal-footer" class="modal-footer" align="right">
-			<input style="color:black; font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center" type="submit" name="Submit" value="Submit" class="modal-action modal-close waves-effect waves-green btn-flat "></input>
+			<button style="color:green;font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center"  type="submit" name="Submit" value="Submit" class="modal-action modal-close waves-effect waves-green btn-flat ">Submit</button>
 		<?php echo form_close(); ?>
 	      	<a style="font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center; color:black" class="modal-action modal-close waves-effect waves-gray btn-flat">Cancel</a>
 
 	    <?php echo form_open('project/deletePicture'); ?>
 	    	<input type="hidden" id="delete_pic" name="delete_pic"></input>
-	      	<input style="color:red; font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center" type="submit" name="Submit" value="Delete" class="modal-action modal-close waves-effect waves-red btn-flat "></input>
+	      	<button style="color:red; font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center"  type="submit" name="Submit" value="Delete" class="modal-action modal-close waves-effect waves-red btn-flat ">Delete</button>
 	    <?php echo form_close(); ?>
 
 	    </div>
