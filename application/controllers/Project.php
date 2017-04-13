@@ -67,7 +67,7 @@ class Project extends CI_Controller {
 		{
 			$data['files']  = $this->Project_model->get_pictures($this->session->userdata('user_id'));
 			$this->load->view('templates/header.php');
-			$this->load->view('project/upload_picture.php', $data);
+			$this->load->view('project/project_picture.php', $data);
 		}
 	}
 
@@ -171,7 +171,7 @@ class Project extends CI_Controller {
 		//$this->load->view('project/test.php');
 		//$data['files']  = $this->test_post();
 
-        $this->load->view('project/project_picture.php');
+        $this->load->view('project/upload_picture.php');
 	}
 
 	public function test_post()
@@ -180,3 +180,4 @@ class Project extends CI_Controller {
 		echo json_encode($data->result(), true);
 	}
 }
+?>
