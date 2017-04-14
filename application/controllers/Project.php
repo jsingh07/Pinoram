@@ -10,6 +10,8 @@ class Project extends CI_Controller {
 
 	$this->load->helper('form');
 
+	$this->load->helper("file");
+
 	// Load form validation library
 	$this->load->library('form_validation');
 
@@ -117,7 +119,8 @@ class Project extends CI_Controller {
 		{
 			$clean = $this->security->xss_clean($this->input->post(NULL, TRUE));
 			$this->Project_model->delete_picture($clean);
-
+			//delete_files('/Library/WebServer/Documents/pinoram/pinoram-production/files/images/'.$clean['delete_pic'].'.jpg');
+			unlink('/Library/WebServer/Documents/pinoram/pinoram-production/files/images/'.$clean['delete_pic'].'.jpg');
 			redirect('Project/picture');
 		}
 	}
@@ -171,7 +174,7 @@ class Project extends CI_Controller {
 		//$this->load->view('project/test.php');
 		//$data['files']  = $this->test_post();
 
-        $this->load->view('project/upload_picture.php');
+        $this->load->view('login/email_prompt.php');
 	}
 
 	public function test_post()
