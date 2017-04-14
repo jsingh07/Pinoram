@@ -16,6 +16,7 @@
       <script type="text/javascript" src="/assets/js/jquery-3.1.1.min.js"></script> 
       <script type="text/javascript" src="/assets/js/materialize.min.js"></script>
       <script src="/assets/js/packery-docs.min.js"></script>
+      <script type="text/javascript" src="/assets/js/exif.js"></script>
 
       <?php $username = $this->session->userdata('username');?>
 
