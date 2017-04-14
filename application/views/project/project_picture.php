@@ -211,7 +211,7 @@
 	    				var img = new Image();
 						img.onload = function() 
 						{
-						  //alert(this.width + 'x' + this.height);
+
 						  var imgWidth = this.width;
 						  var imgHeight = this.height;
 
@@ -505,7 +505,7 @@
           } 
           else 
           {
-            alert('Geocode was not successful for the following reason: ' + status);
+            ('Geocode was not successful for the following reason: ' + status);
           }
         });
       }

@@ -57,10 +57,6 @@ class Project extends CI_Controller {
 			$project_id = $this->Project_model->create_project($clean, $this->session->userdata('user_id'), $access);
 		}
 
-		/*	$data['project_id'] = 1;
-			$this->load->view('templates/header.php');
-			$this->load->view('project/project_picture.php', $data);*/
-
 	}
 
 	public function picture()
