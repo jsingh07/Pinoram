@@ -8,7 +8,7 @@
   -moz-transform: scale(0.9, 0.9); /* Firefox */
 }
 </style>
-	<body style="background-color: #e0f2f1;">
+	<body style="background-color: #eeeeee">
 		<div class="row" id="user-registration">
 			<div class="card z-depth-5 col s12">
 				<div class="error_msg" style="position: relative; color: red; text-align: center">
