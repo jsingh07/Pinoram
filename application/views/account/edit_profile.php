@@ -3,7 +3,7 @@
 <body>
 	<div class="row" id="user-profile" style=" position: relative; margin-top: 3%; max-width: 800px; height: 700px;">
 		<div class="card z-depth-5 col s12" style="height: 700px;">
-			<div class="vertical-menu left hide-on-small-and-down" style="margin-left:-20px; position: relative; display:inline-block; z-index:100;">
+			<div class="vertical-menu left hide-on-small-and-down" style="margin-left:-11px; position: relative; display:inline-block; z-index:100;">
 				<a href="<?php echo site_url();?>Account" style="padding-left: 40px;">Account</a>
 				<a href="" class="active" style="padding-left: 40px;">Edit Profile</a>
 			 	<a href="<?php echo site_url();?>Login/password_recovery" style="padding-left: 40px;">Change Password</a>
@@ -22,12 +22,12 @@
       		</div>
 
 			<div class="row" id="profile">
-				<div class="col s3" id="label" style="text-align: right">
+				<div class="col s3" id="label" style="text-align: right; margin-left: -11px">
 					<ul>
 						<li>Phone</li>
 						<li>Location</li>
 						<li>Bio</li>
-						<li style="margin-top: 100px">Website</li>
+						<li style="margin-top: 102px">Website</li>
 						<li>Facebook</li>
 						<li>LinkedIn</li>
 						<li>Twitter</li>
@@ -51,7 +51,7 @@
 				</div>
 
 				<div style="position: relative;">
-		            <input style="margin-left: 20px; margin-top: 30px" class="col s4 m2 push-l3 btn waves-effect waves-light" type="submit" name="submit" value="Submit"></input>
+		            <button style="margin-left: 20px; margin-top: 30px" class="col s4 m2 push-l3 btn waves-effect waves-light" type="submit" name="submit">Submit</button>
 		        </div>
 		        <?php echo form_close(); ?>
 

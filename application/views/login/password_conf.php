@@ -23,7 +23,7 @@
       		</div>
 
 			<div class="row" id="profile">
-				<div class="card z-depth-5 col s10 m7" style="margin-left: 10%; margin-top: 5%">
+				<div class="card z-depth-5 col s10 m7" style="max-width: 450px; margin-left: 5%; margin-top: 5%">
 					<div style="position: relative; margin-top: 10px; color: red; text-align:center;">
 						<?php echo $msg ?>
 					</div>
@@ -42,7 +42,7 @@
 					        </div>
 						</div>
 						<div style="margin-top: -20px; width: 100%; position: relative;" >
-			              <input style="width:80%; margin-left:10%;" class="btn waves-effect waves-light" type="submit" name="submit" value="Submit"></input>
+			              <button style="width:80%; margin-left:10%;" class="btn waves-effect waves-light" type="submit" name="submit">Submit</button>
 			            </div>
 			        	<?php echo form_close(); ?>
 					</div> 

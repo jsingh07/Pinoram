@@ -42,10 +42,10 @@
 	</div>-->
 
 	<div class="fixed-action-btn vertical">
-   		<?php echo form_open_multipart('Project/upload_picture'); ?> 
+   		<?php echo form_open_multipart('Project/upload_picture', 'id="formPictureUpload"'); ?> 
 
    		<a class="btn-floating btn-large waves-effect waves-light red file-field input-field" onclick="document.getElementById('picture_upload').click();"> 
-   			<input type="file" multiple name="picture_upload" accept="image/*" onchange="this.form.submit()" id="picture_upload" style="display: none;">
+   			<input type="file" multiple name="picture_upload" accept="image/*" onchange="uploadPicture(this)" id="picture_upload" style="display: none;">
     		<i class="large material-icons">publish</i>
     	</a> 
     	<?php echo form_close(); ?>
@@ -71,7 +71,7 @@
 
 
 
-	    	<div id="picture-info-div" class= "right" style="width: 300px; margin-top:-10px;">
+	    	<div id="picture-info-div" class= "right" style="width: 300px; margin-top:10px;">
 		    	
 
 				<div style="position: relative; margin-top: 20px; width:100%">
@@ -104,24 +104,38 @@
 		</div>
 
 		<div id="picture-modal-footer" class="modal-footer" align="right">
-			<input style="color:black; font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center" type="submit" name="Submit" value="Submit" class="modal-action modal-close waves-effect waves-green btn-flat "></input>
+			<button style="color:green;font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center"  type="submit" name="Submit" value="Submit" class="modal-action modal-close waves-effect waves-green btn-flat ">Submit</button>
 		<?php echo form_close(); ?>
 	      	<a style="font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center; color:black" class="modal-action modal-close waves-effect waves-gray btn-flat">Cancel</a>
 
 	    <?php echo form_open('project/deletePicture'); ?>
 	    	<input type="hidden" id="delete_pic" name="delete_pic"></input>
-	      	<input style="color:red; font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center" type="submit" name="Submit" value="Delete" class="modal-action modal-close waves-effect waves-red btn-flat "></input>
+	      	<button style="color:red; font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center"  type="submit" name="Submit" value="Delete" class="modal-action modal-close waves-effect waves-red btn-flat ">Delete</button>
 	    <?php echo form_close(); ?>
 
 	    </div>
 
 	</div>
 
+	<div id="picturePreviewModal" class="modal" style="height:auto;">
+
+	   	<img id="picturePreviewImage" >
+	   	<div class="modal-footer">
+	      <button id="imageUploadButton" class="modal-action modal-close waves-effect waves-green btn-flat" style="color: green; width: 50%; max-width: 100px; padding: 0;">Upload</button>
+	      <button class="modal-action modal-close waves-effect waves-green btn-flat" style="width: 50%; padding: 0; max-width: 100px">Cancel</button>
+	    </div>
+
+  	</div>
+
 </body>
 
 
   	<script>
 	    $(document).ready(function(){
+
+	    	$('#picture_upload').click(function() {
+	    		//console.log(this.value);
+	    	});
 
 			$.ajax({
 		        url: "/project/test_post", 
@@ -260,9 +274,9 @@
 	    	{
 	    		var mywidth = Math.round(((imgWidth / imgHeight) * 400) + 350);
 	    		var mywidthstring = mywidth + "px";
-	    		if(windowwidth * .9 > 900)
+	    		if(windowwidth * .9 > 1200)
 	    		{
-	    			var modalHeight = Math.round((imgHeight/imgWidth) * (900 - 350));
+	    			var modalHeight = Math.round((imgHeight/imgWidth) * (1200 - 350));
 	    		}
 	    		else
 	    		{
@@ -278,7 +292,7 @@
 	    			{
 	    				var picHeight = Math.round((imgHeight/imgWidth) * (windowwidth * .9));
 	    			}
-	    			var infooffset = picHeight + 20;
+	    			var infooffset = picHeight + 5;
 	    			var backgroundSize = "100% " + "auto";
 	    			modalHeight = picHeight + 250;
 	    			calcinfoheight = picHeight + 460;
@@ -297,6 +311,7 @@
 		    		$("#picture-info-div").css("width", "100%");
 		    		$("#picture-info-div").css("height", calcinfoheight);
 		    		$("#picture-info-div").css("overflow-y", "scroll");
+		    		$("#picture-info-div").css("margin-top", "-15px");
 		    		$("#picture-info-div").css("background-color", "transparent");
 		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("position","fixed");
 		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("width","100%");
@@ -304,12 +319,23 @@
 	    		}
 	    		else
 	    		{
+	    			var modalWidth;
+	    			if(modalHeight > 600)
+	    			{
+	    				modalHeight = 600;
+	    				modalWidth = (((imgWidth/imgHeight) * 600) + 350);
+	    			}
+	    			else
+	    			{
+	    				modalWidth = "90%";
+	    			}
+					
 		    		var backgroundSize = "auto " + modalHeight +"px";
 		    		$("#pictureModal").css("height", modalHeight);
-		    		$("#pictureModal").css("width", "90%");
-		    		$("#pictureModal").css("max-width", "900px");
+		    		$("#pictureModal").css("width", modalWidth);
+		    		$("#pictureModal").css("max-width", "1200px");
 		    		$("#pictureModal").css("background-size", backgroundSize);
-		    		$("#pictureModal").css("margin-top", "10%");
+		    		$("#pictureModal").css("margin-top", "20px");
 		    		$("#picture-info").css("background-color", "transparent");
 		    		$("#picture-info").css("margin-top", "0px");
 		    		$("#picture-info").css("height", "auto");
@@ -319,6 +345,7 @@
 		    		$("#picture-info-div").css("background-color", "transparent");
 		    		$("#picture-info-div").css("overflow-y", "scroll");
 		    		$("#picture-info-div").css("height", "auto");
+		    		$("#picture-info-div").css("margin-top", "10px");
 		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("position","absolute");
 		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("width","350px");
 	    		}
@@ -352,6 +379,7 @@
 		    		$("#picture-info-div").css("width", "100%");
 		    		$("#picture-info-div").css("background-color", "white");
 		    		$("#picture-info-div").css("height", "auto");
+		    		$("#picture-info-div").css("margin-top", "5px");
 		    		$("#pictureModal").css("overflow-y", "scroll");
 		    		$("#picture-info-div").css("overflow-y", "visible");
 		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("position","fixed");
@@ -362,13 +390,13 @@
 	    		else
 	    		{
 					//var myheight = Math.round(((imgHeight / imgWidth) * 400));
-					var mywidth = Math.round(((imgWidth / imgHeight) * 900));
-					var modalwidth = mywidth + 350 + "px";
+					var mywidth = Math.round(((imgWidth / imgHeight) * 600));
+					var modalwidth = (mywidth + 350) + "px";
 		    		//var myheightstring = "900px";
 		    		$("#pictureModal").css("width", modalwidth);
 		    		$("#pictureModal").css("height", "900px");
 		    		$("#pictureModal").css("max-width", "900px");
-		    		$("#pictureModal").css("background-size", "auto 700px");
+		    		$("#pictureModal").css("background-size", "auto 600px");
 		    		$("#pictureModal").css("margin-top", "10px");
 		    		$("#picture-info").css("background-color", "transparent");
 		    		$("#picture-info").css("margin-top", "0px");
@@ -379,12 +407,89 @@
 		    		$("#picture-info-div").css("background-color", "transparent");
 		    		$("#picture-info-div").css("overflow-y", "scroll");
 		    		$("#picture-info-div").css("height", "auto");
+		    		$("#picture-info-div").css("margin-top", "15px");
 		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("position","absolute");
 		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("width","350px");
 		    	}
 	    	}
 	    }
 
+	    function uploadPicture(input)
+	    {
+	    	if (input.files && input.files[0]) 
+	    	{
+		        var reader = new FileReader();
+		        var file = input.files[0];
+
+		        reader.onload = function (e) 
+		        {
+
+					EXIF.getData(file, function() {
+					    orientation = EXIF.getTag(this, "Orientation");
+					    alert(orientation);
+					});
+
+					$('#picturePreviewImage').attr('src', e.target.result);
+
+		            var image  = new Image();
+		            image.src = e.target.result;
+		            var windowheight = Math.round($(window).height() ); 
+	    			var windowwidth = Math.round($(window).width() ); 
+		            image.onload = function () {
+		            	if(this.width >= this.height)
+		            	{
+		            		if(windowwidth < 450)
+		            		{
+		            			$('#picturePreviewImage').css('width', '100%');
+				            	$('#picturePreviewImage').css('height', 'auto');
+				            	$('#picturePreviewModal').css('width', '90%');
+		            		}
+		            		else
+		            		{
+				            	$('#picturePreviewImage').css('width', '400px');
+				            	$('#picturePreviewImage').css('height', 'auto');
+				            	$('#picturePreviewModal').css('width', '400px');
+				            }
+		            	}
+		            	else
+		            	{
+		            		if(windowwidth < 450)
+		            		{
+
+		            			var tempheight = (windowheight * .5) + 'px';
+		            			$('#picturePreviewImage').css('height', tempheight);
+				            	$('#picturePreviewImage').css('width', 'auto');
+				            	var previewModalWidth = ((this.width / this.height) * (windowheight * .5)) + "px";
+				            	$('#picturePreviewModal').css('width', previewModalWidth);
+		            		}
+		            		else
+		            		{
+				            	$('#picturePreviewImage').css('height', '400px');
+				            	$('#picturePreviewImage').css('width', 'auto');
+				            	var previewModalWidth = ((this.width / this.height) * 400) + "px";
+				            	$('#picturePreviewModal').css('width', previewModalWidth);
+				            }
+		            	}
+		            	$('#imageUploadButton').click(function() {
+		            		input.form.submit();
+		            	});
+			        };
+
+		            $('#picturePreviewModal').modal({
+      						dismissible: false,
+      						complete: function() { document.getElementById("formPictureUpload").reset(); }
+      						}).modal('open');
+
+		            var imageInfo =    +' '+ // get the value of `name` from the `file` Obj
+			          file.type    +' '+
+			          Math.round(file.size/1024) +'KB';
+			          //console.log(imageInfo);
+		        }
+
+
+		        reader.readAsDataURL(input.files[0]);
+		    }
+	    }
 
       function geocodeAddress(geocoder) {
 
