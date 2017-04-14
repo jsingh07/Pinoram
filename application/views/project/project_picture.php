@@ -52,9 +52,19 @@
 
  	</div>
 
+ 	<div id="picturePreviewModal" class="modal" style="height:auto;">
+
+	   	<img id="picturePreviewImage" >
+	   	<div class="modal-footer">
+	      <button id="imageUploadButton" class="modal-action modal-close waves-effect waves-green btn-flat" style="color: green; width: 50%; max-width: 100px; padding: 0;">Upload</button>
+	      <button class="modal-action modal-close waves-effect waves-green btn-flat" style="width: 50%; padding: 0; max-width: 100px">Cancel</button>
+	    </div>
+
+  	</div>
+
+
     <div class="row" style="max-width: 800px; margin-top: 20px;">
  		<div id="pictureGrid" class="grid" style="height: 100%; background-color: white">
-
 		</div>
     </div>
 
@@ -116,16 +126,6 @@
 	    </div>
 
 	</div>
-
-	<div id="picturePreviewModal" class="modal" style="height:auto;">
-
-	   	<img id="picturePreviewImage" >
-	   	<div class="modal-footer">
-	      <button id="imageUploadButton" class="modal-action modal-close waves-effect waves-green btn-flat" style="color: green; width: 50%; max-width: 100px; padding: 0;">Upload</button>
-	      <button class="modal-action modal-close waves-effect waves-green btn-flat" style="width: 50%; padding: 0; max-width: 100px">Cancel</button>
-	    </div>
-
-  	</div>
 
 </body>
 
@@ -423,11 +423,6 @@
 
 		        reader.onload = function (e) 
 		        {
-
-					EXIF.getData(file, function() {
-					    orientation = EXIF.getTag(this, "Orientation");
-					    alert(orientation);
-					});
 
 					$('#picturePreviewImage').attr('src', e.target.result);
 
