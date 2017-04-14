@@ -466,7 +466,6 @@
 				            }
 		            	}
 		            	$('#imageUploadButton').click(function() {
-		            		alert("Submitting");
 		            		input.form.submit();
 		            	});
 			        };
@@ -479,7 +478,7 @@
 		            var imageInfo =    +' '+ // get the value of `name` from the `file` Obj
 			          file.type    +' '+
 			          Math.round(file.size/1024) +'KB';
-			          console.log(imageInfo);
+			          //console.log(imageInfo);
 		        }
 
 
