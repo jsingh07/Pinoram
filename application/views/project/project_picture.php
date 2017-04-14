@@ -421,11 +421,31 @@
 		        var reader = new FileReader();
 		        var file = input.files[0];
 
-		        reader.onload = function (e) {
-		            $('#picturePreviewImage').attr('src', e.target.result);
-		            //openModal();
-		            //console.log(e.target.result.width);
-		            //console.log(e.target.result.length);
+		        reader.onload = function (e) 
+		        {
+
+					reader.onloadend = function() {
+
+					    var exif = EXIF.readFromBinaryFile(new BinaryFile(this.result));
+
+					    switch(exif.Orientation)
+					    {
+
+					       case 8:
+					           ctx.rotate(90*Math.PI/180);
+					           break;
+					       case 3:
+					           ctx.rotate(180*Math.PI/180);
+					           break;
+					       case 6:
+					           ctx.rotate(-90*Math.PI/180);
+					           break;
+
+					    }
+					};
+
+					$('#picturePreviewImage').attr('src', e.target.result);
+
 		            var image  = new Image();
 		            image.src = e.target.result;
 		            var windowheight = Math.round($(window).height() ); 
