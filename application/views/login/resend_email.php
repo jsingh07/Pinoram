@@ -1,6 +1,7 @@
 <html>
-	<div class="row" style="position: relative; margin-top: 2%; max-width: 400px; height: 300px;">
-          <div class="card center">
+<body style="background-color: #eeeeee">
+	<div class="row valign-wrapper" style="position: relative; margin-top: 2%; max-width: 400px; height: 300px;">
+          <div class="valign-wrapper card center">
             <div class="card-content">
               <span class="card-title">Please verify your Email address.</span>
               <p>Click the button below to resend verification email.</p>
@@ -9,4 +10,5 @@
           
         </div>
     </div>
+</body>
 </html>

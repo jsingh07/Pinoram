@@ -42,10 +42,10 @@
 	</div>-->
 
 	<div class="fixed-action-btn vertical">
-   		<?php echo form_open_multipart('Project/upload_picture'); ?> 
+   		<?php echo form_open_multipart('Project/upload_picture', 'id="formPictureUpload"'); ?> 
 
    		<a class="btn-floating btn-large waves-effect waves-light red file-field input-field" onclick="document.getElementById('picture_upload').click();"> 
-   			<input type="file" multiple name="picture_upload" accept="image/*" onchange="this.form.submit()" id="picture_upload" style="display: none;">
+   			<input type="file" multiple name="picture_upload" accept="image/*" onchange="uploadPicture(this)" id="picture_upload" style="display: none;">
     		<i class="large material-icons">publish</i>
     	</a> 
     	<?php echo form_close(); ?>
@@ -117,6 +117,16 @@
 
 	</div>
 
+	<div id="picturePreviewModal" class="modal" style="height:auto;">
+
+	   	<img id="picturePreviewImage" >
+	   	<div class="modal-footer">
+	      <button id="imageUploadButton" class="modal-action modal-close waves-effect waves-green btn-flat" style="color: green; width: 50%; max-width: 100px; padding: 0;">Upload</button>
+	      <button class="modal-action modal-close waves-effect waves-green btn-flat" style="width: 50%; padding: 0; max-width: 100px">Cancel</button>
+	    </div>
+
+  	</div>
+
 </body>
 
 
@@ -124,7 +134,7 @@
 	    $(document).ready(function(){
 
 	    	$('#picture_upload').click(function() {
-	    		console.log(this.value);
+	    		//console.log(this.value);
 	    	});
 
 			$.ajax({
@@ -404,6 +414,78 @@
 	    	}
 	    }
 
+	    function uploadPicture(input)
+	    {
+	    	if (input.files && input.files[0]) 
+	    	{
+		        var reader = new FileReader();
+		        var file = input.files[0];
+
+		        reader.onload = function (e) {
+		            $('#picturePreviewImage').attr('src', e.target.result);
+		            //openModal();
+		            //console.log(e.target.result.width);
+		            //console.log(e.target.result.length);
+		            var image  = new Image();
+		            image.src = e.target.result;
+		            var windowheight = Math.round($(window).height() ); 
+	    			var windowwidth = Math.round($(window).width() ); 
+		            image.onload = function () {
+		            	if(this.width >= this.height)
+		            	{
+		            		if(windowwidth < 450)
+		            		{
+		            			$('#picturePreviewImage').css('width', '100%');
+				            	$('#picturePreviewImage').css('height', 'auto');
+				            	$('#picturePreviewModal').css('width', '90%');
+		            		}
+		            		else
+		            		{
+				            	$('#picturePreviewImage').css('width', '400px');
+				            	$('#picturePreviewImage').css('height', 'auto');
+				            	$('#picturePreviewModal').css('width', '400px');
+				            }
+		            	}
+		            	else
+		            	{
+		            		if(windowwidth < 450)
+		            		{
+
+		            			var tempheight = (windowheight * .5) + 'px';
+		            			$('#picturePreviewImage').css('height', tempheight);
+				            	$('#picturePreviewImage').css('width', 'auto');
+				            	var previewModalWidth = ((this.width / this.height) * (windowheight * .5)) + "px";
+				            	$('#picturePreviewModal').css('width', previewModalWidth);
+		            		}
+		            		else
+		            		{
+				            	$('#picturePreviewImage').css('height', '400px');
+				            	$('#picturePreviewImage').css('width', 'auto');
+				            	var previewModalWidth = ((this.width / this.height) * 400) + "px";
+				            	$('#picturePreviewModal').css('width', previewModalWidth);
+				            }
+		            	}
+		            	$('#imageUploadButton').click(function() {
+		            		alert("Submitting");
+		            		input.form.submit();
+		            	});
+			        };
+
+		            $('#picturePreviewModal').modal({
+      						dismissible: false,
+      						complete: function() { document.getElementById("formPictureUpload").reset(); }
+      						}).modal('open');
+
+		            var imageInfo =    +' '+ // get the value of `name` from the `file` Obj
+			          file.type    +' '+
+			          Math.round(file.size/1024) +'KB';
+			          console.log(imageInfo);
+		        }
+
+
+		        reader.readAsDataURL(input.files[0]);
+		    }
+	    }
 
       function geocodeAddress(geocoder) {
 
