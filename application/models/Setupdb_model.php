@@ -190,9 +190,8 @@ class Setupdb_model extends CI_Model {
 
 		$fields = array(
 			'picture_id' => array(
-				'type' => 'INT',
-				'unsigned' => TRUE,
-                'auto_increment' => TRUE
+				'type' => 'VARCHAR',
+				'constraint' => 40
 			),
 			'owner_id' => array(
 				'type' => 'INT'
