@@ -1,117 +1,153 @@
+<!DOCTYPE html>
+<html>  
+    <body>
+    <!--<div>
+        <img id="demo-basic" src="/files/images/6.jpg"/>
+            <button id="submitbutton" class="waves-effect waves-light btn-large">Submit</button>
+        </div>
+        <div id="test" class="circle">
+            
+    </div>-->
 
- <link href="/assets/css/croppie.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-<script type="text/javascript" src="/assets/js/croppie.js"></script>
-
-<a id="modalButton" href="#testModal" ><button>Open</button></a>
-
-
-<div class="modal" id="testModal" style="height: 600px; width: 600px">
-    <div>
-        <img id="demo-basic"/>
-        <button id="submitbutton" class="waves-effect waves-light btn-large">Submit</button>
-        <button id="rotatebutton" class="waves-effect waves-light btn-large">Rotate</button>
+    <div class="row" style="margin-top: 20px">
+        <div class="col s12 m8 offset-m2 l6 offset-l3" >
+            <div class="card-content" style="border: none; margin: auto">
+                <div class="row valign-wrapper">
+                    <div class="col s4">
+                        <img src="/files/profile_images/2.jpg" class="circle responsive-img" style="margin-top: 20px">        
+                    </div>
+                    <div class="col s8" >
+                        <h3 style="font-weight: bold"><?php echo $this->session->userdata('username')?></h3>
+                        <div id="bio">
+                        </div>
+                    </div>
+                    </div>
+                
+                </div>
+                <div class="fixed-action-btn">
+                     <a class="btn-floating waves-effect waves-light red"><i class="material-icons">add</i></a>
+                </div> 
+            </div>
+        </div>
     </div>
 
-</div>
 
-<img id="demo-exif" src="/files/images/exiftest1.jpg" style="width: 300px; height: 300px"/>
-<pre>Exif Test: <span id="exifTest"></span></div>
+    <div class="row " style="max-width: 80%; margin-top: 20px;">
+        <div class="col s12 l4" >
+            <div class="card" >
+                <div class="card-image">
+                    
+                    <a href="<?php echo base_url();?>/Project/picture"><img src="/files/images/1.jpg"></a>
+                    <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                </div>
+                <div class="card-action">
+                      <a href="<?php echo base_url();?>/Project/picture">Album</a>
+                </div>
+            </div>
+            <div class="card" >
+                <div class="card-image">
+                    
+                    <a href="<?php echo base_url();?>/Project/picture"><img src="/files/images/4.jpg"></a>
+                    <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
 
-Upload a local file to read Exif data.
-<br/>
-<input id="file-input" type="file" />
-<br/><br/>
+                </div>
+                <div class="card-action">
+                      <a href="<?php echo base_url();?>/Project/picture">Album</a>
+                </div>
+            </div>
+            <div class="card" >
+                <div class="card-image">
+                    
+                    <a href="<?php echo base_url();?>/Project/picture"><img src="/files/images/1.jpg"></a>
+                    <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
 
-<div id="test" style="max-width: 600px; max-height: 600px">
-    <image id="testcanvas" style="width: 200, height: auto"></image>
-</div>
-
-<script>
-$(document).ready(function(){
-   /* var image = new Image();
-    image.src = "/files/images/16.jpg";
-    image.onload = function() 
-    {
-        imgwidth = this.width;
-        imglength = this.height;*/
-    
-document.getElementById("file-input").onchange = function(e) {
-    EXIF.getData(e.target.files[0], function() {
-        alert(EXIF.pretty(this));
-    });
-}
-
-document.getElementById("demo-exif").onclick = function() {
-    EXIF.getData(this, function() {
-            var lat = EXIF.getTag(this, "GPSLatitude"),
-            lng = EXIF.getTag(this, "GPSLongitude");
-            var lattoDecimal = toDecimal(lat);
-           var longtoDecimal = toDecimal(lng);
-        alert("I was taken by a " + lattoDecimal + " " + longtoDecimal);
-    });
-}
-    function toDecimal(number) {
-       return number[0].numerator + number[1].numerator /
-           (60 * number[1].denominator) + number[2].numerator / (3600 * number[2].denominator);
-    };
-
-
-        var uploadCrop = $('#demo-basic').croppie({
-            enableExif: true,
-            viewport: {
-                width: 400,
-                height: 400,
-                type: 'square'
-            },
-            boundary: {
-                width: 400,
-                height: 400
-            }
-        });
+                </div>
+                <div class="card-action">
+                      <a href="<?php echo base_url();?>/Project/picture">Album</a>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 l4" >
+            <div class="card" >
+                <div class="card-image">
+                    
+                    <a href="<?php echo base_url();?>/Project/picture"><img src="/files/images/3.jpg"></a>
+                    <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                </div>
+            
+                <div class="card-action">
+                      <a href="<?php echo base_url();?>/Project/picture">Album</a>
+                </div>
+            </div>
+            <div class="card" >
+                <div class="card-image">
+                    
+                    <a href="<?php echo base_url();?>/Project/picture"><img src="/files/images/6.jpg"></a>
+                    <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                </div>
+                <div class="card-action">
+                      <a href="<?php echo base_url();?>/Project/picture">Album</a>
+                </div>
+            </div>
+            <div class="card" >
+                <div class="card-image">
+                    
+                    <a href="<?php echo base_url();?>/Project/picture"><img src="/files/images/1.jpg"></a>
+                    <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                </div>
+                <div class="card-action">
+                      <a href="<?php echo base_url();?>/Project/picture">Album</a>
+                </div>
+            </div>
+        </div>
 
 
-        $('#submitbutton').click(function(){
 
-            uploadCrop.croppie('result', {
-                    type: 'base64',
-                    size: 'original'
-                }).then(function(html) {
-                    //popupResult({src: html});
-                    var mydiv = document.getElementById("testcanvas");
-                    mydiv.setAttribute("src", html);
-                    //$('#testcanvas').attr('src', html);
-                
-            });
-            //uploadCrop.croppie('rotate', 90);
-        });
-
-        $('#rotatebutton').click(function(){
-
-            uploadCrop.croppie('rotate', 90);
+        <div class="col s12 l4" >
+            <div class="card" >
+                <div class="card-image">
+                    
+                    <a href="<?php echo base_url();?>/Project/picture"><img src="/files/images/4.jpg"></a>
+                    <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                </div>
+                <div class="card-action">
+                      <a href="<?php echo base_url();?>/Project/picture">Album</a>
+                </div>
+            </div>
      
-        });
-
-        $('#testModal').modal();
-
-        $('#modalButton').click(function(){
-            uploadCrop.croppie('bind', {
-                url: "/files/images/exiftest.jpg",
-                points: [0,0]
-            });
-
-            var img1 = document.getElementById("demo-exif");
-            EXIF.getData(img1, function() {
-                var make = EXIF.getTag(this, "Orientation");
-                var model = EXIF.getTag(this, "Model");
-                var makeAndModel = document.getElementById("exifTest");
-                makeAndModel.innerHTML = `${make} ${model}`;
-            });
             
 
+            <div class="card" >
+                <div class="card-image">
+                    
+                    <a href="<?php echo base_url();?>/Project/picture"><img src="/files/images/5.jpg"></a>
+                    <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                </div>
+                <div class="card-action">
+                      <a href="<?php echo base_url();?>/Project/picture">Album</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+  </body>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $.ajax({
+            url:"/Account/getBio",
+            dataType: 'json',
+            success: function(data)
+            {
+            
+                $div = document.getElementById('bio');
+                $bio = document.createElement("H5")
+                $bio.appendChild(document.createTextNode(data[0].bio));
+                $div.appendChild($bio);
+            }
         });
+    });
 
-   // }
 
-});
-
-</script>
+  </script>
+</html>

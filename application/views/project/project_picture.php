@@ -27,7 +27,9 @@
 
 </style>
 
+
 <body style="background-color: white">
+
 
 	<div class="fixed-action-btn vertical">
    		<?php echo form_open_multipart('Project/upload_picture', 'id="formPictureUpload"'); ?> 
