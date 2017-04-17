@@ -8,6 +8,7 @@
 
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
 
+      <link href="/assets/css/croppie.css" type="text/css" rel="stylesheet"/>
       <link href="/assets/css/packery-docs.css" type="text/css" rel="stylesheet" media="screen,projection"/>
       <link href="/assets/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
       <link href="/assets/css/custom.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -16,6 +17,7 @@
       <script type="text/javascript" src="/assets/js/jquery-3.1.1.min.js"></script> 
       <script type="text/javascript" src="/assets/js/materialize.min.js"></script>
       <script src="/assets/js/packery-docs.min.js"></script>
+      <script src="/assets/js/croppie.js"></script>
 
       <?php $username = $this->session->userdata('username');?>
 
@@ -36,7 +38,7 @@
                            <?php if(($this->session->userdata('role') == 'admin') or ($this->session->userdata('role') == 'super-user')) {?>
                            <li><a href="<?php echo site_url();?>Setupdb">Database</a></li>
                            <?php } ?>
-                           <li data-activates="about-slide-out" class="button-collapse" style="margin: auto; cursor: pointer; cursor:hand;"><a>About</a></li>
+                           <li><a href="<?php echo site_url();?>Welcome/about_us">About</a></li>
                            <li><a href="<?php echo site_url();?>Login/user_logout">Logout</a></li>
                         </ul>
 
@@ -60,7 +62,7 @@
                      </div>
                      <div class="col s7 push-s1 pull-s1">
                         <ul id="nav-mobile" class="right hide-on-small-and-down" style="margin-right: -20px">
-                           <li data-activates="about-slide-out" class="button-collapse" style="margin: auto; cursor: pointer; cursor:hand;"><a>About</a></li>
+                           <li style="margin: auto; cursor: pointer; cursor:hand;"><a href="<?php echo site_url();?>Welcome/about_us">About</a></li>
                            <li><a href="<?php echo site_url();?>Login">Login</a></li>
 			               </ul>
                         <ul id="nav-mobile" class="right hide-on-med-and-up">
@@ -103,14 +105,14 @@
             <?php if(($this->session->userdata('role') == 'admin') or ($this->session->userdata('role') == 'super-user')) {?>
             <li><a href="<?php echo site_url();?>Setupdb">Set up Database</a></li>
             <?php } ?>
-            <li data-activates="about-slide-out" class="button-collapse" style="margin: auto; cursor: pointer; cursor:hand;"><a>About</a></li>
+            <li style="margin: auto; cursor: pointer; cursor:hand;"><a href="<?php echo site_url();?>Welcome/about_us">About</a></li>
             <li><a href="<?php echo site_url();?>Login/user_logout">Logout</a></li>
          </ul>
       <?php } 
 
       else{ ?>
          <ul id="dropdown2" class="dropdown-content">
-            <li style="position: relative; margin: auto;" data-activates="about-slide-out" class="button-collapse" style="cursor: pointer; cursor:hand;"><a>About</a></li>
+            <li style="position: relative; margin: auto;" style="cursor: pointer; cursor:hand;"><a href="<?php echo site_url();?>Welcome/about_us">About</a></li>
             <li><a href="<?php echo site_url();?>Login">Login</a></li>
          </ul>
       <?php } ?> 

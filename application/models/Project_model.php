@@ -56,9 +56,10 @@ class Project_model extends CI_Model {
 	public function delete_picture($data)
 	{
 		$picture_id = $data['delete_pic'];
-
+		$path = "files/images/".$picture_id.".jpg";
 		$sql = "DELETE FROM pictures WHERE picture_id = $picture_id";
 		$query = $this->db->query($sql);
+		unlink($path);
 	}
 
 }

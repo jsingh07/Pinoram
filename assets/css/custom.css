@@ -7,6 +7,10 @@
 
    font-family: 'Proxima-Nova';
 }*/
+.profile_ul li{
+	font-size: 1.5em;
+}
+
 
 @font-face {
   font-family: 'Texta';

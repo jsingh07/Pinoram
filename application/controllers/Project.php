@@ -171,7 +171,7 @@ class Project extends CI_Controller {
 		//$this->load->view('project/test.php');
 		//$data['files']  = $this->test_post();
 
-        $this->load->view('project/upload_picture.php');
+        $this->load->view('project/test.php');
 	}
 
 	public function test_post()
