@@ -1,5 +1,14 @@
 <html>
-	<body style="background-color: #e0f2f1;">
+<style>
+#user-registration {
+  transform: scale(0.9, 0.9);
+  -ms-transform: scale(0.9, 0.9); /* IE 9 */
+  -webkit-transform: scale(0.9, 0.9); /* Safari and Chrome */
+  -o-transform: scale(0.9, 0.9); /* Opera */
+  -moz-transform: scale(0.9, 0.9); /* Firefox */
+}
+</style>
+	<body style="background-color: #eeeeee">
 		<div class="row" id="user-registration">
 			<div class="card z-depth-5 col s12">
 				<div class="error_msg" style="position: relative; color: red; text-align: center">
@@ -32,7 +41,7 @@
 				      	</div>
 					</div>
 					<div style="margin-top: -20px; width: 100%; position: relative;" >
-		              <input style="width:80%; margin-left:10%;" class="btn waves-effect waves-light" type="submit" name="submit" value="SignIn"></input>
+		              <button style="width:80%; margin-left:10%;" class="btn waves-effect waves-light" type="submit" name="submit">Sign In</button>
 		            </div>
 		        	<?php echo form_close(); ?>
 				</div> 

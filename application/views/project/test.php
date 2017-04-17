@@ -145,7 +145,6 @@
                 $bio.appendChild(document.createTextNode(data[0].bio));
                 $div.appendChild($bio);
             }
-
         });
     });
 

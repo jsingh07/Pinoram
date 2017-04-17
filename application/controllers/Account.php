@@ -175,6 +175,8 @@ class Account extends CI_Controller {
 				$this->send_email($message, $subject, $email);
 				$this->session->set_userdata('logged_in',FALSE);
 				session_destroy();
+				$text['mytext'] = "Please confirm your request for Account deletion from your email.";
+				$this->load->view('setupdb/success.php', $text);
 				redirect('Welcome');
 			}
 		}

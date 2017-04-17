@@ -28,13 +28,10 @@ class Project_model extends CI_Model {
         return $result;
 	}
 
-	public function insert_picture($user_id)
+	public function insert_picture($user_id, $pic_id)
 	{
-		$sql = "INSERT INTO pictures (owner_id) VALUES ($user_id)";
+		$sql = "INSERT INTO pictures (owner_id, picture_id) VALUES ($user_id, '$pic_id')";
         $this->db->query($sql);
-
-        $insert_id = $this->db->insert_id();
-        return $insert_id;
 	}
 
 	public function update_picture($data)

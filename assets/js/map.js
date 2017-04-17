@@ -20,12 +20,13 @@ function initMap()
         	console.log(result);
         	if(result.length != 0)
         	{
+        		var marked = 0;
         		var i = 0;
 	        	$.each(result, function(){
 	            	//console.log(this.address);
 	            	if(this.lat != 0 && this.lng != 0 && this.lat != undefined && this.lng != undefined)
 	            	{
-
+	            		marked = 1;
 		            	infoWindowContent = /*'<div class="info_content">' +
 		        							'<h3>London Eye</h3>' +
 		        							'<p>Latitude: '+ this.lat + '</p>' + 
@@ -80,7 +81,6 @@ function initMap()
 				            //title: markers[i][0]
 				            info: infoWindowContent
 				        });
-				        
 				        // Allow each marker to have an info window    
 				        google.maps.event.addListener(marker, 'click', (function(marker, i) {
 				            return function() {
@@ -91,25 +91,29 @@ function initMap()
 				            }
 				        })(marker, i));
 				        i++;
+					    
 				    }
 
 		        // Automatically center the map fitting all markers on the screen
 		        
         		});
-
-	        	google.maps.event.addListener(map, 'zoom_changed', function() {
-				    zoomChangeBoundsListener = 
-				        google.maps.event.addListener(map, 'bounds_changed', function(event) {
-				            if (this.getZoom() > 12 && this.initialZoom == true) {
-				                // Change max/min zoom here
-				                this.setZoom(12);
-				                this.initialZoom = false;
-				            }
-				        google.maps.event.removeListener(zoomChangeBoundsListener);
-				    });
-				});
-	        	map.initialZoom = true;
-        		map.fitBounds(bounds);
+	        	//console.log(bounds);
+	        	if(marked)
+				{
+		        	google.maps.event.addListener(map, 'zoom_changed', function() {
+					    zoomChangeBoundsListener = 
+					        google.maps.event.addListener(map, 'bounds_changed', function(event) {
+					            if (this.getZoom() > 12 && this.initialZoom == true) {
+					                // Change max/min zoom here
+					                this.setZoom(12);
+					                this.initialZoom = false;
+					            }
+					        google.maps.event.removeListener(zoomChangeBoundsListener);
+					    });
+					});
+		        	map.initialZoom = true;
+	        		map.fitBounds(bounds);
+	        	}
         	}	
 
         	/*var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {

@@ -18,6 +18,8 @@
       <script type="text/javascript" src="/assets/js/materialize.min.js"></script>
       <script src="/assets/js/packery-docs.min.js"></script>
       <script src="/assets/js/croppie.js"></script>
+      <script type="text/javascript" src="/assets/js/exif.js"></script>
+
 
       <?php $username = $this->session->userdata('username');?>
 
@@ -27,7 +29,7 @@
                <div class="nav-wrapper">
                   <div class="row">
                      <div class="col s3 push-s1">
-                        <a href="<?php echo base_url();?>" class="brand-logo" style="margin-left:20px"><h4>Pinoram</h4></a>
+                        <a href="<?php echo base_url();?>" class="brand-logo left"><h4>Pinoram</h4></a>
                      </div>
                      <div class="col s7 push-s1">
                      
@@ -58,7 +60,7 @@
                <div class="nav-wrapper">
                   <div class="row">
                      <div class="col s3 push-s1">
-                        <a href="<?php echo base_url();?>" class="brand-logo"><h4>Pinoram</h4></a>
+                        <a href="<?php echo base_url();?>" class="brand-logo left"><h4>Pinoram</h4></a>
                      </div>
                      <div class="col s7 push-s1 pull-s1">
                         <ul id="nav-mobile" class="right hide-on-small-and-down" style="margin-right: -20px">
@@ -75,27 +77,6 @@
          </div>
       <?php }?>
                      
-      <div>
-      <ul id="about-slide-out" class="side-nav">
-         <div class="userView">
-            <h4 class="center">
-               Pinoram
-            </h4><hr/>
-            <p>
-               Pinoram is a web application that allows users to upload pictures and videos to be displayed on a map where the content is taken at. It is intended to provide users with a visual of where they have been and what memory is associated with the location. The application is currently under development.
-            </p><hr/>
-               <h5 style="margin-top: 50px; margin-bottom: 20px;"">Ron (Pyai) Hein</h5>
-               <img style="box-shadow: 8px 8px 10px #aaa;" src="<?php echo base_url();?>/files/images/pyai.jpg" height="200" width="250">
-               <p>
-                  I am a graduate from UC Davis with a Bachelor's Degree in Computer Science. I am creating this site as a way to teach myself Web Development from setting up a domain and a server to design and implementation on both front-end and backend structures.<br><br><hr/>
-                  Email: pyai.hein@gmail.com<br>
-                  Location: San Jose, California<br>
-                  LinkedIn: "https://www.linkedin.com/in/ron-hein-015012111/"<br>
-               </p>
-            
-         </div>
-      </ul>
-      </div>
 
       <?php if($this->session->userdata('logged_in') == TRUE) {?>
          <ul id="dropdown1" class="dropdown-content">
@@ -134,18 +115,6 @@
       stopPropagation: false // Stops event propagation
     }
   );
-
-   /*$(function(){
-
-      $("#closetab").on('click', function()
-      //{ $("#slide0out").sideNav('hide')});
-      /*{
-         $.get('getview', function(data) {
-            $('.userView').html(data);
-         });
-      });
-   
-   });*/
 
   </script>
 

@@ -1,7 +1,15 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
-
+<style>
+#user-registration {
+  transform: scale(0.8, 0.8);
+  -ms-transform: scale(0.8, 0.8); /* IE 9 */
+  -webkit-transform: scale(0.8, 0.8); /* Safari and Chrome */
+  -o-transform: scale(0.8, 0.8); /* Opera */
+  -moz-transform: scale(0.8, 0.8); /* Firefox */
+}
+</style>
 <html>
-	<div class="row" id="user-registration" style="margin-top: 0px;">
+	<div class="row" id="user-registration" style="margin-top: 0px; font-size: .9em">
 		<div class="card z-depth-5 col s12">
 			<div class="error_msg" style="position: relative; color: red; text-align: center">
 				<?php echo validation_errors();?>
@@ -55,7 +63,7 @@
 			        </div>
 				</div>
 				<div class="card-action">
-	              <input class="btn waves-effect waves-light" type="submit" name="submit" value="Sign Up"></input>
+	              <button style="width:80%; margin-left:10%;" class="btn waves-effect waves-light" type="submit" name="submit">Sign Up</button>
 	            </div>
 	        	<?php echo form_close(); ?>
 			</div> 
