@@ -17,8 +17,10 @@
 
 <body style="background-color: white">
 
-	<div class="fixed-action-btn">
-   		<?php echo form_open_multipart('Project/upload_picture'); ?> 
+    <div class="fixed-action-btn">
+   		<?php echo form_open_multipart('Project/upload_picture'); ?>
+   		<input type="hidden" name="project_id" id="project_id" value="<?php $project_id ?>" />
+   		<button class="btn-floating btn-large waves-effect waves-light red file-field input-field"> 
 
    		<a class="btn-floating btn-large waves-effect waves-light red file-field input-field" onclick="document.getElementById('picture_upload').click();"> 
    			<input type="file" multiple name="picture_upload" accept="image/*" onchange="this.form.submit()" id="picture_upload" style="display: none;">
@@ -105,5 +107,5 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdDu8izbxISEkID8QNUqH3zUnmfU-jRys&libraries=places">
     </script>
 	
-
+	
 </html>

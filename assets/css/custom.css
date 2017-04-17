@@ -7,6 +7,10 @@
 
    font-family: 'Proxima-Nova';
 }*/
+.profile_ul li{
+	font-size: 1.5em;
+}
+
 
 @font-face {
   font-family: 'Texta';
@@ -24,7 +28,6 @@ nav .nav-wrapper{
 	color: black;
 }
 nav .nav-wrapper a{
-
 	color: black;
 }
 
@@ -35,9 +38,7 @@ nav ul a{
 
 #map {
 		position: relative;
-
-        background-color: white;
-
+    background-color: white;
 }
 
 #about-slide-out p{
@@ -106,4 +107,3 @@ html{
 	height: 100%;
 	background-repeat: no-repeat;
 }
-
