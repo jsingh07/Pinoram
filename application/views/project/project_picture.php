@@ -28,18 +28,6 @@
 </style>
 
 <body style="background-color: white">
-	<!--<div class="row" >
-		<nav>
-			<div class="nav-wrapper">
-                <ul>
-					<li class="col s3"><a href="<?php echo base_url()?>Project/project" style="text-align: center">Projects</a></li>
-					<li class="col s3"><a href="#create-project-modal" style="text-align: center; line-height:20px; padding-top:12px; padding-bottom: 12px">Create<br>Project</a></li>
-					<li class="col s3 active"><a href="<?php echo base_url()?>Project/Picture" style="text-align: center">Pictures</a></li>
-					<li class="col s3"><a href="<?php echo base_url()?>Project/test" style="text-align: center">Test</a></li>
-				</ul>
-			</div>
-		</nav>
-	</div>-->
 
 	<div class="fixed-action-btn vertical">
    		<?php echo form_open_multipart('Project/upload_picture', 'id="formPictureUpload"'); ?> 
