@@ -33,12 +33,7 @@
 				<div class="col s4 m3" id="account-label" style="text-align: right; margin-left: -11px">
 
 					<ul>
-						<?php if (!empty('/files/profile_images/'.$this->session->userdata('user_id').'.jpg')) { ?>
-						<li><img id="profile_image" class="circle responsive-img" src="/files/profile_images/<?php echo $this->session->userdata('user_id')?>.jpg" style="width: 100px; cursor: pointer; cursor: hand;"></li>
-						<? }else{ ?>
-						<li><img id="profile_image" class="circle responsive-img" src="/files/profile_images/default.jpg" style="width: 100px; cursor: pointer; cursor: hand;">
-						</li>
-						<? } ?>
+						<li><img id="profile_image" class="circle responsive-img" style="width: 100px; cursor: pointer; cursor: hand;"></li>
 						<li>Username</li>
 						<li>First Name</li>
 						<li>Last Name</li>
@@ -100,22 +95,24 @@
 </body>
 
 <script>
-	 $(document).ready(function(){
-    $('ul.tabs').tabs();
+	$(document).ready(function(){
+	    $('ul.tabs').tabs();
 
-    $("#profileModal").modal();
+	    $("#profileModal").modal();
 
-    $("#profile_image").click(function(){
-    	$("#profileModal").modal('open');
-    });
+	    $("#profile_image").click(function(){
+	    	$("#profileModal").modal('open');
+	    });
 
+  	});
 
-  });
+  	$.get('/files/profile_images/<?php echo $this->session->userdata("user_id")?>.jpg')
+    .done(function() { 
+    	$('#profile_image').attr("src", "/files/profile_images/<?php echo $this->session->userdata("user_id")?>.jpg");
+    }).fail(function() { 
+    	$('#profile_image').attr("src","/files/profile_images/default.jpg");
+    })
       
-
-
-</script>
-<script >
 	
 	var uploadCrop = $('#demo-basic').croppie({
             enableExif: true,
@@ -152,10 +149,7 @@
 	        else {
 		        swal("Sorry - you're browser doesn't support the FileReader API");
 		    }
-		}
-
-	
-
+		};
         
 		$('#rotate').click(function(){
 			uploadCrop.croppie('rotate', 90);
