@@ -28,9 +28,14 @@
 </style>
 
 
+<body style="background-color: white">
+
+
 	<div class="fixed-action-btn vertical">
    		<?php echo form_open_multipart('Project/upload_picture', 'id="formPictureUpload"'); ?> 
-
+   		<input type="hidden" name="hiddenlat" id="hiddenlat">
+   		<input type="hidden" name="hiddenlng" id="hiddenlng">
+   		<input type="hidden" name="hiddenaddress" id="hiddenaddress">
    		<a class="btn-floating btn-large waves-effect waves-light red file-field input-field" onclick="document.getElementById('picture_upload').click();"> 
    			<input type="file" multiple name="picture_upload" accept="image/*" onchange="uploadPicture(this)" id="picture_upload" style="display: none;">
     		<i class="large material-icons">publish</i>
@@ -41,13 +46,23 @@
 
  	<div id="picturePreviewModal" class="modal" style="height:auto;">
 
-	   	<img id="picturePreviewImage" >
+	   	<image id="picturePreviewImage" ></image>
 	   	<div class="modal-footer">
 	      <button id="imageUploadButton" class="modal-action modal-close waves-effect waves-green btn-flat" style="color: green; width: 50%; max-width: 100px; padding: 0;">Upload</button>
 	      <button class="modal-action modal-close waves-effect waves-green btn-flat" style="width: 50%; padding: 0; max-width: 100px">Cancel</button>
 	    </div>
 
   	</div>
+
+  	<div id="loading" class="modal" style="height:auto; max-width: 350px; margin-top: 30%">
+
+
+	   	<div class="modal-content center">
+	    	<h4>Uploading...</h4>
+	    </div>
+
+  	</div>
+
 
 
     <div class="row" style="max-width: 800px; margin-top: 20px;">
@@ -417,9 +432,50 @@
 		            image.src = e.target.result;
 		            var windowheight = Math.round($(window).height() ); 
 	    			var windowwidth = Math.round($(window).width() ); 
-		            image.onload = function () {
+
+		            image.onload = function () 
+		            {
+		            	var mypic = document.getElementById('picturePreviewImage');
+		   
+		            	EXIF.getData(mypic, function() 
+		            	{
+
+					    	if(EXIF.getTag(this, "GPSLatitude") && EXIF.getTag(this, "GPSLongitude"))
+					    	{
+							  	var lat = EXIF.getTag(this, "GPSLatitude"),
+					            lng = EXIF.getTag(this, "GPSLongitude"),
+					            latRef = EXIF.getTag(this, "GPSLatitudeRef"),
+					            lngRef = EXIF.getTag(this, "GPSLongitudeRef");
+					            mylat = toDecimal(lat[0], lat[1], lat[2], latRef);
+					            mylng = toDecimal(lng[0], lng[1], lat[2], lngRef);
+					        	//alert("I was taken at " + mylat + " " + mylng);
+					        	var hiddenaddress = document.getElementById('hiddenaddress');
+					        	var hiddenlat = document.getElementById('hiddenlat');
+					        	var hiddenlng = document.getElementById('hiddenlng');
+
+					        	hiddenlat.value = mylat;
+					        	hiddenlng.value = mylng;
+							
+			            		var geocoder = new google.maps.Geocoder();
+			            		var latlng = {lat: parseFloat(mylat), lng: parseFloat(mylng)};
+
+						        geocoder.geocode({'location': latlng}, function(results, status) 
+						        {
+						            if (status === 'OK') 
+						            {
+						              var myaddress = (results[1].formatted_address);
+						              hiddenaddress.value = myaddress;
+						            }
+						        });
+						    }
+				       	});
+
 		            	if(this.width >= this.height)
 		            	{
+
+		            		/*$('#picturePreviewImage').css('-ms-transform', 'rotate(90deg)'); 
+		            		$('#picturePreviewImage').css('-webkit-transform', 'rotate(90deg)');
+		            		$('#picturePreviewImage').css('transform', 'rotate(90deg)');*/
 		            		if(windowwidth < 450)
 		            		{
 		            			$('#picturePreviewImage').css('width', '100%');
@@ -452,10 +508,12 @@
 				            	$('#picturePreviewModal').css('width', previewModalWidth);
 				            }
 		            	}
-		            	$('#imageUploadButton').click(function() {
+		            	$('#imageUploadButton').click(function() 
+		            	{
+		            		$('#loading').modal({dismissible: false}).modal('open');
 		            		input.form.submit();
 		            	});
-			        };
+			        }
 
 		            $('#picturePreviewModal').modal({
       						dismissible: false,
@@ -472,6 +530,12 @@
 		        reader.readAsDataURL(input.files[0]);
 		    }
 	    }
+
+	    function toDecimal($deg, $min, $sec, $hem) 
+		{
+		    $d = $deg + ((($min/60) + ($sec/3600)/100));
+		    return ($hem=='S' || $hem=='W') ? $d*=-1 : $d;
+		}
 
       function geocodeAddress(geocoder) {
 

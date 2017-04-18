@@ -22,12 +22,12 @@
       		</div>
 
 			<div class="row" id="profile">
-				<div class="col s3" id="label" style="text-align: right; margin-left: -11px">
+				<div class="col s3" id="label">
 					<ul>
 						<li>Phone</li>
 						<li>Location</li>
 						<li>Bio</li>
-						<li style="margin-top: 102px">Website</li>
+						<li style="margin-top: 104px">Website</li>
 						<li>Facebook</li>
 						<li>LinkedIn</li>
 						<li>Twitter</li>
@@ -48,11 +48,10 @@
 					<input id="twitter" name="twitter" autocomplete="off" value="<?php echo $twitter ?>">
 					<input id="instagram" name="instagram" autocomplete="off" value="<?php echo $instagram ?>">
 					<input type="text" id="youtube" name="youtube" autocomplete="off" value="<?php echo $youtube ?>">
+					<button style="margin-top: 20px; width: 100%" class="btn waves-effect waves-light" type="submit" name="submit">Submit</button>
 				</div>
 
-				<div style="position: relative;">
-		            <button style="margin-left: 20px; margin-top: 30px" class="col s4 m2 push-l3 btn waves-effect waves-light" type="submit" name="submit">Submit</button>
-		        </div>
+
 		        <?php echo form_close(); ?>
 
 			</div>

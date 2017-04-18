@@ -7,7 +7,7 @@
 <body >
 	<div class="row" id="user-profile" style=" position: relative; margin-top: 3%; max-width: 800px; width: 100%; height: 450px;">
 
-		<div class="card z-depth-5 col s12" style="height: 450px;">
+		<div class="card z-depth-5 col s12" style="height: 500px;">
 			<div class="vertical-menu left hide-on-small-and-down" style="margin-left:-11px; position: relative; display:inline-block; z-index:100;">
 
 				<a href="" class="active" style="padding-left: 40px;">Account</a>
@@ -30,11 +30,15 @@
       		
 
 			<div class="row" id="profile" style="min-width: 300px">
-      			<div class="row">
 				<div class="col s4 m3" id="account-label" style="text-align: right; margin-left: -11px">
 
 					<ul>
-						<li><img id="profile_image" class="circle responsive-img" src="/files/profile_images/<?php echo $this->session->userdata('user_id')?>.jpg" style="width: 100px;"></li>
+						<?php if (!empty('/files/profile_images/'.$this->session->userdata('user_id').'.jpg')) { ?>
+						<li><img id="profile_image" class="circle responsive-img" src="/files/profile_images/<?php echo $this->session->userdata('user_id')?>.jpg" style="width: 100px; cursor: pointer; cursor: hand;"></li>
+						<? }else{ ?>
+						<li><img id="profile_image" class="circle responsive-img" src="/files/profile_images/default.jpg" style="width: 100px; cursor: pointer; cursor: hand;">
+						</li>
+						<? } ?>
 						<li>Username</li>
 						<li>First Name</li>
 						<li>Last Name</li>
@@ -50,51 +54,47 @@
 						<input id="first_name" name="first_name" autocomplete="off" value="<?php echo $this->session->userdata('first_name') ?>">
 						<input id="last_name" name="last_name" autocomplete="off" value="<?php echo $this->session->userdata('last_name') ?>">
 						<input id="email" name="email" autocomplete="off" value="<?php echo $this->session->userdata('email') ?>">
+						<button style="margin-top: 20px; width: 100%" class="btn waves-effect waves-light" type="submit" name="submit">Submit</button>
 				</div>
-
-				<div style="position: relative;">
-		            <button style="margin-left: 20px; margin-top: 40px" class="col s4 m2 push-l3 btn waves-effect waves-light" type="submit" name="submit">Submit</button>
-		        </div>
 		        <?php echo form_close(); ?>
-		        </div>
+			</div>
+		</div>
+	</div>
+
+	<div id="profileModal" class="modal modal-fixed-footer" style="max-width: 500px; max-height: 500px">
+		<div class="row center" style="margin-top: 10px">
+			<h3>Profile Picture</h3>
+			<hr style="margin-top: -10px"></hr>
+		<div>
+		<div class="row">
+			<div class="col s12" style="margin-top: 20px">
+			<?php echo form_open_multipart("account/upload_profile_picture", 'id="form"'); ?>
+					<div id="demo-basic"></div>
+					
+    		</div>
 			</div>
 
-			<div id="profileModal" class="modal modal-fixed-footer" style="max-width: 500px; max-height: 500px">
-				<div class="row center" style="margin-top: 10px">
-					<h3>Profile Picture</h3>
-					<hr style="margin-top: -10px"></hr>
-				<div>
-				<div class="row">
-					<div class="col s12" style="margin-top: 20px">
-					<?php echo form_open_multipart("account/upload_profile_picture", 'id="form"'); ?>
-      					<div id="demo-basic"></div>
-      					
-            		</div>
-       			</div>
+			<div id="picture-modal-footer" class="modal-footer" align="right">
+				<a class="modal-action modal-close waves-effect waves-black btn-flat" style="font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center; color:black">
+					Cancel       
+        		</a> 
+				 
+				<a class="waves-effect waves-black btn-flat" style="font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center; color:black" onclick="document.getElementById('upload').click();">
+					Upload
+        			<input type="file" id="upload" accept="image/*" style="display:none" onchange="readFile(this)"></input>       
+        		</a> 
 
-      			<div id="picture-modal-footer" class="modal-footer" align="right">
-      				<a class="modal-action modal-close waves-effect waves-black btn-flat" style="font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center; color:black">
-      					Cancel       
-                	</a> 
-      				 
-      				<a class="waves-effect waves-black btn-flat" style="font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center; color:black" onclick="document.getElementById('upload').click();">
-      					Upload
-                		<input type="file" id="upload" accept="image/*" style="display:none" onchange="readFile(this)"></input>       
-                	</a> 
-
-                	<a class="waves-effect waves-black btn-flat" style="font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center; color:black" id="submitbutton">
-      					Submit
-      					<input type="hidden" id="imagebase64" name="imagebase64">
-      				<?php echo form_close(); ?>
-      				</a>
-      				<a class="waves-effect waves-black btn-flat" id="rotate" style="font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center; color:black">
-      					Rotate     
-                	</a> 
-                	      
-      			</div>
-      			
-      		</div>
-
+        		<a class="waves-effect waves-black btn-flat" style="font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center; color:black" id="submitbutton">
+					Submit
+					<input type="hidden" id="imagebase64" name="imagebase64">
+					<?php echo form_close(); ?>
+				</a>
+				<a class="waves-effect waves-black btn-flat" id="rotate" style="font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center; color:black">
+					Rotate     
+        		</a> 
+        	      
+			</div>
+			
 		</div>
 	</div>
 </body>

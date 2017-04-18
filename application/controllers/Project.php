@@ -71,15 +71,17 @@ class Project extends CI_Controller {
 
 	public function upload_picture()
 	{
-		$pic_id = $this->uniqid_base36(true);
-
 		if($this->access())
 		{
+			$pic_id = $this->uniqid_base36(true);
 
 	        $this->load->view('templates/header.php');
 
 	        $target_file = '/Library/WebServer/Documents/pinoram/pinoram-production/files/images/'.$pic_id.'.jpg';
 	        $filePath = $_FILES['picture_upload']['tmp_name'];
+	        $address = $_POST['hiddenaddress'];
+	        $lat = $_POST['hiddenlat'];
+	        $lng = $_POST['hiddenlng'];
 
 	        $exif = exif_read_data($_FILES['picture_upload']['tmp_name']);
 	        // provided that the image is jpeg. Use relevant function otherwise
@@ -109,6 +111,15 @@ class Project extends CI_Controller {
 			if(imagejpeg($image, $target_file, 100))
 			{
 				$this->Project_model->insert_picture($this->session->userdata('user_id'), $pic_id);
+				if (!empty($lat) && !empty($lng))
+				{
+					$data['picture_id'] = $pic_id;
+					$data['Address'] = $address;
+					$data['Latitude'] = $lat;
+					$data['Longitude'] = $lng;
+					$data['picture_description'] = "";
+					$this->Project_model->update_picture($data);
+				}
 				redirect('Project/picture');
 			}
 			else
@@ -203,6 +214,12 @@ class Project extends CI_Controller {
 		//$data['files']  = $this->test_post();
 
         $this->load->view('project/test.php');
+	}
+
+	public function testexif()
+	{
+		$this->load->view('templates/header.php');
+        $this->load->view('project/exiftest.php');
 	}
 
 	public function test_post()
