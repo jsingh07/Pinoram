@@ -21,6 +21,12 @@ class Project_model extends CI_Model {
         return $insert_id;
 	}
 
+	public function get_projects($user_id)
+	{
+		$sql = "SELECT * FROM projects WHERE owner_id = $user_id";
+		$result = $this->db->query($sql);
+		return $result;
+	}
 	public function get_pictures($user_id)
 	{
 		$sql = "SELECT * FROM pictures WHERE owner_id = $user_id";

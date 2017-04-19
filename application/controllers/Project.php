@@ -55,6 +55,8 @@ class Project extends CI_Controller {
 			$clean = $this->security->xss_clean($this->input->post(NULL, TRUE));
 
 			$project_id = $this->Project_model->create_project($clean, $this->session->userdata('user_id'), $access);
+			$this->load->view('templates/header.php');
+			$this->load->view('project/test.php');
 		}
 
 	}
@@ -77,7 +79,7 @@ class Project extends CI_Controller {
 
 	        $this->load->view('templates/header.php');
 
-	        $target_file = '/Library/WebServer/Documents/pinoram/pinoram-production/files/images/'.$pic_id.'.jpg';
+	        $target_file = '/Workspace/Pinoram/pinoram-dev-jag/files/images/'.$pic_id.'.jpg';
 	        $filePath = $_FILES['picture_upload']['tmp_name'];
 	        $address = $_POST['hiddenaddress'];
 	        $lat = $_POST['hiddenlat'];
@@ -159,47 +161,17 @@ class Project extends CI_Controller {
 			$clean = $this->security->xss_clean($this->input->post(NULL, TRUE));
 			$this->Project_model->delete_picture($clean);
 			//delete_files('/Library/WebServer/Documents/pinoram/pinoram-production/files/images/'.$clean['delete_pic'].'.jpg');
-			unlink('/Library/WebServer/Documents/pinoram/pinoram-production/files/images/'.$clean['delete_pic'].'.jpg');
+			unlink('/Workspace/Pinoram/pinoram-dev-jag/files/images/'.$clean['delete_pic'].'.jpg');
 			redirect('Project/picture');
 		}
 	}
 
-	public function project()
+	public function get_project()
 	{
-		/*if($this->access())
-		{
-
-			// Start XML file, create parent node
-			$doc = new DOMDocument("1.0");
-			$node = $doc->createElement("markers");
-			$parnode = $doc->appendChild($node);
-
-			$result = $this->Project_model->get_pictures($this->session->userdata('user_id'));
-
-
-			header("Content-type: text/xml");
-
-			// Iterate through the rows, adding XML nodes for each
-			foreach ($result->result() as $files){
-			  // ADD TO XML DOCUMENT NODE
-			  $node = $doc->createElement("marker");
-			  $newnode = $parnode->appendChild($node);
-
-			  $newnode->setAttribute("picture_id", $files->picture_id);
-			  $newnode->setAttribute("lat", $files->lat);
-			  $newnode->setAttribute("lng", $files->lng);
-			  $newnode->setAttribute("description", $files->description);
-			}
-
-			$data = $doc->saveXML();
-			echo $data;
-		}*/
-
 		if($this->access())
 		{
-			$data['files']  = $this->Project_model->get_pictures($this->session->userdata('user_id'));
-			$this->load->view('templates/header.php');
-			$this->load->view('project/project.php', $data);
+			$data  = $this->Project_model->get_projects($this->session->userdata('user_id'));
+			echo json_encode($data->result(), true);
 		}
 
 	}

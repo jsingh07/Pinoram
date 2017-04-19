@@ -33,12 +33,12 @@
 				<div class="col s4 m3" id="account-label" style="text-align: right; margin-left: -11px">
 
 					<ul>
-						<?php if (!empty('/files/profile_images/'.$this->session->userdata('user_id').'.jpg')) { ?>
+						<?php if(file_exists('files/profile_images/'.$this->session->userdata('user_id').'.jpg')) { ?>
 						<li><img id="profile_image" class="circle responsive-img" src="/files/profile_images/<?php echo $this->session->userdata('user_id')?>.jpg" style="width: 100px; cursor: pointer; cursor: hand;"></li>
-						<? }else{ ?>
+						<?php }else{ ?>
 						<li><img id="profile_image" class="circle responsive-img" src="/files/profile_images/default.jpg" style="width: 100px; cursor: pointer; cursor: hand;">
 						</li>
-						<? } ?>
+						<?php } ?>
 						<li>Username</li>
 						<li>First Name</li>
 						<li>Last Name</li>
@@ -100,26 +100,18 @@
 </body>
 
 <script>
-	 $(document).ready(function(){
-    $('ul.tabs').tabs();
-
-    $("#profileModal").modal();
-
-    $("#profile_image").click(function(){
-    	$("#profileModal").modal('open');
-    });
-
-
-  });
+	$(document).ready(function(){
+    	$('ul.tabs').tabs();
+		$("#profileModal").modal();
+		$("#profile_image").click(function(){
+    		$("#profileModal").modal('open');
+    	});
+	});
       
-
-
-</script>
-<script >
 	
 	var uploadCrop = $('#demo-basic').croppie({
-            enableExif: true,
-            viewport: {
+        enableExif: true,
+        viewport: {
             width: 200,
             height: 200,
             type: 'circle'
@@ -127,11 +119,9 @@
             boundary: {
                 width: 250,
                 height: 250
-            },
-            enableOrientation: true
-
-
-        });
+        	},
+        	enableOrientation: true
+	});
 
 		function readFile(input) {
  			if (input.files && input.files[0]) {
