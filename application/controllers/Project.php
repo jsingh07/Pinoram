@@ -16,6 +16,7 @@ class Project extends CI_Controller {
 	$this->load->library('form_validation');
 
 	$this->load->model('Project_model');
+	$this->load->model('Account_model');
 
 	}
 
@@ -224,8 +225,29 @@ class Project extends CI_Controller {
 
 	public function test_post()
 	{
-		$data = $this->Project_model->get_pictures($this->session->userdata('user_id'));
-		echo json_encode($data->result(), true);
+		$data1 = $this->Account_model->get_account($this->session->userdata('user_id'));
+		//$data = $this->Project_model->get_pictures($this->session->userdata('user_id'));
+		$mydata1 = $data1->result();
+		//$mydata = $data->result();
+		$array = array();
+		//foreach($mydata as $dataArray)
+		//{
+		$count = 0;
+			foreach($mydata1 as $input)
+			{
+				foreach($input as $key => $value)
+				{
+					$array['album'][$count][$key] = $value;
+				}
+				$data = $this->Project_model->get_pictures($array['album'][$count]['username']);
+				$array['album'][0]['pictures'] = $mydata;
+				$count++;
+			}
+
+		//print_r($array);
+
+		//print_r($array['album'][0]);
+		//echo json_encode($array, true);
 	}
 }
 ?>
