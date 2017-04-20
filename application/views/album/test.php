@@ -230,7 +230,7 @@
                 temp3.setAttribute("class","card z-depth-5");   
                 temp4.setAttribute("class","card-content black-text");
                 temp5.setAttribute("class","card-title");
-                temp5.innerText = "You have no Albums. Please use the add button to create an album.";
+                temp5.innerText = "You have no albums. Please use the add button to create an album.";
 
                 temp0.appendChild(temp1);
                 temp1.appendChild(temp2);
@@ -260,7 +260,7 @@
                                       // a_album.setAttribute("class", "button");
 
                     img.setAttribute("src", srcPic);
-                    var album = document.createTextNode(this.Album_name);
+                    var album = document.createTextNode(this.album_name);
                     a_album.appendChild(album);
                     col.appendChild(divcard);
                     divcard.appendChild(divImgCard);
@@ -276,7 +276,7 @@
                     form.setAttribute("action", "/Album/picture");
                     var input = document.createElement("input");
                     input.setAttribute("name", "album_id");
-                    input.setAttribute("value", this.Album_id);
+                    input.setAttribute("value", this.album_id);
                     input.setAttribute("type", "hidden");
                     form.appendChild(input);
                     

@@ -8,13 +8,13 @@ class Album_model extends CI_Model {
 	{
 		$string =
 		array(
-		'Album_name' => $data['Album_title'],
+		'album_name' => $data['Album_title'],
 		'description' => $data['Album_description'],
-		'Album_access' => $access,
+		'album_access' => $access,
 		'owner_id' => $user_id
 		);
 
-		$q = $this->db->insert_string('Album',$string);             
+		$q = $this->db->insert_string('album',$string);             
         $this->db->query($q);
 
         $insert_id = $this->db->insert_id();
@@ -23,12 +23,23 @@ class Album_model extends CI_Model {
 
 	public function get_Album($user_id)
 	{
-		$sql = "SELECT * FROM Album 
+		$sql = "SELECT * FROM album 
 				WHERE owner_id = $user_id
 				";
 		$result = $this->db->query($sql);
 		return $result;
 	}
+
+	public function get_pictures_from_album($album_id)
+	{
+		$sql = "SELECT * FROM pictures
+				WHERE album_id = $album_id
+				";
+		$result = $this->db->query($sql);
+		return $result;
+
+	}
+
 	public function get_pictures($user_id)
 	{
 		$sql = "SELECT * FROM pictures WHERE owner_id = $user_id";

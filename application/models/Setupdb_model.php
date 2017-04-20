@@ -157,7 +157,7 @@ class Setupdb_model extends CI_Model {
 		$this->load->dbforge();
 
 		$fields = array(
-			'Album_id' => array(
+			'album_id' => array(
 				'type' => 'INT',
                 'auto_increment' => TRUE
 			),
@@ -180,8 +180,8 @@ class Setupdb_model extends CI_Model {
 		);
 
 		$this->dbforge->add_field($fields);
-		$this->dbforge->add_key('Album_id', TRUE);
-		$this->dbforge->create_table('Album', TRUE);
+		$this->dbforge->add_key('album_id', TRUE);
+		$this->dbforge->create_table('album', TRUE);
 	}
 
 	public function InstallPictures()
@@ -325,7 +325,7 @@ class Setupdb_model extends CI_Model {
 	public function dropAlbum()
 	{
 		$this->load->dbforge();
-		$this->dbforge->drop_table('Album',TRUE);
+		$this->dbforge->drop_table('album',TRUE);
 	}
 
 	public function dropPictures()

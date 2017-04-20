@@ -180,14 +180,23 @@ class Album extends CI_Controller {
 	{
 		if($this->access())
 		{
-			$data  = $this->Album_model->get_Album($this->session->userdata('user_id'));
-			$data2 = $this->Album_model->get_pictures($this->session->userdata('user_id'));
-			$test = $data->result();
-			array_push($test, $data2->result());
-			//print_r($test);   
-			echo json_encode($test, true);
+			$Album  = $this->Album_model->get_Album($this->session->userdata('user_id'));
+			$Album_data = $Album->result();
+			$json_array = array();
+			$count = 0;
+			foreach ($Album_data as $input) 
+			{
+				foreach ($input as $key => $value) 
+				{
+					$json_array['album'][$count][$key] = $value;
+				}
+				$Pics = $this->Album_model->get_pictures_from_album($json_array['album'][$count]['album_id']);
+				$Pic_data = $Pics->result();
+				$json_array['album'][$count]['pictures'] = $Pic_data;
+				$count++;
+			} 
+			echo json_encode($json_array, true);
 		}
-
 	}
 
 	public function test()
