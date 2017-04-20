@@ -118,13 +118,13 @@ class Setupdb extends CI_Controller {
 		}
 	}
 
-	public function installProjects()
+	public function installAlbum()
 	{
 		if($this->access())
 		{
-			$text['mytext'] = "Installed Projects Table";
+			$text['mytext'] = "Installed Album Table";
 			$this->load->view('templates/header.php');
-			$this->Setupdb_model->InstallProjects();
+			$this->Setupdb_model->InstallAlbum();
 			$this->load->view('setupdb/setup');
 			$this->load->view('setupdb/success', $text);
 		}
@@ -142,25 +142,25 @@ class Setupdb extends CI_Controller {
 		}
 	}
 
-	public function installProject_pictures()
+	public function installAlbum_pictures()
 	{
 		if($this->access())
 		{
-			$text['mytext'] = "Installed Project Pictures Table";
+			$text['mytext'] = "Installed Album Pictures Table";
 			$this->load->view('templates/header.php');
-			$this->Setupdb_model->installProject_pictures();
+			$this->Setupdb_model->installAlbum_pictures();
 			$this->load->view('setupdb/setup');
 			$this->load->view('setupdb/success', $text);
 		}
 	}
 
-	public function installProject_videos()
+	public function installAlbum_videos()
 	{
 		if($this->access())
 		{
-			$text['mytext'] = "Installed Project Videos Table";
+			$text['mytext'] = "Installed Album Videos Table";
 			$this->load->view('templates/header.php');
-			$this->Setupdb_model->installProject_videos();
+			$this->Setupdb_model->installAlbum_videos();
 			$this->load->view('setupdb/setup');
 			$this->load->view('setupdb/success', $text);
 		}
@@ -215,13 +215,13 @@ class Setupdb extends CI_Controller {
 		}
 	}
 
-	public function dropProjects()
+	public function dropAlbum()
 	{
 		if($this->access())
 		{
-			$text['mytext'] = "Dropped Projects Table";
+			$text['mytext'] = "Dropped Album Table";
 			$this->load->view('templates/header.php');
-			$this->Setupdb_model->dropProjects();
+			$this->Setupdb_model->dropAlbum();
 			$this->load->view('setupdb/setup');
 			$this->load->view('setupdb/success', $text);
 		}
@@ -239,25 +239,25 @@ class Setupdb extends CI_Controller {
 		}
 	}
 
-	public function dropProject_pictures()
+	public function dropAlbum_pictures()
 	{
 		if($this->access())
 		{
-			$text['mytext'] = "Dropped Project Pictures Table";
+			$text['mytext'] = "Dropped Album Pictures Table";
 			$this->load->view('templates/header.php');
-			$this->Setupdb_model->dropProject_pictures();
+			$this->Setupdb_model->dropAlbum_pictures();
 			$this->load->view('setupdb/setup');
 			$this->load->view('setupdb/success', $text);
 		}
 	}
 
-	public function dropProject_videos()
+	public function dropAlbum_videos()
 	{
 		if($this->access())
 		{
-			$text['mytext'] = "Dropped Project Videos Table";
+			$text['mytext'] = "Dropped Album Videos Table";
 			$this->load->view('templates/header.php');
-			$this->Setupdb_model->dropProject_videos();
+			$this->Setupdb_model->dropAlbum_videos();
 			$this->load->view('setupdb/setup');
 			$this->load->view('setupdb/success', $text);
 		}

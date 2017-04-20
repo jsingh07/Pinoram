@@ -107,7 +107,7 @@ class Account extends CI_Controller {
 	        }
 	        else
 	        {
-	                redirect('Project/picture');
+	                redirect('Album/picture');
 	        }-->*/
 	    }
 	}

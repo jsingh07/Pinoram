@@ -105,11 +105,10 @@
 	    });
 
   	});
-      
 	
 	var uploadCrop = $('#demo-basic').croppie({
-            enableExif: true,
-            viewport: {
+        enableExif: true,
+        viewport: {
             width: 200,
             height: 200,
             type: 'circle'

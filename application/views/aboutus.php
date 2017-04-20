@@ -5,7 +5,7 @@
     <h2 class="header">About Us</h2>
     <div class="card horizontal" style="border: none; box-shadow: none ">
        
-          <p style="font-size: 1.5em; margin-top: -10px">Pinoram started out as a group project between two friends. It was created with two goals in mind. We both wanted to learn web development and create an awesome site to host pictures.  </p>
+          <p style="font-size: 1.5em; margin-top: -10px">Pinoram started out as a group project between two friends. It was created with two goals in mind. We both wanted to learn web development and create an awesome site to display and map out pictures.  </p>
         </div>
     </div>
   </div>
@@ -13,7 +13,7 @@
 
   <div class="row" style="max-width: 900px">
     <div class="col s12 m6" style="border:none;">
-      <h5 class="header">Pyai Hein</h5>
+      <h5 class="header">Ron Hein</h5>
       <div class="card horizontal" style="border: none; box-shadow: none ">
         <div class="card-image" style="max-width: 133px">
           <img class="circle" src="/files/images/pyai.jpg">

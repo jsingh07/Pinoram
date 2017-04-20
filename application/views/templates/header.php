@@ -9,10 +9,10 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
 
       <link href="/assets/css/croppie.css" type="text/css" rel="stylesheet"/>
-      <link href="/assets/css/packery-docs.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-      <link href="/assets/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-      <link href="/assets/css/custom.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-      <link href="/assets/css/vertical.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+      <link href="/assets/css/packery-docs.css" type="text/css" rel="stylesheet" media="screen,Albumion"/>
+      <link href="/assets/css/materialize.css" type="text/css" rel="stylesheet" media="screen,Albumion"/>
+      <link href="/assets/css/custom.css" type="text/css" rel="stylesheet" media="screen,Albumion"/>
+      <link href="/assets/css/vertical.css" type="text/css" rel="stylesheet" media="screen,Albumion"/>
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <script type="text/javascript" src="/assets/js/jquery-3.1.1.min.js"></script> 
       <script type="text/javascript" src="/assets/js/materialize.min.js"></script>
@@ -35,8 +35,8 @@
                      
                         <ul id="nav-mobile" class="right hide-on-small-and-down" style="margin-right: -30px">
                            <li><a href="<?php echo site_url();?>Account"><?php echo $username?></a></li>
-                           <li><a href="<?php echo base_url()?>Project/picture">Album</a></li>
-                           <li><a href="<?php echo base_url()?>Project/project">Map</a></li>
+                           <li><a href="<?php echo base_url()?>Album/picture">Album</a></li>
+                           <li><a href="<?php echo base_url()?>Album/map">Map</a></li>
                            <?php if(($this->session->userdata('role') == 'admin') or ($this->session->userdata('role') == 'super-user')) {?>
                            <li><a href="<?php echo site_url();?>Setupdb">Database</a></li>
                            <?php } ?>
@@ -81,8 +81,8 @@
       <?php if($this->session->userdata('logged_in') == TRUE) {?>
          <ul id="dropdown1" class="dropdown-content">
             <li><a href="<?php echo site_url();?>Account"><?php echo $username?></a></li>
-            <li><a href="<?php echo base_url()?>Project/picture">Album</a></li>
-            <li><a href="<?php echo base_url()?>Project/project">Map</a></li>
+            <li><a href="<?php echo base_url()?>Album/picture">Album</a></li>
+            <li><a href="<?php echo base_url()?>Album/Album">Map</a></li>
             <?php if(($this->session->userdata('role') == 'admin') or ($this->session->userdata('role') == 'super-user')) {?>
             <li><a href="<?php echo site_url();?>Setupdb">Set up Database</a></li>
             <?php } ?>

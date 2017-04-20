@@ -18,8 +18,8 @@
 <body style="background-color: white">
 
     <div class="fixed-action-btn">
-   		<?php echo form_open_multipart('Project/upload_picture'); ?>
-   		<input type="hidden" name="project_id" id="project_id" value="<?php $project_id ?>" />
+   		<?php echo form_open_multipart('Album/upload_picture'); ?>
+   		<input type="hidden" name="Album_id" id="Album_id" value="<?php $Album_id ?>" />
    		<button class="btn-floating btn-large waves-effect waves-light red file-field input-field"> 
 
    		<a class="btn-floating btn-large waves-effect waves-light red file-field input-field" onclick="document.getElementById('picture_upload').click();"> 
@@ -42,7 +42,7 @@
 	    $(document).ready(function(){
 
 			$.ajax({
-		        url: "/project/test_post", 
+		        url: "/Album/test_post", 
 		        dataType: 'json',
 		        success: function(result)
 		        {
