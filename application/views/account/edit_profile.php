@@ -1,5 +1,5 @@
 <html>
-<link href="/assets/css/vertical.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+<link href="/assets/css/vertical.css" type="text/css" rel="stylesheet" media="screen,Albumion"/>
 <body>
 	<div class="row" id="user-profile" style=" position: relative; margin-top: 3%; max-width: 800px; height: 700px;">
 		<div class="card z-depth-5 col s12" style="height: 700px;">

@@ -112,11 +112,12 @@
     }).fail(function() { 
     	$('#profile_image').attr("src","/files/profile_images/default.jpg");
     })
+
       
 	
 	var uploadCrop = $('#demo-basic').croppie({
-            enableExif: true,
-            viewport: {
+        enableExif: true,
+        viewport: {
             width: 200,
             height: 200,
             type: 'circle'
@@ -124,11 +125,9 @@
             boundary: {
                 width: 250,
                 height: 250
-            },
-            enableOrientation: true
-
-
-        });
+        	},
+        	enableOrientation: true
+	});
 
 		function readFile(input) {
  			if (input.files && input.files[0]) {

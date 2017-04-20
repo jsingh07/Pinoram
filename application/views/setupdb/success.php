@@ -5,7 +5,7 @@
     $(document).ready(function(){
         function PopToast(txt)
         {
-          Materialize.toast(txt, 3000, 'white rounded black-text');
+          Materialize.toast(txt, 3000, 'white black-text');
         }
         var text = "<?php echo $mytext?>";
         PopToast(text);

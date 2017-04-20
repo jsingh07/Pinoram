@@ -39,11 +39,11 @@ class Welcome extends CI_Controller {
 				$this->session->set_userdata('welcome') == FALSE;
 				$text['mytext'] = "Welcome ".$this->session->userdata('first_name');
 				$info['success'] = $this->load->view('setupdb/success.php', $text, TRUE);
-				$data['load'] = $this->load->view('project/map.php', $info, TRUE);
+				$data['load'] = $this->load->view('home/Greeting.php', $info, TRUE);
 			}
 			else
 			{
-				$data['load'] = $this->load->view('project/map.php', NULL, TRUE);
+				$data['load'] = $this->load->view('home/Greeting.php', NULL, TRUE);
 			}
 	    }
 	    else
@@ -52,7 +52,7 @@ class Welcome extends CI_Controller {
 	    	$data['load'] = $this->load->view('login/registration_form.php', $data, TRUE);
 	    }
 		
-		$this->load->view('home', $data);
+		$this->load->view('home/home.php', $data);
 	}
 
 	public function about_us()
