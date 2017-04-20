@@ -39,11 +39,11 @@ function initMap()
 						    '<div class="row" style = "min-width: 200px; min-height:150px;">' +
 						    	'<input type="hidden" id="picture_id" name="picture_id"></input>' +
 
-						    	'<div class="col s12 l6" style="min-height: 300px">'+
+						    	'<div class="col s12" style="min-height: 300px">'+
 								'<img class="modalPic center" id="modalPic" style="height:auto; width:100%;" src="/files/images/'+this.picture_id+'.jpg'+'">' +
 								'</div>'+
 
-								'<div class="col s12 l6">'+
+								/*'<div class="col s12 l6">'+
 									//'<h5 style="text-align: center; position:relative">Picture Information</h5>' +
 									//'<hr/>' +
 
@@ -69,7 +69,7 @@ function initMap()
 								          	
 								        '</div>' +
 									'</div>' +
-								'</div>'+
+								'</div>'+*/
 							'</div>';
 						//'</div>';
 		            	
