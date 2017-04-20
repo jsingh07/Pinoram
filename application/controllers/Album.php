@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 
-class Project extends CI_Controller {
+class Album extends CI_Controller {
 	public function __construct() {
 	parent::__construct();
 
@@ -15,7 +15,7 @@ class Project extends CI_Controller {
 	// Load form validation library
 	$this->load->library('form_validation');
 
-	$this->load->model('Project_model');
+	$this->load->model('Album_model');
 
 	}
 
@@ -24,7 +24,7 @@ class Project extends CI_Controller {
 		if($this->access())
 		{
 			$this->load->view('templates/header.php');
-			$this->load->view('project/map.php');
+			$this->load->view('home/home.php');
 		}
 	}
 
@@ -40,11 +40,11 @@ class Project extends CI_Controller {
 		}
 	}
 
-	public function create_project()
+	public function create_Album()
 	{
 		if($this->access())
 		{
-			if($this->input->post('project_access'))
+			if($this->input->post('Album_access'))
 			{
 				$access = "public";
 			}
@@ -54,9 +54,9 @@ class Project extends CI_Controller {
 			}
 			$clean = $this->security->xss_clean($this->input->post(NULL, TRUE));
 
-			$project_id = $this->Project_model->create_project($clean, $this->session->userdata('user_id'), $access);
+			$Album_id = $this->Album_model->create_Album($clean, $this->session->userdata('user_id'), $access);
 			$this->load->view('templates/header.php');
-			$this->load->view('project/test.php');
+			$this->load->view('Album/test.php');
 		}
 
 	}
@@ -64,10 +64,10 @@ class Project extends CI_Controller {
 	public function picture()
 	{
 		if($this->access())
-		{
-			//$data['files']  = $this->Project_model->get_pictures($this->session->userdata('user_id'));
+		{			
+			$data['album_id'] = $_POST['album_id'];
 			$this->load->view('templates/header.php');
-			$this->load->view('project/project_picture.php');
+			$this->load->view('Album/Album_picture.php', $data);
 		}
 	}
 
@@ -112,7 +112,7 @@ class Project extends CI_Controller {
 			
 			if(imagejpeg($image, $target_file, 100))
 			{
-				$this->Project_model->insert_picture($this->session->userdata('user_id'), $pic_id);
+				$this->Album_model->insert_picture($this->session->userdata('user_id'), $pic_id);
 				if (!empty($lat) && !empty($lng))
 				{
 					$data['picture_id'] = $pic_id;
@@ -120,9 +120,9 @@ class Project extends CI_Controller {
 					$data['Latitude'] = $lat;
 					$data['Longitude'] = $lng;
 					$data['picture_description'] = "";
-					$this->Project_model->update_picture($data);
+					$this->Album_model->update_picture($data);
 				}
-				redirect('Project/picture');
+				redirect('Album/picture');
 			}
 			else
 			{
@@ -148,9 +148,9 @@ class Project extends CI_Controller {
 		if($this->access())
 		{
 			$clean = $this->security->xss_clean($this->input->post(NULL, TRUE));
-			$this->Project_model->update_picture($clean);
+			$this->Album_model->update_picture($clean);
 
-			redirect('Project/picture');
+			redirect('Album/picture');
 		}
 	}
 
@@ -159,44 +159,58 @@ class Project extends CI_Controller {
 		if($this->access())
 		{
 			$clean = $this->security->xss_clean($this->input->post(NULL, TRUE));
-			$this->Project_model->delete_picture($clean);
+			$this->Album_model->delete_picture($clean);
 			//delete_files('/Library/WebServer/Documents/pinoram/pinoram-production/files/images/'.$clean['delete_pic'].'.jpg');
 			unlink('/Workspace/Pinoram/pinoram-dev-jag/files/images/'.$clean['delete_pic'].'.jpg');
-			redirect('Project/picture');
+			redirect('Album/picture');
 		}
 	}
 
-	public function get_project()
+	public function map()
 	{
 		if($this->access())
 		{
-			$data  = $this->Project_model->get_projects($this->session->userdata('user_id'));
-			echo json_encode($data->result(), true);
+			$data['files']  = $this->Album_model->get_pictures($this->session->userdata('user_id'));
+			$this->load->view('templates/header.php');
+			$this->load->view('Album/Album.php', $data);
+		}
+	}
+
+	public function get_Album()
+	{
+		if($this->access())
+		{
+			$data  = $this->Album_model->get_Album($this->session->userdata('user_id'));
+			$data2 = $this->Album_model->get_pictures($this->session->userdata('user_id'));
+			$test = $data->result();
+			array_push($test, $data2->result());
+			//print_r($test);   
+			echo json_encode($test, true);
 		}
 
 	}
 
 	public function test()
 	{
-		//$data = $this->Project_model->get_pictures($this->session->userdata('user_id'));
+		//$data = $this->Album_model->get_pictures($this->session->userdata('user_id'));
 		//echo json_encode($data->result());
 		$this->load->view('templates/header.php');
 		//$this->load->view('gallery.php');
-		//$this->load->view('project/test.php');
+		//$this->load->view('Album/test.php');
 		//$data['files']  = $this->test_post();
 
-        $this->load->view('project/test.php');
+        $this->load->view('Album/test.php');
 	}
 
 	public function testexif()
 	{
 		$this->load->view('templates/header.php');
-        $this->load->view('project/exiftest.php');
+        $this->load->view('Album/exiftest.php');
 	}
 
 	public function test_post()
 	{
-		$data = $this->Project_model->get_pictures($this->session->userdata('user_id'));
+		$data = $this->Album_model->get_pictures($this->session->userdata('user_id'));
 		echo json_encode($data->result(), true);
 	}
 }

@@ -152,19 +152,19 @@ class Setupdb_model extends CI_Model {
 		$this->dbforge->create_table('user_info', TRUE);
 	}
 
-	public function InstallProjects()
+	public function InstallAlbum()
 	{
 		$this->load->dbforge();
 
 		$fields = array(
-			'project_id' => array(
+			'Album_id' => array(
 				'type' => 'INT',
                 'auto_increment' => TRUE
 			),
 			'owner_id' => array(
 				'type' => 'INT'
 			),
-			'project_name' => array(
+			'Album_name' => array(
 				'type' => 'VARCHAR',
 				'constraint' => 100
 			),
@@ -173,15 +173,15 @@ class Setupdb_model extends CI_Model {
 				'constraint' => 999,
 				'null' => TRUE
 			),
-			'project_access' => array(
+			'Album_access' => array(
 				'type' => 'VARCHAR',
 				'constraint' => 30
 			)
 		);
 
 		$this->dbforge->add_field($fields);
-		$this->dbforge->add_key('project_id', TRUE);
-		$this->dbforge->create_table('projects', TRUE);
+		$this->dbforge->add_key('Album_id', TRUE);
+		$this->dbforge->create_table('Album', TRUE);
 	}
 
 	public function InstallPictures()
@@ -194,6 +194,9 @@ class Setupdb_model extends CI_Model {
 				'constraint' => 40
 			),
 			'owner_id' => array(
+				'type' => 'INT'
+			),
+			'album_id' => array(
 				'type' => 'INT'
 			),
 			'lat' => array(
@@ -263,12 +266,12 @@ class Setupdb_model extends CI_Model {
 		$this->dbforge->create_table('videos', TRUE);
 	}
 
-	public function InstallProject_pictures()
+	public function InstallAlbum_pictures()
 	{
 		$this->load->dbforge();
 
 		$fields = array(
-			'project_id' => array(
+			'Album_id' => array(
 				'type' => 'INT'
 			),
 			'picture_id' => array(
@@ -278,15 +281,15 @@ class Setupdb_model extends CI_Model {
 		);
 
 		$this->dbforge->add_field($fields);
-		$this->dbforge->create_table('project_pictures', TRUE);
+		$this->dbforge->create_table('Album_pictures', TRUE);
 	}
 
-	public function InstallProject_videos()
+	public function InstallAlbum_videos()
 	{
 		$this->load->dbforge();
 
 		$fields = array(
-			'project_id' => array(
+			'Album_id' => array(
 				'type' => 'INT'
 			),
 			'video_id' => array(
@@ -296,7 +299,7 @@ class Setupdb_model extends CI_Model {
 		);
 
 		$this->dbforge->add_field($fields);
-		$this->dbforge->create_table('project_videos', TRUE);
+		$this->dbforge->create_table('Album_videos', TRUE);
 	}
 
 
@@ -319,10 +322,10 @@ class Setupdb_model extends CI_Model {
 		$this->dbforge->drop_table('user_info',TRUE);
 	}
 
-	public function dropProjects()
+	public function dropAlbum()
 	{
 		$this->load->dbforge();
-		$this->dbforge->drop_table('projects',TRUE);
+		$this->dbforge->drop_table('Album',TRUE);
 	}
 
 	public function dropPictures()
@@ -337,16 +340,16 @@ class Setupdb_model extends CI_Model {
 		$this->dbforge->drop_table('videos',TRUE);
 	}
 
-	public function dropProject_pictures()
+	public function dropAlbum_pictures()
 	{
 		$this->load->dbforge();
-		$this->dbforge->drop_table('project_pitures',TRUE);
+		$this->dbforge->drop_table('Album_pitures',TRUE);
 	}
 
-	public function dropProject_videos()
+	public function dropAlbum_videos()
 	{
 		$this->load->dbforge();
-		$this->dbforge->drop_table('project_videos',TRUE);
+		$this->dbforge->drop_table('Album_videos',TRUE);
 	}
 
 	public function showUser()

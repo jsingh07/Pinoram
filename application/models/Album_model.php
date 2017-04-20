@@ -1,29 +1,31 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Project_model extends CI_Model {
+class Album_model extends CI_Model {
 
 	public function __construct() {}
 
-	public function create_project($data, $user_id, $access)
+	public function create_Album($data, $user_id, $access)
 	{
 		$string =
 		array(
-		'project_name' => $data['project_title'],
-		'description' => $data['project_description'],
-		'project_access' => $access,
+		'Album_name' => $data['Album_title'],
+		'description' => $data['Album_description'],
+		'Album_access' => $access,
 		'owner_id' => $user_id
 		);
 
-		$q = $this->db->insert_string('projects',$string);             
+		$q = $this->db->insert_string('Album',$string);             
         $this->db->query($q);
 
         $insert_id = $this->db->insert_id();
         return $insert_id;
 	}
 
-	public function get_projects($user_id)
+	public function get_Album($user_id)
 	{
-		$sql = "SELECT * FROM projects WHERE owner_id = $user_id";
+		$sql = "SELECT * FROM Album 
+				WHERE owner_id = $user_id
+				";
 		$result = $this->db->query($sql);
 		return $result;
 	}

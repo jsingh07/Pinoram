@@ -1,16 +1,10 @@
 <!DOCTYPE html>
 <html>  
     <body>
-    <!--<div>
-        <img id="demo-basic" src="/files/images/6.jpg"/>
-            <button id="submitbutton" class="waves-effect waves-light btn-large">Submit</button>
-        </div>
-        <div id="test" class="circle">
-            
-    </div>-->
+
 <!-- FAB button -->
 <div class="fixed-action-btn">
-    <a id="create_project" class="btn-floating waves-effect waves-light red"><i class="material-icons">add</i></a>
+    <a id="create_Album" class="btn-floating waves-effect waves-light red"><i class="material-icons">add</i></a>
 </div>
 
 
@@ -44,6 +38,7 @@
 
 <!-- Album Cards -->
 <div id="album-container" class="row " style="max-width: 80%; margin-top: 20px;">
+    <input type = "hidden" id = "csrf" name = "<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
     <div id= "col1" class="col s12 l4" >
 
     </div>
@@ -60,33 +55,33 @@
             <div class="card" >
                 <div class="card-image">
                     
-                    <a href="<?php echo base_url();?>/Project/picture"><img src="/files/images/1.jpg"></a>
+                    <a href="<?php echo base_url();?>/Album/picture"><img src="/files/images/1.jpg"></a>
                     <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
                 </div>
                 <div class="card-action">
-                      <a href="<?php echo base_url();?>/Project/picture">Album</a>
+                      <a href="<?php echo base_url();?>/Album/picture">Album</a>
                 </div>
             </div>
             <div class="card" >
                 <div class="card-image">
                     
-                    <a href="<?php echo base_url();?>/Project/picture"><img src="/files/images/4.jpg"></a>
+                    <a href="<?php echo base_url();?>/Album/picture"><img src="/files/images/4.jpg"></a>
                     <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
 
                 </div>
                 <div class="card-action">
-                      <a href="<?php echo base_url();?>/Project/picture">Album</a>
+                      <a href="<?php echo base_url();?>/Album/picture">Album</a>
                 </div>
             </div>
             <div class="card" >
                 <div class="card-image">
                     
-                    <a href="<?php echo base_url();?>/Project/picture"><img src="/files/images/1.jpg"></a>
+                    <a href="<?php echo base_url();?>/Album/picture"><img src="/files/images/1.jpg"></a>
                     <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
 
                 </div>
                 <div class="card-action">
-                      <a href="<?php echo base_url();?>/Project/picture">Album</a>
+                      <a href="<?php echo base_url();?>/Album/picture">Album</a>
                 </div>
             </div>
         </div>
@@ -94,32 +89,32 @@
             <div class="card" >
                 <div class="card-image">
                     
-                    <a href="<?php echo base_url();?>/Project/picture"><img src="/files/images/3.jpg"></a>
+                    <a href="<?php echo base_url();?>/Album/picture"><img src="/files/images/3.jpg"></a>
                     <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
                 </div>
             
                 <div class="card-action">
-                      <a href="<?php echo base_url();?>/Project/picture">Album</a>
+                      <a href="<?php echo base_url();?>/Album/picture">Album</a>
                 </div>
             </div>
             <div class="card" >
                 <div class="card-image">
                     
-                    <a href="<?php echo base_url();?>/Project/picture"><img src="/files/images/6.jpg"></a>
+                    <a href="<?php echo base_url();?>/Album/picture"><img src="/files/images/6.jpg"></a>
                     <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
                 </div>
                 <div class="card-action">
-                      <a href="<?php echo base_url();?>/Project/picture">Album</a>
+                      <a href="<?php echo base_url();?>/Album/picture">Album</a>
                 </div>
             </div>
             <div class="card" >
                 <div class="card-image">
                     
-                    <a href="<?php echo base_url();?>/Project/picture"><img src="/files/images/1.jpg"></a>
+                    <a href="<?php echo base_url();?>/Album/picture"><img src="/files/images/1.jpg"></a>
                     <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
                 </div>
                 <div class="card-action">
-                      <a href="<?php echo base_url();?>/Project/picture">Album</a>
+                      <a href="<?php echo base_url();?>/Album/picture">Album</a>
                 </div>
             </div>
         </div>
@@ -130,11 +125,11 @@
             <div class="card" >
                 <div class="card-image">
                     
-                    <a href="<?php echo base_url();?>/Project/picture"><img src="/files/images/4.jpg"></a>
+                    <a href="<?php echo base_url();?>/Album/picture"><img src="/files/images/4.jpg"></a>
                     <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
                 </div>
                 <div class="card-action">
-                      <a href="<?php echo base_url();?>/Project/picture">Album</a>
+                      <a href="<?php echo base_url();?>/Album/picture">Album</a>
                 </div>
             </div>
      
@@ -143,37 +138,39 @@
             <div class="card" >
                 <div class="card-image">
                     
-                    <a href="<?php echo base_url();?>/Project/picture"><img src="/files/images/5.jpg"></a>
+                    <a href="<?php echo base_url();?>/Album/picture"><img src="/files/images/5.jpg"></a>
                     <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
                 </div>
                 <div class="card-action">
-                      <a href="<?php echo base_url();?>/Project/picture">Album</a>
+                      <a href="<?php echo base_url();?>/Album/picture">Album</a>
                 </div>
             </div>
         </div>
     </div>-->
-<!--CREAT ALBUM MODAL-->    
-<div id="create-project-modal" class="modal modal-fixed-footer" style="min-height:500px;">
 
-            <?php echo form_open('project/create_project'); ?>
+
+<!--CREAT ALBUM MODAL-->    
+<div id="create-Album-modal" class="modal modal-fixed-footer" style="min-height:500px;">
+
+            <?php echo form_open('Album/create_Album'); ?>
             <div class="modal-content row">
-                <h4 style="text-align: center">Create a New Project</h4>
+                <h4 style="text-align: center">Create a New Album</h4>
                 <hr/>
                 <div style="margin-top: 20px; margin-left: 10px;">
                     <div class="input-field col s12">
-                        <input type="text" id="project_title" name="project_title" class="validate"
+                        <input type="text" id="Album_title" name="Album_title" class="validate"
                                 value="">
-                        <label for="project_title"><strong>Title</strong></label>
+                        <label for="Album_title"><strong>Title</strong></label>
                     </div>
                     <div class="input-field col s12">
-                        <textarea id="project_description" name="project_description" data-length="500" style="min-height: 120px;" class="materialize-textarea"></textarea>
-                        <label for="project_description"><strong>Description</strong></label>
+                        <textarea id="Album_description" name="Album_description" data-length="500" style="min-height: 120px;" class="materialize-textarea"></textarea>
+                        <label for="Album_description"><strong>Description</strong></label>
                     </div>
                     <div class="switch">
                         <label>
                             Private 
-                            <input id="project_access" name="project_access" type="checkbox">
-                            <span class="lever" for="project_access"></span>
+                            <input id="Album_access" name="Album_access" type="checkbox">
+                            <span class="lever" for="Album_access"></span>
                             Public
                         </label>
                     </div>
@@ -194,9 +191,9 @@
     $(document).ready(function(){
 
 
-        $("#create-project-modal").modal();
-        $("#create_project").click(function(){
-            $("#create-project-modal").modal('open');
+        $("#create-Album-modal").modal();
+        $("#create_Album").click(function(){
+            $("#create-Album-modal").modal('open');
         });
         $.ajax({
             url:"/Account/getBio",
@@ -213,7 +210,7 @@
     });
 
     $.ajax({
-        url:"get_project",
+        url:"get_Album",
         dataType: 'json',
         success: function(data)
         {       
@@ -242,7 +239,9 @@
                 temp4.appendChild(temp5);
             }else{
                 var col_num = 1;
+                var count = 0;
                 $.each(data, function(){
+                    //Creating Div cards to hold image
                     var col = document.getElementById("col"+col_num);
                     var divcard = document.createElement("div");
                     var divImgCard = document.createElement("div");
@@ -250,24 +249,67 @@
                     var divalbum = document.createElement("div");
                     var a_album = document.createElement("a");
                     var srcPic = "/files/static_images/no-image-icon.png";
+                    var album_pic_path = "/Album/picture/";
                         //elementdiv.setAttribute("id","picture-card");
                     divcard.setAttribute("class","card"); 
                     divalbum.setAttribute("class", "card-action");
                     divImgCard.setAttribute("class", "card-image");
+                    //a_album.setAttribute("href", "");
+                    var album_name_link = "album_name_link"+count;
+                    a_album.setAttribute("id", album_name_link);
+                                      // a_album.setAttribute("class", "button");
 
                     img.setAttribute("src", srcPic);
-                    var album = document.createTextNode(this.project_name);
+                    var album = document.createTextNode(this.Album_name);
                     a_album.appendChild(album);
                     col.appendChild(divcard);
                     divcard.appendChild(divImgCard);
                     divImgCard.appendChild(img);
                     divcard.appendChild(divalbum);
                     divalbum.appendChild(a_album);
+
+                    //Creating Forms for each album 
+                    var form = document.createElement("form");
+                    form.setAttribute("method", "post");
+                    var album_form ="album_form"+count;
+                    form.setAttribute("id", album_form);
+                    form.setAttribute("action", "/Album/picture");
+                    var input = document.createElement("input");
+                    input.setAttribute("name", "album_id");
+                    input.setAttribute("value", this.Album_id);
+                    input.setAttribute("type", "hidden");
+                    form.appendChild(input);
+                    
+                    divalbum.appendChild(form);
+
+                    //grabbing csrf name and value from element creataed in album-container input
+                    var input_hash = document.getElementById("csrf");
+                    var hash_name = input_hash.getAttribute("name");
+                    var hash_value = input_hash.getAttribute("value");
+                    
+                    //alert(hash_name);
+                    var csrf_input = document.createElement("input");
+                    csrf_input.setAttribute("type", "hidden");
+                    csrf_input.setAttribute("name", hash_name);
+                    csrf_input.setAttribute("value", hash_value);
+                    form.appendChild(csrf_input);
+
+                    count += 1;
                     if(col_num ==3){
                         col_num = 1;
                     }else{
                         col_num += 1;
                     }
+                });
+
+                $('a').click(function(){
+                    //alert("button");
+                    var id = this.id;
+                    var count_album = id.substring(15);
+                    var form_id = "album_form"+count_album;
+                    //alert(form_id);
+                    document.getElementById(form_id).submit();
+
                 });
             }  
         }

@@ -32,7 +32,7 @@
 
 
 	<div class="fixed-action-btn vertical">
-   		<?php echo form_open_multipart('Project/upload_picture', 'id="formPictureUpload"'); ?> 
+   		<?php echo form_open_multipart('Album/upload_picture', 'id="formPictureUpload"'); ?> 
    		<input type="hidden" name="hiddenlat" id="hiddenlat">
    		<input type="hidden" name="hiddenlng" id="hiddenlng">
    		<input type="hidden" name="hiddenaddress" id="hiddenaddress">
@@ -76,7 +76,7 @@
     	<!--<div class= "left" style="width: 100%; position: fixed">
     		<img class="modalPic center" id="modalPic" style="height:auto; width:100%">
     	</div>-->
-		<?php echo form_open('project/edit_picture_info'); ?>
+		<?php echo form_open('Album/edit_picture_info'); ?>
 
 	    <div id="picture-info" class="modal-content row">
 	    	<input type="hidden" id="picture_id" name="picture_id"></input>
@@ -120,7 +120,7 @@
 		<?php echo form_close(); ?>
 	      	<a style="font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center; color:black" class="modal-action modal-close waves-effect waves-gray btn-flat">Cancel</a>
 
-	    <?php echo form_open('project/deletePicture'); ?>
+	    <?php echo form_open('Album/deletePicture'); ?>
 	    	<input type="hidden" id="delete_pic" name="delete_pic"></input>
 	      	<button style="color:red; font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center"  type="submit" name="Submit" value="Delete" class="modal-action modal-close waves-effect waves-red btn-flat ">Delete</button>
 	    <?php echo form_close(); ?>
@@ -140,7 +140,7 @@
 	    	});
 
 			$.ajax({
-		        url: "/project/test_post", 
+		        url: "/Album/test_post", 
 		        dataType: 'json',
 		        success: function(result)
 		        {
