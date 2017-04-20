@@ -4,21 +4,14 @@ class Album_model extends CI_Model {
 
 	public function __construct() {}
 
-	public function create_Album($data, $user_id, $access)
+	public function create_Album($data, $user_id, $access, $album_id)
 	{
-		$string =
-		array(
-		'album_name' => $data['Album_title'],
-		'description' => $data['Album_description'],
-		'album_access' => $access,
-		'owner_id' => $user_id
-		);
+		$Album_title = $data['Album_title'];
+		$Album_description =$data['Album_description'];
+		$sql = "INSERT INTO album (album_name, album_id, album_access, owner_id, description) 
+				VALUES ('$Album_title', '$album_id', '$access', $user_id, '$Album_description')"; 
 
-		$q = $this->db->insert_string('album',$string);             
-        $this->db->query($q);
-
-        $insert_id = $this->db->insert_id();
-        return $insert_id;
+        $this->db->query($sql);
 	}
 
 	public function get_Album($user_id)
@@ -33,7 +26,7 @@ class Album_model extends CI_Model {
 	public function get_pictures_from_album($album_id)
 	{
 		$sql = "SELECT * FROM pictures
-				WHERE album_id = $album_id
+				WHERE album_id = '$album_id'
 				";
 		$result = $this->db->query($sql);
 		return $result;
@@ -47,9 +40,9 @@ class Album_model extends CI_Model {
         return $result;
 	}
 
-	public function insert_picture($user_id, $pic_id)
+	public function insert_picture($user_id, $pic_id, $album_id)
 	{
-		$sql = "INSERT INTO pictures (owner_id, picture_id) VALUES ($user_id, '$pic_id')";
+		$sql = "INSERT INTO pictures (owner_id, picture_id, album_id) VALUES ($user_id, '$pic_id', '$album_id')";
         $this->db->query($sql);
 	}
 
@@ -73,7 +66,7 @@ class Album_model extends CI_Model {
 	{
 		$picture_id = $data['delete_pic'];
 		$path = "files/images/".$picture_id.".jpg";
-		$sql = "DELETE FROM pictures WHERE picture_id = $picture_id";
+		$sql = "DELETE FROM pictures WHERE picture_id = '$picture_id'";
 		$query = $this->db->query($sql);
 		unlink($path);
 	}

@@ -140,13 +140,31 @@
 	    	});
 
 			$.ajax({
-		        url: "/Album/test_post", 
+		        url: "/Album/get_Album", 
 		        dataType: 'json',
 		        success: function(result)
 		        {
 		        	var count = 0;
 
-		        	if(result.length == 0)
+		        	var album_id ="<?php echo $this->session->userdata['album_id']?>";
+		        	var album_count = 0;
+		        	var found = false; 
+		        	//find position fo album within array
+		        	$.each(result, function(){
+		        		$.each(this, function(){
+		        			if(this.album_id == album_id)
+		        			{
+								found = true;
+							}
+							if(!found)
+							{
+								album_count++;
+							}
+		        		});
+		        	});
+
+		        	//check if album has any pictures in it
+		        	if(result['album'][album_count]['pictures'].length == 0)
 		        	{
 		        		var temp0 = document.getElementById("pictureGrid");
 		        		var temp1 = document.createElement("div");
@@ -170,34 +188,38 @@
 		    			temp3.appendChild(temp4);
 		    			temp4.appendChild(temp5);
 		        	}
+		        	else
+		        	{
+			        	//loop through all pictures in album to layout in grid
+			        	$.each(result['album'][album_count]['pictures'], function(){
+			        		
+					        			modalnum = "pictureModal" + count;
+						        		hrefmodalnum = "#pictureModal" + count;
 
-		        	$.each(result, function(){
+						        		var testElement = document.getElementById("pictureGrid");
+										var elementdiv = document.createElement("div");
+										var elementa = document.createElement("a");
+										var elementimg = document.createElement("img");
+						    			var srcPic = "/files/images/" + this.picture_id + ".jpg";
 
-		        		modalnum = "pictureModal" + count;
-		        		hrefmodalnum = "#pictureModal" + count;
+						    			//elementdiv.setAttribute("id","picture-card");
+						    			elementdiv.setAttribute("class","grid-image-item");	
+						    			
+						    			elementa.setAttribute("id", modalnum);
+						    			elementa.setAttribute("class", "myImg");
+						    			elementa.setAttribute("href", "#pictureModal");
 
-		        		var testElement = document.getElementById("pictureGrid");
-						var elementdiv = document.createElement("div");
-						var elementa = document.createElement("a");
-						var elementimg = document.createElement("img");
-		    			var srcPic = "/files/images/" + this.picture_id + ".jpg";
+						    			elementimg.setAttribute("src", srcPic);
 
-		    			//elementdiv.setAttribute("id","picture-card");
-		    			elementdiv.setAttribute("class","grid-image-item");	
-		    			
-		    			elementa.setAttribute("id", modalnum);
-		    			elementa.setAttribute("class", "myImg");
-		    			elementa.setAttribute("href", "#pictureModal");
+						    			testElement.appendChild(elementdiv);
+						    			elementdiv.appendChild(elementa);
+						    			elementa.appendChild(elementimg);
 
-		    			elementimg.setAttribute("src", srcPic);
+									    count += 1;
+						});
+		        	}
 
-		    			testElement.appendChild(elementdiv);
-		    			elementdiv.appendChild(elementa);
-		    			elementa.appendChild(elementimg);
-
-					    count += 1;
-					});
-
+		        	
 		            var $grid = $('.grid').imagesLoaded( function() {
 					  // init Packery after all images have loaded
 					  $grid.packery({
@@ -208,7 +230,7 @@
 		        	$('.myImg').click(function() {
 	    				var picnum = $(this).attr("id");
 	    				var mynum = picnum.substring(12);
-	    				var srcPic = '/files/images/' + result[mynum].picture_id + '.jpg';
+	    				var srcPic = '/files/images/' + result['album'][album_count]['pictures'][mynum].picture_id + '.jpg';
 
 	    				var img = new Image();
 						img.onload = function() 
@@ -227,12 +249,12 @@
 						}
 						img.src = srcPic;
 	    				
-				        $("#pictureModal .modal-content #picture_description").val( result[mynum].description );
-				        $("#pictureModal .modal-content #Latitude").val( result[mynum].lat );
-				        $("#pictureModal .modal-content #Longitude").val( result[mynum].lng );
-				        $("#pictureModal .modal-content #Address").val( result[mynum].address );
-				        $("#pictureModal .modal-content #picture_id").val( result[mynum].picture_id );
-				        $("#pictureModal .modal-footer #delete_pic").val( result[mynum].picture_id );
+				        $("#pictureModal .modal-content #picture_description").val( result['album'][album_count]['pictures'][mynum].description );
+				        $("#pictureModal .modal-content #Latitude").val( result['album'][album_count]['pictures'][mynum].lat );
+				        $("#pictureModal .modal-content #Longitude").val( result['album'][album_count]['pictures'][mynum].lng );
+				        $("#pictureModal .modal-content #Address").val( result['album'][album_count]['pictures'][mynum].address );
+				        $("#pictureModal .modal-content #picture_id").val( result['album'][album_count]['pictures'][mynum].picture_id );
+				        $("#pictureModal .modal-footer #delete_pic").val( result['album'][album_count]['pictures'][mynum].picture_id );
 				        $('#pictureModal .modalPic').attr('src', srcPic );
 				        $('.modal').modal();
 
@@ -519,11 +541,6 @@
       						dismissible: false,
       						complete: function() { document.getElementById("formPictureUpload").reset(); }
       						}).modal('open');
-
-		            var imageInfo =    +' '+ // get the value of `name` from the `file` Obj
-			          file.type    +' '+
-			          Math.round(file.size/1024) +'KB';
-			          //console.log(imageInfo);
 		        }
 
 

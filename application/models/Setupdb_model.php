@@ -158,13 +158,13 @@ class Setupdb_model extends CI_Model {
 
 		$fields = array(
 			'album_id' => array(
-				'type' => 'INT',
-                'auto_increment' => TRUE
+				'type' => 'VARCHAR',
+                'constraint' => 40
 			),
 			'owner_id' => array(
 				'type' => 'INT'
 			),
-			'Album_name' => array(
+			'album_name' => array(
 				'type' => 'VARCHAR',
 				'constraint' => 100
 			),
@@ -173,7 +173,7 @@ class Setupdb_model extends CI_Model {
 				'constraint' => 999,
 				'null' => TRUE
 			),
-			'Album_access' => array(
+			'album_access' => array(
 				'type' => 'VARCHAR',
 				'constraint' => 30
 			)
@@ -197,7 +197,8 @@ class Setupdb_model extends CI_Model {
 				'type' => 'INT'
 			),
 			'album_id' => array(
-				'type' => 'INT'
+				'type' => 'VARCHAR',
+				'constraint' => 40
 			),
 			'lat' => array(
 				'type' => 'DECIMAL(10,6)',

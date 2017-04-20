@@ -44,6 +44,7 @@ class Album extends CI_Controller {
 	{
 		if($this->access())
 		{
+			$album_id = $this->uniqid_base36(true);
 			if($this->input->post('Album_access'))
 			{
 				$access = "public";
@@ -54,9 +55,8 @@ class Album extends CI_Controller {
 			}
 			$clean = $this->security->xss_clean($this->input->post(NULL, TRUE));
 
-			$Album_id = $this->Album_model->create_Album($clean, $this->session->userdata('user_id'), $access);
-			$this->load->view('templates/header.php');
-			$this->load->view('Album/test.php');
+			$this->Album_model->create_Album($clean, $this->session->userdata('user_id'), $access, $album_id);
+			redirect('Album/test');
 		}
 
 	}
@@ -64,10 +64,20 @@ class Album extends CI_Controller {
 	public function picture()
 	{
 		if($this->access())
-		{			
-			$data['album_id'] = $_POST['album_id'];
-			$this->load->view('templates/header.php');
-			$this->load->view('Album/Album_picture.php', $data);
+		{	
+			if(isset($_GET['album_id']))
+			{
+				$album_id = $_GET['album_id'];
+				$this->session->set_userdata('album_id', $album_id);
+				$this->load->view('templates/header.php');
+				$this->load->view('Album/Album_picture.php');
+			}
+			//echo $this->session->userdata['album_id'];
+			else
+			{
+				echo error;
+			}
+			
 		}
 	}
 
@@ -75,8 +85,10 @@ class Album extends CI_Controller {
 	{
 		if($this->access())
 		{
-			$pic_id = $this->uniqid_base36(true);
+			$album_id = $this->session->userdata('album_id');
 
+			$pic_id = $this->uniqid_base36(true);
+			
 	        $this->load->view('templates/header.php');
 
 	        $target_file = '/Workspace/Pinoram/pinoram-dev-jag/files/images/'.$pic_id.'.jpg';
@@ -112,7 +124,8 @@ class Album extends CI_Controller {
 			
 			if(imagejpeg($image, $target_file, 100))
 			{
-				$this->Album_model->insert_picture($this->session->userdata('user_id'), $pic_id);
+
+				$this->Album_model->insert_picture($this->session->userdata('user_id'), $pic_id, $album_id);
 				if (!empty($lat) && !empty($lng))
 				{
 					$data['picture_id'] = $pic_id;
@@ -122,7 +135,8 @@ class Album extends CI_Controller {
 					$data['picture_description'] = "";
 					$this->Album_model->update_picture($data);
 				}
-				redirect('Album/picture');
+				$redirect_path = 'Album/picture/?album_id='.$album_id;
+				redirect($redirect_path, $data);
 			}
 			else
 			{
