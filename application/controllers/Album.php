@@ -91,7 +91,7 @@ class Album extends CI_Controller {
 			
 	        $this->load->view('templates/header.php');
 
-	        $target_file = '/Library/WebServer/Documents/pinoram/pinoram-production/files/images/'.$pic_id.'.jpg';
+	        $target_file = '/Workspace/Pinoram/pinoram-dev-jag/files/images/'.$pic_id.'.jpg';
 	        $filePath = $_FILES['picture_upload']['tmp_name'];
 	        $address = $_POST['hiddenaddress'];
 	        $lat = $_POST['hiddenlat'];
@@ -175,7 +175,7 @@ class Album extends CI_Controller {
 			$clean = $this->security->xss_clean($this->input->post(NULL, TRUE));
 			$this->Album_model->delete_picture($clean);
 			//delete_files('/Library/WebServer/Documents/pinoram/pinoram-production/files/images/'.$clean['delete_pic'].'.jpg');
-			unlink('/Library/WebServer/Documents/pinoram/pinoram-production/files/images/'.$clean['delete_pic'].'.jpg');
+			unlink('/Workspace/Pinoram/pinoram-dev-jag/files/images/'.$clean['delete_pic'].'.jpg');
 			redirect('Album/picture');
 		}
 	}
@@ -233,30 +233,7 @@ class Album extends CI_Controller {
 
 	public function test_post()
 	{
-		/*
-		$data1 = $this->Account_model->get_account($this->session->userdata('user_id'));
-		//$data = $this->Project_model->get_pictures($this->session->userdata('user_id'));
-		$mydata1 = $data1->result();
-		//$mydata = $data->result();
-		$array = array();
-		//foreach($mydata as $dataArray)
-		//{
-		$count = 0;
-			foreach($mydata1 as $input)
-			{
-				foreach($input as $key => $value)
-				{
-					$array['album'][$count][$key] = $value;
-				}
-				$data = $this->Project_model->get_pictures($array['album'][$count]['username']);
-				$array['album'][0]['pictures'] = $mydata;
-				$count++;
-			}
-
-		//print_r($array);
-
-		//print_r($array['album'][0]);
-		//echo json_encode($array, true);*/
+		
 		$data = $this->Album_model->get_pictures($this->session->userdata('user_id'));
 		echo json_encode($data->result(), true);
 
