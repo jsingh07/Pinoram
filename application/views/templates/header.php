@@ -1,4 +1,8 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -36,7 +40,6 @@
                         <ul id="nav-mobile" class="right hide-on-small-and-down" style="margin-right: -30px">
                            <li><a href="<?php echo site_url();?>Account"><?php echo $username?></a></li>
                            <li><a href="<?php echo base_url()?>Album">Album</a></li>
-                           <li><a href="<?php echo base_url()?>Album/map">Map</a></li>
                            <?php if(($this->session->userdata('role') == 'admin') or ($this->session->userdata('role') == 'super-user')) {?>
                            <li><a href="<?php echo site_url();?>Setupdb">Database</a></li>
                            <?php } ?>
@@ -82,7 +85,6 @@
          <ul id="dropdown1" class="dropdown-content">
             <li><a href="<?php echo site_url();?>Account"><?php echo $username?></a></li>
             <li><a href="<?php echo base_url()?>Album">Album</a></li>
-            <li><a href="<?php echo base_url()?>Album/Album">Map</a></li>
             <?php if(($this->session->userdata('role') == 'admin') or ($this->session->userdata('role') == 'super-user')) {?>
             <li><a href="<?php echo site_url();?>Setupdb">Set up Database</a></li>
             <?php } ?>
