@@ -16,7 +16,7 @@
       <h5 class="header">Ron Hein</h5>
       <div class="card horizontal" style="border: none; box-shadow: none ">
         <div class="card-image" style="max-width: 133px">
-          <img class="circle" src="/files/images/pyai.jpg">
+          <img class="circle" src="/files/static_images/pyai.jpg">
         </div>
         <ul class= "profile_ul" style="margin-left: 30px">
           <li><a href="https://www.linkedin.com/in/ron-hein-015012111/">LinkedIn</a></li>
@@ -29,7 +29,11 @@
       <h5 class="header">Jagdeep Singh</h5>
       <div class="card horizontal" style="border: none; box-shadow: none">
         <div class="card-image" style="width: 133px">
+<<<<<<< HEAD
           <img class="circle" src="/files/images/jag.jpg">
+=======
+          <img class="circle" src="/files/static_images/jag.jpg">
+>>>>>>> a373f0609c8edc443c8583e842cac771ca8694f1
         </div>
         <ul class= "profile_ul" style="margin-left: 30px">
           <li><a href="https://www.linkedin.com/in/singhjagdeep07/">LinkedIn</a></li>

@@ -2,20 +2,22 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 
-class Album extends CI_Controller {
-	public function __construct() {
-	parent::__construct();
+class Album extends CI_Controller 
+{
+	public function __construct() 
+	{
+		parent::__construct();
 
-	$this->load->helper('url');
+		$this->load->helper('url');
 
-	$this->load->helper('form');
+		$this->load->helper('form');
 
-	$this->load->helper("file");
+		$this->load->helper("file");
 
-	// Load form validation library
-	$this->load->library('form_validation');
+		// Load form validation library
+		$this->load->library('form_validation');
 
-	$this->load->model('Album_model');
+		$this->load->model('Album_model');
 
 	}
 
@@ -56,7 +58,7 @@ class Album extends CI_Controller {
 			$clean = $this->security->xss_clean($this->input->post(NULL, TRUE));
 
 			$this->Album_model->create_Album($clean, $this->session->userdata('user_id'), $access, $album_id);
-			redirect('Album/test');
+			redirect('Album');
 		}
 
 	}
@@ -70,7 +72,7 @@ class Album extends CI_Controller {
 				$album_id = $_GET['album_id'];
 				$this->session->set_userdata('album_id', $album_id);
 				$this->load->view('templates/header.php');
-				$this->load->view('Album/Album_picture.php');
+				$this->load->view('album/album_picture.php');
 			}
 			else
 			{
@@ -85,11 +87,12 @@ class Album extends CI_Controller {
 	{
 		if($this->access())
 		{
+
+
 			$album_id = $this->session->userdata('album_id');
 
 			$pic_id = $this->uniqid_base36(true);
 			
-	        $this->load->view('templates/header.php');
 
 	        $target_file = '/Workspace/Pinoram/pinoram-dev-jag/files/images/'.$pic_id.'.jpg';
 	        $filePath = $_FILES['picture_upload']['tmp_name'];
@@ -140,6 +143,7 @@ class Album extends CI_Controller {
 			}
 			else
 			{
+				$this->load->view('templates/header.php');
 				echo 'error';
 			}
 
@@ -161,10 +165,12 @@ class Album extends CI_Controller {
 	{
 		if($this->access())
 		{
+			$album_id = $this->session->userdata('album_id');
 			$clean = $this->security->xss_clean($this->input->post(NULL, TRUE));
 			$this->Album_model->update_picture($clean);
 
-			redirect('Album/picture');
+			$redirect_path = 'Album/picture/?album_id='.$album_id;
+			redirect($redirect_path);
 		}
 	}
 
@@ -172,21 +178,41 @@ class Album extends CI_Controller {
 	{
 		if($this->access())
 		{
+			$album_id = $this->session->userdata('album_id');
 			$clean = $this->security->xss_clean($this->input->post(NULL, TRUE));
 			$this->Album_model->delete_picture($clean);
 			//delete_files('/Library/WebServer/Documents/pinoram/pinoram-production/files/images/'.$clean['delete_pic'].'.jpg');
+
 			unlink('/Workspace/Pinoram/pinoram-dev-jag/files/images/'.$clean['delete_pic'].'.jpg');
-			redirect('Album/picture');
+			$redirect_path = 'Album/picture/?album_id='.$album_id;
+			redirect($redirect_path);
+
 		}
 	}
 
 	public function map()
 	{
-		if($this->access())
+		/*if($this->access())
 		{
-			//$data['files']  = $this->Album_model->get_pictures($this->session->userdata('user_id'));
+			
 			$this->load->view('templates/header.php');
-			$this->load->view('Album/map.php');
+			$this->load->view('album/map.php');
+		}*/
+		if($this->access())
+		{	
+			if(isset($_GET['album_id']))
+			{
+				$album_id = $_GET['album_id'];
+				//$this->session->set_userdata('album_id', $album_id);
+				$this->load->view('templates/header.php');
+				$this->load->view('album/map.php');
+			}
+			else
+			{
+				$this->load->view('templates/header.php');
+				$this->load->view('access_denied.php');
+			}
+			
 		}
 	}
 
@@ -222,18 +248,18 @@ class Album extends CI_Controller {
 		//$this->load->view('Album/test.php');
 		//$data['files']  = $this->test_post();
 
-        $this->load->view('Album/test.php');
+        $this->load->view('album/test.php');
 	}
 
 	public function testexif()
 	{
 		$this->load->view('templates/header.php');
-        $this->load->view('Album/exiftest.php');
+        $this->load->view('album/exiftest.php');
 	}
 
 	public function test_post()
 	{
-		
+
 		$data = $this->Album_model->get_pictures($this->session->userdata('user_id'));
 		echo json_encode($data->result(), true);
 
