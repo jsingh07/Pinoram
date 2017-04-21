@@ -56,7 +56,7 @@ class Album extends CI_Controller {
 			$clean = $this->security->xss_clean($this->input->post(NULL, TRUE));
 
 			$this->Album_model->create_Album($clean, $this->session->userdata('user_id'), $access, $album_id);
-			redirect('Album/test');
+			redirect('Album');
 		}
 
 	}

@@ -88,7 +88,7 @@ class Account extends CI_Controller {
         	list($type, $data) = explode(';', $data);
         	list(, $data)      = explode(',', $data);
         	$data = base64_decode($data);
-			$config['upload_path']          = '/Library/WebServer/profile_images/';
+			$config['upload_path']          = '/Library/WebServer/Documents/pinoram/pinoram-production/files/profile_images/';
 	        $config['allowed_types']        = 'jpg|png';
 	        $config['max_size']             = 0;
 	        $config['max_width']            = 0;
