@@ -40,6 +40,14 @@ body {
     min-width: 430px;
 }
 
+#profile #label {
+    font-weight: bold;
+    font-size: 1em;
+    margin-top: 1px;
+    text-align: right; 
+    margin-left: -11px
+}
+
 #profile #account-label{
     margin-top: 2px;
 }
@@ -47,7 +55,7 @@ body {
 #profile #label li{
 	font-weight: bold;
 	font-size: 1.2em;
-	margin-top: 30px;
+	margin-top: 26px;
 }
 
 #profile #account-label li{

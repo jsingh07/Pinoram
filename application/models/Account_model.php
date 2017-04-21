@@ -51,6 +51,12 @@ class Account_model extends CI_Model {
 		$query = $this->db->query($sql);
 		return $query;
 	}
+	public function getUserbio($user_id)
+	{
+		$sql = "SELECT bio FROM user_info WHERE user_id = $user_id";
+		$query = $this->db->query($sql);
+		return $query;
+	}
 
 	public function delete_account($user_id)
 	{

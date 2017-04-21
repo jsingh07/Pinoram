@@ -1,9 +1,9 @@
 <html>
-	<div class="row" style="position: relative; margin-top: 2%; max-width: 300px; height: 300px;">
-          <div class="card blue-grey darken-1 center">
-            <div class="card-content white-text">
+	<div class="row" style="position: relative; margin-top: 8%; max-width: 350px; height: 300px;">
+          <div class="card center">
+            <div class="card-content">
               <span class="card-title">ACCESS DENIED</span>
-              <p>Sorry you don't have permission to access this page.</p>
+              <h5>Directory access is forbidden.</h5>
             </div>
           
         </div>

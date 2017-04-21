@@ -17,6 +17,8 @@ function initMap()
         dataType: 'json',
         success: function(result)
         {
+
+
         	console.log(result);
         	if(result.length != 0)
         	{
@@ -26,6 +28,7 @@ function initMap()
 	            	//console.log(this.address);
 	            	if(this.lat != 0 && this.lng != 0 && this.lat != undefined && this.lng != undefined)
 	            	{
+	            		var imageurl = "/files/images/";
 	            		marked = 1;
 		            	infoWindowContent = /*'<div class="info_content">' +
 		        							'<h3>London Eye</h3>' +
@@ -34,16 +37,16 @@ function initMap()
 		        							'</div>';*/
 		        		//'<div id="pictureModal" class="modal modal-fixed-footer" style="height:600px;">' +
 
-							'<?php echo form_open("project/edit_picture_info"); ?>' +
+							//'<?php echo form_open("project/edit_picture_info"); ?>' +
 
-						    '<div class="row" style = "min-width: 200px; min-height:150px;">' +
-						    	'<input type="hidden" id="picture_id" name="picture_id"></input>' +
+						    //'<div class="row" style = "max-width: 150px; max-height:150px;">' +
+						    	//'<input type="hidden" id="picture_id" name="picture_id"></input>' +
 
-						    	'<div class="col s12 l6" style="min-height: 300px">'+
-								'<img class="modalPic center" id="modalPic" style="height:auto; width:100%;" src="/files/images/'+this.picture_id+'.jpg'+'">' +
-								'</div>'+
+						    	'<div class="col s12" style="height: 150px; width:150px; background-image: url('+imageurl+this.picture_id+'.jpg); background-size: 150px, 150px ">'+
+								//'<img class="modalPic center" id="modalPic" style="height:auto; width:100%;" src="/files/images/'+this.picture_id+'.jpg'+'">' +
+								'</div>';
 
-								'<div class="col s12 l6">'+
+								/*'<div class="col s12 l6">'+
 									//'<h5 style="text-align: center; position:relative">Picture Information</h5>' +
 									//'<hr/>' +
 
@@ -69,8 +72,8 @@ function initMap()
 								          	
 								        '</div>' +
 									'</div>' +
-								'</div>'+
-							'</div>';
+								'</div>'+*/
+							//'</div>';
 						//'</div>';
 		            	
 		            	var position = new google.maps.LatLng(this.lat, this.lng);
@@ -123,7 +126,6 @@ function initMap()
 
         }
     });
-
 
 
 

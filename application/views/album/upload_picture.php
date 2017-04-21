@@ -17,8 +17,10 @@
 
 <body style="background-color: white">
 
-	<div class="fixed-action-btn">
-   		<?php echo form_open_multipart('Project/upload_picture'); ?> 
+    <div class="fixed-action-btn">
+   		<?php echo form_open_multipart('Album/upload_picture'); ?>
+   		<input type="hidden" name="Album_id" id="Album_id" value="<?php $Album_id ?>" />
+   		<button class="btn-floating btn-large waves-effect waves-light red file-field input-field"> 
 
    		<a class="btn-floating btn-large waves-effect waves-light red file-field input-field" onclick="document.getElementById('picture_upload').click();"> 
    			<input type="file" multiple name="picture_upload" accept="image/*" onchange="this.form.submit()" id="picture_upload" style="display: none;">
@@ -40,7 +42,7 @@
 	    $(document).ready(function(){
 
 			$.ajax({
-		        url: "/project/test_post", 
+		        url: "/Album/test_post", 
 		        dataType: 'json',
 		        success: function(result)
 		        {
@@ -105,5 +107,5 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdDu8izbxISEkID8QNUqH3zUnmfU-jRys&libraries=places">
     </script>
 	
-
+	
 </html>

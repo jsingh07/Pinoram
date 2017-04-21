@@ -27,23 +27,15 @@
 
 </style>
 
+
 <body style="background-color: white">
-	<!--<div class="row" >
-		<nav>
-			<div class="nav-wrapper">
-                <ul>
-					<li class="col s3"><a href="<?php echo base_url()?>Project/project" style="text-align: center">Projects</a></li>
-					<li class="col s3"><a href="#create-project-modal" style="text-align: center; line-height:20px; padding-top:12px; padding-bottom: 12px">Create<br>Project</a></li>
-					<li class="col s3 active"><a href="<?php echo base_url()?>Project/Picture" style="text-align: center">Pictures</a></li>
-					<li class="col s3"><a href="<?php echo base_url()?>Project/test" style="text-align: center">Test</a></li>
-				</ul>
-			</div>
-		</nav>
-	</div>-->
+
 
 	<div class="fixed-action-btn vertical">
-   		<?php echo form_open_multipart('Project/upload_picture', 'id="formPictureUpload"'); ?> 
-
+   		<?php echo form_open_multipart('Album/upload_picture', 'id="formPictureUpload"'); ?> 
+   		<input type="hidden" name="hiddenlat" id="hiddenlat">
+   		<input type="hidden" name="hiddenlng" id="hiddenlng">
+   		<input type="hidden" name="hiddenaddress" id="hiddenaddress">
    		<a class="btn-floating btn-large waves-effect waves-light red file-field input-field" onclick="document.getElementById('picture_upload').click();"> 
    			<input type="file" multiple name="picture_upload" accept="image/*" onchange="uploadPicture(this)" id="picture_upload" style="display: none;">
     		<i class="large material-icons">publish</i>
@@ -54,13 +46,23 @@
 
  	<div id="picturePreviewModal" class="modal" style="height:auto;">
 
-	   	<img id="picturePreviewImage" >
+	   	<image id="picturePreviewImage" ></image>
 	   	<div class="modal-footer">
 	      <button id="imageUploadButton" class="modal-action modal-close waves-effect waves-green btn-flat" style="color: green; width: 50%; max-width: 100px; padding: 0;">Upload</button>
 	      <button class="modal-action modal-close waves-effect waves-green btn-flat" style="width: 50%; padding: 0; max-width: 100px">Cancel</button>
 	    </div>
 
   	</div>
+
+  	<div id="loading" class="modal" style="height:auto; max-width: 350px; margin-top: 30%">
+
+
+	   	<div class="modal-content center">
+	    	<h4>Uploading...</h4>
+	    </div>
+
+  	</div>
+
 
 
     <div class="row" style="max-width: 800px; margin-top: 20px;">
@@ -74,7 +76,7 @@
     	<!--<div class= "left" style="width: 100%; position: fixed">
     		<img class="modalPic center" id="modalPic" style="height:auto; width:100%">
     	</div>-->
-		<?php echo form_open('project/edit_picture_info'); ?>
+		<?php echo form_open('Album/edit_picture_info'); ?>
 
 	    <div id="picture-info" class="modal-content row">
 	    	<input type="hidden" id="picture_id" name="picture_id"></input>
@@ -118,7 +120,7 @@
 		<?php echo form_close(); ?>
 	      	<a style="font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center; color:black" class="modal-action modal-close waves-effect waves-gray btn-flat">Cancel</a>
 
-	    <?php echo form_open('project/deletePicture'); ?>
+	    <?php echo form_open('Album/deletePicture'); ?>
 	    	<input type="hidden" id="delete_pic" name="delete_pic"></input>
 	      	<button style="color:red; font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center"  type="submit" name="Submit" value="Delete" class="modal-action modal-close waves-effect waves-red btn-flat ">Delete</button>
 	    <?php echo form_close(); ?>
@@ -138,13 +140,31 @@
 	    	});
 
 			$.ajax({
-		        url: "/project/test_post", 
+		        url: "/Album/get_Album", 
 		        dataType: 'json',
 		        success: function(result)
 		        {
 		        	var count = 0;
 
-		        	if(result.length == 0)
+		        	var album_id ="<?php echo $this->session->userdata['album_id']?>";
+		        	var album_count = 0;
+		        	var found = false; 
+		        	//find position fo album within array
+		        	$.each(result, function(){
+		        		$.each(this, function(){
+		        			if(this.album_id == album_id)
+		        			{
+								found = true;
+							}
+							if(!found)
+							{
+								album_count++;
+							}
+		        		});
+		        	});
+
+		        	//check if album has any pictures in it
+		        	if(result['album'][album_count]['pictures'].length == 0)
 		        	{
 		        		var temp0 = document.getElementById("pictureGrid");
 		        		var temp1 = document.createElement("div");
@@ -168,34 +188,38 @@
 		    			temp3.appendChild(temp4);
 		    			temp4.appendChild(temp5);
 		        	}
+		        	else
+		        	{
+			        	//loop through all pictures in album to layout in grid
+			        	$.each(result['album'][album_count]['pictures'], function(){
+			        		
+					        			modalnum = "pictureModal" + count;
+						        		hrefmodalnum = "#pictureModal" + count;
 
-		        	$.each(result, function(){
+						        		var testElement = document.getElementById("pictureGrid");
+										var elementdiv = document.createElement("div");
+										var elementa = document.createElement("a");
+										var elementimg = document.createElement("img");
+						    			var srcPic = "/files/images/" + this.picture_id + ".jpg";
 
-		        		modalnum = "pictureModal" + count;
-		        		hrefmodalnum = "#pictureModal" + count;
+						    			//elementdiv.setAttribute("id","picture-card");
+						    			elementdiv.setAttribute("class","grid-image-item");	
+						    			
+						    			elementa.setAttribute("id", modalnum);
+						    			elementa.setAttribute("class", "myImg");
+						    			elementa.setAttribute("href", "#pictureModal");
 
-		        		var testElement = document.getElementById("pictureGrid");
-						var elementdiv = document.createElement("div");
-						var elementa = document.createElement("a");
-						var elementimg = document.createElement("img");
-		    			var srcPic = "/files/images/" + this.picture_id + ".jpg";
+						    			elementimg.setAttribute("src", srcPic);
 
-		    			//elementdiv.setAttribute("id","picture-card");
-		    			elementdiv.setAttribute("class","grid-image-item");	
-		    			
-		    			elementa.setAttribute("id", modalnum);
-		    			elementa.setAttribute("class", "myImg");
-		    			elementa.setAttribute("href", "#pictureModal");
+						    			testElement.appendChild(elementdiv);
+						    			elementdiv.appendChild(elementa);
+						    			elementa.appendChild(elementimg);
 
-		    			elementimg.setAttribute("src", srcPic);
+									    count += 1;
+						});
+		        	}
 
-		    			testElement.appendChild(elementdiv);
-		    			elementdiv.appendChild(elementa);
-		    			elementa.appendChild(elementimg);
-
-					    count += 1;
-					});
-
+		        	
 		            var $grid = $('.grid').imagesLoaded( function() {
 					  // init Packery after all images have loaded
 					  $grid.packery({
@@ -206,7 +230,7 @@
 		        	$('.myImg').click(function() {
 	    				var picnum = $(this).attr("id");
 	    				var mynum = picnum.substring(12);
-	    				var srcPic = '/files/images/' + result[mynum].picture_id + '.jpg';
+	    				var srcPic = '/files/images/' + result['album'][album_count]['pictures'][mynum].picture_id + '.jpg';
 
 	    				var img = new Image();
 						img.onload = function() 
@@ -225,12 +249,12 @@
 						}
 						img.src = srcPic;
 	    				
-				        $("#pictureModal .modal-content #picture_description").val( result[mynum].description );
-				        $("#pictureModal .modal-content #Latitude").val( result[mynum].lat );
-				        $("#pictureModal .modal-content #Longitude").val( result[mynum].lng );
-				        $("#pictureModal .modal-content #Address").val( result[mynum].address );
-				        $("#pictureModal .modal-content #picture_id").val( result[mynum].picture_id );
-				        $("#pictureModal .modal-footer #delete_pic").val( result[mynum].picture_id );
+				        $("#pictureModal .modal-content #picture_description").val( result['album'][album_count]['pictures'][mynum].description );
+				        $("#pictureModal .modal-content #Latitude").val( result['album'][album_count]['pictures'][mynum].lat );
+				        $("#pictureModal .modal-content #Longitude").val( result['album'][album_count]['pictures'][mynum].lng );
+				        $("#pictureModal .modal-content #Address").val( result['album'][album_count]['pictures'][mynum].address );
+				        $("#pictureModal .modal-content #picture_id").val( result['album'][album_count]['pictures'][mynum].picture_id );
+				        $("#pictureModal .modal-footer #delete_pic").val( result['album'][album_count]['pictures'][mynum].picture_id );
 				        $('#pictureModal .modalPic').attr('src', srcPic );
 				        $('.modal').modal();
 
@@ -430,9 +454,50 @@
 		            image.src = e.target.result;
 		            var windowheight = Math.round($(window).height() ); 
 	    			var windowwidth = Math.round($(window).width() ); 
-		            image.onload = function () {
+
+		            image.onload = function () 
+		            {
+		            	var mypic = document.getElementById('picturePreviewImage');
+		   
+		            	EXIF.getData(mypic, function() 
+		            	{
+
+					    	if(EXIF.getTag(this, "GPSLatitude") && EXIF.getTag(this, "GPSLongitude"))
+					    	{
+							  	var lat = EXIF.getTag(this, "GPSLatitude"),
+					            lng = EXIF.getTag(this, "GPSLongitude"),
+					            latRef = EXIF.getTag(this, "GPSLatitudeRef"),
+					            lngRef = EXIF.getTag(this, "GPSLongitudeRef");
+					            mylat = toDecimal(lat[0], lat[1], lat[2], latRef);
+					            mylng = toDecimal(lng[0], lng[1], lat[2], lngRef);
+					        	//alert("I was taken at " + mylat + " " + mylng);
+					        	var hiddenaddress = document.getElementById('hiddenaddress');
+					        	var hiddenlat = document.getElementById('hiddenlat');
+					        	var hiddenlng = document.getElementById('hiddenlng');
+
+					        	hiddenlat.value = mylat;
+					        	hiddenlng.value = mylng;
+							
+			            		var geocoder = new google.maps.Geocoder();
+			            		var latlng = {lat: parseFloat(mylat), lng: parseFloat(mylng)};
+
+						        geocoder.geocode({'location': latlng}, function(results, status) 
+						        {
+						            if (status === 'OK') 
+						            {
+						              var myaddress = (results[1].formatted_address);
+						              hiddenaddress.value = myaddress;
+						            }
+						        });
+						    }
+				       	});
+
 		            	if(this.width >= this.height)
 		            	{
+
+		            		/*$('#picturePreviewImage').css('-ms-transform', 'rotate(90deg)'); 
+		            		$('#picturePreviewImage').css('-webkit-transform', 'rotate(90deg)');
+		            		$('#picturePreviewImage').css('transform', 'rotate(90deg)');*/
 		            		if(windowwidth < 450)
 		            		{
 		            			$('#picturePreviewImage').css('width', '100%');
@@ -465,26 +530,29 @@
 				            	$('#picturePreviewModal').css('width', previewModalWidth);
 				            }
 		            	}
-		            	$('#imageUploadButton').click(function() {
+		            	$('#imageUploadButton').click(function() 
+		            	{
+		            		$('#loading').modal({dismissible: false}).modal('open');
 		            		input.form.submit();
 		            	});
-			        };
+			        }
 
 		            $('#picturePreviewModal').modal({
       						dismissible: false,
       						complete: function() { document.getElementById("formPictureUpload").reset(); }
       						}).modal('open');
-
-		            var imageInfo =    +' '+ // get the value of `name` from the `file` Obj
-			          file.type    +' '+
-			          Math.round(file.size/1024) +'KB';
-			          //console.log(imageInfo);
 		        }
 
 
 		        reader.readAsDataURL(input.files[0]);
 		    }
 	    }
+
+	    function toDecimal($deg, $min, $sec, $hem) 
+		{
+		    $d = $deg + ((($min/60) + ($sec/3600)/100));
+		    return ($hem=='S' || $hem=='W') ? $d*=-1 : $d;
+		}
 
       function geocodeAddress(geocoder) {
 

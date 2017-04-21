@@ -28,6 +28,16 @@ class Account extends CI_Controller {
 		
 	}
 
+	public function getBio()
+	{
+		if($this->access())
+		{
+			$bio = $this->Account_model->getUserbio($this->session->userdata('user_id'));
+			echo json_encode($bio->result(), true);
+		}
+
+	}
+
 	public function access()
 	{
 		if($this->session->userdata('logged_in') == TRUE)
@@ -66,6 +76,40 @@ class Account extends CI_Controller {
 		{
 			redirect('Welcome');
 		}
+	}
+
+	public function upload_profile_picture()
+	{
+		if($this->access())
+		{
+			$picture_id = $this->session->userdata('user_id');
+			$data = $_POST['imagebase64'];
+			
+        	list($type, $data) = explode(';', $data);
+        	list(, $data)      = explode(',', $data);
+        	$data = base64_decode($data);
+			$config['upload_path']          = '/Library/WebServer/profile_images/';
+	        $config['allowed_types']        = 'jpg|png';
+	        $config['max_size']             = 0;
+	        $config['max_width']            = 0;
+	        $config['max_height']           = 0;
+	        $config['file_name']            = $picture_id.'.jpg';
+
+	        $this->load->library('upload', $config);
+	        $this->load->view('templates/header.php');
+	        $filepath = '/Library/WebServer/Documents/pinoram/pinoram-production/files/profile_images/'.$picture_id.'.jpg';
+	        file_put_contents($filepath, $data);
+	        redirect('Account');	        /*if ( ! $this->upload->do_upload($data))
+	        {
+	                $error = array('error' => $this->upload->display_errors());
+
+	                echo ($error['error']);
+	        }
+	        else
+	        {
+	                redirect('Album/picture');
+	        }-->*/
+	    }
 	}
 
 	public function edit_account()
