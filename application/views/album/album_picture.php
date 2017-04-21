@@ -451,7 +451,7 @@
 		        reader.onload = function (e) 
 		        {
 
-					//$('#picturePreviewImage').attr('src', e.target.result);
+					$('#picturePreviewImage').attr('src', e.target.result);
 
 		            var image  = new Image();
 		            image.src = e.target.result;
@@ -464,7 +464,6 @@
 		   
 		            	EXIF.getData(mypic, function() 
 		            	{
-
 					    	if(EXIF.getTag(this, "GPSLatitude") && EXIF.getTag(this, "GPSLongitude"))
 					    	{
 							  	var lat = EXIF.getTag(this, "GPSLatitude"),
@@ -491,15 +490,21 @@
 						              var myaddress = (results[1].formatted_address);
 						              hiddenaddress.value = myaddress;
 						            }
+						            input.form.submit();
 						        });
+
 						    }
+						    else
+						   	{
+						   		input.form.submit();
+						   	}
 				       	});
-				       	input.form.submit();
 				    }
 
 				}
 				reader.readAsDataURL(input.files[0]);
 			}
+			
 				    /*
 		            	if(this.width >= this.height)
 		            	{
