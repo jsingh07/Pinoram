@@ -88,12 +88,8 @@ class Account extends CI_Controller {
         	list($type, $data) = explode(';', $data);
         	list(, $data)      = explode(',', $data);
         	$data = base64_decode($data);
-<<<<<<< HEAD
-			$config['upload_path']          = '/Workspace/Pinoram/pinoram-dev-jag/profile_images/';
-=======
-/*
-			$config['upload_path']          = '/Library/WebServer/Documents/pinoram/pinoram-production/files/profile_images/';
->>>>>>> a373f0609c8edc443c8583e842cac771ca8694f1
+
+			$config['upload_path']          = '/Workspace/Pinoram/pinoram-dev-jag/files/profile_images/';
 	        $config['allowed_types']        = 'jpg|png';
 	        $config['max_size']             = 0;
 	        $config['max_width']            = 0;
@@ -101,13 +97,9 @@ class Account extends CI_Controller {
 	        $config['file_name']            = $picture_id.'.jpg';
 
 	        $this->load->library('upload', $config);
-<<<<<<< HEAD
+
 	        $this->load->view('templates/header.php');
 	        $filepath = '/Workspace/Pinoram/pinoram-dev-jag/files/profile_images/'.$picture_id.'.jpg';
-=======
-	        $this->load->view('templates/header.php');*/
-	        $filepath = '/Library/WebServer/Documents/pinoram/pinoram-production/files/profile_images/'.$picture_id.'.jpg';
->>>>>>> a373f0609c8edc443c8583e842cac771ca8694f1
 	        file_put_contents($filepath, $data);
 	        redirect('Account');	       
 	    }
