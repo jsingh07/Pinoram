@@ -24,7 +24,7 @@ class Album extends CI_Controller {
 		if($this->access())
 		{
 			$this->load->view('templates/header.php');
-			$this->load->view('home/home.php');
+			$this->load->view('album/album.php');
 		}
 	}
 
@@ -72,10 +72,10 @@ class Album extends CI_Controller {
 				$this->load->view('templates/header.php');
 				$this->load->view('Album/Album_picture.php');
 			}
-			//echo $this->session->userdata['album_id'];
 			else
 			{
-				echo error;
+				$this->load->view('templates/header.php');
+				$this->load->view('access_denied.php');
 			}
 			
 		}
@@ -91,7 +91,7 @@ class Album extends CI_Controller {
 			
 	        $this->load->view('templates/header.php');
 
-	        $target_file = '/Workspace/Pinoram/pinoram-dev-jag/files/images/'.$pic_id.'.jpg';
+	        $target_file = '/Library/WebServer/Documents/pinoram/pinoram-production/files/images/'.$pic_id.'.jpg';
 	        $filePath = $_FILES['picture_upload']['tmp_name'];
 	        $address = $_POST['hiddenaddress'];
 	        $lat = $_POST['hiddenlat'];
@@ -136,7 +136,7 @@ class Album extends CI_Controller {
 					$this->Album_model->update_picture($data);
 				}
 				$redirect_path = 'Album/picture/?album_id='.$album_id;
-				redirect($redirect_path, $data);
+				redirect($redirect_path);
 			}
 			else
 			{
@@ -175,7 +175,7 @@ class Album extends CI_Controller {
 			$clean = $this->security->xss_clean($this->input->post(NULL, TRUE));
 			$this->Album_model->delete_picture($clean);
 			//delete_files('/Library/WebServer/Documents/pinoram/pinoram-production/files/images/'.$clean['delete_pic'].'.jpg');
-			unlink('/Workspace/Pinoram/pinoram-dev-jag/files/images/'.$clean['delete_pic'].'.jpg');
+			unlink('/Library/WebServer/Documents/pinoram/pinoram-production/files/images/'.$clean['delete_pic'].'.jpg');
 			redirect('Album/picture');
 		}
 	}
@@ -184,9 +184,9 @@ class Album extends CI_Controller {
 	{
 		if($this->access())
 		{
-			$data['files']  = $this->Album_model->get_pictures($this->session->userdata('user_id'));
+			//$data['files']  = $this->Album_model->get_pictures($this->session->userdata('user_id'));
 			$this->load->view('templates/header.php');
-			$this->load->view('Album/Album.php', $data);
+			$this->load->view('Album/map.php');
 		}
 	}
 
