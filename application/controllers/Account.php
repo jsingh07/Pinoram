@@ -88,8 +88,8 @@ class Account extends CI_Controller {
         	list($type, $data) = explode(';', $data);
         	list(, $data)      = explode(',', $data);
         	$data = base64_decode($data);
-
-		$config['upload_path']          = '/var/www/html/pinoram-production/files/profile_images/';
+/*
+			$config['upload_path']          = '/Library/WebServer/Documents/pinoram/pinoram-production/files/profile_images/';
 	        $config['allowed_types']        = 'jpg|png';
 	        $config['max_size']             = 0;
 	        $config['max_width']            = 0;
@@ -97,19 +97,10 @@ class Account extends CI_Controller {
 	        $config['file_name']            = $picture_id.'.jpg';
 
 	        $this->load->library('upload', $config);
-	        $this->load->view('templates/header.php');
-	        $filepath = '/var/www/html/pinoram-production/files/profile_images/'.$picture_id.'.jpg';
+	        $this->load->view('templates/header.php');*/
+	        $filepath = '/Library/WebServer/Documents/pinoram/pinoram-production/files/profile_images/'.$picture_id.'.jpg';
 	        file_put_contents($filepath, $data);
-	        redirect('Account');	        /*if ( ! $this->upload->do_upload($data))
-	        {
-	                $error = array('error' => $this->upload->display_errors());
-
-	                echo ($error['error']);
-	        }
-	        else
-	        {
-	                redirect('Album/picture');
-	        }-->*/
+	        redirect('Account');	       
 	    }
 	}
 
