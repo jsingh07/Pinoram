@@ -56,7 +56,7 @@ class Album extends CI_Controller {
 			$clean = $this->security->xss_clean($this->input->post(NULL, TRUE));
 
 			$this->Album_model->create_Album($clean, $this->session->userdata('user_id'), $access, $album_id);
-			redirect('Album/test');
+			redirect('Album');
 		}
 
 	}
@@ -70,7 +70,7 @@ class Album extends CI_Controller {
 				$album_id = $_GET['album_id'];
 				$this->session->set_userdata('album_id', $album_id);
 				$this->load->view('templates/header.php');
-				$this->load->view('Album/Album_picture.php');
+				$this->load->view('album/album_picture.php');
 			}
 			else
 			{
@@ -85,13 +85,16 @@ class Album extends CI_Controller {
 	{
 		if($this->access())
 		{
+
+
 			$album_id = $this->session->userdata('album_id');
 
 			$pic_id = $this->uniqid_base36(true);
 			
+
 	        $this->load->view('templates/header.php');
 
-	        $target_file = '/Library/WebServer/Documents/pinoram/pinoram-production/files/images/'.$pic_id.'.jpg';
+	        $target_file = '/var/www/html/pinoram-production/files/images/'.$pic_id.'.jpg';
 	        $filePath = $_FILES['picture_upload']['tmp_name'];
 	        $address = $_POST['hiddenaddress'];
 	        $lat = $_POST['hiddenlat'];
@@ -175,7 +178,7 @@ class Album extends CI_Controller {
 			$clean = $this->security->xss_clean($this->input->post(NULL, TRUE));
 			$this->Album_model->delete_picture($clean);
 			//delete_files('/Library/WebServer/Documents/pinoram/pinoram-production/files/images/'.$clean['delete_pic'].'.jpg');
-			unlink('/Library/WebServer/Documents/pinoram/pinoram-production/files/images/'.$clean['delete_pic'].'.jpg');
+			unlink('/var/www/html/pinoram-production/files/images/'.$clean['delete_pic'].'.jpg');
 			redirect('Album/picture');
 		}
 	}
@@ -186,7 +189,7 @@ class Album extends CI_Controller {
 		{
 			//$data['files']  = $this->Album_model->get_pictures($this->session->userdata('user_id'));
 			$this->load->view('templates/header.php');
-			$this->load->view('Album/map.php');
+			$this->load->view('album/map.php');
 		}
 	}
 
@@ -222,13 +225,13 @@ class Album extends CI_Controller {
 		//$this->load->view('Album/test.php');
 		//$data['files']  = $this->test_post();
 
-        $this->load->view('Album/test.php');
+        $this->load->view('album/test.php');
 	}
 
 	public function testexif()
 	{
 		$this->load->view('templates/header.php');
-        $this->load->view('Album/exiftest.php');
+        $this->load->view('album/exiftest.php');
 	}
 
 	public function test_post()
@@ -262,4 +265,6 @@ class Album extends CI_Controller {
 
 	}
 }
+
 ?>
+
