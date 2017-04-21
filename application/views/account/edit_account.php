@@ -26,14 +26,13 @@
 		      		</ul>
 	      		</div>
       		</div>
-
       		
 
-			<div class="row" id="profile" style="min-width: 300px">
+			<div class="row" id="profile" style="min-width: 300px; max-height: 400px">
 				<div class="col s4 m3" id="account-label" style="text-align: right; margin-left: -11px">
 
 					<ul>
-						<li><img id="profile_image" class="circle responsive-img" style="width: 100px; cursor: pointer; cursor: hand;"></li>
+						<li><img id="profile_image" class="circle responsive-img" style="width: 80px; cursor: pointer; cursor: hand;"></li>
 						<li>Username</li>
 						<li>First Name</li>
 						<li>Last Name</li>
@@ -43,8 +42,9 @@
 
 				<?php echo form_open('Account/edit_account'); ?>
 
-				<div class="col s7 m5" style="margin-left: 10px; margin-top: 47px">
-						<h4 style ="margin-bottom: 55px"><?php echo $this->session->userdata('username')?></h4>
+				<div class="col s7 m5" style="margin-left: 10px; margin-top: 46px">
+						<h4 style ="margin-bottom: 50px; font-size: 1.5em"><?php echo $this->session->userdata('username')?></h4>
+						<!--<h5 class="hide-on-med-and-up" style ="margin-bottom: 55px"><?php echo $this->session->userdata('username')?></h5>-->
 						<input id="username" name="username" autocomplete="off" value="<?php echo $this->session->userdata('username') ?>">
 						<input id="first_name" name="first_name" autocomplete="off" value="<?php echo $this->session->userdata('first_name') ?>">
 						<input id="last_name" name="last_name" autocomplete="off" value="<?php echo $this->session->userdata('last_name') ?>">
