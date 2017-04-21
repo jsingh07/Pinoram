@@ -63,39 +63,70 @@ class Project extends CI_Controller {
 	{
 		if($this->access())
 		{
-			$data['files']  = $this->Project_model->get_pictures($this->session->userdata('user_id'));
+			//$data['files']  = $this->Project_model->get_pictures($this->session->userdata('user_id'));
 			$this->load->view('templates/header.php');
-			$this->load->view('project/project_picture.php', $data);
+			$this->load->view('project/project_picture.php');
 		}
 	}
 
 	public function upload_picture()
 	{
+		$pic_id = $this->uniqid_base36(true);
+
 		if($this->access())
 		{
-			$picture_id = $this->Project_model->insert_picture($this->session->userdata('user_id'));
-
-			$config['upload_path']          = '/var/www/html/pinoram-production/files/images/';
-	        $config['allowed_types']        = 'jpg|png';
-	        $config['max_size']             = 0;
-	        $config['max_width']            = 0;
-	        $config['max_height']           = 0;
-	        $config['file_name']            = $picture_id.'.jpg';
-
-	        $this->load->library('upload', $config);
 	        $this->load->view('templates/header.php');
 
-	        if ( ! $this->upload->do_upload('picture_upload'))
-	        {
-	                $error = array('error' => $this->upload->display_errors());
+	        $target_file = '/var/www/html/pinoram-production/files/images/'.$pic_id.'.jpg';
+	        $filePath = $_FILES['picture_upload']['tmp_name'];
 
-	                echo ($error['error']);
-	        }
-	        else
-	        {
-	                redirect('Project/picture');
-	        }
+	        $exif = exif_read_data($_FILES['picture_upload']['tmp_name']);
+	        // provided that the image is jpeg. Use relevant function otherwise
+	        $imageResource = imagecreatefromjpeg($_FILES['picture_upload']['tmp_name']);
+			if (!empty($exif['Orientation'])) 
+			{
+			    switch ($exif['Orientation']) 
+			    {
+			        case 3:
+			        $image = imagerotate($imageResource, 180, 0);
+			        break;
+			        case 6:
+			        $image = imagerotate($imageResource, -90, 0);
+			        break;
+			        case 8:
+			        $image = imagerotate($imageResource, 90, 0);
+			        break;
+			        default:
+			        $image = $imageResource;
+			    } 
+			}
+			else
+			{
+				$image = $imageResource;
+			}
+			
+			if(imagejpeg($image, $target_file, 100))
+			{
+				$this->Project_model->insert_picture($this->session->userdata('user_id'), $pic_id);
+				redirect('Project/picture');
+			}
+			else
+			{
+				echo 'error';
+			}
+
 	    }
+	}
+
+	private function uniqid_base36($more_entropy=false) 
+	{
+	    $s = uniqid('', $more_entropy);
+	    if (!$more_entropy)
+	        return base_convert($s, 16, 36);
+	        
+	    $hex = substr($s, 0, 13);
+	    $dec = $s[13] . substr($s, 15); // skip the dot
+	    return base_convert($hex, 16, 36) . base_convert($dec, 10, 36);
 	}
 
 	public function edit_picture_info()
@@ -170,7 +201,7 @@ class Project extends CI_Controller {
 		//$this->load->view('project/test.php');
 		//$data['files']  = $this->test_post();
 
-        $this->load->view('login/email_prompt.php');
+        $this->load->view('project/test.php');
 	}
 
 	public function test_post()
