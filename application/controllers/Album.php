@@ -189,7 +189,7 @@ class Album extends CI_Controller {
 		{
 			//$data['files']  = $this->Album_model->get_pictures($this->session->userdata('user_id'));
 			$this->load->view('templates/header.php');
-			$this->load->view('Album/map.php');
+			$this->load->view('album/map.php');
 		}
 	}
 
@@ -225,13 +225,13 @@ class Album extends CI_Controller {
 		//$this->load->view('Album/test.php');
 		//$data['files']  = $this->test_post();
 
-        $this->load->view('Album/test.php');
+        $this->load->view('album/test.php');
 	}
 
 	public function testexif()
 	{
 		$this->load->view('templates/header.php');
-        $this->load->view('Album/exiftest.php');
+        $this->load->view('album/exiftest.php');
 	}
 
 	public function test_post()

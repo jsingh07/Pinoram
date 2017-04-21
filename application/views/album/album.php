@@ -18,7 +18,7 @@
                         <?php if(file_exists('files/profile_images/'.$this->session->userdata('user_id').'.jpg')) {?>
                         <img src="/files/profile_images/<?php echo $this->session->userdata('user_id')?>.jpg" class="circle responsive-img" style="margin-top: 20px">   
                         <?php }else{ ?>
-                        <img src="/files/profile_images/default.jpg" class="circle responsive-img" style="margin-top: 20px">   
+                        <img src="/files/static_images/default_profile.jpg" class="circle responsive-img" style="margin-top: 20px">   
                         <?php } ?>
 
                     </div>
@@ -256,7 +256,7 @@
                         if(this['pictures'].length > 0){
                             srcPic = "/files/images/"+this['pictures'][0].picture_id+".jpg";
                         }else{
-                            srcPic = "/files/static_images/no-image-icon.png";
+                            srcPic = "/files/static_images/default_album.jpg";
                         }
                         
 
