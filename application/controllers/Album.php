@@ -56,7 +56,7 @@ class Album extends CI_Controller {
 			$clean = $this->security->xss_clean($this->input->post(NULL, TRUE));
 
 			$this->Album_model->create_Album($clean, $this->session->userdata('user_id'), $access, $album_id);
-			redirect('Album/test');
+			redirect('Album');
 		}
 
 	}
@@ -70,7 +70,7 @@ class Album extends CI_Controller {
 				$album_id = $_GET['album_id'];
 				$this->session->set_userdata('album_id', $album_id);
 				$this->load->view('templates/header.php');
-				$this->load->view('Album/Album_picture.php');
+				$this->load->view('album/album_picture.php');
 			}
 			else
 			{
@@ -178,7 +178,7 @@ class Album extends CI_Controller {
 			$clean = $this->security->xss_clean($this->input->post(NULL, TRUE));
 			$this->Album_model->delete_picture($clean);
 			//delete_files('/Library/WebServer/Documents/pinoram/pinoram-production/files/images/'.$clean['delete_pic'].'.jpg');
-			unlink('/Library/WebServer/Documents/pinoram/pinoram-production/files/images/'.$clean['delete_pic'].'.jpg');
+			unlink('/var/www/html/pinoram-production/files/images/'.$clean['delete_pic'].'.jpg');
 			redirect('Album/picture');
 		}
 	}
