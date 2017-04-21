@@ -44,7 +44,6 @@
 
 				<div class="col s7 m5" style="margin-left: 10px; margin-top: 46px">
 						<h4 style ="margin-bottom: 50px; font-size: 1.5em"><?php echo $this->session->userdata('username')?></h4>
-						<!--<h5 class="hide-on-med-and-up" style ="margin-bottom: 55px"><?php echo $this->session->userdata('username')?></h5>-->
 						<input id="username" name="username" autocomplete="off" value="<?php echo $this->session->userdata('username') ?>">
 						<input id="first_name" name="first_name" autocomplete="off" value="<?php echo $this->session->userdata('first_name') ?>">
 						<input id="last_name" name="last_name" autocomplete="off" value="<?php echo $this->session->userdata('last_name') ?>">
