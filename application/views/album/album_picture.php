@@ -441,9 +441,9 @@
 	    function uploadPicture(input)
 	    {
 	    	$('#loading').modal({dismissible: false}).modal('open');
-	    	input.form.submit();
+	   
 
-	    	/*if (input.files && input.files[0]) 
+	    	if (input.files && input.files[0]) 
 	    	{
 		        var reader = new FileReader();
 		        var file = input.files[0];
@@ -451,12 +451,12 @@
 		        reader.onload = function (e) 
 		        {
 
-					$('#picturePreviewImage').attr('src', e.target.result);
+					//$('#picturePreviewImage').attr('src', e.target.result);
 
 		            var image  = new Image();
 		            image.src = e.target.result;
-		            var windowheight = Math.round($(window).height() ); 
-	    			var windowwidth = Math.round($(window).width() ); 
+		            //var windowheight = Math.round($(window).height() ); 
+	    			//var windowwidth = Math.round($(window).width() ); 
 
 		            image.onload = function () 
 		            {
@@ -494,7 +494,10 @@
 						        });
 						    }
 				       	});
-
+				       	input.form.submit();
+				    }
+				}
+				    /*
 		            	if(this.width >= this.height)
 		            	{
 
