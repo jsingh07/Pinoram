@@ -10,7 +10,7 @@ function initMap()
     var markers; 
     var infoWindowContent; 
 
-    var infoWindow = new google.maps.InfoWindow(), marker, i;
+
 
     $.ajax({
         url: "/Album/get_Album", 
@@ -48,6 +48,7 @@ function initMap()
 
 	            	if(this.lat != 0 && this.lng != 0 && this.lat != undefined && this.lng != undefined)
 	            	{
+	            		var infoWindow = new google.maps.InfoWindow(), marker, i;
 	            		var imageurl = "/files/images/";
 	            		marked = 1;
 		            	infoWindowContent = 
@@ -66,7 +67,8 @@ function initMap()
 				        });
 				        // Allow each marker to have an info window    
 				        google.maps.event.addListener(marker, 'click', (function(marker, i) {
-				            return function() {
+				            return function() 
+				            {
 				            	//var myinfowindow = document.getElementsByClassName("gm-style-iw");
 				            	//myinfowindow.style.background = "url("+"'/files/images/"+this.picture_id+".jpg')";
 				                infoWindow.setContent(this.info);

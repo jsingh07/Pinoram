@@ -54,7 +54,7 @@
 
   	</div>
 
-  	<div id="loading" class="modal" style="height:auto; max-width: 350px; margin-top: 30%">
+  	<div id="loading" class="modal" style="height:auto; max-width: 350px; margin-top: 200px">
 
 
 	   	<div class="modal-content center">
@@ -440,7 +440,10 @@
 
 	    function uploadPicture(input)
 	    {
-	    	if (input.files && input.files[0]) 
+	    	$('#loading').modal({dismissible: false}).modal('open');
+	    	input.form.submit();
+
+	    	/*if (input.files && input.files[0]) 
 	    	{
 		        var reader = new FileReader();
 		        var file = input.files[0];
@@ -495,9 +498,6 @@
 		            	if(this.width >= this.height)
 		            	{
 
-		            		/*$('#picturePreviewImage').css('-ms-transform', 'rotate(90deg)'); 
-		            		$('#picturePreviewImage').css('-webkit-transform', 'rotate(90deg)');
-		            		$('#picturePreviewImage').css('transform', 'rotate(90deg)');*/
 		            		if(windowwidth < 450)
 		            		{
 		            			$('#picturePreviewImage').css('width', '100%');
@@ -545,7 +545,8 @@
 
 
 		        reader.readAsDataURL(input.files[0]);
-		    }
+		   
+		    }*/
 	    }
 
 	    function toDecimal($deg, $min, $sec, $hem) 

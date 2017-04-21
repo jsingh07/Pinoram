@@ -127,7 +127,7 @@
     		url: "/files/profile_images/<?php echo $this->session->userdata("user_id")?>.jpg"
     	});*/
     }).fail(function() { 
-    	$('#profile_image').attr("src","/files/profile_images/default.jpg");
+    	$('#profile_image').attr("src","/files/static_images/default_profile.jpg");
     	/*uploadCrop.croppie('bind', {
     		url: "/files/profile_images/default.jpg"
     	});*/
