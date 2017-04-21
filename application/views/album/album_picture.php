@@ -496,7 +496,10 @@
 				       	});
 				       	input.form.submit();
 				    }
+
 				}
+				reader.readAsDataURL(input.files[0]);
+			}
 				    /*
 		            	if(this.width >= this.height)
 		            	{
