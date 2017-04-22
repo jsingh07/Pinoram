@@ -27,6 +27,7 @@ class Album extends CI_Controller
 		{
 			$this->load->view('templates/header.php');
 			$this->load->view('album/album.php');
+			$this->load->view('templates/footer.php');
 		}
 	}
 
@@ -73,11 +74,13 @@ class Album extends CI_Controller
 				$this->session->set_userdata('album_id', $album_id);
 				$this->load->view('templates/header.php');
 				$this->load->view('album/album_picture.php');
+				$this->load->view('templates/footer.php');
 			}
 			else
 			{
 				$this->load->view('templates/header.php');
 				$this->load->view('access_denied.php');
+				$this->load->view('templates/footer.php');
 			}
 			
 		}
@@ -145,6 +148,7 @@ class Album extends CI_Controller
 			{
 				$this->load->view('templates/header.php');
 				echo 'error';
+				$this->load->view('templates/footer.php');
 			}
 
 	    }
@@ -204,11 +208,13 @@ class Album extends CI_Controller
 				//$this->session->set_userdata('album_id', $album_id);
 				$this->load->view('templates/header.php');
 				$this->load->view('album/map.php');
+				$this->load->view('templates/footer.php');
 			}
 			else
 			{
 				$this->load->view('templates/header.php');
 				$this->load->view('access_denied.php');
+				$this->load->view('templates/footer.php');
 			}
 			
 		}

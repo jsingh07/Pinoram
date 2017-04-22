@@ -69,22 +69,20 @@
 			</div>
 
 			<div id="picture-modal-footer" class="modal-footer" align="right">
-				<a class="modal-action modal-close waves-effect waves-black btn-flat" style="font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center; color:black">
-					Cancel       
-        		</a> 
-				 
-				<a class="waves-effect waves-black btn-flat" style="font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center; color:black" onclick="document.getElementById('upload').click();">
-					Upload
-        			<input type="file" id="upload" accept="image/*" style="display:none" onchange="readFile(this)"></input>       
-        		</a> 
-
-        		<a class="waves-effect waves-black btn-flat" style="font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center; color:black" id="submitbutton">
+				<a class="waves-effect waves-black btn-flat" style="font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center; color: green" id="submitbutton">
 					Submit
 					<input type="hidden" id="imagebase64" name="imagebase64">
 					<?php echo form_close(); ?>
 				</a>
+				<a class="modal-action modal-close waves-effect waves-black btn-flat" style="font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center; color:black">
+					Cancel       
+        		</a> 
 				<a class="waves-effect waves-black btn-flat" id="rotate" style="font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center; color:black">
 					Rotate     
+        		</a> 
+        		<a class="waves-effect waves-black btn-flat" style="font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center; color:black" onclick="document.getElementById('upload').click();">
+					Upload
+        			<input type="file" id="upload" accept="image/*" style="display:none" onchange="readFile(this)"></input>       
         		</a> 
         	      
 			</div>

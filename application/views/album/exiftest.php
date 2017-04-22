@@ -1,63 +1,64 @@
 <body>
 
-	<div>
-		<img id="img1" src="/files/images/exiftest1.jpg">
-		<div>
-			<span>
+    <a href="#pictureModal" class="btn">Open</a>
 
-			</span>
-		</div>
-	</div>
+    <div id="pictureModal" class="modal modal-fixed-footer" style="width: 100%;max-width: 1000px; height: 300px; overflow: visible;" >
+
+        <div id="picture-info" class="modal-content row" style="padding: 0">
+
+                <img src="/files/static_images/home.jpg" style="width: 700px; height:auto; display:block; margin:0; padding:0; float:left">
+            <div id="picture-info-div" style="width: 300px; margin-top:10px; height: 300px;float:right;overflow-y:scroll">
+                
+
+                <div style="position: relative; margin-top: 20px; width:100%;">
+                    <div class="input-field col s6" style="margin-top:-10px">
+                        <strong>Latitude</strong>
+                        <input type="text" id="Latitude" name="Latitude" class="validate">
+                    </div>
+
+                    <div class="input-field col s6" style="margin-top:-10px">
+                        <strong>Longitude</strong>
+                        <input type="text" id="Longitude" name="Longitude" class="validate">
+                    </div>
+
+                    <div class="input-field col s12" style="margin-top:-10px">
+                        <a id="locate" class="btn-flat blue" style="width: 100%; color: white; text-align: center">Locate</a>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <strong>Address</strong>
+                        <input type="text" id="Address" name="Address" class="validate">
+                    </div>
+
+                    <div class="input-field col s12" style="margin-top:-10px">
+                        <strong>Description</strong>
+                        <textarea id="picture_description" name="picture_description" data-length="500" style="min-height: 80px;" class="materialize-textarea active"></textarea>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="picture-modal-footer" class="modal-footer" align="right">
+            <button style="color:green;font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center"  type="submit" name="Submit" value="Submit" class="modal-action modal-close waves-effect waves-green btn-flat ">Submit</button>
+        <?php echo form_close(); ?>
+            <a style="font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center; color:black" class="modal-action modal-close waves-effect waves-gray btn-flat">Cancel</a>
+
+        <?php echo form_open('Album/deletePicture'); ?>
+            <input type="hidden" id="delete_pic" name="delete_pic"></input>
+            <button style="color:red; font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center"  type="submit" name="Submit" value="Delete" class="modal-action modal-close waves-effect waves-red btn-flat ">Delete</button>
+        <?php echo form_close(); ?>
+
+        </div>
+
+    </div>
 
 </body>
-
+        
 <script>
 
-$.ajax({
-  xhr: function() {
-    var xhr = new window.XMLHttpRequest();
+ $(document).ready(function(){
+    $('.modal').modal();
+  });
 
-    xhr.upload.addEventListener("progress", function(evt) {
-      if (evt.lengthComputable) {
-        var percentComplete = evt.loaded / evt.total;
-        percentComplete = parseInt(percentComplete * 100);
-        console.log(percentComplete);
-
-        if (percentComplete === 100) {
-
-        }
-
-      }
-    }, false);
-
-    return xhr;
-  }
-});
-
-/*
-document.getElementById("img1").onclick = function() {
-    EXIF.getData(this, function() {
-    	if(EXIF.getTag(this, "GPSLatitude") && EXIF.getTag(this, "GPSLongitude"))
-    	{
-		  	var lat = EXIF.getTag(this, "GPSLatitude"),
-            lng = EXIF.getTag(this, "GPSLongitude"),
-            latRef = EXIF.getTag(this, "GPSLatitudeRef"),
-            lngRef = EXIF.getTag(this, "GPSLongitudeRef");
-            mylat = toDecimal(lat[0], lat[1], lat[2], latRef);
-            mylng = toDecimal(lng[0], lng[1], lat[2], lngRef);
-        	alert("I was taken at " + mylat + " " + mylng);
-		}else
-		{
-		  	alert("no data");
-		}
-
-    });
-}
-
-function toDecimal($deg, $min, $sec, $hem) 
-{
-    $d = $deg + ((($min/60) + ($sec/3600)/100));
-    return ($hem=='S' || $hem=='W') ? $d*=-1 : $d;
-}
-*/
 </script>

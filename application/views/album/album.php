@@ -1,7 +1,15 @@
 <!DOCTYPE html>
 <html>  
-    <body>
+<body >
 
+<style>
+.collapsible {
+  border-top: 0px solid #ddd;
+  border-right: 0px solid #ddd;
+  border-left: 0px solid #ddd;
+  margin: 0;
+}
+</style>
 <!-- FAB button -->
 <div class="fixed-action-btn">
     <a id="create_Album" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
@@ -50,103 +58,7 @@
     <div id= "col3" class="col s12 l4" >
         
     </div>
-    <!--<div class="row " style="max-width: 80%; margin-top: 20px;">
-        <div class="col s12 l4" >
-            <div class="card" >
-                <div class="card-image">
-                    
-                    <a href="<?php echo base_url();?>/Album/picture"><img src="/files/images/1.jpg"></a>
-                    <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-                </div>
-                <div class="card-action">
-                      <a href="<?php echo base_url();?>/Album/picture">Album</a>
-                </div>
-            </div>
-            <div class="card" >
-                <div class="card-image">
-                    
-                    <a href="<?php echo base_url();?>/Album/picture"><img src="/files/images/4.jpg"></a>
-                    <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-
-                </div>
-                <div class="card-action">
-                      <a href="<?php echo base_url();?>/Album/picture">Album</a>
-                </div>
-            </div>
-            <div class="card" >
-                <div class="card-image">
-                    
-                    <a href="<?php echo base_url();?>/Album/picture"><img src="/files/images/1.jpg"></a>
-                    <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-
-                </div>
-                <div class="card-action">
-                      <a href="<?php echo base_url();?>/Album/picture">Album</a>
-                </div>
-            </div>
-        </div>
-        <div class="col s12 l4" >
-            <div class="card" >
-                <div class="card-image">
-                    
-                    <a href="<?php echo base_url();?>/Album/picture"><img src="/files/images/3.jpg"></a>
-                    <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-                </div>
-            
-                <div class="card-action">
-                      <a href="<?php echo base_url();?>/Album/picture">Album</a>
-                </div>
-            </div>
-            <div class="card" >
-                <div class="card-image">
-                    
-                    <a href="<?php echo base_url();?>/Album/picture"><img src="/files/images/6.jpg"></a>
-                    <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-                </div>
-                <div class="card-action">
-                      <a href="<?php echo base_url();?>/Album/picture">Album</a>
-                </div>
-            </div>
-            <div class="card" >
-                <div class="card-image">
-                    
-                    <a href="<?php echo base_url();?>/Album/picture"><img src="/files/images/1.jpg"></a>
-                    <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-                </div>
-                <div class="card-action">
-                      <a href="<?php echo base_url();?>/Album/picture">Album</a>
-                </div>
-            </div>
-        </div>
-
-
-
-        <div class="col s12 l4" >
-            <div class="card" >
-                <div class="card-image">
-                    
-                    <a href="<?php echo base_url();?>/Album/picture"><img src="/files/images/4.jpg"></a>
-                    <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-                </div>
-                <div class="card-action">
-                      <a href="<?php echo base_url();?>/Album/picture">Album</a>
-                </div>
-            </div>
-     
-            
-
-            <div class="card" >
-                <div class="card-image">
-                    
-                    <a href="<?php echo base_url();?>/Album/picture"><img src="/files/images/5.jpg"></a>
-                    <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-                </div>
-                <div class="card-action">
-                      <a href="<?php echo base_url();?>/Album/picture">Album</a>
-                </div>
-            </div>
-        </div>
-    </div>-->
+</div>
 
 
 <!--CREAT ALBUM MODAL-->    
@@ -269,7 +181,7 @@
                         }
 
                         divcard.setAttribute("class","card"); 
-                        divalbum.setAttribute("class", "card-action");
+                        divalbum.setAttribute("class", "card-action collapsible");
                         divImgCard.setAttribute("class", "card-image");
                         
                         a_album.setAttribute("href", href);
@@ -297,32 +209,6 @@
                         divcard.appendChild(divalbum);
                         divalbum.appendChild(a_album);
 
-                        //Creating Forms for each album 
-                        /*var form = document.createElement("form");
-                        form.setAttribute("method", "post");
-                        var album_form ="album_form"+count;
-                        form.setAttribute("id", album_form);
-                        form.setAttribute("action", "/Album/picture");
-                        var input = document.createElement("input");
-                        input.setAttribute("name", "album_id");
-                        input.setAttribute("value", this.album_id);
-                        input.setAttribute("type", "hidden");
-                        form.appendChild(input);
-                        
-                        divalbum.appendChild(form);
-
-                        //grabbing csrf name and value from element creataed in album-container input
-                        var input_hash = document.getElementById("csrf");
-                        var hash_name = input_hash.getAttribute("name");
-                        var hash_value = input_hash.getAttribute("value");
-                        
-                        //alert(hash_name);
-                        var csrf_input = document.createElement("input");
-                        csrf_input.setAttribute("type", "hidden");
-                        csrf_input.setAttribute("name", hash_name);
-                        csrf_input.setAttribute("value", hash_value);
-                        form.appendChild(csrf_input);*/
-
                         count += 1;
                         if(col_num == 3){
                             col_num = 1;
@@ -332,15 +218,6 @@
                     });
                 });
                 
-                /*$('.album_pic_link').click(function(){
-                    //alert("button");
-
-                    var id = this.id;
-                    var count_album = id.substring(15);
-                    var form_id = "album_form"+count_album;
-                    document.getElementById(form_id).submit();
-
-                });*/
             }  
         }
     });
