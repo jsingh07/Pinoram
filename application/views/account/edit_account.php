@@ -26,14 +26,13 @@
 		      		</ul>
 	      		</div>
       		</div>
-
       		
 
-			<div class="row" id="profile" style="min-width: 300px">
+			<div class="row" id="profile" style="min-width: 300px; max-height: 400px">
 				<div class="col s4 m3" id="account-label" style="text-align: right; margin-left: -11px">
 
 					<ul>
-						<li><img id="profile_image" class="circle responsive-img" style="width: 100px; cursor: pointer; cursor: hand;"></li>
+						<li><img id="profile_image" class="circle responsive-img" style="width: 80px; cursor: pointer; cursor: hand;"></li>
 						<li>Username</li>
 						<li>First Name</li>
 						<li>Last Name</li>
@@ -43,8 +42,8 @@
 
 				<?php echo form_open('Account/edit_account'); ?>
 
-				<div class="col s7 m5" style="margin-left: 10px; margin-top: 47px">
-						<h4 style ="margin-bottom: 55px"><?php echo $this->session->userdata('username')?></h4>
+				<div class="col s7 m5" style="margin-left: 10px; margin-top: 46px">
+						<h4 style ="margin-bottom: 50px; font-size: 1.5em"><?php echo $this->session->userdata('username')?></h4>
 						<input id="username" name="username" autocomplete="off" value="<?php echo $this->session->userdata('username') ?>">
 						<input id="first_name" name="first_name" autocomplete="off" value="<?php echo $this->session->userdata('first_name') ?>">
 						<input id="last_name" name="last_name" autocomplete="off" value="<?php echo $this->session->userdata('last_name') ?>">
@@ -70,22 +69,20 @@
 			</div>
 
 			<div id="picture-modal-footer" class="modal-footer" align="right">
-				<a class="modal-action modal-close waves-effect waves-black btn-flat" style="font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center; color:black">
-					Cancel       
-        		</a> 
-				 
-				<a class="waves-effect waves-black btn-flat" style="font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center; color:black" onclick="document.getElementById('upload').click();">
-					Upload
-        			<input type="file" id="upload" accept="image/*" style="display:none" onchange="readFile(this)"></input>       
-        		</a> 
-
-        		<a class="waves-effect waves-black btn-flat" style="font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center; color:black" id="submitbutton">
+				<a class="waves-effect waves-black btn-flat" style="font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center; color: green" id="submitbutton">
 					Submit
 					<input type="hidden" id="imagebase64" name="imagebase64">
 					<?php echo form_close(); ?>
 				</a>
+				<a class="modal-action modal-close waves-effect waves-black btn-flat" style="font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center; color:black">
+					Cancel       
+        		</a> 
 				<a class="waves-effect waves-black btn-flat" id="rotate" style="font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center; color:black">
 					Rotate     
+        		</a> 
+        		<a class="waves-effect waves-black btn-flat" style="font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center; color:black" onclick="document.getElementById('upload').click();">
+					Upload
+        			<input type="file" id="upload" accept="image/*" style="display:none" onchange="readFile(this)"></input>       
         		</a> 
         	      
 			</div>
@@ -127,7 +124,7 @@
     		url: "/files/profile_images/<?php echo $this->session->userdata("user_id")?>.jpg"
     	});*/
     }).fail(function() { 
-    	$('#profile_image').attr("src","/files/profile_images/default.jpg");
+    	$('#profile_image').attr("src","/files/static_images/default_profile.jpg");
     	/*uploadCrop.croppie('bind', {
     		url: "/files/profile_images/default.jpg"
     	});*/

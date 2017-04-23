@@ -89,19 +89,11 @@ class Account extends CI_Controller {
         	list(, $data)      = explode(',', $data);
         	$data = base64_decode($data);
 
-			$config['upload_path']          = '/Workspace/Pinoram/pinoram-dev-jag/files/profile_images/';
-	        $config['allowed_types']        = 'jpg|png';
-	        $config['max_size']             = 0;
-	        $config['max_width']            = 0;
-	        $config['max_height']           = 0;
-	        $config['file_name']            = $picture_id.'.jpg';
 
-	        $this->load->library('upload', $config);
-
-	        $this->load->view('templates/header.php');
 	        $filepath = '/Workspace/Pinoram/pinoram-dev-jag/files/profile_images/'.$picture_id.'.jpg';
+
 	        file_put_contents($filepath, $data);
-	        redirect('Account');	       
+	        redirect('Account');	   
 	    }
 	}
 
