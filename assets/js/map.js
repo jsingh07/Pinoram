@@ -51,7 +51,7 @@ function initMap()
 	            		var imageurl = "/files/images/";
 	            		marked = 1;
 		            	infoWindowContent = 
-						    	'<div class="col s12" style="height: 150px; width:150px; background-image: url('+imageurl+this.picture_id+'.jpg); background-size: 150px, 150px ">'+
+						    	'<div class="card" style="height: 150px; width:150px; background-image: url('+imageurl+this.picture_id+'.jpg); background-size: 150px, 150px ">'+
 								//'<img class="modalPic center" id="modalPic" style="height:auto; width:100%;" src="/files/images/'+this.picture_id+'.jpg'+'">' +
 								'</div>';
 
