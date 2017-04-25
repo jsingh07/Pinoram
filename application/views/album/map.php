@@ -6,6 +6,15 @@
     width: 100%;
     height: 100%;
 }
+.gm-style .gm-style-iw {
+   font-size: 16px;
+   font-weight: bold;
+   font-family: sans-serif;
+   text-transform: uppercase;
+   left: 0px !important;
+   top: 35px !important;
+
+}
 
 </style>
 

@@ -60,7 +60,6 @@
     </div>
 </div>
 
-
 <!--CREAT ALBUM MODAL-->    
 <div id="create-Album-modal" class="modal modal-fixed-footer" style="min-height:500px;">
 
