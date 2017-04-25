@@ -89,7 +89,9 @@ class Account extends CI_Controller {
         	list(, $data)      = explode(',', $data);
         	$data = base64_decode($data);
 
-	        $filepath = '/Library/WebServer/Documents/pinoram/pinoram-production/files/profile_images/'.$picture_id.'.jpg';
+
+	        $filepath = '/Workspace/Pinoram/pinoram-dev-jag/files/profile_images/'.$picture_id.'.jpg';
+
 	        file_put_contents($filepath, $data);
 	        redirect('Account');	   
 	    }

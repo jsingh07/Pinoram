@@ -52,11 +52,15 @@ function initMap()
 	            	{
 	            		var infoWindow = new google.maps.InfoWindow(), marker, i;
 	            		var imageurl = "/files/images/";
+	            		var album = "Album/picture/?album_id=";
 	            		marked = 1;
-		            	infoWindowContent = 
-						    	'<div class="col s12" style="height: 150px; width:150px; background-image: url('+imageurl+this.picture_id+'.jpg); background-size: 150px, 150px ">'+
-								//'<img class="modalPic center" id="modalPic" style="height:auto; width:100%;" src="/files/images/'+this.picture_id+'.jpg'+'">' +
+		            	infoWindowContent =
+		            	        '<div class="card" style="height: auto; width:135px;">'+
+								   '<img class="myImg" style="height:auto; width:125px; margin-top: 4px; margin-left: 5px" src='+imageurl+this.picture_id+'.jpg>'+
 								'</div>';
+						    	/*'<div class="card" style="height: 150px; width:150px; background-image: url('+imageurl+this.picture_id+'.jpg); background-size: 150px, 150px ">'+
+								    <img style="height:auto; width:100%;" src="/files/images/'+ this.picture_id + .jpg'+'">
+								'</div>';*/
 
 		            	
 		            	var position = new google.maps.LatLng(this.lat, this.lng);
@@ -78,7 +82,28 @@ function initMap()
 				            }
 				        })(marker, i));
 				        i++;
-					    
+
+				        google.maps.event.addListener(infoWindow, 'domready', function() {
+				        	   var iwOuter = $('.gm-style-iw');
+				        	   var iwBackground = iwOuter.prev();
+				        	   var container = iwOuter.parent();
+				        	   container.css({'width':'136px'});
+				        	   container.css({'height':'auto'});
+				        	   //adjusting the positing of the x
+				        	   container.children(':nth-child(3)').css({'margin-top':'38px', 'margin-right':'-5px'} );
+				        	   //adjusting the position of the closing spot
+				        	   container.children(':nth-child(4)').css({'margin-top':'38px', 'margin-right':'-5px'} );
+
+				        	   //iwOuter.css({'width':'125px'});
+   								//remove background shadow DIV
+   								iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+
+   								//remove white background DIV
+   								iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+
+						});
+
+			
 				    }
 
 		        // Automatically center the map fitting all markers on the screen
