@@ -19,8 +19,8 @@
           <img class="circle" src="/files/static_images/pyai.jpg">
         </div>
         <ul class= "profile_ul" style="margin-left: 30px">
-          <li><a href="https://www.linkedin.com/in/ron-hein/">LinkedIn</a></li>
-          <li><a href="https://github.com/RonHein">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/ron-hein/" target="_blank">LinkedIn</a></li>
+          <li><a href="https://github.com/RonHein" target="_blank">GitHub</a></li>
           <li>pyai.hein@gmail.com</li>
         </ul>
       </div>
@@ -32,8 +32,8 @@
           <img class="circle" src="/files/static_images/jag.jpg">
         </div>
         <ul class= "profile_ul" style="margin-left: 30px">
-          <li><a href="https://www.linkedin.com/in/singhjagdeep07/">LinkedIn</a></li>
-          <li><a href="https://github.com/jsingh07">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/singhjagdeep07/" target="_blank">LinkedIn</a></li>
+          <li><a href="https://github.com/jsingh07" target="_blank">GitHub</a></li>
           <li style="font-size: 1.2em">singhjagdeep@outlook.com</li>
         </ul>
   </div>
