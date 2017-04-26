@@ -43,6 +43,74 @@ class Album extends CI_Controller
 		}
 	}
 
+	public function user()
+	{
+		$username = $this->uri->segment(3);
+		if($username)
+		{
+			if($this->session->userdata('logged_in') == TRUE && strtolower($this->session->userdata('username')) == strtolower($username))
+			{
+				redirect('Album');
+			}
+			else
+			{
+				$result = $this->Album_model->get_user_data($username);
+				if($result)
+				{
+					foreach ($result->result() as $mydata)
+			        {
+			        	$data['user_id'] = $mydata->user_id;
+	        		}
+
+					$data['username'] = $username;
+
+					$this->load->view('templates/header.php');
+					$this->load->view('album/public_album.php', $data);
+				}
+			}
+		}
+		else
+		{
+			echo "nope";
+		}
+		
+	}
+
+	public function get_user_public()
+	{
+		$user_id = $_GET['user_id'];
+
+			$Album = $this->Album_model->get_public_album($user_id);
+			$Album_data = $Album->result();
+			$json_array = array();
+			$count = 0;
+			foreach ($Album_data as $input) 
+			{
+				foreach ($input as $key => $value) 
+				{
+					$json_array['album'][$count][$key] = $value;
+				}
+				$Pics = $this->Album_model->get_pictures_from_album($json_array['album'][$count]['album_id']);
+				$Pic_data = $Pics->result();
+				$json_array['album'][$count]['pictures'] = $Pic_data;
+				$count++;
+			} 
+			echo json_encode($json_array, true);
+
+	}
+
+	public function get_picture_public()
+	{
+		$json_array = array();
+		$album_id = $_GET['album_id'];
+		$Pics = $this->Album_model->get_pictures_from_album($album_id);
+		$Pic_data = $Pics->result();
+		$json_array['pictures'] = $Pic_data;
+
+		echo json_encode($json_array, true);
+
+	}
+
 	public function create_Album()
 	{
 		if($this->access())
@@ -66,15 +134,27 @@ class Album extends CI_Controller
 
 	public function picture()
 	{
-		if($this->access())
-		{	
 			if(isset($_GET['album_id']))
 			{
 				$album_id = $_GET['album_id'];
-				$this->session->set_userdata('album_id', $album_id);
-				$this->load->view('templates/header.php');
-				$this->load->view('album/album_picture.php');
-				//$this->load->view('templates/footer.php');
+				if($this->session->userdata('logged_in') == TRUE && $this->Album_model->verify_owner($album_id, $this->session->userdata('user_id')))
+				{
+					$this->session->set_userdata('album_id', $album_id);
+					$this->load->view('templates/header.php');
+					$this->load->view('album/album_picture.php');
+				}
+				else if($this->Album_model->is_public_album($album_id))
+				{
+					$this->session->set_userdata('album_id', $album_id);
+					$this->load->view('templates/header.php');
+					$this->load->view('album/public_album_picture.php');
+				}
+				else
+				{
+					$this->load->view('templates/header.php');
+					$this->load->view('access_denied.php');
+				}
+				
 			}
 			else
 			{
@@ -82,8 +162,6 @@ class Album extends CI_Controller
 				$this->load->view('access_denied.php');
 				//$this->load->view('templates/footer.php');
 			}
-			
-		}
 	}
 
 	public function upload_picture()
@@ -196,21 +274,26 @@ class Album extends CI_Controller
 
 	public function map()
 	{
-		/*if($this->access())
-		{
-			
-			$this->load->view('templates/header.php');
-			$this->load->view('album/map.php');
-		}*/
-		if($this->access())
-		{	
+
 			if(isset($_GET['album_id']))
 			{
 				$album_id = $_GET['album_id'];
-				//$this->session->set_userdata('album_id', $album_id);
-				$this->load->view('templates/header.php');
-				$this->load->view('album/map.php');
-				//$this->load->view('templates/footer.php');
+				if($this->session->userdata('logged_in') == TRUE && $this->Album_model->verify_owner($album_id, $this->session->userdata('user_id')))
+				{
+					$this->load->view('templates/header.php');
+					$this->load->view('album/map.php');
+				}
+				else if($this->Album_model->is_public_album($album_id))
+				{
+					$this->load->view('templates/header.php');
+					$this->load->view('album/map.php');
+				}
+				else
+				{
+					$this->load->view('templates/header.php');
+					$this->load->view('access_denied.php');
+				}
+				
 			}
 			else
 			{
@@ -219,7 +302,7 @@ class Album extends CI_Controller
 				//$this->load->view('templates/footer.php');
 			}
 			
-		}
+		
 	}
 
 	public function get_Album()

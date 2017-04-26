@@ -19,8 +19,8 @@
           <img class="circle" src="/files/static_images/pyai.jpg">
         </div>
         <ul class= "profile_ul" style="margin-left: 30px">
-          <li><a href="https://www.linkedin.com/in/ron-hein-015012111/">LinkedIn</a></li>
-          <li><a href="#">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/ron-hein/">LinkedIn</a></li>
+          <li><a href="https://github.com/RonHein">GitHub</a></li>
           <li>pyai.hein@gmail.com</li>
         </ul>
       </div>
