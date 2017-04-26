@@ -23,6 +23,14 @@ class Album_model extends CI_Model {
 		return $result;
 	}
 
+	public function get_user_data($username)
+	{
+		$sql = "SELECT user_id FROM user
+				WHERE username = '$username'";
+		$result = $this->db->query($sql);
+		return $result;
+	}
+
 	public function get_pictures_from_album($album_id)
 	{
 		$sql = "SELECT * FROM pictures
@@ -31,6 +39,25 @@ class Album_model extends CI_Model {
 		$result = $this->db->query($sql);
 		return $result;
 
+	}
+
+	public function get_public_album($user_id)
+	{
+		$sql = "SELECT * FROM album 
+				WHERE owner_id = $user_id
+				AND album_access = 'public'
+				";
+		$result = $this->db->query($sql);
+		return $result;
+	}
+
+	public function get_public_picture($album_id)
+	{
+		$sql = "SELECT * FROM pictures 
+				WHERE album_id = '$album_id'
+				";
+		$result = $this->db->query($sql);
+		return $result;
 	}
 
 	public function get_pictures($user_id)
@@ -44,6 +71,34 @@ class Album_model extends CI_Model {
 	{
 		$sql = "INSERT INTO pictures (owner_id, picture_id, album_id) VALUES ($user_id, '$pic_id', '$album_id')";
         $this->db->query($sql);
+	}
+
+	public function verify_owner($album_id, $user_id)
+	{
+		$sql = "SELECT owner_id FROM album WHERE album_id = '$album_id' AND owner_id = $user_id";
+        $result = $this->db->query($sql);
+        if(empty($result->result()))
+        {
+        	return FALSE;
+        }
+        else
+        {
+        	return TRUE;
+        }
+	}
+
+	public function is_public_album($album_id)
+	{
+		$sql = "SELECT * FROM album WHERE album_id = '$album_id' AND album_access = 'public'";
+        $result = $this->db->query($sql);
+        if(empty($result->result()))
+        {
+        	return FALSE;
+        }
+        else
+        {
+        	return TRUE;
+        }
 	}
 
 	public function update_picture($data)
