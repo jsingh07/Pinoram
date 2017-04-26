@@ -348,7 +348,7 @@ class Login extends CI_Controller {
 		             
 		        $message = '';                     
 		        $message .= '<strong>Hi '.$first_name.' '.$last_name.',</strong><br><br>';
-		        $message .= '<strong>You have requested to recover your password for username: '.$this->session->userdata('username').'</strong><br>';
+		        $message .= '<strong>You have requested to recover your password for your account on Pinoram.</strong><br>';
 		        $message .= '<strong>Please click on the link to reset your password:</strong><br>' . $link; 
 
 		   		$this->email->from('admin@pinoram.com' , 'Pinoram');
