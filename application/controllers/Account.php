@@ -90,7 +90,7 @@ class Account extends CI_Controller {
         	$data = base64_decode($data);
 
 
-	        $filepath = '/Workspace/Pinoram/pinoram-dev-jag/files/profile_images/'.$picture_id.'.jpg';
+	        $filepath = $this->config->item('rootDir').'/files/profile_images/'.$picture_id.'.jpg';
 
 	        file_put_contents($filepath, $data);
 	        redirect('Account');	   
