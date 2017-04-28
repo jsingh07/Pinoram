@@ -10,7 +10,6 @@ $(document).ready(function(){
 		        success: function(result)
 		        {
 		        	var count = 0;
-		        	alert(result);
 		        	var div_album_id = document.getElementById("hidden-album-id");
 		        	var album_id = div_album_id.getAttribute("data-id");
 		        	var album_count = 0;

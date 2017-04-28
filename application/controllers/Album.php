@@ -175,7 +175,7 @@ class Album extends CI_Controller
 			$pic_id = $this->uniqid_base36(true);
 			
 
-	        $target_file = '/Workspace/Pinoram/pinoram-dev-jag/files/images/'.$pic_id.'.jpg';
+	        $target_file = $this->config->item('rootDir').'/files/images/'.$pic_id.'.jpg';
 	        $filePath = $_FILES['picture_upload']['tmp_name'];
 	        $address = $_POST['hiddenaddress'];
 	        $lat = $_POST['hiddenlat'];
@@ -265,7 +265,7 @@ class Album extends CI_Controller
 			$this->Album_model->delete_picture($clean);
 			//delete_files('/Library/WebServer/Documents/pinoram/pinoram-production/files/images/'.$clean['delete_pic'].'.jpg');
 
-			unlink('/Workspace/Pinoram/pinoram-dev-jag/files/images/'.$clean['delete_pic'].'.jpg');
+			unlink($this->config->item('rootDir').'/files/images/'.$clean['delete_pic'].'.jpg');
 			$redirect_path = 'Album/picture/?album_id='.$album_id;
 			redirect($redirect_path);
 
