@@ -30,8 +30,19 @@ class Account_model extends CI_Model {
 		array(
 		'username' => $data['username'],
 		'first_name' => $data['first_name'],
-		'last_name' => $data['last_name'],
-		'email' => $data['email']
+		'last_name' => $data['last_name']
+		//'email' => $data['email']
+		);
+		
+		$this->db->where('user_id', $user_id);
+		$this->db->update('user', $mydata);
+	}
+
+	public function edit_email($data, $user_id)
+	{
+		$mydata =
+		array(
+		'email' => $data
 		);
 		
 		$this->db->where('user_id', $user_id);

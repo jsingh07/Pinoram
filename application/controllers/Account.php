@@ -101,22 +101,94 @@ class Account extends CI_Controller {
 	{
 		if($this->access())
 		{
-			$clean = $this->security->xss_clean($this->input->post(NULL, TRUE));
-	        $this->Account_model->edit_account($clean, $this->session->userdata('user_id'));
-	        $id = $this->Account_model->get_account($this->session->userdata('user_id'));
+			$email_change = 0;
+			$username_change = 0;
+			$this->form_validation->set_message('is_unique', 'The %s is already taken.');
+			// Check validation for user input in SignUp form
+			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required');
+			$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required');
+			
+			if($this->session->userdata('username') != $this->input->post('username'))
+			{
+				$username_change = 1;
+				$this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[4]|is_unique[user.username]');
+			}
 
-	        foreach ($id->result() as $data)
-	        {
-	        	$newdata = array(
-                   'username'  => $data->username,
-                   'email'     => $data->email,
-                   'first_name'=> $data->first_name,
-                   'last_name' => $data->last_name,
-                );
-	        }
-		    $this->session->set_userdata($newdata);
+			if($this->session->userdata('email') != $this->input->post('email'))
+			{
+				$email_change = 1;
+				$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[user.email]');
+			}
 
-			redirect('Account');
+			if ($this->form_validation->run() == FALSE) 
+			{
+				$this->session->set_flashdata('validation_error', validation_errors());
+				redirect('Account');
+				//$this->load->view('templates/header.php');
+				//$this->load->view('account/edit_account.php');
+			}
+			else
+			{
+				if($username_change == 1)
+				{
+					$username = $this->input->post('username');
+					$email = $this->session->userdata('email');
+					$subject = "Pinoram user name change";
+					$message = '';
+					$message .= "<strong>Hi ".$this->session->userdata('first_name').",</strong><br><br>";
+					$message .= "<strong>You have changed your user name to: ".$username.".</strong><br>";
+					$this->send_email($message, $subject, $email);
+				}
+				if($email_change == 1)
+				{
+					$user_id_padded = $this->session->userdata('user_id');
+					$num_pads = 5 - strlen($user_id_padded);
+					for($i = 0; $i < $num_pads; $i++)
+					{
+						$user_id_padded .= '*';
+					}
+					$token = $this->get_token($this->session->userdata('user_id'));
+					if ($token)
+					{
+						$email = $this->session->userdata('email');
+						$new_email = $this->input->post('email');
+
+						$token .= "email*****";
+						$token .= $user_id_padded;
+						$token .= $new_email;
+						$qstring = $this->base64url_encode($token);                      
+				        $url = site_url() . 'Account/email_change/' . $qstring;
+				        $link = '<a href="' . $url . '">' . $url . '</a>'; 
+						
+						$subject = "Pinoram account email change";
+						$message = '';
+						$message .= "<strong>Hi ".$this->session->userdata('first_name').",</strong><br><br>";
+						$message .= "<strong>You have requested to change your Pinoram email from ".$email." to ".$new_email.".</strong><br>";
+						$message .= "Please click on the link below to change confirm email change.<br>";
+						$message .= $link."<br>";
+
+						$this->session->set_flashdata('email_change_validation', "Please check the new email to confirm email change.");
+						$this->send_email($message, $subject, $new_email);
+					}
+				}
+
+				$clean = $this->security->xss_clean($this->input->post(NULL, TRUE));
+		        $this->Account_model->edit_account($clean, $this->session->userdata('user_id'));
+		        $id = $this->Account_model->get_account($this->session->userdata('user_id'));
+
+		        foreach ($id->result() as $data)
+		        {
+		        	$newdata = array(
+	                   'username'  => $data->username,
+	                   'email'     => $data->email,
+	                   'first_name'=> $data->first_name,
+	                   'last_name' => $data->last_name,
+	                );
+		        }
+			    $this->session->set_userdata($newdata);
+
+				redirect('Account');
+			}
 		}
 	}
 
@@ -174,6 +246,41 @@ class Account extends CI_Controller {
 		}
 	}
 
+	public function email_change()
+	{
+		$token = base64_decode($this->uri->segment(3));
+		$tmp_user_id = substr($token,40, 5);
+		$exploded_user_id = explode("*", $tmp_user_id);
+		$user_id = $exploded_user_id[0];
+		$new_email = substr($token, 45);
+		$status = substr($token,30,10); 
+		$parsed_token = substr($token,0,(40+strlen($user_id)));
+		if($status == "email*****")
+		{
+			$cleanToken = $this->security->xss_clean($parsed_token);
+	        $user_info = $this->Login_model->isTokenValid($cleanToken);
+	        if($user_info)
+	        {
+	        	$msg = "You have changed your email to ". $new_email;
+	        	$this->Login_model->updateToken($user_info);
+				$this->Account_model->edit_email($new_email, $user_id);
+		        $this->session->set_userdata('email', $new_email);
+		        $this->session->set_flashdata('hometoastmsg', $msg);
+		        redirect('');
+		    }
+		    else
+		    {
+				$this->load->view('templates/header.php');
+				$this->load->view('access_denied.php');
+		    }
+		}
+		else
+		{
+			$this->load->view('templates/header.php');
+			$this->load->view('access_denied.php');
+		}
+	}
+
 	private function send_email($message, $subject, $email)
 	{
         $this->email->from('admin@pinoram.com' , 'Pinoram');
@@ -184,6 +291,28 @@ class Account extends CI_Controller {
 
         $this->email->send();
 	}
+
+	private function get_token($user_id)
+	{
+		$gettoken = $this->Login_model->getToken($user_id);
+		if ($gettoken)
+		{
+			$tokenrow = $gettoken->row();
+			$token = $tokenrow->token;
+			return $token;
+		}
+		else
+		{
+			return 0;
+		}
+	}
+
+	private function base64url_encode($data) { 
+	    return rtrim(strtr(base64_encode($data), '+/', '-_'), '='); 
+	} 
+	private function base64url_decode($data) { 
+	    return base64_decode(str_pad(strtr($data, '-_', '+/'), strlen($data) % 4, '=', STR_PAD_RIGHT)); 
+	} 
 
 
 

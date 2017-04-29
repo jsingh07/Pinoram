@@ -41,6 +41,13 @@ class Welcome extends CI_Controller {
 				$info['success'] = $this->load->view('setupdb/success.php', $text, TRUE);
 				$data['load'] = $this->load->view('home/Greeting.php', $info, TRUE);
 			}
+			else if(NULL !== $this->session->flashdata("hometoastmsg"))
+			{
+				$text['mytext'] = $this->session->flashdata("hometoastmsg");
+				$this->session->set_flashdata("hometoastmsg", "");
+				$info['success'] = $this->load->view('setupdb/success.php', $text, TRUE);
+				$data['load'] = $this->load->view('home/Greeting.php', $info, TRUE);
+			}
 			else
 			{
 				$data['load'] = $this->load->view('home/Greeting.php', NULL, TRUE);
