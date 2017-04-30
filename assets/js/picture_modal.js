@@ -193,7 +193,7 @@ $(document).ready(function(){
 		    		$("#pictureModal").css("height", "95%");
 		    		$("#pictureModal").css("width", "100%");
 		    		$("#pictureModal").css("max-width", "400px");
-		    		$("#pictureModal").css("overflow-y", "scroll");
+		    		$("#pictureModal").css("overflow-y", "auto");
 		    		$("#pictureModal").css("margin-top", "-50px");
 		    		$("#modal-image1").attr("src", "");
 		    		$("#modal-image2").attr("src", srcPic);
@@ -209,7 +209,7 @@ $(document).ready(function(){
 		    		$("#picture-info-div").css("text-align", "left");
 		    		$("#picture-info-div").css("width", "100%");
 		    		$("#picture-info-div").css("height", infoHeight);
-		    		$("#picture-info-div").css("overflow-y", "visible");
+		    		$("#picture-info-div").css("overflow-y", "auto");
 		    		$("#picture-info-div").css("background-color", "transparent");
 		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("position","fixed");
 		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("width","100%");
@@ -248,7 +248,7 @@ $(document).ready(function(){
 		    		$("#picture-info-div").attr("class", "right");
 		    		$("#picture-info-div").css("width", "300px");
 		    		$("#picture-info-div").css("background-color", "transparent");
-		    		$("#picture-info-div").css("overflow-y", "hidden");
+		    		$("#picture-info-div").css("overflow-y", "auto");
 		    		$("#picture-info-div").css("height", "auto");
 		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("position","absolute");
 		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("width","300px");
@@ -286,7 +286,7 @@ $(document).ready(function(){
 		    		$("#picture-info-div").css("text-align", "left");
 		    		$("#picture-info-div").css("width", "100%");
 		    		$("#picture-info-div").css("height", infoHeight);
-		    		$("#picture-info-div").css("overflow-y", "visible");
+		    		$("#picture-info-div").css("overflow-y", "auto");
 		    		$("#picture-info-div").css("background-color", "transparent");
 		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("position","fixed");
 		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("width","100%");
@@ -329,7 +329,7 @@ $(document).ready(function(){
 		    		$("#picture-info-div").attr("class", "right");
 		    		$("#picture-info-div").css("width", "300px");
 		    		$("#picture-info-div").css("background-color", "transparent");
-		    		$("#picture-info-div").css("overflow-y", "scroll");
+		    		$("#picture-info-div").css("overflow-y", "auto");
 		    		$("#picture-info-div").css("height", "auto");
 		    		$("#picture-info-div").css("margin-top", "15px");
 		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("position","absolute");

@@ -67,11 +67,17 @@ class Album extends CI_Controller
 					$this->load->view('templates/header.php');
 					$this->load->view('album/public_album.php', $data);
 				}
+				else
+				{
+					$this->load->view('templates/header.php');
+					$this->load->view('access_denied.php');
+				}
 			}
 		}
 		else
 		{
-			echo "nope";
+			$this->load->view('templates/header.php');
+			$this->load->view('access_denied.php');
 		}
 		
 	}
