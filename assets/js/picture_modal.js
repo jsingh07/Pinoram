@@ -221,7 +221,7 @@ $(document).ready(function(){
 	    			if(modalHeight > 600)
 	    			{
 	    				modalHeight = 600;
-	    				modalWidth = (((imgWidth/imgHeight) * 600) + 300);
+	    				modalWidth = (((imgWidth/imgHeight) * 600) + 320);
 	    			}
 	    			else
 	    			{
@@ -251,7 +251,7 @@ $(document).ready(function(){
 		    		$("#picture-info-div").css("overflow-y", "auto");
 		    		$("#picture-info-div").css("height", "auto");
 		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("position","absolute");
-		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("width","300px");
+		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("width","320px");
 	    		}
 	    	}
 	    	else
@@ -334,7 +334,7 @@ $(document).ready(function(){
 		    		$("#picture-info-div").css("height", "auto");
 		    		$("#picture-info-div").css("margin-top", "15px");
 		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("position","absolute");
-		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("width","300px");
+		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("width","320px");
 		    	}
 	    	}
 	    }
