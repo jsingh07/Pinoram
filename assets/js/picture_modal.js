@@ -169,11 +169,11 @@ $(document).ready(function(){
 	    		//take 90% of windowwidth, max 1100
 	    		if(windowwidth * .9 > 1100)
 	    		{
-	    			var modalHeight = Math.round((imgHeight/imgWidth) * (1100 - 310));
+	    			var modalHeight = Math.round((imgHeight/imgWidth) * (1100 - 320));
 	    		}
 	    		else
 	    		{
-	    			var modalHeight = Math.round((imgHeight/imgWidth) * ((windowwidth * .9) - 300));
+	    			var modalHeight = Math.round((imgHeight/imgWidth) * ((windowwidth * .9) - 320));
 	    		}
 	    		//check if mobile page or desktop
 	    		if(modalHeight < 300)
@@ -225,7 +225,7 @@ $(document).ready(function(){
 	    			}
 	    			else
 	    			{
-	    				modalWidth = "91%";
+	    				modalWidth = "90%";
 	    			}
 					
 		    		var imgHeight = modalHeight +"px";
