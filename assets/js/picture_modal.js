@@ -193,7 +193,7 @@ $(document).ready(function(){
 		    		$("#pictureModal").css("height", "95%");
 		    		$("#pictureModal").css("width", "100%");
 		    		$("#pictureModal").css("max-width", "400px");
-		    		$("#pictureModal").css("overflow-y", "auto");
+		    		$("#pictureModal").css("overflow-y", "hidden");
 		    		$("#pictureModal").css("margin-top", "-50px");
 		    		$("#modal-image1").attr("src", "");
 		    		$("#modal-image2").attr("src", srcPic);
@@ -273,6 +273,7 @@ $(document).ready(function(){
 		    		$("#pictureModal").css("width", "100%");
 		    		$("#pictureModal").css("max-width", "400px");
 		    		$("#pictureModal").css("margin-top", "-15%");
+		    		$("#pictureModal").css("overflow-y", "hidden");
 		    		$("#modal-image1").attr("src", "");
 		    		$("#modal-image2").attr("src", srcPic);
 		    		$(".modal-image").css("width", "100%");
