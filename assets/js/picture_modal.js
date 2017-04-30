@@ -311,7 +311,7 @@ $(document).ready(function(){
 	    		{
 					//var myheight = Math.round(((imgHeight / imgWidth) * 400));
 					var mywidth = Math.round(((imgWidth / imgHeight) * 500));
-					var modalwidth = (mywidth + 300) + "px";
+					var modalwidth = (mywidth + 320) + "px";
 		    		//var myheightstring = "900px";
 		    		$("#pictureModal").css("width", modalwidth);
 		    		$("#pictureModal").css("height", "500px");
