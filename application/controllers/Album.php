@@ -138,6 +138,26 @@ class Album extends CI_Controller
 
 	}
 
+	public function edit_Album()
+	{
+		if($this->access())
+		{
+			$album_id = $this->session->userdata('album_id');
+			if($this->input->post('Album_access'))
+			{
+				$access = "public";
+			}
+			else
+			{
+				$access = "private";
+			}
+			$clean = $this->security->xss_clean($this->input->post(NULL, TRUE));
+			$this->Album_model->edit_Album($clean, $this->session->userdata('user_id'), $access, $album_id);
+			$path = 'Album/picture/?album_id='.$album_id;
+			redirect($path);
+		}
+	}
+
 	public function picture()
 	{
 			if(isset($_GET['album_id']))
@@ -275,6 +295,17 @@ class Album extends CI_Controller
 			$redirect_path = 'Album/picture/?album_id='.$album_id;
 			redirect($redirect_path);
 
+		}
+	}
+
+	public function deleteAlbum()
+	{
+		if($this->access())
+		{
+			$album_id = $this->session->userdata('album_id');
+			$this->Album_model->delete_Album($album_id);
+
+			redirect('Album');
 		}
 	}
 
