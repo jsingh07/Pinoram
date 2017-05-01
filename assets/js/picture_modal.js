@@ -169,11 +169,11 @@ $(document).ready(function(){
 	    		//take 90% of windowwidth, max 1100
 	    		if(windowwidth * .9 > 1100)
 	    		{
-	    			var modalHeight = Math.round((imgHeight/imgWidth) * (1100 - 310));
+	    			var modalHeight = Math.round((imgHeight/imgWidth) * (1100 - 320));
 	    		}
 	    		else
 	    		{
-	    			var modalHeight = Math.round((imgHeight/imgWidth) * ((windowwidth * .9) - 300));
+	    			var modalHeight = Math.round((imgHeight/imgWidth) * ((windowwidth * .9) - 320));
 	    		}
 	    		//check if mobile page or desktop
 	    		if(modalHeight < 300)
@@ -193,7 +193,7 @@ $(document).ready(function(){
 		    		$("#pictureModal").css("height", "95%");
 		    		$("#pictureModal").css("width", "100%");
 		    		$("#pictureModal").css("max-width", "400px");
-		    		$("#pictureModal").css("overflow-y", "scroll");
+		    		$("#pictureModal").css("overflow-y", "hidden");
 		    		$("#pictureModal").css("margin-top", "-50px");
 		    		$("#modal-image1").attr("src", "");
 		    		$("#modal-image2").attr("src", srcPic);
@@ -209,7 +209,7 @@ $(document).ready(function(){
 		    		$("#picture-info-div").css("text-align", "left");
 		    		$("#picture-info-div").css("width", "100%");
 		    		$("#picture-info-div").css("height", infoHeight);
-		    		$("#picture-info-div").css("overflow-y", "visible");
+		    		$("#picture-info-div").css("overflow-y", "auto");
 		    		$("#picture-info-div").css("background-color", "transparent");
 		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("position","fixed");
 		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("width","100%");
@@ -221,11 +221,11 @@ $(document).ready(function(){
 	    			if(modalHeight > 600)
 	    			{
 	    				modalHeight = 600;
-	    				modalWidth = (((imgWidth/imgHeight) * 600) + 300);
+	    				modalWidth = (((imgWidth/imgHeight) * 600) + 320);
 	    			}
 	    			else
 	    			{
-	    				modalWidth = "91%";
+	    				modalWidth = "90%";
 	    			}
 					
 		    		var imgHeight = modalHeight +"px";
@@ -248,10 +248,10 @@ $(document).ready(function(){
 		    		$("#picture-info-div").attr("class", "right");
 		    		$("#picture-info-div").css("width", "300px");
 		    		$("#picture-info-div").css("background-color", "transparent");
-		    		$("#picture-info-div").css("overflow-y", "hidden");
+		    		$("#picture-info-div").css("overflow-y", "auto");
 		    		$("#picture-info-div").css("height", "auto");
 		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("position","absolute");
-		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("width","300px");
+		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("width","320px");
 	    		}
 	    	}
 	    	else
@@ -273,6 +273,7 @@ $(document).ready(function(){
 		    		$("#pictureModal").css("width", "100%");
 		    		$("#pictureModal").css("max-width", "400px");
 		    		$("#pictureModal").css("margin-top", "-15%");
+		    		$("#pictureModal").css("overflow-y", "hidden");
 		    		$("#modal-image1").attr("src", "");
 		    		$("#modal-image2").attr("src", srcPic);
 		    		$(".modal-image").css("width", "100%");
@@ -286,7 +287,7 @@ $(document).ready(function(){
 		    		$("#picture-info-div").css("text-align", "left");
 		    		$("#picture-info-div").css("width", "100%");
 		    		$("#picture-info-div").css("height", infoHeight);
-		    		$("#picture-info-div").css("overflow-y", "visible");
+		    		$("#picture-info-div").css("overflow-y", "auto");
 		    		$("#picture-info-div").css("background-color", "transparent");
 		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("position","fixed");
 		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("width","100%");
@@ -310,7 +311,7 @@ $(document).ready(function(){
 	    		{
 					//var myheight = Math.round(((imgHeight / imgWidth) * 400));
 					var mywidth = Math.round(((imgWidth / imgHeight) * 500));
-					var modalwidth = (mywidth + 300) + "px";
+					var modalwidth = (mywidth + 320) + "px";
 		    		//var myheightstring = "900px";
 		    		$("#pictureModal").css("width", modalwidth);
 		    		$("#pictureModal").css("height", "500px");
@@ -329,11 +330,11 @@ $(document).ready(function(){
 		    		$("#picture-info-div").attr("class", "right");
 		    		$("#picture-info-div").css("width", "300px");
 		    		$("#picture-info-div").css("background-color", "transparent");
-		    		$("#picture-info-div").css("overflow-y", "scroll");
+		    		$("#picture-info-div").css("overflow-y", "auto");
 		    		$("#picture-info-div").css("height", "auto");
 		    		$("#picture-info-div").css("margin-top", "15px");
 		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("position","absolute");
-		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("width","300px");
+		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("width","320px");
 		    	}
 	    	}
 	    }

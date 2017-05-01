@@ -3,13 +3,20 @@
 .thumb.active{
 	display:none;
 }
+
+.error_msg p{
+	margin-top: -5px;
+}
+.error_msg{
+	margin-bottom: -15px;
+}
 </style>
 <body >
 	<div id ="hidden-user-id" data-id= "<?php echo $this->session->userdata("user_id")?>" >
     </div>
 	<div class="row" id="user-profile" style=" position: relative; margin-top: 3%; max-width: 800px; width: 100%; height: 450px;">
 
-		<div class="card z-depth-5 col s12" style="height: 500px;">
+		<div class="card z-depth-5 col s12" style="height: 600px;">
 			<div class="vertical-menu left hide-on-small-and-down" style="margin-left:-11px; position: relative; display:inline-block; z-index:100;">
 
 				<a href="" class="active" style="padding-left: 40px;">Account</a>
@@ -30,7 +37,22 @@
       		</div>
       		
 
-			<div class="row" id="profile" style="min-width: 300px; max-height: 400px">
+			<div class="row" id="profile" style="min-width: 300px;">
+				<div class="error_msg" style="position: relative; color: red; text-align: center">
+					<?php 
+						if(null !== $this->session->flashdata('validation_error'))
+						{
+							echo $this->session->flashdata('validation_error');
+						}
+					?>
+					<?php 
+						if(null !== $this->session->flashdata('email_change_validation'))
+						{
+							echo $this->session->flashdata('email_change_validation');
+						}
+					?>
+				</div>
+
 				<div class="col s4 m3" id="account-label" style="text-align: right; margin-left: -11px">
 
 					<ul>
@@ -46,10 +68,10 @@
 
 				<div class="col s7 m5" style="margin-left: 10px; margin-top: 46px">
 						<h4 style ="margin-bottom: 50px; font-size: 1.5em"><?php echo $this->session->userdata('username')?></h4>
-						<input id="username" name="username" autocomplete="off" value="<?php echo $this->session->userdata('username') ?>">
-						<input id="first_name" name="first_name" autocomplete="off" value="<?php echo $this->session->userdata('first_name') ?>">
-						<input id="last_name" name="last_name" autocomplete="off" value="<?php echo $this->session->userdata('last_name') ?>">
-						<input id="email" name="email" autocomplete="off" value="<?php echo $this->session->userdata('email') ?>">
+						<input id="username" class="validate" name="username" autocomplete="off" value="<?php echo $this->session->userdata('username') ?>">
+						<input id="first_name" class="validate" name="first_name" autocomplete="off" value="<?php echo $this->session->userdata('first_name') ?>">
+						<input id="last_name" class="validate" name="last_name" autocomplete="off" value="<?php echo $this->session->userdata('last_name') ?>">
+						<input id="email" class="validate" type="email" name="email" autocomplete="off" value="<?php echo $this->session->userdata('email') ?>">
 						<button style="margin-top: 20px; width: 100%" class="btn waves-effect waves-light" type="submit" name="submit">Submit</button>
 				</div>
 		        <?php echo form_close(); ?>
