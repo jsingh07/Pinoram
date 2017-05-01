@@ -16,7 +16,7 @@
     </div>
 	<div class="row" id="user-profile" style=" position: relative; margin-top: 3%; max-width: 800px; width: 100%; height: 450px;">
 
-		<div class="card z-depth-5 col s12" style="height: 600px;">
+		<div class="card z-depth-5 col s12" style="height: 700px;">
 			<div class="vertical-menu left hide-on-small-and-down" style="margin-left:-11px; position: relative; display:inline-block; z-index:100;">
 
 				<a href="" class="active" style="padding-left: 40px;">Account</a>
@@ -73,7 +73,9 @@
 						<input id="first_name" class="validate" name="first_name" autocomplete="off" value="<?php echo $this->session->userdata('first_name') ?>">
 						<input id="last_name" class="validate" name="last_name" autocomplete="off" value="<?php echo $this->session->userdata('last_name') ?>">
 						<input id="email" class="validate" type="email" name="email" autocomplete="off" value="<?php echo $this->session->userdata('email') ?>">
-						<textarea rows="5" cols="10" id="bio" name="bio" style="resize: none; font-size: .8em; height: 110px; margin-top:10px;  max-width:300px;"><?php echo $this->session->userdata('bio'); ?></textarea>
+						<div>
+							<textarea rows="5" cols="10" id="bio" name="bio" class="active" data-length="250" style="resize: none; font-size: .8em; height: 110px; margin-top:10px;  max-width:300px;"><?php echo $this->session->userdata('bio'); ?></textarea>
+						</div>
 						<button style="margin-top: 20px; width: 100%" class="btn waves-effect waves-light" type="submit" name="submit">Submit</button>
 				</div>
 		        <?php echo form_close(); ?>

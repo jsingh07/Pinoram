@@ -29,8 +29,7 @@
 
 
 <body style="background-color: white">
-	<div id ="hidden-album-id" data-id=<?php echo $this->session->userdata['album_id']?> >
-	</div>
+	<div id ="hidden-album-id" data-id=<?php echo $this->session->userdata['album_id']?> ></div>
 
 	<div class="fixed-action-btn horizontal">
    		<?php echo form_open_multipart('Album/upload_picture', 'id="formPictureUpload"'); ?> 
