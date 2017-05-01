@@ -23,8 +23,8 @@
             <div class="card-content" style="border: none; margin: auto">
                 <div class="row valign-wrapper">
                     <div class="col s4">
-                        <?php if(file_exists('files/profile_images/'.$this->session->userdata('user_id').'.jpg')) {?>
-                        <img src="/files/profile_images/<?php echo $this->session->userdata('user_id')?>.jpg" class="circle responsive-img" style="margin-top: 20px">   
+                        <?php if(file_exists('files/profile_images/'.$this->session->userdata('profile_pic').'.jpg')) {?>
+                        <img src="/files/profile_images/<?php echo $this->session->userdata('profile_pic')?>.jpg" class="circle responsive-img" style="margin-top: 20px">   
                         <?php }else{ ?>
                         <img src="/files/static_images/default_profile.jpg" class="circle responsive-img" style="margin-top: 20px">   
                         <?php } ?>
@@ -32,8 +32,9 @@
                     </div>
                     <div class="col s8" >
                         <h3 style="font-weight: bold"><?php echo $this->session->userdata('username')?></h3>
-                        <div id="bio">
-                        </div>
+                            <div id="bio">
+                                <?php echo $this->session->userdata('bio'); ?>
+                            </div>
                     </div>
                     </div>
                 

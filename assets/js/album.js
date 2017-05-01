@@ -6,18 +6,24 @@ $(document).ready(function(){
         $("#create-Album-modal").modal('open');
     });
 
-    $.ajax({
+    /*$.ajax({
         url:"/Account/getBio",
         dataType: 'json',
         success: function(data)
         {
-        
             $div = document.getElementById('bio');
             $bio = document.createElement("H5")
-            $bio.appendChild(document.createTextNode(data[0].bio));
+            if(data[0].bio == null)
+            {
+                $bio.appendChild(document.createTextNode(""));
+            }
+            else
+            {
+                $bio.appendChild(document.createTextNode(data[0].bio));
+            }
             $div.appendChild($bio);
         }
-    });
+    });*/
 });
 
 $.ajax({
@@ -26,7 +32,8 @@ $.ajax({
     success: function(data)
     {       
         
-        if(data.length == 0){
+        if(data.length == 0)
+        {
             var temp0 = document.getElementById("album-container");
             var temp1 = document.createElement("div");
             var temp2 = document.createElement("div");

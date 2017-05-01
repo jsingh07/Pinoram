@@ -30,7 +30,8 @@ class Account_model extends CI_Model {
 		array(
 		'username' => $data['username'],
 		'first_name' => $data['first_name'],
-		'last_name' => $data['last_name']
+		'last_name' => $data['last_name'],
+		'bio' => $data['bio']
 		//'email' => $data['email']
 		);
 		
@@ -58,15 +59,26 @@ class Account_model extends CI_Model {
 
 	public function get_account($user_id)
 	{
-		$sql = "SELECT username,email,first_name,last_name FROM user WHERE user_id = $user_id";
+		$sql = "SELECT username,email,first_name,last_name,bio FROM user WHERE user_id = $user_id";
 		$query = $this->db->query($sql);
 		return $query;
 	}
 	public function getUserbio($user_id)
 	{
-		$sql = "SELECT bio FROM user_info WHERE user_id = $user_id";
+		$sql = "SELECT bio FROM user WHERE user_id = $user_id";
 		$query = $this->db->query($sql);
 		return $query;
+	}
+
+	public function insert_picture($user_id, $picture_id)
+	{
+        $mydata =
+		array(
+			'profile_pic' => $picture_id,
+		);
+		
+		$this->db->where('user_id', $user_id);
+		$this->db->update('user', $mydata);
 	}
 
 	public function delete_account($user_id)

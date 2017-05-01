@@ -12,7 +12,7 @@
 }
 </style>
 <body >
-	<div id ="hidden-user-id" data-id= "<?php echo $this->session->userdata("user_id")?>" >
+	<div id ="hidden-pic-id" data-id= "<?php echo $this->session->userdata("profile_pic")?>" >
     </div>
 	<div class="row" id="user-profile" style=" position: relative; margin-top: 3%; max-width: 800px; width: 100%; height: 450px;">
 
@@ -20,7 +20,7 @@
 			<div class="vertical-menu left hide-on-small-and-down" style="margin-left:-11px; position: relative; display:inline-block; z-index:100;">
 
 				<a href="" class="active" style="padding-left: 40px;">Account</a>
-				<a href="<?php echo site_url();?>Account/profile" style="padding-left: 40px;">Edit Profile</a>
+				<!--<a href="<?php echo site_url();?>Account/profile" style="padding-left: 40px;">Edit Profile</a>-->
 			 	<a href="<?php echo site_url();?>Login/password_recovery" style="padding-left: 40px;">Change Password</a>
 			  	<a href="<?php echo site_url();?>Account/delete_account" style="padding-left: 40px;">Delete Account</a>
 			</div>
@@ -29,7 +29,7 @@
 	    		<div class="col s12">
 					<ul class="tabs">
 		        		<li class="tab col s3"><a target="_self" class="active" href="">Account</a></li>
-		        		<li class="tab col s3"><a style="line-height:15px; padding-top: 10px" target="_self" href="<?php echo site_url();?>Account/profile">Edit<br>Profile</a></li>
+		        		<!--<li class="tab col s3"><a style="line-height:15px; padding-top: 10px" target="_self" href="<?php echo site_url();?>Account/profile">Edit<br>Profile</a></li>-->
 		        		<li class="tab col s3"><a style="line-height:15px; padding-top: 10px" target="_self" href="<?php echo site_url();?>Login/password_recovery">Change<br>Password</a></li>
 		        		<li class="tab col s3"><a style="line-height:15px; padding-top: 10px" target="_self" href="<?php echo site_url();?>Account/delete_account">Delete<br>Account</a></li>
 		      		</ul>
@@ -61,6 +61,7 @@
 						<li>First Name</li>
 						<li>Last Name</li>
 						<li>Email</li>
+						<li>Bio</li>
 					</ul>
 				</div>
 
@@ -72,6 +73,7 @@
 						<input id="first_name" class="validate" name="first_name" autocomplete="off" value="<?php echo $this->session->userdata('first_name') ?>">
 						<input id="last_name" class="validate" name="last_name" autocomplete="off" value="<?php echo $this->session->userdata('last_name') ?>">
 						<input id="email" class="validate" type="email" name="email" autocomplete="off" value="<?php echo $this->session->userdata('email') ?>">
+						<textarea rows="5" cols="10" id="bio" name="bio" style="resize: none; font-size: .8em; height: 110px; margin-top:10px;  max-width:300px;"><?php echo $this->session->userdata('bio'); ?></textarea>
 						<button style="margin-top: 20px; width: 100%" class="btn waves-effect waves-light" type="submit" name="submit">Submit</button>
 				</div>
 		        <?php echo form_close(); ?>
