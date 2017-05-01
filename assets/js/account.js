@@ -23,9 +23,9 @@
             enableOrientation: true
     });
 
-    var div_user_id = document.getElementById("hidden-user-id");
-    var my_user_id = div_user_id.getAttribute("data-id");
-    var profile_pic_link = '/files/profile_images/'+ my_user_id +'.jpg';
+    var div_user_id = document.getElementById("hidden-pic-id");
+    var my_pic_id = div_user_id.getAttribute("data-id");
+    var profile_pic_link = '/files/profile_images/'+ my_pic_id +'.jpg';
 
     $.get(profile_pic_link)
     .done(function() { 

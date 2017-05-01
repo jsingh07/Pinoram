@@ -28,14 +28,14 @@ class Account extends CI_Controller {
 		
 	}
 
-	public function getBio()
+	private function getBio()
 	{
 		if($this->access())
 		{
 			$bio = $this->Account_model->getUserbio($this->session->userdata('user_id'));
-			echo json_encode($bio->result(), true);
+			//echo json_encode($bio->result(), true);
+			return $bio->result();
 		}
-
 	}
 
 	public function access()
@@ -82,7 +82,12 @@ class Account extends CI_Controller {
 	{
 		if($this->access())
 		{
-			$picture_id = $this->session->userdata('user_id');
+			$picture_id = $this->uniqid_base36(true);
+
+			$this->Account_model->insert_picture($this->session->userdata('user_id'), $picture_id);
+			unlink($this->config->item('rootDir').'/files/profile_images/'.$this->session->userdata('profile_pic').'.jpg');
+			$this->session->set_userdata('profile_pic', $picture_id);
+			//$picture_id = $this->session->userdata('user_id');
 			$data = $_POST['imagebase64'];
 			
         	list($type, $data) = explode(';', $data);
@@ -95,6 +100,17 @@ class Account extends CI_Controller {
 	        file_put_contents($filepath, $data);
 	        redirect('Account');	   
 	    }
+	}
+
+	private function uniqid_base36($more_entropy=false) 
+	{
+	    $s = uniqid('', $more_entropy);
+	    if (!$more_entropy)
+	        return base_convert($s, 16, 36);
+	        
+	    $hex = substr($s, 0, 13);
+	    $dec = $s[13] . substr($s, 15); // skip the dot
+	    return base_convert($hex, 16, 36) . base_convert($dec, 10, 36);
 	}
 
 	public function edit_account()
@@ -183,6 +199,7 @@ class Account extends CI_Controller {
 	                   'email'     => $data->email,
 	                   'first_name'=> $data->first_name,
 	                   'last_name' => $data->last_name,
+	                   'bio' 	   => $data->bio
 	                );
 		        }
 			    $this->session->set_userdata($newdata);
