@@ -64,6 +64,8 @@ class Login extends CI_Controller {
 			                   'email'     => $data->email,
 			                   'first_name'=> $data->first_name,
 			                   'last_name' => $data->last_name,
+			                   'bio' 	   => $data->bio,
+			                   'profile_pic' => $data->profile_pic,
 			                   'role'      => $data->role,
 			                   'status'    => $data->status,
 			                   'welcome'   => TRUE,
