@@ -9,15 +9,14 @@
 
   <body>
   <div class="row" style="max-width: 900px">
-  <div class="col s12" style="border:none;">
-    <h2 class="header">About Us</h2>
-    <div class="card horizontal" style="border: none; box-shadow: none ">
-       
-          <p style="font-size: 1.5em; margin-top: -10px">Welcome to Pinoram! Pinoram was created by Ron and Jagdeep. It’s a site meant for people to showcase their pictures beautifully from various trips around the world. Users can simply create an album and upload any related pictures. Pinoram will automatically grab the geo data from the pictures and map it onto google maps. Of course you can manually add the locations for each picture. Share your albums with the world by making them public or keep them private for family and friends only.   </p>
-        </div>
+    <div class="col s12" style="border:none;">
+      <h2 class="header">About Us</h2>
+      <div class="card horizontal" style="border: none; box-shadow: none ">
+        <p style="font-size: 1.5em; margin-top: -10px">Welcome to Pinoram! Pinoram was created by Ron and Jagdeep. It’s a site meant for people to showcase their pictures beautifully from various trips around the world. Users can simply create an album and upload any related pictures. Pinoram will automatically grab the geo data from the pictures and map it onto google maps. Of course you can manually add the locations for each picture. Share your albums with the world by making them public or keep them private for family and friends only.   </p>
+      </div>
     </div>
   </div>
-  </div>
+
 
   <div id="example_content" class="row" style="max-width: 900px">
     <h2 class="header">Quickstart Guide</h2>

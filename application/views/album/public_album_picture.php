@@ -44,7 +44,7 @@
                         <?php } ?>
                     </div>
 	                    <div class="col s8" >
-	                        <h3 id= "album_name" style="font-weight: bold"><?php echo $album_name?> by <?php echo $username?></h3>
+	                        <h3 id= "album_name" style="font-weight: bold"><?php echo $album_name?> by <a href="<?php echo base_url()?>album/user/<?php echo $username; ?>"><?php echo $username?></a></h3>
 	                            <div id="album_des">
 	                                <a id="description" style="font-size: 1.25em; color: #555;"><?php echo $description?></a>
 	                            </div>
