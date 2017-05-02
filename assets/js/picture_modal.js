@@ -499,3 +499,27 @@ $(document).ready(function(){
             }
         });
       }
+
+      /*function upload_it()
+      {
+      		var div_album_id = document.getElementById("hidden-csrf-token");
+		    var csrf_token =  div_album_id.getAttribute("data-id");
+		    var div_album_id = document.getElementById("hidden-csrf-hash");
+		    var csrf_hash =  div_album_id.getAttribute("data-id");
+		    var div_album_id = document.getElementById("hidden-base-url");
+		    var base_url =  div_album_id.getAttribute("data-id");
+
+      		var post_data = {
+        		'ansid': valrad,
+        		csrf_token : csrf_hash
+    		};
+
+        	$.ajax({
+                type: "POST",
+                url: base_url+"Album/upload_picture",
+                data: post_data,
+                success: function(msg){
+                  /// do something 
+                }
+            });
+      }*/

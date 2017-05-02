@@ -51,6 +51,15 @@ class Album_model extends CI_Model {
 		return $result;
 	}
 
+	public function get_public_album_all()
+	{
+		$sql = "SELECT * FROM album 
+				WHERE album_access = 'public'
+				";
+		$result = $this->db->query($sql);
+		return $result;
+	}
+
 	public function get_public_picture($album_id)
 	{
 		$sql = "SELECT * FROM pictures 

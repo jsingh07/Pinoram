@@ -169,17 +169,17 @@ class Album extends CI_Controller
 					$this->load->view('templates/header.php');
 					$this->load->view('album/album_picture.php');
 				}
-				else if($this->Album_model->is_public_album($album_id))
+				else //if($this->Album_model->is_public_album($album_id))
 				{
 					$this->session->set_userdata('album_id', $album_id);
 					$this->load->view('templates/header.php');
 					$this->load->view('album/public_album_picture.php');
 				}
-				else
+				/*else
 				{
 					$this->load->view('templates/header.php');
 					$this->load->view('access_denied.php');
-				}
+				}*/
 				
 			}
 			else
@@ -347,6 +347,29 @@ class Album extends CI_Controller
 		if($this->access())
 		{
 			$Album  = $this->Album_model->get_Album($this->session->userdata('user_id'));
+			$Album_data = $Album->result();
+			$json_array = array();
+			$count = 0;
+			foreach ($Album_data as $input) 
+			{
+				foreach ($input as $key => $value) 
+				{
+					$json_array['album'][$count][$key] = $value;
+				}
+				$Pics = $this->Album_model->get_pictures_from_album($json_array['album'][$count]['album_id']);
+				$Pic_data = $Pics->result();
+				$json_array['album'][$count]['pictures'] = $Pic_data;
+				$count++;
+			} 
+			echo json_encode($json_array, true);
+		}
+	}
+
+	public function get_public_albums()
+	{
+		if($this->access())
+		{
+			$Album  = $this->Album_model->get_public_album_all();
 			$Album_data = $Album->result();
 			$json_array = array();
 			$count = 0;
