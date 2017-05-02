@@ -13,6 +13,23 @@ class Album_model extends CI_Model {
 
         $this->db->query($sql);
 	}
+	public function get_UserInfo($album_id)
+	{
+		$sql="SELECT owner_id FROM album 
+			  WHERE album_id = '$album_id'";
+		$result = $this->db->query($sql);
+		$owner = $result->row();
+		$id = $owner->owner_id;
+	
+		$sql = "SELECT user.username, user.profile_pic, album.description, album.album_name
+				FROM user INNER JOIN album 
+				WHERE user.user_id = $id AND album.album_id = '$album_id'";
+
+		$result = $this->db->query($sql);
+		return $result; 
+
+	}
+
 
 	public function get_Album($user_id)
 	{

@@ -49,15 +49,15 @@
 <!-- Album Cards -->
 <div id="album-container" class="row " style="max-width: 80%; margin-top: 20px;">
     <input type = "hidden" id = "csrf" name = "<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
-    <div id= "col1" class="col s12 l4" >
+    <div id= "col1" class="col s12 l3" >
 
     </div>
 
-    <div id= "col2" class="col s12 l4" >
+    <div id= "col2" class="col s12 l3" >
         
     </div>
 
-    <div id= "col3" class="col s12 l4" >
+    <div id= "col3" class="col s12 l3" >
         
     </div>
 </div>
