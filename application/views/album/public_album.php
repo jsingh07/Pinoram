@@ -30,9 +30,9 @@
                     </div>
                     <div class="col s8" >
                         <h3 style="font-weight: bold"><?php echo $username; ?></h3>
-                        <!--<div id="bio">
+                        <div>
                             <h5><?php echo $bio; ?></h5>
-                        </div>-->
+                        </div>
                     </div>
                     </div>
                 

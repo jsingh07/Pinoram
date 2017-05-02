@@ -60,6 +60,7 @@ class Album extends CI_Controller
 					foreach ($result->result() as $mydata)
 			        {
 			        	$data['user_id'] = $mydata->user_id;
+			        	$data['bio'] = $mydata->bio;
 	        		}
 
 					$data['username'] = $username;
