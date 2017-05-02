@@ -40,7 +40,34 @@ $(document).ready(function(){
 		        		});
 		        	});
 
-		        	
+		        	//grab album description to display on page
+			        	var description = result['album'][album_count]['description'];
+			        	var album_des = document.getElementById("description");
+			        	var text = document.createTextNode(description);
+			        	album_des.appendChild(text);
+
+			        	//grab hidden user name to display
+			        	var div_user_id = document.getElementById("hidden-user");
+		        		var user_name = div_user_id.getAttribute("data-id");
+
+		        		//grab album name 
+			        	album_name = result['album'][album_count]['album_name'];
+			        	text = document.createTextNode(album_name+" by "+user_name);
+			        	var album_header = document.getElementById("album_name");
+			        	album_header.appendChild(text);
+
+			        	//set up dit album modal
+			        	var edit_title = document.getElementById("Album_title");
+			        	edit_title.setAttribute("value", result['album'][album_count]['album_name']);
+
+			        	var edit_des = document.getElementById("Album_description");
+			        	edit_des.setAttribute("value", description);
+
+			        	//set up delete album modal
+			        	var delete_title = document.getElementById("delete_title");
+			        	var title = "Delete "+album_name+" album?";
+			        	var textnode = document.createTextNode(title);
+			        	delete_title.appendChild(textnode);
 		        	//check if album has any pictures in it
 		        	if(result['album'][album_count]['pictures'].length == 0)
 		        	{
@@ -68,33 +95,8 @@ $(document).ready(function(){
 		        	}
 		        	else
 		        	{
-			        	//grab album description to display on page
-			        	var description = result['album'][album_count]['description'];
-			        	var album_des = document.getElementById("description");
-			        	var text = document.createTextNode(description);
-			        	album_des.appendChild(text);
-			        	//grab hidden user name to display
-			        	var div_user_id = document.getElementById("hidden-user");
-		        		var user_name = div_user_id.getAttribute("data-id");
-
-		        		//grab album name 
-			        	album_name = result['album'][album_count]['album_name'];
-			        	text = document.createTextNode(album_name+" by "+user_name);
-			        	var album_header = document.getElementById("album_name");
-			        	album_header.appendChild(text);
-
-			        	//set up dit album modal
-			        	var edit_title = document.getElementById("Album_title");
-			        	edit_title.setAttribute("value", result['album'][album_count]['album_name']);
-
-			        	var edit_des = document.getElementById("Album_description");
-			        	edit_des.setAttribute("value", description);
-
-			        	//set up delete album modal
-			        	var delete_title = document.getElementById("delete_title");
-			        	var title = "Delete "+album_name+" album?";
-			        	var textnode = document.createTextNode(title);
-			        	delete_title.appendChild(textnode);
+		        		
+			        	
 			        	//loop through all pictures in album to layout in grid
 			        	$.each(result['album'][album_count]['pictures'], function(){
 			        		
