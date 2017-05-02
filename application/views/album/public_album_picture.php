@@ -31,6 +31,31 @@
 <body style="background-color: white">
 	<div id ="hidden-album-id" data-id=<?php echo $this->session->userdata['album_id']?> >
 	</div>
+	
+	<div class="row" style="margin-top: 20px">
+        <div class="col s12 m8 offset-m2 l6 offset-l3" >
+            <div class="card-content" style="border: none; margin: auto">
+                <div class="row valign-wrapper">
+                    <div class="col s4">
+                        <?php if(file_exists('files/profile_images/'.$profile_pic.'.jpg')) {?>
+                        <img src=<?php echo '/files/profile_images/'.$profile_pic.'.jpg'?> class="circle responsive-img" style="margin-top: 20px">   
+                        <?php }else{ ?>
+                        <img src="/files/static_images/default_profile.jpg" class="circle responsive-img" style="margin-top: 20px">   
+                        <?php } ?>
+                    </div>
+	                    <div class="col s8" >
+	                        <h3 id= "album_name" style="font-weight: bold"><?php echo $album_name?> by <?php echo $username?></h3>
+	                            <div id="album_des">
+	                                <a id="description" style="font-size: 1.25em; color: #555;"><?php echo $description?></a>
+	                            </div>
+	                    </div>
+                    </div>
+                
+                </div>
+                
+            </div>
+        </div>
+    </div>
 
     <div class="row" style="max-width: 800px; margin-top: 20px;">
  		<div id="pictureGrid" class="grid" style="height: 100%; background-color: white">

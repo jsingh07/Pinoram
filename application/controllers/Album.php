@@ -172,9 +172,12 @@ class Album extends CI_Controller
 				}
 				else //if($this->Album_model->is_public_album($album_id))
 				{
+					//use the album id to grab username, album name, album descroption and user profiel pic
+					$result = $this->Album_model->get_UserInfo($album_id);
+					$data = $result->row();
 					$this->session->set_userdata('album_id', $album_id);
 					$this->load->view('templates/header.php');
-					$this->load->view('album/public_album_picture.php');
+					$this->load->view('album/public_album_picture.php', $data);
 				}
 				/*else
 				{
