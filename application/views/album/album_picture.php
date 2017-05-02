@@ -29,8 +29,100 @@
 
 
 <body style="background-color: white">
-	<div id ="hidden-album-id" data-id=<?php echo $this->session->userdata['album_id']?> ></div>
+	<div id ="hidden-album-id" data-id=<?php echo $this->session->userdata('album_id')?> >
+	</div>
+	
+	<div id ="hidden-user" data-id=<?php echo $this->session->userdata('username')?> >
+	</div>
+	<div class="row" style="margin-top: 20px">
+        <div class="col s12 m8 offset-m2 l6 offset-l3" >
+            <div class="card-content" style="border: none; margin: auto">
+                <div class="row valign-wrapper">
+                    <div class="col s4">
+                        <?php if(file_exists('files/profile_images/'.$this->session->userdata('profile_pic').'.jpg')) {?>
+                        <img src="/files/profile_images/<?php echo $this->session->userdata('profile_pic')?>.jpg" class="circle responsive-img" style="margin-top: 20px">   
+                        <?php }else{ ?>
+                        <img src="/files/static_images/default_profile.jpg" class="circle responsive-img" style="margin-top: 20px">   
+                        <?php } ?>
 
+                    </div>
+	                    <div class="col s8" >
+	                        <h3 id= "album_name" style="font-weight: bold"></h3>
+	                            <div id="album_des">
+	                                <a id="description" style="font-size: 1.25em; color: #555;"></a>
+	                            </div>
+	                            <div>
+                					<i id="edit" class="material-icons right waves-effect waves-light">mode_edit</i>
+                					<i id="delete" class="material-icons right waves-effect waves-light">delete</i>
+                				</div>
+	                    </div>
+                    </div>
+                
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+<!--Modal to edit Album title and description-->
+<div id="edit-Album-modal" class="modal modal-fixed-footer" style="min-height:500px;">
+
+            <?php echo form_open('Album/edit_Album'); ?>
+            <div class="modal-content row">
+                <h4 style="text-align: center">Edit Album</h4>
+                <hr/>
+                <div style="margin-top: 20px; margin-left: 10px;">
+
+                    <div class="input-field col s12">
+                    <h5 style="margin-bottom: -5px;">Album Name</h5>
+                        <input type="text" id="Album_title" name="Album_title" class="validate"
+                                value="">
+                        
+                    </div>
+                    <div class="input-field col s12">
+                    	<h5 style="margin-bottom: -45px;">Description</h5>
+                        <input id="Album_description" name="Album_description" data-length="150" style="min-height: 120px;" class="materialize-textarea" value=""></textarea>  
+                    </div>
+                    <div class="switch">
+                        <label>
+                            Private 
+                            <input id="Album_access" name="Album_access" type="checkbox">
+                            <span class="lever" for="Album_access"></span>
+                            Public
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button style="color:green;font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center"  type="submit" name="Submit" value="Submit" class="modal-action modal-close waves-effect waves-green btn-flat ">Submit</button>
+                <a style="font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center; color:black" class="modal-action modal-close waves-effect waves-gray btn-flat">Cancel</a>
+            </div>
+            <?php echo form_close(); ?>
+
+        </div>
+
+<!--Delete Modal-->
+<div id="delete-Album-modal" class="modal" style="max-width: 400px;">
+
+	<div class="modal-content">
+		<h4 id="delete_title" style="text-align: center; font-size: 2em"></h4>
+		<p style="text-align: center; font-size: 1.25em; ">Warning: Deleting an album also deletes all pictures associated with it</p>
+	</div>
+
+	<div class="modal-footer">
+	 	<?php echo form_open('Album/deleteAlbum'); ?>
+	    <input type="hidden" id="delete_album" name="delete_album"></input>
+		<button style="color:red;font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center"  type="submit" name="delete_album" value="Delete" class="modal-action modal-close waves-effect waves-green btn-flat ">Delete</button>
+		<?php echo form_close(); ?>
+
+
+        <a style="font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center; color:black" class="modal-action modal-close waves-effect waves-gray btn-flat">Cancel</a>
+    </div>
+
+</div>
+
+ <!--FAB button for adding pictures-->
 	<div class="fixed-action-btn horizontal">
    		<?php echo form_open_multipart('Album/upload_picture', 'id="formPictureUpload"'); ?> 
    		<input type="hidden" name="hiddenlat" id="hiddenlat">
@@ -73,7 +165,7 @@
 		</div>
     </div>
 
-
+<!--Picutre modal to display image information-->
     <div id="pictureModal" class="modal modal-fixed-footer" style="max-height: 600px; max-width: 900px; overflow: hidden;" >
 
     	<!--<div class= "left" style="width: 100%; position: fixed">

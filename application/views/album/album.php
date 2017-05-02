@@ -30,11 +30,12 @@
                         <?php } ?>
 
                     </div>
-                    <div class="col s8" >
+                    <div class="col s7" >
                         <h3 style="font-weight: bold"><?php echo $this->session->userdata('username')?></h3>
                             <div id="bio">
                                 <?php echo $this->session->userdata('bio'); ?>
                             </div>
+                            
                     </div>
                     </div>
                 

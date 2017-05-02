@@ -138,6 +138,26 @@ class Album extends CI_Controller
 
 	}
 
+	public function edit_Album()
+	{
+		if($this->access())
+		{
+			$album_id = $this->session->userdata('album_id');
+			if($this->input->post('Album_access'))
+			{
+				$access = "public";
+			}
+			else
+			{
+				$access = "private";
+			}
+			$clean = $this->security->xss_clean($this->input->post(NULL, TRUE));
+			$this->Album_model->edit_Album($clean, $this->session->userdata('user_id'), $access, $album_id);
+			$path = 'Album/picture/?album_id='.$album_id;
+			redirect($path);
+		}
+	}
+
 	public function picture()
 	{
 			if(isset($_GET['album_id']))
@@ -149,17 +169,17 @@ class Album extends CI_Controller
 					$this->load->view('templates/header.php');
 					$this->load->view('album/album_picture.php');
 				}
-				else if($this->Album_model->is_public_album($album_id))
+				else //if($this->Album_model->is_public_album($album_id))
 				{
 					$this->session->set_userdata('album_id', $album_id);
 					$this->load->view('templates/header.php');
 					$this->load->view('album/public_album_picture.php');
 				}
-				else
+				/*else
 				{
 					$this->load->view('templates/header.php');
 					$this->load->view('access_denied.php');
-				}
+				}*/
 				
 			}
 			else
@@ -278,6 +298,17 @@ class Album extends CI_Controller
 		}
 	}
 
+	public function deleteAlbum()
+	{
+		if($this->access())
+		{
+			$album_id = $this->session->userdata('album_id');
+			$this->Album_model->delete_Album($album_id);
+
+			redirect('Album');
+		}
+	}
+
 	public function map()
 	{
 
@@ -316,6 +347,29 @@ class Album extends CI_Controller
 		if($this->access())
 		{
 			$Album  = $this->Album_model->get_Album($this->session->userdata('user_id'));
+			$Album_data = $Album->result();
+			$json_array = array();
+			$count = 0;
+			foreach ($Album_data as $input) 
+			{
+				foreach ($input as $key => $value) 
+				{
+					$json_array['album'][$count][$key] = $value;
+				}
+				$Pics = $this->Album_model->get_pictures_from_album($json_array['album'][$count]['album_id']);
+				$Pic_data = $Pics->result();
+				$json_array['album'][$count]['pictures'] = $Pic_data;
+				$count++;
+			} 
+			echo json_encode($json_array, true);
+		}
+	}
+
+	public function get_public_albums()
+	{
+		if($this->access())
+		{
+			$Album  = $this->Album_model->get_public_album_all();
 			$Album_data = $Album->result();
 			$json_array = array();
 			$count = 0;

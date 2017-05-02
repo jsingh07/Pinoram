@@ -51,6 +51,15 @@ class Album_model extends CI_Model {
 		return $result;
 	}
 
+	public function get_public_album_all()
+	{
+		$sql = "SELECT * FROM album 
+				WHERE album_access = 'public'
+				";
+		$result = $this->db->query($sql);
+		return $result;
+	}
+
 	public function get_public_picture($album_id)
 	{
 		$sql = "SELECT * FROM pictures 
@@ -117,6 +126,18 @@ class Album_model extends CI_Model {
 		$this->db->update('pictures', $mydata);
 	}
 
+	public function edit_Album($data, $user_id, $access, $album_id)
+	{
+		$mydata = 
+		array(
+		'album_name' => $data['Album_title'], 
+		'description' => $data['Album_description'],
+		'album_access' => $access
+		);
+		$this->db->where('album_id', $album_id);
+		$this->db->update('album', $mydata);
+	}
+
 	public function delete_picture($data)
 	{
 		$picture_id = $data['delete_pic'];
@@ -124,6 +145,21 @@ class Album_model extends CI_Model {
 		$sql = "DELETE FROM pictures WHERE picture_id = '$picture_id'";
 		$query = $this->db->query($sql);
 		unlink($path);
+	}
+
+	public function delete_Album($album_id)
+	{
+		$sql = "SELECT * FROM pictures WHERE album_id = '$album_id'";
+		$query = $this->db->query($sql);
+		foreach ($query->result() as $row) 
+		{
+			$data  = array(
+			'delete_pic' => $row->picture_id
+			);
+			$this->delete_picture($data);
+		}
+		$sql = "DELETE FROM album WHERE album_id = '$album_id'";
+		$this->db->query($sql);
 	}
 
 }
