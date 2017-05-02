@@ -10,7 +10,8 @@
 	</style>
 
 	<body>
-		<div id="home-background" >
+		<div <?php if($this->session->userdata('logged_in') != TRUE){ ?> 
+						id="home-background" <?php } ?> >
 			<?php echo $load ?>;
 
 		</div>
