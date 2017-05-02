@@ -13,7 +13,7 @@ class Album_model extends CI_Model {
 
         $this->db->query($sql);
 	}
-	public function get_Username($album_id)
+	public function get_UserInfo($album_id)
 	{
 		$sql="SELECT owner_id FROM album 
 			  WHERE album_id = '$album_id'";
