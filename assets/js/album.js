@@ -83,7 +83,7 @@ $.ajax({
                     if(this['pictures'].length > 0){
                         srcPic = "/files/images/"+this['pictures'][0].picture_id+".jpg";
                     }else{
-                        srcPic = "/files/static_images/default_album.png";
+                        srcPic = "/files/static_images/default_album.jpg";
                     }
 
                     divcard.setAttribute("class","card"); 

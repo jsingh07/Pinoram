@@ -13,7 +13,7 @@
     <h2 class="header">About Us</h2>
     <div class="card horizontal" style="border: none; box-shadow: none ">
        
-          <p style="font-size: 1.5em; margin-top: -10px">Welcome to Pinoram! Pinoram was created by Pyai and Jagdeep. It’s a site meant for people to showcase their pictures beautifully from various trips around the world. Users can simply create an album and upload any related pictures. Pinoram will automatically grab the geo data from the pictures and map it onto google maps. Of course you can manually add the locations for each picture. Share your albums with the world by making them public or keep them private for family and friends only.   </p>
+          <p style="font-size: 1.5em; margin-top: -10px">Welcome to Pinoram! Pinoram was created by Ron and Jagdeep. It’s a site meant for people to showcase their pictures beautifully from various trips around the world. Users can simply create an album and upload any related pictures. Pinoram will automatically grab the geo data from the pictures and map it onto google maps. Of course you can manually add the locations for each picture. Share your albums with the world by making them public or keep them private for family and friends only.   </p>
         </div>
     </div>
   </div>
@@ -38,17 +38,17 @@
       
       <div class="card-content teal lighten-4" >
         <div id="create_album">
-          <div class="card-image"> <img src="/files/static_images/create_album.png">
+          <div class="card-image"> <img src="/files/static_images/create_album.jpg">
           </div>
         </div>
         
         <div id="default_album">
-          <div class="card-image"> <img src="/files/static_images/Default_Album_ex.png">
+          <div class="card-image"> <img src="/files/static_images/Default_Album_ex.jpg">
           </div>
         </div>
         
         <div id="albums">
-          <div class="card-image"> <img src="/files/static_images/Album_view.png">
+          <div class="card-image"> <img src="/files/static_images/Album_view.jpg">
           </div>
         </div>
       </div>
@@ -69,12 +69,12 @@
 
       <div class="card-content teal lighten-4">
         <div id="photo_view">
-          <div class="card-image"> <img src="/files/static_images/Pic_view.png">
+          <div class="card-image"> <img src="/files/static_images/Pic_view.jpg">
           </div>
         </div>
         
         <div id="picture_modal">
-          <div class="card-image"> <img src="/files/static_images/Pic_modal.png">
+          <div class="card-image"> <img src="/files/static_images/Pic_modal.jpg">
           </div>
         </div>
       </div>
@@ -95,7 +95,7 @@
       <div class="card-content teal lighten-4">
         <div id="geo_view">
           <div class="card-image"> 
-            <img src="/files/static_images/Map_view.png">
+            <img src="/files/static_images/Map_view.jpg">
           </div>
         </div>
       </div>
@@ -146,7 +146,7 @@
 <!--<h2 class="header">Examples</h2>
   <div class="card horizontal">
       <div class="card-image">
-        <img src="/files/static_images/Default_Album_ex.png">
+        <img src="/files/static_images/Default_Album_ex.jpg">
       </div>
       <div class="card-stacked">
         <div class="card-content">
@@ -157,7 +157,7 @@
 
     <div class="card horizontal">
       <div class="card-image">
-        <img src="/files/static_images/Pic_view.png">
+        <img src="/files/static_images/Pic_view.jpg">
       </div>
       <div class="card-stacked">
         <div class="card-content">
@@ -168,7 +168,7 @@
 
     <div class="card horizontal">
       <div class="card-image">
-        <img src="/files/static_images/Pic_modal.png">
+        <img src="/files/static_images/Pic_modal.jpg">
       </div>
       <div class="card-stacked">
         <div class="card-content">

@@ -6,12 +6,12 @@
 			background-size: 100% 100%;
 			height: 100%;
 			background-repeat: no-repeat;
+			margin-top: -22px;
 		}
 	</style>
 
 	<body>
-		<div <?php if($this->session->userdata('logged_in') != TRUE){ ?> 
-						id="home-background" <?php } ?> >
+		<div id="home-background"  >
 			<?php echo $load ?>;
 
 		</div>

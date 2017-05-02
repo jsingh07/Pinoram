@@ -2,18 +2,13 @@
 <html>
 	<body>
 
-		<!--<div class="row" style="max-width: 550px; position: relative;">
-		        <div class="col s12 m12" style="margin-top: 100px;">
-		          <div class="card z-depth-5" >
-		            <div class="card-content black-text">
-		              <span class="card-title"><h4>Welcome to Pinoram!</h4> <br>The website is still under development. Please feel free to use the available functions from the menu.</span>
-		          </div>
-		        </div>
-		    </div>
-		</div>-->
+		<div class="row white-text" style="padding-top: 200px; max-width: 1000px; position: relative; background: transparent; ">
+              <h4 class="center z-depth-5" style="font-size: 5em; font-weight: 900">MEMORIES ON A MAP</h4> <br>
+              <h5 class="center z-depth-5" style="font-size: 3em; font-weight: 750">Create an album and upload your pictures to get started. Check out the public albums below!</h5>
+		</div>
 
 		<!-- Album Cards -->
-		<div id="album-container" class="row " style="max-width: 80%; margin-top: 20px;">
+		<div id="album-container" class="row " style="max-width: 80%; margin-top: 300px;">
 		    <div id= "col1" class="col s12 l4" >
 
 		    </div>
