@@ -37,12 +37,16 @@
             <div class="card-content" style="border: none; margin: auto">
                 <div class="row valign-wrapper">
                     <div class="col s4">
-                        <img id="profile_pic" class="circle responsive-img" style="margin-top: 20px">   
+                        <?php if(file_exists('files/profile_images/'.$profile_pic.'.jpg')) {?>
+                        <img src=<?php echo '/files/profile_images/'.$profile_pic.'.jpg'?> class="circle responsive-img" style="margin-top: 20px">   
+                        <?php }else{ ?>
+                        <img src="/files/static_images/default_profile.jpg" class="circle responsive-img" style="margin-top: 20px">   
+                        <?php } ?>
                     </div>
 	                    <div class="col s8" >
-	                        <h3 id= "album_name" style="font-weight: bold"></h3>
+	                        <h3 id= "album_name" style="font-weight: bold"><?php echo $album_name?> by <?php echo $username?></h3>
 	                            <div id="album_des">
-	                                <a id="description" style="font-size: 1.25em; color: #555;"></a>
+	                                <a id="description" style="font-size: 1.25em; color: #555;"><?php echo $description?></a>
 	                            </div>
 	                    </div>
                     </div>
@@ -51,7 +55,7 @@
                 
             </div>
         </div>
-
+    </div>
 
     <div class="row" style="max-width: 800px; margin-top: 20px;">
  		<div id="pictureGrid" class="grid" style="height: 100%; background-color: white">
