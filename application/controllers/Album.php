@@ -61,6 +61,7 @@ class Album extends CI_Controller
 			        {
 			        	$data['user_id'] = $mydata->user_id;
 			        	$data['bio'] = $mydata->bio;
+			        	$data['profile_pic'] = $mydata->profile_pic;
 	        		}
 
 					$data['username'] = $username;

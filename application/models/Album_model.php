@@ -42,7 +42,7 @@ class Album_model extends CI_Model {
 
 	public function get_user_data($username)
 	{
-		$sql = "SELECT user_id, bio FROM user
+		$sql = "SELECT user_id, bio, profile_pic FROM user
 				WHERE username = '$username'";
 		$result = $this->db->query($sql);
 		return $result;

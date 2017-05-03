@@ -21,8 +21,8 @@
             <div class="card-content" style="border: none; margin: auto">
                 <div class="row valign-wrapper">
                     <div class="col s4">
-                        <?php if(file_exists('files/profile_images/'.$user_id.'.jpg')) {?>
-                        <img src="/files/profile_images/<?php echo $user_id; ?>.jpg" class="circle responsive-img" style="margin-top: 20px">   
+                        <?php if(file_exists('files/profile_images/'.$profile_pic.'.jpg')) {?>
+                        <img src="/files/profile_images/<?php echo $profile_pic; ?>.jpg" class="circle responsive-img" style="margin-top: 20px">   
                         <?php }else{ ?>
                         <img src="/files/static_images/default_profile.jpg" class="circle responsive-img" style="margin-top: 20px">   
                         <?php } ?>
