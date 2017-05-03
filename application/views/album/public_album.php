@@ -1,16 +1,6 @@
 <!DOCTYPE html>
 <html>  
-<body >
-
-<style>
-.collapsible {
-  border-top: 0px solid #ddd;
-  border-right: 0px solid #ddd;
-  border-left: 0px solid #ddd;
-  margin: 0;
-}
-</style>
-
+<body>
 <!-- Profile header -->
 
     <div id ="hidden-album-id" data-id= "<?php echo $user_id; ?>" >

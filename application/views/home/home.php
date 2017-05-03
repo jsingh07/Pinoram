@@ -1,7 +1,7 @@
 <html>
 	<style>
 		#home-background {
-			background: url("<?php echo $this->config->item('base_url'); ?>/files/static_images/home.jpg");
+			background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("<?php echo $this->config->item('base_url'); ?>/files/static_images/home.jpg");
 
 			background-size: 100% 100%;
 			height: 100%;

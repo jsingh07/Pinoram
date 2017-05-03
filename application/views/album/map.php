@@ -1,25 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <html>
-
-<style>
-#map{
-    width: 100%;
-    height: 100%;
-}
-.gm-style .gm-style-iw {
-   font-size: 16px;
-   font-weight: bold;
-   font-family: sans-serif;
-   text-transform: uppercase;
-   left: 0px !important;
-   top: 35px !important;
-
-}
-
-</style>
-
 <body>
-    <div class="row" id="map" style="height: 91%;"></div>
+    <div class="row" id="map"></div>
 
     <div id="create-Album-modal" class="modal modal-fixed-footer" style="min-height:500px;">
 

@@ -1,32 +1,4 @@
 <html>
-<style>
-#picture-card {
-	width: 300px;
-	height: 400px;
-	overflow: hidden;
-	text-align: center;
-}
-#picture-card img{
-	max-width: 300px;
-	min-height: 300px;
-	max-height: 300px;
-	margin:0 -50%;
-  	position: absolute;
-}
-
-.modal.modal-fixed-footer .modal-footer#picture-modal-footer {
-  right: 0px;
-  height: 55px;
-  width: 350px;
-}
-
-/*------pac-container z index changed to show google autocomplete inside modal----------*/
-.pac-container {
-    z-index: 100000;
-}
-
-</style>
-
 
 <body style="background-color: white">
 	<div id ="hidden-album-id" data-id=<?php echo $this->session->userdata('album_id')?> >
@@ -95,8 +67,8 @@
             </div>
 
             <div class="modal-footer">
-                <button style="color:green;font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center"  type="submit" name="Submit" value="Submit" class="modal-action modal-close waves-effect waves-green btn-flat ">Submit</button>
-                <a style="font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center; color:black" class="modal-action modal-close waves-effect waves-gray btn-flat">Cancel</a>
+                <button type="submit" name="Submit" value="Submit" class="modal-action modal-close waves-effect waves-green btn-flat ">Submit</button>
+                <a class="modal-action modal-close waves-effect waves-gray btn-flat">Cancel</a>
             </div>
             <?php echo form_close(); ?>
 
@@ -113,11 +85,11 @@
 	<div class="modal-footer">
 	 	<?php echo form_open('Album/deleteAlbum'); ?>
 	    <input type="hidden" id="delete_album" name="delete_album"></input>
-		<button style="color:red;font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center"  type="submit" name="delete_album" value="Delete" class="modal-action modal-close waves-effect waves-green btn-flat ">Delete</button>
+		<button type="submit" name="delete_album" value="Delete" class="modal-action modal-close waves-effect waves-green btn-flat ">Delete</button>
 		<?php echo form_close(); ?>
 
 
-        <a style="font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center; color:black" class="modal-action modal-close waves-effect waves-gray btn-flat">Cancel</a>
+        <a class="modal-action modal-close waves-effect waves-gray btn-flat">Cancel</a>
     </div>
 
 </div>
@@ -149,7 +121,7 @@
 
   	</div>
 
-  	<div id="loading" class="modal" style="height:auto; max-width: 350px; margin-top: 200px">
+  	<div id="loading" class="modal">
 
 
 	   	<div class="modal-content center">
@@ -214,13 +186,13 @@
 		</div>
 
 		<div id="picture-modal-footer" class="modal-footer" align="right">
-			<button style="color:green;font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center"  type="submit" name="Submit" value="Submit" class="modal-action modal-close waves-effect waves-green btn-flat ">Submit</button>
+			<button id="picture-modal-footer-submit" type="submit" name="Submit" value="Submit" class="modal-action modal-close waves-effect waves-green btn-flat ">Submit</button>
 		<?php echo form_close(); ?>
-	      	<a style="font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center; color:black" class="modal-action modal-close waves-effect waves-gray btn-flat">Cancel</a>
+	      	<a class="modal-action modal-close waves-effect waves-gray btn-flat">Cancel</a>
 
 	    <?php echo form_open('Album/deletePicture'); ?>
 	    	<input type="hidden" id="delete_pic" name="delete_pic"></input>
-	      	<button style="color:red; font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center"  type="submit" name="Submit" value="Delete" class="modal-action modal-close waves-effect waves-red btn-flat ">Delete</button>
+	      	<button type="submit" name="Submit" value="Delete" class="modal-action modal-close waves-effect waves-red btn-flat ">Delete</button>
 	    <?php echo form_close(); ?>
 
 	    </div>

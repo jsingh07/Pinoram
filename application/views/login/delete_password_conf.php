@@ -2,7 +2,7 @@
 <html>
 
 <body >
-	<div class="row" id="user-profile" style=" position: relative; margin-top: 3%; max-width: 800px; height: 450px;">
+	<div class="row" id="user-profile">
 		<div class="card z-depth-5 col s12" style="height: 450px;">
 			<div class="vertical-menu left hide-on-small-and-down" style="margin-left:-11px; position: relative; display:inline-block; z-index:100;">
 				<a href="<?php echo site_url();?>Account" style="padding-left: 40px;">Account</a>

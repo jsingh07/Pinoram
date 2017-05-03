@@ -7,11 +7,9 @@
 
    font-family: 'Proxima-Nova';
 }*/
-.profile_ul li{
-	font-size: 1.5em;
-}
 
 
+/*----------------------------Global--------------------------*/
 @font-face {
   font-family: 'Texta';
   src: url('../fonts/2D333F_2_0.woff2') format('woff2'),
@@ -19,10 +17,317 @@
 }
 
 body {
-	font-family: 'Texta';
+    font-family: 'Texta';
+    background-color: #fafafa;
+    height: 100%;
+  	padding: 0;
+  	margin: 0;
+}
+
+html{
+	height: 100%;
 }
 
 
+.tabs .tab a {
+	color: #4db6ac;
+}
+
+.tabs .tab a:hover, .tabs .tab a.active {
+	color: #4db6ac;
+}
+
+.tabs.tabs-transparent .tab a,
+.tabs.tabs-transparent .tab.disabled a,
+.tabs.tabs-transparent .tab.disabled a:hover {
+	color: #4db6ac;
+}
+
+.tabs .indicator {
+    background-color: #4db6ac;
+}
+
+.profile_ul li{
+	font-size: 1.5em;
+}
+
+
+/*----------------------------Account--------------------------*/
+.vertical-menu {
+    width: 200px; /* Set a width if you like */
+    border-right: 1px solid #e0e0e0;
+    height: 100%;
+}
+
+.vertical-menu a {
+    background-color: #fffff; /* Grey background color */
+    color: black; /* Black text color */
+    display: block; /* Make the links appear below each other */
+    padding: 12px; /* Add some padding */
+    text-decoration: none; /* Remove underline from links */
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.vertical-menu a:hover {
+    background-color: #ccc; /* Dark grey background on mouse-over */
+}
+
+.vertical-menu a.active {
+    background-color: #ccc; /* Add a green color to the "active/current" link */
+    color: white;
+}
+
+#profile {
+    margin-top: 20px; 
+    height:650px; 
+    position: relative;
+    min-width: 300px;
+}
+
+#profile #label {
+    font-weight: bold;
+    font-size: 1em;
+    margin-top: 1px;
+    text-align: right; 
+    margin-left: -11px
+}
+
+#profile #account-label{
+	margin-top: 16px;
+    text-align: right; 
+    margin-left: -11px
+}
+
+#account-label #profile_image{
+	width: 80px; 
+	cursor: pointer; 
+	cursor: hand;
+}
+
+#profile #label li{
+	font-weight: bold;
+	font-size: 1.2em;
+	margin-top: 26px;
+}
+
+#profile #account-label li{
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-top: 27px;
+}
+
+#account_input{
+	margin-left: 10px;
+	margin-top: 46px;
+}
+
+#account_input h4{
+	margin-bottom: 50px; f
+	ont-size: 1.5em;
+}
+
+#account_input button{
+	margin-top: 20px; 
+	width: 100%;
+}
+
+#account_input textarea{
+	resize: none; 
+	font-size: .8em; 
+	height: 110px; 
+	margin-top:10px;  
+	max-width:300px;
+}
+
+#profileModal{
+	max-width: 500px; 
+	max-height: 500px;
+}
+
+#profileModal .row.center{
+	margin-top: 10px;
+}
+
+#picture-modal-footer a{
+	font-size: 1em; 
+	max-width: 100px; 
+	min-width: 70px; 
+	padding:0; 
+	text-align: center;
+}
+
+#profile input{
+	margin-bottom: 8px;
+}
+
+#user-profile .tabs a{
+    font-size: .8em;
+}
+
+#user-profile{
+	position: relative; 
+	margin-top: 3%; 
+	max-width: 800px; 
+	width: 100%; 
+	height: 450px;
+}
+
+#edit_account_v_menu{
+	margin-left:-11px; 
+	position: relative; 
+	display:inline-block; 
+	z-index:100;
+}
+
+#delete_account_row{
+	position: relative; 
+	margin-top: 2%; 
+	max-width: 300px; 
+	height: 300px;
+}
+
+.thumb.active{
+	display:none;
+}
+
+.error_msg p{
+	margin-top: -5px;
+}
+.error_msg{
+	margin-bottom: -15px;
+	position: relative; 
+	color: red; 
+	text-align: center;
+}
+
+/*----------------------------Album--------------------------*/
+#map {
+	position: relative;
+    background-color: white;
+    width: 100%;
+    height: 91%;
+}
+
+.gm-style .gm-style-iw {
+   font-size: 16px;
+   font-weight: bold;
+   font-family: sans-serif;
+   text-transform: uppercase;
+   left: 0px !important;
+   top: 35px !important;
+
+}
+
+#album-container{
+	max-width: 80%; 
+	margin-top: 20px;
+}
+
+#album-container .collapsible{
+	border-top: 0px solid #ddd;
+    border-right: 0px solid #ddd;
+    border-left: 0px solid #ddd;
+    margin: 0;
+}
+
+
+#picture-card {
+	width: 300px;
+	height: 400px;
+	overflow: hidden;
+	text-align: center;
+}
+#picture-card img{
+	max-width: 300px;
+	min-height: 300px;
+	max-height: 300px;
+	margin:0 -50%;
+  	position: absolute;
+}
+
+.modal.modal-fixed-footer .modal-footer#picture-modal-footer {
+  right: 0px;
+  height: 55px;
+  width: 350px;
+}
+
+/*------pac-container z index changed to show google autocomplete inside modal----------*/
+.pac-container {
+    z-index: 100000;
+}
+
+#edit-Album-modal .modal-footer button{
+	color:green;
+	font-size: 1em; 
+	max-width: 100px; 
+	min-width: 70px; 
+	padding:0; 
+	text-align: center;
+}
+
+#edit-Album-modal .modal-footer a{
+	font-size: 1em; 
+	max-width: 100px; 
+	min-width: 70px; 
+	padding:0; 
+	text-align: center; 
+	color:black;
+}
+
+#picture-modal-footer-submit{
+	color:green;font-size: 1em; 
+	max-width: 100px; 
+	min-width: 70px; 
+	padding:0; 
+	text-align: center;
+}
+
+#picture-modal-footer a{
+	font-size: 1em; 
+	max-width: 100px; 
+	min-width: 70px; 
+	padding:0; 
+	text-align: center; 
+	color:black;
+}
+
+#delete-Album-modal .modal-footer button{
+	color:red;
+	font-size: 1em; 
+	max-width: 100px; 
+	min-width: 70px; 
+	padding:0; 
+	text-align: center;
+}
+
+#delete-Album-modal .modal-footer a{
+	font-size: 1em; 
+	max-width: 100px; 
+	min-width: 70px; 
+	padding:0; 
+	text-align: center; 
+	color:black;
+}
+
+#picture-modal-footer-delete{
+	color:red; 
+	font-size: 1em; 
+	max-width: 100px; 
+	min-width: 70px; 
+	padding:0; 
+	text-align: center;
+}
+
+#loading {
+	height:auto; 
+	max-width: 350px; 
+	margin-top: 200px;
+}
+
+
+
+/*----------------------------Templates--------------------------*/
 nav .nav-wrapper{
 	background-color: #ffffff;
 	color: black;
@@ -36,27 +341,28 @@ nav ul a{
 	font-weight: 500;
 }
 
-#map {
-		position: relative;
-    background-color: white;
-}
 
-#about-slide-out p{
-	font-size: 1.2em;
-}
-
-
-body{
-	background-color: white;
+/*----------------------------Home-----------------------------*/
+#greeting-row{
 	height: 100%;
-  	padding: 0;
-  	margin: 0;
+	padding-top: 20%; 
+	max-width: 1000px; 
+	position: relative; 
+	background: transparent;
 }
 
-html{
-	height: 100%;
+#greeting-row h4{
+	font-size: 5em; 
+	font-weight: 900;
 }
 
+#greeting-row h5{
+	font-size: 3em; 
+	font-weight: 750;
+}
+
+
+/*----------------------------Login--------------------------*/
 #user-registration {
 	position: relative;
 	margin-top: 2%;
@@ -100,14 +406,7 @@ html{
 	margin-top: 50px;
 }
 
-#home-background {
-	background: url("<?php echo $this->config->item('base_url'); ?>/files/images/home.jpg");
 
-	background-size: 100% 100%;
-	height: 100%;
-	background-repeat: no-repeat;
-}
+/*----------------------------SetupDB--------------------------*/
 
-footer.page-footer{
-	background-color: #ffffff;
-}
+

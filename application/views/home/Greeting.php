@@ -2,9 +2,9 @@
 <html>
 	<body>
 
-		<div class="row white-text" style="height: 100%; padding-top: 20%; max-width: 1000px; position: relative; background: transparent;">
-              <h4 class="center z-depth-5" style="font-size: 5em; font-weight: 900">MEMORIES ON A MAP</h4> <br>
-              <h5 class="center z-depth-5" style="font-size: 3em; font-weight: 750">Create an album and upload your pictures to get started. Check out the public albums below!</h5>
+		<div id="greeting-row" class="row white-text">
+              <h4 class="center z-depth-5">MEMORIES ON A MAP</h4> <br>
+              <h5 class="center z-depth-5">Create an album and upload your pictures to get started. Check out the public albums below!</h5>
 		</div>
 
 		<!-- Album Cards -->

@@ -392,31 +392,5 @@ class Album extends CI_Controller
 			echo json_encode($json_array, true);
 		}
 	}
-
-	public function test()
-	{
-		//$data = $this->Album_model->get_pictures($this->session->userdata('user_id'));
-		//echo json_encode($data->result());
-		$this->load->view('templates/header.php');
-		//$this->load->view('gallery.php');
-		//$this->load->view('Album/test.php');
-		//$data['files']  = $this->test_post();
-
-        $this->load->view('album/test.php');
-	}
-
-	public function testexif()
-	{
-		$this->load->view('templates/header.php');
-        $this->load->view('album/exiftest.php');
-	}
-
-	public function test_post()
-	{
-
-		$data = $this->Album_model->get_pictures($this->session->userdata('user_id'));
-		echo json_encode($data->result(), true);
-
-	}
 }
 ?>

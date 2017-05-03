@@ -1,23 +1,12 @@
 <html>
-<style>
-.thumb.active{
-	display:none;
-}
 
-.error_msg p{
-	margin-top: -5px;
-}
-.error_msg{
-	margin-bottom: -15px;
-}
-</style>
 <body >
 	<div id ="hidden-pic-id" data-id= "<?php echo $this->session->userdata("profile_pic")?>" >
     </div>
-	<div class="row" id="user-profile" style=" position: relative; margin-top: 3%; max-width: 800px; width: 100%; height: 450px;">
+	<div class="row" id="user-profile">
 
 		<div class="card z-depth-5 col s12" style="height: 700px;">
-			<div class="vertical-menu left hide-on-small-and-down" style="margin-left:-11px; position: relative; display:inline-block; z-index:100;">
+			<div class="vertical-menu left hide-on-small-and-down" id="edit_account_v_menu">
 
 				<a href="" class="active" style="padding-left: 40px;">Account</a>
 				<!--<a href="<?php echo site_url();?>Account/profile" style="padding-left: 40px;">Edit Profile</a>-->
@@ -37,8 +26,8 @@
       		</div>
       		
 
-			<div class="row" id="profile" style="min-width: 300px;">
-				<div class="error_msg" style="position: relative; color: red; text-align: center">
+			<div class="row" id="profile">
+				<div class="error_msg">
 					<?php 
 						if(null !== $this->session->flashdata('validation_error'))
 						{
@@ -53,10 +42,10 @@
 					?>
 				</div>
 
-				<div class="col s4 m3" id="account-label" style="text-align: right; margin-left: -11px">
+				<div class="col s4 m3" id="account-label">
 
 					<ul>
-						<li><img id="profile_image" class="circle responsive-img" style="width: 80px; cursor: pointer; cursor: hand;"></li>
+						<li><img id="profile_image" class="circle responsive-img"></li>
 						<li>Username</li>
 						<li>First Name</li>
 						<li>Last Name</li>
@@ -67,24 +56,24 @@
 
 				<?php echo form_open('Account/edit_account'); ?>
 
-				<div class="col s7 m5" style="margin-left: 10px; margin-top: 46px">
-						<h4 style ="margin-bottom: 50px; font-size: 1.5em"><?php echo $this->session->userdata('username')?></h4>
+				<div class="col s7 m5" id="account_input">
+						<h4><?php echo $this->session->userdata('username')?></h4>
 						<input id="username" class="validate" name="username" autocomplete="off" value="<?php echo $this->session->userdata('username') ?>">
 						<input id="first_name" class="validate" name="first_name" autocomplete="off" value="<?php echo $this->session->userdata('first_name') ?>">
 						<input id="last_name" class="validate" name="last_name" autocomplete="off" value="<?php echo $this->session->userdata('last_name') ?>">
 						<input id="email" class="validate" type="email" name="email" autocomplete="off" value="<?php echo $this->session->userdata('email') ?>">
 						<div>
-							<textarea rows="5" cols="10" id="bio" name="bio" class="active" data-length="250" style="resize: none; font-size: .8em; height: 110px; margin-top:10px;  max-width:300px;"><?php echo $this->session->userdata('bio'); ?></textarea>
+							<textarea rows="5" cols="10" id="bio" name="bio" class="active" data-length="250"><?php echo $this->session->userdata('bio'); ?></textarea>
 						</div>
-						<button style="margin-top: 20px; width: 100%" class="btn waves-effect waves-light" type="submit" name="submit">Submit</button>
+						<button class="btn waves-effect waves-light" type="submit" name="submit">Submit</button>
 				</div>
 		        <?php echo form_close(); ?>
 			</div>
 		</div>
 	</div>
 
-	<div id="profileModal" class="modal modal-fixed-footer" style="max-width: 500px; max-height: 500px">
-		<div class="row center" style="margin-top: 10px">
+	<div id="profileModal" class="modal modal-fixed-footer">
+		<div class="row center">
 			<h3>Profile Picture</h3>
 			<hr style="margin-top: -10px"></hr>
 		<div>
@@ -97,18 +86,18 @@
 			</div>
 
 			<div id="picture-modal-footer" class="modal-footer" align="right">
-				<a class="waves-effect waves-black btn-flat" style="font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center; color: green" id="submitbutton">
+				<a class="waves-effect waves-black btn-flat" style="color: green" id="submitbutton">
 					Submit
 					<input type="hidden" id="imagebase64" name="imagebase64">
 					<?php echo form_close(); ?>
 				</a>
-				<a class="modal-action modal-close waves-effect waves-black btn-flat" style="font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center; color:black">
+				<a class="modal-action modal-close waves-effect waves-black btn-flat" style="color:black">
 					Cancel       
         		</a> 
-				<a class="waves-effect waves-black btn-flat" id="rotate" style="font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center; color:black">
+				<a class="waves-effect waves-black btn-flat" id="rotate" style="color:black">
 					Rotate     
         		</a> 
-        		<a class="waves-effect waves-black btn-flat" style="font-size: 1em; max-width: 100px; min-width: 70px; padding:0; text-align: center; color:black" onclick="document.getElementById('upload').click();">
+        		<a class="waves-effect waves-black btn-flat" style="color:black" onclick="document.getElementById('upload').click();">
 					Upload
         			<input type="file" id="upload" accept="image/*" style="display:none" onchange="readFile(this)"></input>       
         		</a> 

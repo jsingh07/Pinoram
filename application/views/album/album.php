@@ -2,14 +2,6 @@
 <html>  
 <body >
 
-<style>
-.collapsible {
-  border-top: 0px solid #ddd;
-  border-right: 0px solid #ddd;
-  border-left: 0px solid #ddd;
-  margin: 0;
-}
-</style>
 <!-- FAB button -->
 <div class="fixed-action-btn">
     <a id="create_Album" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
@@ -47,17 +39,17 @@
 
 
 <!-- Album Cards -->
-<div id="album-container" class="row " style="max-width: 80%; margin-top: 20px;">
+<div id="album-container" class="row ">
     <input type = "hidden" id = "csrf" name = "<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
-    <div id= "col1" class="col s12 l3" >
+    <div id= "col1" class="col s12 l4" >
 
     </div>
 
-    <div id= "col2" class="col s12 l3" >
+    <div id= "col2" class="col s12 l4" >
         
     </div>
 
-    <div id= "col3" class="col s12 l3" >
+    <div id= "col3" class="col s12 l4" >
         
     </div>
 </div>

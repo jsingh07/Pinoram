@@ -1,32 +1,4 @@
 <html>
-<style>
-#picture-card {
-	width: 300px;
-	height: 400px;
-	overflow: hidden;
-	text-align: center;
-}
-#picture-card img{
-	max-width: 300px;
-	min-height: 300px;
-	max-height: 300px;
-	margin:0 -50%;
-  	position: absolute;
-}
-
-.modal.modal-fixed-footer .modal-footer#picture-modal-footer {
-  right: 0px;
-  height: 55px;
-  width: 350px;
-}
-
-/*------pac-container z index changed to show google autocomplete inside modal----------*/
-.pac-container {
-    z-index: 100000;
-}
-
-</style>
-
 
 <body style="background-color: white">
 	<div id ="hidden-album-id" data-id=<?php echo $this->session->userdata['album_id']?> >
