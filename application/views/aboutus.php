@@ -11,7 +11,7 @@
   <div class="row" style="max-width: 900px">
     <div class="col s12" style="border:none;">
       <h2 class="header">About Us</h2>
-      <div class="card horizontal" style="border: none; box-shadow: none ">
+      <div class="card horizontal" style="border: none; box-shadow: none; background-color: #fafafa;">
         <p style="font-size: 1.5em; margin-top: -10px">Welcome to Pinoram! Pinoram was created by Ron and Jagdeep. It’s a site meant for people to showcase their pictures beautifully from various trips around the world. Users can simply create an album and upload any related pictures. Pinoram will automatically grab the geo data from the pictures and map it onto google maps. Of course you can manually add the locations for each picture. Share your albums with the world by making them public or keep them private for family and friends only.   </p>
       </div>
     </div>
@@ -109,7 +109,7 @@
     <h2>Developers</h2>
     <div class="col s12 m6" style="border:none;">
       <h5 class="header">Ron Hein</h5>
-      <div class="card horizontal" style="border: none; box-shadow: none ">
+      <div class="card horizontal" style="border: none; box-shadow: none; background-color: #fafafa;">
         <div class="card-image" style="max-width: 133px">
           <img class="circle" src="/files/static_images/pyai.jpg">
         </div>
@@ -122,7 +122,7 @@
     </div>
     <div class="col s12 m6" style="border:none;">
       <h5 class="header">Jagdeep Singh</h5>
-      <div class="card horizontal" style="border: none; box-shadow: none">
+      <div class="card horizontal" style="border: none; box-shadow: none; background-color: #fafafa;">
         <div class="card-image" style="width: 133px">
           <img class="circle" src="/files/static_images/jag.jpg">
         </div>
