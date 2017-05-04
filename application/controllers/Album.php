@@ -55,7 +55,7 @@ class Album extends CI_Controller
 			else
 			{
 				$result = $this->Album_model->get_user_data($username);
-				if($result)
+				if($result->num_rows())
 				{
 					foreach ($result->result() as $mydata)
 			        {
@@ -72,14 +72,14 @@ class Album extends CI_Controller
 				else
 				{
 					$this->load->view('templates/header.php');
-					$this->load->view('access_denied.php');
+					$this->load->view('user_dont_exist.php');
 				}
 			}
 		}
 		else
 		{
 			$this->load->view('templates/header.php');
-			$this->load->view('access_denied.php');
+			$this->load->view('user_dont_exist.php');
 		}
 		
 	}
