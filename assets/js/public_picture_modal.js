@@ -145,11 +145,11 @@ $(document).ready(function(){
 	    		//take 90% of windowwidth, max 1100
 	    		if(windowwidth * .9 > 1100)
 	    		{
-	    			var modalHeight = Math.round((imgHeight/imgWidth) * (1100 - 310));
+	    			var modalHeight = Math.round((imgHeight/imgWidth) * (1100 - 320));
 	    		}
 	    		else
 	    		{
-	    			var modalHeight = Math.round((imgHeight/imgWidth) * ((windowwidth * .9) - 300));
+	    			var modalHeight = Math.round((imgHeight/imgWidth) * ((windowwidth * .9) - 320));
 	    		}
 	    		//check if mobile page or desktop
 	    		if(modalHeight < 300)
@@ -169,12 +169,10 @@ $(document).ready(function(){
 		    		$("#pictureModal").css("height", "95%");
 		    		$("#pictureModal").css("width", "100%");
 		    		$("#pictureModal").css("max-width", "400px");
-		    		$("#pictureModal").css("overflow-y", "scroll");
+		    		$("#pictureModal").css("overflow-y", "hidden");
 		    		$("#pictureModal").css("margin-top", "-50px");
 		    		$("#modal-image1").attr("src", "");
-		    		$("#modal-image1").css("display", "none");
 		    		$("#modal-image2").attr("src", srcPic);
-		    		$("#modal-image2").css("display", "block");
 		    		$(".modal-image").css("width", "100%");
 		    		$(".modal-image").css("height", "auto");
 		    		$(".modal-image").css("float", "left");
@@ -187,7 +185,7 @@ $(document).ready(function(){
 		    		$("#picture-info-div").css("text-align", "left");
 		    		$("#picture-info-div").css("width", "100%");
 		    		$("#picture-info-div").css("height", infoHeight);
-		    		$("#picture-info-div").css("overflow-y", "visible");
+		    		$("#picture-info-div").css("overflow-y", "auto");
 		    		$("#picture-info-div").css("background-color", "transparent");
 		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("position","fixed");
 		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("width","100%");
@@ -199,11 +197,11 @@ $(document).ready(function(){
 	    			if(modalHeight > 600)
 	    			{
 	    				modalHeight = 600;
-	    				modalWidth = (((imgWidth/imgHeight) * 600) + 300);
+	    				modalWidth = (((imgWidth/imgHeight) * 600) + 320);
 	    			}
 	    			else
 	    			{
-	    				modalWidth = "91%";
+	    				modalWidth = "90%";
 	    			}
 					
 		    		var imgHeight = modalHeight +"px";
@@ -214,9 +212,7 @@ $(document).ready(function(){
 		    		//$("#pictureModal").css("background-size", backgroundSize);
 		    		$("#pictureModal").css("margin-top", "20px");
 		    		$("#modal-image1").attr("src", srcPic);
-		    		$("#modal-image1").css("display", "block");
 		    		$("#modal-image2").attr("src", "");
-		    		$("#modal-image2").css("display", "none");
 		    		$(".modal-image").css("width", "auto");
 		    		$(".modal-image").css("height", imgHeight);
 		    		$(".modal-image").css("float", "left");
@@ -228,10 +224,10 @@ $(document).ready(function(){
 		    		$("#picture-info-div").attr("class", "right");
 		    		$("#picture-info-div").css("width", "300px");
 		    		$("#picture-info-div").css("background-color", "transparent");
-		    		$("#picture-info-div").css("overflow-y", "hidden");
+		    		$("#picture-info-div").css("overflow-y", "auto");
 		    		$("#picture-info-div").css("height", "auto");
 		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("position","absolute");
-		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("width","300px");
+		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("width","320px");
 	    		}
 	    	}
 	    	else
@@ -253,10 +249,9 @@ $(document).ready(function(){
 		    		$("#pictureModal").css("width", "100%");
 		    		$("#pictureModal").css("max-width", "400px");
 		    		$("#pictureModal").css("margin-top", "-15%");
+		    		$("#pictureModal").css("overflow-y", "hidden");
 		    		$("#modal-image1").attr("src", "");
-		    		$("#modal-image1").css("display", "none");
 		    		$("#modal-image2").attr("src", srcPic);
-		    		$("#modal-image2").css("display", "block");
 		    		$(".modal-image").css("width", "100%");
 		    		$(".modal-image").css("height", "auto");
 		    		$(".modal-image").css("float", "left");
@@ -268,25 +263,38 @@ $(document).ready(function(){
 		    		$("#picture-info-div").css("text-align", "left");
 		    		$("#picture-info-div").css("width", "100%");
 		    		$("#picture-info-div").css("height", infoHeight);
-		    		$("#picture-info-div").css("overflow-y", "visible");
+		    		$("#picture-info-div").css("overflow-y", "auto");
 		    		$("#picture-info-div").css("background-color", "transparent");
 		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("position","fixed");
 		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("width","100%");
+
+		    		/*$("#picture-info").css("margin-top", infooffset);
+		    		$("#picture-info").css("height", "400px");
+		    		$("#picture-info").css("padding-bottom", "0px");
+		    		$("#picture-info-div").attr("class", "center");
+		    		$("#picture-info-div").css("text-align", "left");
+		    		$("#picture-info-div").css("width", "100%");
+		    		$("#picture-info-div").css("height", "auto");
+		    		$("#picture-info-div").css("margin-top", "5px");
+		    		$("#pictureModal").css("overflow-y", "scroll");
+		    		$("#picture-info-div").css("overflow-y", "visible");
+		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("position","fixed");
+		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("width","100%");
+		    		$("#picture-modal-footer").css("bottom", "0px");
+		    		$("#picture-modal-footer").css("position", "static");*/
 	    		}
 	    		else
 	    		{
 					//var myheight = Math.round(((imgHeight / imgWidth) * 400));
 					var mywidth = Math.round(((imgWidth / imgHeight) * 500));
-					var modalwidth = (mywidth + 300) + "px";
+					var modalwidth = (mywidth + 320) + "px";
 		    		//var myheightstring = "900px";
 		    		$("#pictureModal").css("width", modalwidth);
 		    		$("#pictureModal").css("height", "500px");
 		    		$("#pictureModal").css("max-width", "900px");
 		    		$("#pictureModal").css("margin-top", "10px");
 		    		$("#modal-image1").attr("src", srcPic);    //auto 600px
-		    		$("#modal-image1").css("display", "block");
 		    		$("#modal-image2").attr("src", "");
-		    		$("#modal-image2").css("display", "none");
 		    		$(".modal-image").css("width", "auto");
 		    		$(".modal-image").css("height", "500px");
 		    		$(".modal-image").css("float", "left");
@@ -298,11 +306,11 @@ $(document).ready(function(){
 		    		$("#picture-info-div").attr("class", "right");
 		    		$("#picture-info-div").css("width", "300px");
 		    		$("#picture-info-div").css("background-color", "transparent");
-		    		$("#picture-info-div").css("overflow-y", "scroll");
+		    		$("#picture-info-div").css("overflow-y", "auto");
 		    		$("#picture-info-div").css("height", "auto");
 		    		$("#picture-info-div").css("margin-top", "15px");
 		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("position","absolute");
-		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("width","300px");
+		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("width","320px");
 		    	}
 	    	}
 	    }
