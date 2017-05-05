@@ -5,7 +5,7 @@
     </div>
 	<div class="row" id="user-profile">
 
-		<div class="card z-depth-5 col s12" style="height: 700px;">
+		<div class="card col s12" style="height: 700px;">
 			<div class="vertical-menu left hide-on-small-and-down" id="edit_account_v_menu">
 
 				<a href="" class="active" style="padding-left: 40px;">Account</a>

@@ -1,6 +1,6 @@
 <body>
 		<div class="row" id="user-registration">
-			<div class="card z-depth-5 col s12">
+			<div class="card col s12">
 				<div style="position: relative; margin-top: 10px; color: black; text-align:center;">
 					<?php echo $msg ?>
 				</div>
