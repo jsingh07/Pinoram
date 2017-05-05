@@ -307,7 +307,7 @@ $(document).ready(function(){
 		    		$("#picture-info-div").css("width", "300px");
 		    		$("#picture-info-div").css("background-color", "transparent");
 		    		$("#picture-info-div").css("overflow-y", "hide");
-		    		$("#picture-info-div").css("height", "550px");
+		    		$("#picture-info-div").css("height", "450px");
 		    		$("#picture-info-div").css("margin-top", "15px");
 		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("position","absolute");
 		    		$(".modal.modal-fixed-footer .modal-footer#picture-modal-footer").css("width","320px");
